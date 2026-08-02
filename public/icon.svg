@@ -1,0 +1,27 @@
+<!--
+  사이트 아이콘 — 이 파일 하나만 고치면 브라우저 탭과 상단 로고가 함께 바뀝니다.
+
+  구조
+    plate  배경 판 (주황). 탭에서 아이콘이 배경에 묻히지 않도록 캔버스를 꽉 채웁니다.
+    badge  AWS 인증 배지의 육각형 (네이비)
+    check  흰 체크
+
+  색만 바꾸고 싶으면 아래 <linearGradient> 의 stop-color 4개만 고치면 됩니다.
+  16px 파비콘에서도 읽히도록 도형을 2겹으로만 유지하세요. 겹을 더 얹으면 작은 크기에서 뭉개집니다.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"
+     role="img" aria-label="자격증 학습 볼트">
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3C4B59"/>
+      <stop offset="1" stop-color="#232F3E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 육각형 배지 -->
+  <polygon points="32,2 59,17 59,47 32,62 5,47 5,17" fill="url(#badge)"/>
+
+  <!-- 체크 -->
+  <path d="M22.5 32.4l6 6 11-13" fill="none" stroke="#fff"
+        stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

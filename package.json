@@ -1,0 +1,48 @@
+{
+  "name": "cert-vault",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare:content": "node scripts/build-quiz.mjs && node scripts/build-graph.mjs && node scripts/build-modules.mjs && node scripts/build-service-map.mjs",
+    "build": "npm run prepare:content && next build",
+    "dev": "npm run prepare:content && next dev",
+    "start": "next start",
+    "types:check": "next typegen && tsc --noEmit",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "cnfast": "^0.1.0",
+    "fumadocs-core": "16.14.0",
+    "fumadocs-mdx": "15.2.1",
+    "fumadocs-ui": "npm:@fumadocs/base-ui@16.14.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "lucide-react": "^1.27.0",
+    "mermaid": "^11.12.0",
+    "next": "16.2.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-rehype": "^11.1.2",
+    "ts-fsrs": "^5.4.1",
+    "unist-util-visit": "^5.1.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/hast": "^3.0.5",
+    "@types/mdx": "^2.0.14",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "d3-force": "^3.0.0",
+    "d3-hierarchy": "^3.1.2",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.2.12",
+    "gray-matter": "^4.0.3",
+    "postcss": "^8.5.24",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}

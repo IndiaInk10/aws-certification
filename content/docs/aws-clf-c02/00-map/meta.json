@@ -1,0 +1,10 @@
+{
+ "title": "지도",
+ "pages": [
+  "00-learning-path",
+  "service-comparisons",
+  "exam-overview",
+  "service-map"
+ ],
+ "icon": "Map"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "AWS CLF-C02",
+  "pages": [
+    "index",
+    "00-map",
+    "20-course",
+    "10-services",
+    "30-exam",
+    "90-templates"
+  ],
+  "icon": "Cloud"
+}
