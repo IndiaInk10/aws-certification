@@ -1,5 +1,6 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import { appName } from './shared';
+import { Settings } from 'lucide-react';
 
 /** 마크 원본은 public/icon.svg 다. 여기서 사본을 만들지 말고 그 파일을 고칠 것. */
 function Mark() {
@@ -23,6 +24,15 @@ export function baseOptions(): BaseLayoutProps {
     links: [
       { text: '자격증', url: '/docs', active: 'nested-url' },
       { text: '참고 자료', url: '/docs/references', active: 'url' },
+      // secondary — 테마 · 언어 버튼과 같은 줄(사이드바 아래/헤더 오른쪽)에 아이콘으로 붙는다
+      {
+        type: 'icon',
+        text: '설정',
+        label: '설정',
+        url: '/settings',
+        icon: <Settings />,
+        secondary: true,
+      },
     ],
   };
 }

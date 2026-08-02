@@ -56,6 +56,65 @@ remark-obsidian.mjs            [[위키링크]] · > [!콜아웃] · <details> �
 | mermaid | 동적 import | 다이어그램 있는 페이지에서만 로드 |
 | 이미지 | Fumadocs `remarkImage` → `next/image` | 자동 최적화 |
 
+## 문제 언어 (로케일)
+
+**문서(docs)는 한국어 하나**이고, **문제만** 한국어/영어를 고를 수 있습니다.
+바꾸는 곳은 두 군데이고 같은 값을 씁니다 — 선택은 `localStorage(cv.quizLang)` 에 남습니다.
+시험 화면에는 두지 않습니다. 풀다가 건드릴 스위치가 아닙니다.
+
+- **언어 버튼** (헤더·사이드바의 테마 버튼 옆) — Fumadocs 기본 언어 스위처를 그대로 씁니다.
+  `src/components/app-provider.tsx` 에서 `RootProvider i18n` 에 로케일 목록을 주면 버튼이 생기고,
+  `onLocaleChange` 를 우리 것으로 갈아끼워 **URL 은 건드리지 않고** 문제 언어만 바꿉니다.
+- **설정**(`/settings`) 화면 — 문제 언어와 학습 기록(백업 · 선택 삭제)을 한곳에서
+
+```
+content/question-bank/aws-clf-c02/
+  practice-exam-00.md            원문 (프론트매터 lang: ko | en)
+  i18n/en/practice-exam-00.md    영어 번역본
+  i18n/ko/practice-exam-07.md    한국어 번역본 (앞으로 회차별로 추가)
+```
+
+- 번역본은 **원문과 같은 형식**입니다. 문항은 **순서**로, 보기는 **글머리(a/b/c)** 로 짝지어집니다.
+  순서를 바꾸거나 문항을 빼면 원문과 어긋납니다.
+- **정답 · 관련 서비스 · 모듈은 원문 것만** 씁니다 (언어와 무관한 정보).
+  번역본의 `[!success]` 블록은 파서가 문항을 인식하는 데만 쓰입니다.
+- `build-quiz.mjs` 가 둘을 합쳐 `q: { ko, en }` 형태로 내보내고,
+  **번역본이 없는 문항은 원문 언어로 조용히 폴백**합니다. 그래서 회차별로 하나씩 채워 나갈 수 있습니다.
+- 한국어 번역은 **실제 시험 한국어판의 번역투**를 그대로 흉내 냅니다
+  ("~하는 것은 무엇인가?", "~해야 하는 요구 사항", 서비스명은 영문 유지). 자연스러운 의역은 오히려 실전과 멀어집니다.
+
+현황: 00회(공식 20문항) 원문 한국어 + 영어 번역본, 01~23회는 영어 원문.
+
+### Fumadocs i18n 으로 옮긴다면
+
+지금은 Fumadocs 의 **UI(언어 버튼·문구 번역)만** 빌려 쓰고 라우팅은 그대로 둡니다.
+UI 문구 한국어는 `src/lib/ui-translations.ts` 에 키-값으로 있습니다 (검색 · 목차 · 페이지 액션 등).
+나중에 **문서까지** 다국어로 간다면 Fumadocs 내장 i18n 을 쓰는 편이 낫습니다. 필요한 것만 적어 둡니다.
+
+```ts
+// src/lib/i18n.ts
+import { defineI18n } from 'fumadocs-core/i18n';
+export const i18n = defineI18n({ defaultLanguage: 'ko', languages: ['ko', 'en'] });
+```
+
+```ts
+// src/middleware.ts — /docs/... → /ko/docs/... 로 붙여 준다
+import { createI18nMiddleware } from 'fumadocs-core/i18n/middleware';
+import { i18n } from '@/lib/i18n';
+export default createI18nMiddleware(i18n);
+export const config = { matcher: ['/((?!api|_next|.*\\..*).*)'] };
+```
+
+- 라우트를 `src/app/[lang]/...` 아래로 옮기고, `source.ts` 의 `loader({ i18n })` 에 위 설정을 넘긴다
+- 콘텐츠는 파일명으로 언어를 구분한다 — `index.md`(ko) / `index.en.md`, `meta.json` / `meta.en.json`
+- `<RootProvider i18n={{ locale, translations }}>` 로 Fumadocs UI 문구(검색·목차 등)까지 번역된다
+- 검색 인덱스도 언어별로 나뉜다 (`createFromSource(source, { localeMap })`)
+
+무게 차이가 분명합니다. Fumadocs 방식은 URL·미들웨어·라우트 구조가 전부 바뀌고
+**문서 전체의 번역본이 있어야 값을 합니다.** 지금처럼 문제만 두 언어인 상황에서는
+빌드 산출물에 `{ ko, en }` 을 담는 현재 방식이 더 가볍고, 나중에 문서까지 번역하기로 하면
+그때 위 설정을 얹고 문제 로케일을 `params.lang` 에서 읽도록 바꾸면 됩니다.
+
 ## 학습 기록 저장
 
 `src/lib/storage.ts` 의 `ProgressStore` 인터페이스 뒤에 있습니다.

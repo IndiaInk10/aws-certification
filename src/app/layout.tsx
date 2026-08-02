@@ -1,4 +1,4 @@
-import { RootProvider } from 'fumadocs-ui/provider/next';
+import { AppProvider } from '@/components/app-provider';
 import './global.css';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
@@ -25,7 +25,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
       {/* 일부 브라우저 확장이 body 에 속성을 심어(예: cz-shortcut-listen) 하이드레이션 경고를 낸다.
           우리 렌더링과 무관하므로 body 에서도 경고를 억제한다. */}
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
-        <RootProvider>{children}</RootProvider>
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );

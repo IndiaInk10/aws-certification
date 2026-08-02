@@ -38,11 +38,19 @@ export function withCertTools(tree: PageTree.Root): PageTree.Root {
       const cert = firstDocUrl(node)?.match(/^\/docs\/([^/]+)(?:\/|$)/)?.[1];
       if (!cert) return node;
 
-      // 실제로 푸는 화면들 — 순서는 학습 순서(공식 → 전체 → 복습)를 따른다
-      const runners: PageTree.Item[] = [
-        { type: 'page', name: '공식 연습 문제 풀기', url: `/${cert}/quiz/0` },
-        { type: 'page', name: '모의고사 풀기', url: `/${cert}/quiz` },
-        { type: 'page', name: '오답노트 열기', url: `/${cert}/review` },
+      // 실제로 푸는 화면들 — 순서는 학습 순서(공식 → 전체 → 복습)를 따른다.
+      // 폴더 이름 자체가 회차 목록(/[cert]/quiz)으로 가는 링크가 되도록 index 를 준다.
+      // Fumadocs 는 folder.index 가 있으면 폴더 제목을 링크로 렌더링한다 (펼침은 화살표).
+      const runners: PageTree.Node[] = [
+        {
+          type: 'folder',
+          name: '문제 풀기',
+          index: { type: 'page', name: '회차 목록', url: `/${cert}/quiz` },
+          children: [
+            { type: 'page', name: '공식 연습 문제 (20문항)', url: `/${cert}/quiz/0` },
+            { type: 'page', name: '오답노트', url: `/${cert}/review` },
+          ],
+        },
       ];
 
       let placed = false;

@@ -3,6 +3,7 @@ title: "공식 연습 문제"
 tags: [clf-c02, 문제은행, quiz, 공식]
 exam: 0
 문항수: 20
+lang: ko
 ---
 
 > [!info] AWS가 직접 낸 20문항입니다

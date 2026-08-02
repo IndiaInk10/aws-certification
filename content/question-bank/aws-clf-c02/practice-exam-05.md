@@ -3,6 +3,7 @@ title: "모의고사 05회"
 tags: [clf-c02, 문제은행, quiz]
 exam: 5
 문항수: 50
+lang: en
 ---
 
 # 모의고사 05회

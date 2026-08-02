@@ -1,9 +1,11 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { createEmptyCard, fsrs, generatorParameters, Rating, type Card, type Grade } from 'ts-fsrs';
 import { store, type WrongItem, type SrsCard } from '@/lib/storage';
-import { Check, Download, Upload, X } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui/modal';
+import { Check, Trash2, X } from 'lucide-react';
 
 const engine = fsrs(generatorParameters({ enable_fuzz: true }));
 
@@ -28,7 +30,7 @@ export function ReviewClient({ cert }: { cert: string }) {
   const [cards, setCards] = useState<Record<string, SrsCard>>({});
   const [revealed, setRevealed] = useState(false);
   const [cursor, setCursor] = useState(0);
-  const fileRef = useRef<HTMLInputElement>(null);
+  const [askClear, setAskClear] = useState(false);
 
   const load = useCallback(() => {
     void store.listWrong().then((all) => setWrong(all.filter((w) => w.cert === cert)));
@@ -79,18 +81,11 @@ export function ReviewClient({ cert }: { cert: string }) {
     load();
   };
 
-  const doExport = async () => {
-    const json = await store.exportAll();
-    const blob = new Blob([json], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `학습기록-${new Date().toISOString().slice(0, 10)}.json`;
-    a.click();
-    URL.revokeObjectURL(a.href);
-  };
-
-  const doImport = async (f: File) => {
-    await store.importAll(await f.text());
+  /** 이 자격증 오답만 비운다. 백업·전체 삭제는 설정 화면 몫. */
+  const clearWrong = async () => {
+    await Promise.all((wrong ?? []).map((w) => store.removeWrong(w.id)));
+    setRevealed(false);
+    setCursor(0);
     load();
   };
 
@@ -104,23 +99,42 @@ export function ReviewClient({ cert }: { cert: string }) {
       <div className="mb-5 flex flex-wrap items-center gap-2 text-sm">
         <span className="rounded-md border px-2.5 py-1">전체 오답 {total}</span>
         <span className="rounded-md border px-2.5 py-1">지금 복습 {dueCount}</span>
-        <button onClick={doExport} className="ml-auto rounded-md border px-2.5 py-1 text-xs"><Download className="mr-1 inline size-3" />내보내기</button>
-        <button
-          onClick={() => fileRef.current?.click()}
-          className="rounded-md border px-2.5 py-1 text-xs"
-        ><Upload className="mr-1 inline size-3" />가져오기</button>
-        <input
-          ref={fileRef}
-          type="file"
-          accept="application/json"
-          className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) void doImport(f);
-            e.target.value = '';
-          }}
-        />
+        {total > 0 && (
+          <button
+            onClick={() => setAskClear(true)}
+            className="ml-auto rounded-md border px-2.5 py-1 text-xs text-red-600 dark:text-red-400"
+          >
+            <Trash2 className="mr-1 inline size-3" />
+            오답노트 비우기
+          </button>
+        )}
+        <Link
+          href="/settings"
+          className={`text-fd-muted-foreground text-xs underline ${total > 0 ? '' : 'ml-auto'}`}
+        >
+          백업 · 기록 관리
+        </Link>
       </div>
+
+      <ConfirmDialog
+        open={askClear}
+        title="오답노트를 비울까요?"
+        description={
+          <>
+            이 자격증의 오답 <strong>{total}문항</strong>이 오답노트에서 사라집니다. 응시 기록과 강의
+            진도는 그대로 남습니다. 다시 틀리면 또 쌓입니다.
+          </>
+        }
+        confirmLabel="비우기"
+        cancelLabel="취소"
+        tone="danger"
+        onConfirm={() => {
+          setAskClear(false);
+          void clearWrong();
+        }}
+        onCancel={() => setAskClear(false)}
+      />
+
 
       {total === 0 && (
         <p className="text-fd-muted-foreground text-sm">

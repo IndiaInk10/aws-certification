@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, ClipboardList, Network, RotateCcw } from 'lucide-react';
+import { BookOpen, ClipboardList, Network, RotateCcw, Settings } from 'lucide-react';
 
 const CERT_LABEL: Record<string, string> = {
   'aws-clf-c02': 'AWS Cloud Practitioner (CLF-C02)',
@@ -16,6 +16,8 @@ export function CertTabs({ cert }: { cert: string }) {
     { href: `/${cert}/quiz`, label: '문제 풀이', Icon: ClipboardList, match: `/${cert}/quiz` },
     { href: `/${cert}/review`, label: '오답노트', Icon: RotateCcw, match: `/${cert}/review` },
     { href: `/${cert}/graph`, label: '노트 그래프', Icon: Network, match: `/${cert}/graph` },
+    // 설정은 자격증이 아니라 브라우저 단위라 최상위에 있다
+    { href: '/settings', label: '설정', Icon: Settings, match: '/settings' },
   ];
 
   return (

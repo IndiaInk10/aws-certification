@@ -3,11 +3,19 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import Link from 'next/link';
 import { store, type ExamAttempt, type WrongItem } from '@/lib/storage';
+import {
+  DEFAULT_LOCALE,
+  localize,
+  useQuizLocale,
+  type Localized,
+  type QuizLocale,
+} from '@/lib/quiz-locale';
+import { ConfirmDialog } from '@/components/ui/modal';
 import { Check, ChevronLeft, ChevronRight, Flag, X } from 'lucide-react';
 
 export type Question = {
-  q: string;
-  choices: { k: string; t: string }[];
+  q: Localized;
+  choices: { k: string; t: Localized }[];
   answers: string[];
   services: string[];
   modules: string[];
@@ -77,6 +85,14 @@ function shuffle<T>(arr: T[]): T[] {
 const eq = (a: string[], b: string[]) =>
   a.length === b.length && [...a].sort().join() === [...b].sort().join();
 
+/**
+ * 시험 화면·검토 화면 카드 높이.
+ * 문항 길이가 달라도 아래쪽 버튼이 늘 같은 자리에 있도록 높이를 고정하고,
+ * 넘치는 내용은 카드 안에서만 스크롤한다. dvh 라서 모바일 주소창 변화까지 따라간다.
+ */
+const CARD_H =
+  'h-[calc(100dvh-15rem)] min-h-[20rem] sm:h-[min(78dvh,44rem)] sm:min-h-[26rem]';
+
 const hhmmss = (s: number) => {
   const x = Math.max(0, s);
   return [Math.floor(x / 3600), Math.floor((x % 3600) / 60), x % 60]
@@ -88,11 +104,19 @@ export function QuizRunner({
   cert,
   exam,
   questions: source,
+  base = DEFAULT_LOCALE,
 }: {
   cert: string;
   exam: number;
   questions: Question[];
+  /** 이 회차 원문의 언어. 번역본이 없는 문항은 이 언어로 보여 준다. */
+  base?: QuizLocale;
 }) {
+  const [locale] = useQuizLocale();
+  // 문항·보기 텍스트는 전부 이 두 함수를 거친다
+  const tq = (q: Question) => localize(q.q, locale, base);
+  const tc = (c: { t: Localized }) => localize(c.t, locale, base);
+
   // 보기 순서를 섞는다. 정답이 늘 같은 자리에 있으면 위치를 외워버린다.
   // SSR 결과와 어긋나지 않도록 첫 렌더는 원본 순서로 두고, 마운트 후에 섞는다.
   const [questions, setQuestions] = useState(source);
@@ -110,9 +134,16 @@ export function QuizRunner({
   };
   const [s, dispatch] = useReducer(makeReducer(questions.length), initial);
   const [studyMode, setStudyMode] = useState(false);
+  const [askSubmit, setAskSubmit] = useState(false);
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [left, setLeft] = useState(() => secondsFor(questions.length));
   const saved = useRef(false);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  // 긴 문항을 읽다가 넘기면 다음 문항이 중간부터 보인다. 문항이 바뀌면 위로 되돌린다.
+  useEffect(() => {
+    bodyRef.current?.scrollTo({ top: 0 });
+  }, [s.i]);
 
   // 타이머 (실전 모드에서만)
   useEffect(() => {
@@ -159,13 +190,14 @@ export function QuizRunner({
 
     for (const i of result.wrong) {
       const qq = questions[i];
+      // 오답노트에는 응시할 때 보던 언어로 굳혀 둔다 (나중에 번역이 추가돼도 기록은 그대로)
       void store.putWrong({
         id: `${cert}-${exam}-${i}`,
         cert,
         exam,
         qi: i,
-        q: qq.q,
-        choices: qq.choices,
+        q: localize(qq.q, locale, base),
+        choices: qq.choices.map((c) => ({ k: c.k, t: localize(c.t, locale, base) })),
         chosen: s.picked[i] ?? [],
         answers: qq.answers,
         services: qq.services,
@@ -173,7 +205,7 @@ export function QuizRunner({
         at: new Date().toISOString(),
       } satisfies WrongItem);
     }
-  }, [s.done, s.startedAt, s.picked, cert, exam, questions, result]);
+  }, [s.done, s.startedAt, s.picked, cert, exam, questions, result, locale, base]);
 
   // ── 결과 화면 ──────────────────────────────────────────────
   if (s.done) {
@@ -198,7 +230,7 @@ export function QuizRunner({
                   : 'bg-red-500/15 text-red-700 dark:text-red-400'
               }`}
             >
-              {pass ? 'PASS' : 'FAIL'}
+              {pass ? '합격' : '불합격'}
             </span>
             <span className="text-fd-muted-foreground text-sm">
               합격 기준 700 · 정답 {result.correct}/{result.total} ({pct}%) · {mins}분
@@ -246,7 +278,7 @@ export function QuizRunner({
                   )}
                   {chosen.length === 0 && <span>미응답</span>}
                 </div>
-                <div className="font-medium">{qq.q}</div>
+                <div className="font-medium">{tq(qq)}</div>
                 <ul className="mt-2 space-y-1">
                   {qq.choices.map((c) => {
                     const isAns = qq.answers.includes(c.k);
@@ -263,7 +295,7 @@ export function QuizRunner({
                         }
                       >
                         {isAns ? <Check className="mr-1 inline size-3.5" /> : isPick ? <X className="mr-1 inline size-3.5" /> : <span className="mr-1 inline-block w-3.5" />}
-                        {c.t}
+                        {tc(c)}
                       </li>
                     );
                   })}
@@ -284,9 +316,9 @@ export function QuizRunner({
   // ── Review Screen (전체 문항 상태 그리드) ────────────────────
   if (s.review) {
     return (
-      <div className="mx-auto max-w-4xl overflow-hidden rounded-lg border">
-        <div className="bg-fd-secondary/60 flex flex-wrap items-center gap-x-4 gap-y-1 border-b px-4 py-3">
-          <span className="font-semibold">Review Screen</span>
+      <div className={`mx-auto flex max-w-4xl flex-col overflow-hidden rounded-lg border ${CARD_H}`}>
+        <div className="bg-fd-secondary/60 flex shrink-0 flex-wrap items-center gap-x-4 gap-y-1 border-b px-4 py-3">
+          <span className="font-semibold">검토 화면</span>
           <span className="text-fd-muted-foreground text-sm">
             응답 {answeredCount} · 미응답 {questions.length - answeredCount} · 검토 {flaggedCount}
           </span>
@@ -295,7 +327,7 @@ export function QuizRunner({
           )}
         </div>
 
-        <div className="max-h-[52vh] overflow-y-auto">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
           <table className="w-full text-sm">
             <thead className="bg-fd-secondary/30 text-fd-muted-foreground sticky top-0 text-left text-xs">
               <tr>
@@ -315,7 +347,7 @@ export function QuizRunner({
                   >
                     <td className="px-4 py-1.5">{i + 1}</td>
                     <td className={`px-4 py-1.5 ${ans ? '' : 'text-fd-muted-foreground'}`}>
-                      {ans ? 'Answered' : 'Not Answered'}
+                      {ans ? '응답함' : '미응답'}
                     </td>
                     <td className="px-4 py-1.5">{s.flagged[i] ? <Flag className="size-3.5" /> : null}</td>
                   </tr>
@@ -325,7 +357,7 @@ export function QuizRunner({
           </table>
         </div>
 
-        <div className="flex flex-wrap gap-2 border-t px-4 py-3">
+        <div className="flex shrink-0 flex-wrap gap-2 border-t px-4 py-3">
           <button
             onClick={() => dispatch({ type: 'review', on: false })}
             className="rounded-md border px-3 py-1.5 text-sm"
@@ -345,18 +377,32 @@ export function QuizRunner({
           )}
           <button
             onClick={() => {
-              if (
-                answeredCount < questions.length &&
-                !confirm(`미응답 ${questions.length - answeredCount}문항이 있습니다. 제출할까요?`)
-              )
-                return;
-              dispatch({ type: 'submit' });
+              if (answeredCount < questions.length) setAskSubmit(true);
+              else dispatch({ type: 'submit' });
             }}
             className="bg-fd-primary text-fd-primary-foreground ml-auto rounded-md px-3 py-1.5 text-sm"
           >
-            Submit Exam
+            제출하기
           </button>
         </div>
+
+        <ConfirmDialog
+          open={askSubmit}
+          title="아직 풀지 않은 문항이 있습니다"
+          description={
+            <>
+              미응답 <strong>{questions.length - answeredCount}문항</strong>은 오답으로 처리됩니다.
+              그대로 제출할까요?
+            </>
+          }
+          confirmLabel="제출하기"
+          cancelLabel="계속 풀기"
+          onConfirm={() => {
+            setAskSubmit(false);
+            dispatch({ type: 'submit' });
+          }}
+          onCancel={() => setAskSubmit(false)}
+        />
       </div>
     );
   }
@@ -366,14 +412,20 @@ export function QuizRunner({
 
   return (
     <div className="mx-auto max-w-4xl">
-      <div className="overflow-hidden rounded-lg border">
+      {/*
+        문항마다 길이가 달라도 Previous/Next 위치는 고정한다.
+        카드 높이를 화면에 맞춰 잡고(dvh — 모바일 주소창 높이 변화까지 반영),
+        본문이 넘치면 카드 안에서만 스크롤한다.
+      */}
+      <div className={`flex flex-col overflow-hidden rounded-lg border ${CARD_H}`}>
         {/* Top Bar */}
-        <div className="bg-fd-secondary/60 flex flex-wrap items-center gap-x-4 gap-y-2 border-b px-4 py-2.5">
+        <div className="bg-fd-secondary/60 flex shrink-0 flex-wrap items-center gap-x-4 gap-y-2 border-b px-4 py-2.5">
           <span className="text-sm font-semibold">{EXAM_TITLE[cert] ?? cert}</span>
           <span className="text-fd-muted-foreground text-sm tabular-nums">
             {s.i + 1} / {questions.length}
           </span>
 
+          {/* 문제 언어는 상단 언어 버튼·설정에서 바꾼다. 시험 화면에는 두지 않는다. */}
           <label className="ml-auto flex cursor-pointer items-center gap-1.5 text-sm select-none">
             <input
               type="checkbox"
@@ -381,7 +433,7 @@ export function QuizRunner({
               onChange={() => dispatch({ type: 'flag' })}
               className="size-4"
             />
-            Flag for Review
+            검토 표시
           </label>
 
           {!studyMode && (
@@ -395,11 +447,11 @@ export function QuizRunner({
           )}
         </div>
 
-        {/* Center */}
-        <div className="px-5 py-6">
-          <p className="leading-relaxed font-medium">{q.q}</p>
+        {/* Center — 넘치면 여기서만 스크롤된다 */}
+        <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-6">
+          <p className="leading-relaxed font-medium">{tq(q)}</p>
           <p className="text-fd-muted-foreground mt-2 text-sm">
-            {multi ? `Choose ${q.answers.length} answers.` : 'Choose 1 answer.'}
+            {multi ? `정답 ${q.answers.length}개를 고르세요.` : '정답 1개를 고르세요.'}
           </p>
 
           <ul className="mt-5 space-y-1.5">
@@ -424,7 +476,7 @@ export function QuizRunner({
                       onChange={() => dispatch({ type: 'pick', k: c.k, multi })}
                       className="mt-0.5 size-4 shrink-0"
                     />
-                    <span>{c.t}</span>
+                    <span>{tc(c)}</span>
                     {showAnswer && isAns && <Check className="ml-auto size-4 shrink-0" />}
                     {showAnswer && !isAns && on && <X className="ml-auto size-4 shrink-0" />}
                   </label>
@@ -459,22 +511,22 @@ export function QuizRunner({
           )}
         </div>
 
-        {/* Bottom Bar */}
-        <div className="bg-fd-secondary/60 flex items-center gap-2 border-t px-4 py-3">
+        {/* Bottom Bar — 문항 길이와 무관하게 늘 같은 자리 */}
+        <div className="bg-fd-secondary/60 flex shrink-0 items-center gap-2 border-t px-4 py-3">
           <button
             onClick={() => dispatch({ type: 'step', d: -1 })}
             disabled={s.i === 0}
             className="flex items-center gap-1 rounded-md border px-4 py-1.5 text-sm disabled:opacity-40"
           >
             <ChevronLeft className="size-4" />
-            Previous
+            이전
           </button>
 
           <button
             onClick={() => dispatch({ type: 'review', on: true })}
             className="mx-auto rounded-md border px-4 py-1.5 text-sm"
           >
-            Review Screen
+            검토 화면
           </button>
 
           {s.i < questions.length - 1 ? (
@@ -482,7 +534,7 @@ export function QuizRunner({
               onClick={() => dispatch({ type: 'step', d: 1 })}
               className="bg-fd-primary text-fd-primary-foreground flex items-center gap-1 rounded-md px-4 py-1.5 text-sm"
             >
-              Next
+              다음
               <ChevronRight className="size-4" />
             </button>
           ) : (
@@ -490,7 +542,7 @@ export function QuizRunner({
               onClick={() => dispatch({ type: 'review', on: true })}
               className="bg-fd-primary text-fd-primary-foreground rounded-md px-4 py-1.5 text-sm"
             >
-              End Review
+              검토 화면으로
             </button>
           )}
         </div>

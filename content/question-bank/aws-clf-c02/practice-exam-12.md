@@ -3,6 +3,7 @@ title: "모의고사 12회"
 tags: [clf-c02, 문제은행, quiz]
 exam: 12
 문항수: 42
+lang: en
 ---
 
 # 모의고사 12회

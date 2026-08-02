@@ -33,6 +33,17 @@ export interface WrongItem {
 /** ts-fsrs Card 를 그대로 직렬화한 것 */
 export type SrsCard = Record<string, unknown>;
 
+/** 지울 수 있는 기록 단위 */
+export const DATA_SCOPES = ['attempts', 'wrong', 'cards', 'done'] as const;
+export type DataScope = (typeof DATA_SCOPES)[number];
+
+export const SCOPE_LABEL: Record<DataScope, string> = {
+  attempts: '응시 기록',
+  wrong: '오답노트',
+  cards: '복습 일정',
+  done: '강의 진도',
+};
+
 export interface ProgressStore {
   listAttempts(): Promise<ExamAttempt[]>;
   addAttempt(a: ExamAttempt): Promise<void>;
@@ -49,6 +60,8 @@ export interface ProgressStore {
 
   exportAll(): Promise<string>;
   importAll(json: string): Promise<void>;
+  /** 고른 기록만 지운다 */
+  clear(scopes: readonly DataScope[]): Promise<void>;
   clearAll(): Promise<void>;
 }
 
@@ -143,9 +156,12 @@ class LocalStorageStore implements ProgressStore {
     if (d.cards) write(KEY.cards, d.cards);
     if (d.done) write(KEY.done, d.done);
   }
-  async clearAll() {
-    Object.values(KEY).forEach((k) => window.localStorage.removeItem(k));
+  async clear(scopes: readonly DataScope[]) {
+    scopes.forEach((s) => window.localStorage.removeItem(KEY[s]));
     window.dispatchEvent(new CustomEvent('cv:changed'));
+  }
+  async clearAll() {
+    return this.clear(DATA_SCOPES);
   }
 }
 

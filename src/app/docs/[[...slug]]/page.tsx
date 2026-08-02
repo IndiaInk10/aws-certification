@@ -27,11 +27,14 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
-        <MarkdownCopyButton markdownUrl={markdownUrl} />
+        {/* 기본 문구가 영어라서 children 으로 덮어쓴다 */}
+        <MarkdownCopyButton markdownUrl={markdownUrl}>마크다운 복사</MarkdownCopyButton>
         <ViewOptionsPopover
           markdownUrl={markdownUrl}
           githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${page.path}`}
-        />
+        >
+          다른 곳에서 열기
+        </ViewOptionsPopover>
       </div>
       <DocsBody>
         <MDX

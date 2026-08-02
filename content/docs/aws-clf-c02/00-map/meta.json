@@ -2,9 +2,9 @@
  "title": "지도",
  "pages": [
   "00-learning-path",
-  "glossary",
-  "service-comparisons",
   "exam-overview",
+  "service-comparisons",
+  "glossary",
   "service-map"
  ],
  "icon": "Map"

@@ -35,7 +35,7 @@ export function ExamList({ cert, entry }: { cert: string; entry: Entry }) {
 
   return (
     <div>
-      <div className="text-fd-muted-foreground mb-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      <div className="text-fd-muted-foreground mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
         <span>
           {entry.exams.length}회 · {entry.total}문항
         </span>

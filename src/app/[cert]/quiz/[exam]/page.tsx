@@ -1,4 +1,5 @@
 import { QuizRunner, type Question } from '@/components/quiz-runner';
+import type { QuizLocale } from '@/lib/quiz-locale';
 import quizIndex from '@/generated/quiz/index.json';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -24,11 +25,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const data = JSON.parse(fs.readFileSync(file, 'utf8')) as {
     cert: string;
     exam: number;
+    base: QuizLocale;
     questions: Question[];
   };
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-8">
+    <main className="mx-auto w-full max-w-5xl px-4 py-4 sm:py-8">
       <Link
         href={`/${cert}/quiz`}
         className="text-fd-muted-foreground flex w-fit items-center gap-1 text-sm no-underline hover:underline"
@@ -37,7 +39,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         회차 목록
       </Link>
       <div className="mt-4">
-        <QuizRunner cert={data.cert} exam={data.exam} questions={data.questions} />
+        <QuizRunner
+          cert={data.cert}
+          exam={data.exam}
+          questions={data.questions}
+          base={data.base}
+        />
       </div>
     </main>
   );
