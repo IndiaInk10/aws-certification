@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# AWS Outposts
-
 > AWS 인프라를 고객 데이터센터 안으로
 
 | | |

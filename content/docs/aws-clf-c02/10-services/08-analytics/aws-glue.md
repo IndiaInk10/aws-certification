@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# AWS Glue
-
 > 서버리스 ETL + 데이터 카탈로그
 
 | | |

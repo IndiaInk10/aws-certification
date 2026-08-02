@@ -6,8 +6,6 @@ module: 7
 status: 미학습
 ---
 
-# Amazon Aurora
-
 > AWS가 만든 고성능 관계형 DB. MySQL/PostgreSQL 호환
 
 | | |

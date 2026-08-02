@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# Amazon Macie
-
 > S3 안의 민감 데이터(PII) 자동 탐지
 
 | | |

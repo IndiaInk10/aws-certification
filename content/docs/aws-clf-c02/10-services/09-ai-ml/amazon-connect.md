@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Connect
-
 > 클라우드 콜센터
 
 | | |

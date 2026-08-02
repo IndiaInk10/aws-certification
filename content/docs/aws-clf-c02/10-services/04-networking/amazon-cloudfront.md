@@ -6,8 +6,6 @@ module: 5
 status: 미학습
 ---
 
-# Amazon CloudFront
-
 > 엣지 로케이션으로 콘텐츠를 캐싱하는 CDN
 
 | | |

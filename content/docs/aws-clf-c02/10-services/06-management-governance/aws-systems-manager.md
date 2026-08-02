@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# AWS Systems Manager
-
 > 운영 중인 인스턴스를 원격 관리·패치
 
 | | |

@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# AWS Cost and Usage Report
-
 > 가장 상세한 비용 원본 데이터
 
 | | |

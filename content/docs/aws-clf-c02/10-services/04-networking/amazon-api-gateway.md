@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# Amazon API Gateway
-
 > API를 만들고 게시·관리
 
 | | |

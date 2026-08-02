@@ -6,8 +6,6 @@ module: 6
 status: 미학습
 ---
 
-# AWS Storage Gateway
-
 > 온프레미스와 AWS 스토리지를 잇는 하이브리드 게이트웨이
 
 | | |

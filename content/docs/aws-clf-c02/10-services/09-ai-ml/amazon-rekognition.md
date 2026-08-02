@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Rekognition
-
 > 이미지·영상 분석 (얼굴, 객체, 부적절 콘텐츠)
 
 | | |

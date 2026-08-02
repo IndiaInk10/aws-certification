@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# AWS CodeBuild
-
 > 빌드·테스트 자동화
 
 | | |

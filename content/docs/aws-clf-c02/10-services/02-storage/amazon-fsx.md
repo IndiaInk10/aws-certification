@@ -6,8 +6,6 @@ module: 6
 status: 미학습
 ---
 
-# Amazon FSx
-
 > Windows 파일 서버 / Lustre 등 특수 파일 시스템
 
 | | |

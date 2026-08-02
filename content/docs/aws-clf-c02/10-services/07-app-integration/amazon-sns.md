@@ -6,8 +6,6 @@ module: 2
 status: 미학습
 ---
 
-# Amazon SNS
-
 > 발행/구독 알림. 한 번에 여러 구독자에게
 
 | | |

@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# AWS Firewall Manager
-
 > 여러 계정의 방화벽 규칙을 중앙 관리
 
 | | |

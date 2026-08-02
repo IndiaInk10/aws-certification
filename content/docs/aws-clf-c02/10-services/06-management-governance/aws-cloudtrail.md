@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# AWS CloudTrail
-
 > API 호출 기록. '누가 언제 무엇을 했나?'
 
 | | |

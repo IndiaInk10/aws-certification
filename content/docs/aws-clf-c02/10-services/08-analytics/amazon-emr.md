@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon EMR
-
 > Hadoop/Spark 빅데이터 처리 클러스터
 
 | | |

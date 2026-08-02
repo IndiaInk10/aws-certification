@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# AWS Organizations
-
 > 여러 계정을 묶어 관리 + 통합 결제 + SCP
 
 | | |

@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# Amazon CloudWatch
-
 > 지표·로그·알람. '잘 돌아가고 있나?'
 
 | | |

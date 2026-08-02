@@ -6,8 +6,6 @@ module: 5
 status: 미학습
 ---
 
-# Amazon Route 53
-
 > DNS + 도메인 등록 + 라우팅 정책
 
 | | |

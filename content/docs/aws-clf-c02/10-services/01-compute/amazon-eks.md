@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# Amazon EKS
-
 > 관리형 Kubernetes
 
 | | |

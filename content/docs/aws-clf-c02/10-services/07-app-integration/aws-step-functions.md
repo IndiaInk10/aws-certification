@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# AWS Step Functions
-
 > 여러 단계 워크플로를 시각적으로 조립
 
 | | |

@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Textract
-
 > 문서 스캔본에서 텍스트·표 추출
 
 | | |

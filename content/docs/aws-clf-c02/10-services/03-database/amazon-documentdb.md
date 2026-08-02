@@ -6,8 +6,6 @@ module: 7
 status: 미학습
 ---
 
-# Amazon DocumentDB
-
 > 문서 DB. MongoDB 호환
 
 | | |

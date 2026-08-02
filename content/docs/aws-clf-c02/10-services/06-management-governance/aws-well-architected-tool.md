@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# AWS Well-Architected Tool
-
 > 아키텍처를 6개 기둥 기준으로 자가 진단
 
 | | |

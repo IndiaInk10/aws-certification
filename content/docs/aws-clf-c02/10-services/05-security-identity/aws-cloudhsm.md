@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# AWS CloudHSM
-
 > 전용 하드웨어 보안 모듈
 
 | | |

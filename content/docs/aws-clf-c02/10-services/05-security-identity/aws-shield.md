@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# AWS Shield
-
 > DDoS 방어. Standard 무료 / Advanced 유료
 
 | | |
@@ -47,7 +45,7 @@ status: 미학습
 
 - [ ] "**DDoS**", "대량 트래픽으로 서비스가 마비된다" → Shield
 - [ ] **Standard는 무료이고 자동입니다.** "기본 DDoS 보호를 받으려면 무엇을 해야 하나"의 답은 "이미 적용되어 있다"입니다
-- [ ] SRT 지원, 상세 진단, **비용 보호**가 필요하다는 조건이 붙으면 **Advanced**입니다
+- [ ] SRT 지원, 상세 진단, **비용 보호**가 필요하다는 조건이 붙으면 **Advanced**입니다. 보호 대상에는 CloudFront·ELB뿐 아니라 **[[amazon-route-53]]과 [[aws-global-accelerator]]** 도 들어갑니다
 - [ ] SQL 인젝션·XSS가 나오면 Shield가 아니라 **WAF**입니다
 
 ## 관련 노트

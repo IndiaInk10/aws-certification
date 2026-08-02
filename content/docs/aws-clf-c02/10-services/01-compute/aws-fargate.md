@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# AWS Fargate
-
 > 컨테이너용 서버리스 컴퓨팅 엔진. EC2 관리 불필요
 
 | | |

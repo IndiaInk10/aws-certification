@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# Amazon QLDB
-
 > 변경 불가 원장 DB
 
 | | |
@@ -16,6 +14,11 @@ status: 미학습
 | **배우는 모듈** | *이 코스에서는 다루지 않음 (문제은행 전용)* |
 | **문제은행 출현** | 0회 |
 | **상태** | - 미학습 |
+
+> [!warning] AWS 공식 In-Scope 목록에 없는 서비스입니다
+> [CLF-C02 시험 가이드의 In-Scope 서비스 목록](https://docs.aws.amazon.com/aws-certification/latest/cloud-practitioner-02/clf-02-in-scope-services.html)에
+> 이 서비스는 올라 있지 않습니다. 목록이 "완전하지 않다"고 밝히고 있어 출제 가능성이 0은 아니지만,
+> **우선순위는 낮게** 두시면 됩니다. 강의에서도 비중이 작습니다.
 
 ## 한 줄로 말하면
 

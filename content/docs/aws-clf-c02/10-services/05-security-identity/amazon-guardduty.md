@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# Amazon GuardDuty
-
 > 위협 탐지. 로그를 분석해 이상 행위 탐지
 
 | | |

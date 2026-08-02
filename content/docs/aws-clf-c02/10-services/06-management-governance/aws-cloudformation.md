@@ -6,8 +6,6 @@ module: 4
 status: 미학습
 ---
 
-# AWS CloudFormation
-
 > 인프라를 코드(템플릿)로 정의하고 배포
 
 | | |

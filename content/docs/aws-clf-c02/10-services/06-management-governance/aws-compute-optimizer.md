@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Compute Optimizer
-
 > 리소스 크기를 지표 기반으로 추천
 
 | | |

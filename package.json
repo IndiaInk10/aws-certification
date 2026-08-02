@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare:content": "node scripts/build-quiz.mjs && node scripts/build-graph.mjs && node scripts/build-modules.mjs && node scripts/build-service-map.mjs",
+    "prepare:content": "node scripts/build-quiz.mjs && node scripts/build-graph.mjs && node scripts/build-modules.mjs && node scripts/build-service-map.mjs && node scripts/build-glossary.mjs",
     "build": "npm run prepare:content && next build",
     "dev": "npm run prepare:content && next dev",
     "start": "next start",

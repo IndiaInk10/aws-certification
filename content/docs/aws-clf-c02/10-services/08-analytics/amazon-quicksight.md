@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon QuickSight
-
 > BI 대시보드·시각화
 
 | | |

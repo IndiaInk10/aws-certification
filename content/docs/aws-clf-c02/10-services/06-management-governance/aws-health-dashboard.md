@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Health Dashboard
-
 > 내 계정에 영향을 주는 AWS 장애 알림
 
 | | |

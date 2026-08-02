@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# AWS Control Tower
-
 > 다계정 환경을 모범 사례대로 자동 셋업
 
 | | |

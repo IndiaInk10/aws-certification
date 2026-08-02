@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# Amazon Inspector
-
 > EC2·컨테이너의 취약점 자동 스캔
 
 | | |

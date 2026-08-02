@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# AWS Directory Service
-
 > 관리형 Active Directory
 
 | | |

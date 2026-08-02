@@ -6,8 +6,6 @@ module: 2
 status: 미학습
 ---
 
-# Amazon EventBridge
-
 > 이벤트 버스. 서비스 간 이벤트 라우팅
 
 | | |

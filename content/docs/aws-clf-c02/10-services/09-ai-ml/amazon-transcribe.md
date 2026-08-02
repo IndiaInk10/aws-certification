@@ -6,9 +6,7 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Transcribe
-
-> 음성 텍스트
+> 음성 → 텍스트 (받아쓰기·자막)
 
 | | |
 |---|---|

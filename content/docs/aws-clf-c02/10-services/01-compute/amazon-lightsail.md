@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# Amazon Lightsail
-
 > 정액제 간편 VPS. 소규모·입문용
 
 | | |

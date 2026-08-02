@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# AWS Amplify
-
 > 웹·모바일 프론트엔드 개발·호스팅
 
 | | |

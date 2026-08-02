@@ -10,11 +10,13 @@
  *  5. ../images/mN/x.png     → /cert-images/<cert>/mN/x.png
  *  6. ```mermaid             → <Mermaid chart="...">
  *  7. ```quiz / ```exam      → <InlineQuiz>  (본문에서 바로 푸는 문제)
+ *  8. 용어집 용어             → <Term>  (본문 첫 등장에만 호버 설명을 붙인다)
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
 const DOCS_ROOT = path.resolve(process.cwd(), 'content/docs');
+const GLOSSARY_PATH = path.resolve(process.cwd(), 'content/glossary.json');
 
 /** 노트 이름(확장자 제외) → { path, title }. 동명이인은 첫 번째 우선. */
 function buildIndex(dir, acc = new Map()) {
@@ -144,6 +146,118 @@ function parseLayers(src) {
   return roots;
 }
 
+/**
+ * content/glossary.json 을 읽어 "본문에서 찾을 표기" 하나짜리 정규식으로 만든다.
+ *
+ * 긴 표기를 앞에 두어야 "가용 영역" 이 "영역" 보다 먼저 잡힌다.
+ * 영문 표기는 앞뒤 단어 경계를 붙여 SLA 가 SLAB 안에 걸리지 않게 한다.
+ */
+let GLOSSARY = null;
+function glossary() {
+  if (GLOSSARY) return GLOSSARY;
+
+  let entries = [];
+  try {
+    entries = JSON.parse(fs.readFileSync(GLOSSARY_PATH, 'utf8'));
+  } catch {
+    /* 용어집이 없어도 빌드는 계속한다 */
+  }
+
+  const byForm = new Map();
+  for (const e of entries) {
+    if (!e || typeof e.term !== 'string') continue;
+    for (const form of [e.term, ...(Array.isArray(e.aliases) ? e.aliases : [])]) {
+      if (typeof form === 'string' && form.trim() && !byForm.has(form)) byForm.set(form, e);
+    }
+  }
+
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const source = [...byForm.keys()]
+    .sort((a, b) => b.length - a.length)
+    .map(
+      (f) =>
+        (/^[A-Za-z0-9]/.test(f) ? '(?<![A-Za-z0-9])' : '') +
+        esc(f) +
+        (/[A-Za-z0-9]$/.test(f) ? '(?![A-Za-z0-9])' : ''),
+    )
+    .join('|');
+
+  GLOSSARY = { re: source ? new RegExp(source, 'g') : null, byForm };
+  return GLOSSARY;
+}
+
+/** 용어를 걸지 않는 노드 — 제목 · 코드 · 링크 텍스트 · raw html */
+const NO_TERM = new Set([
+  'heading',
+  'code',
+  'inlineCode',
+  'link',
+  'linkReference',
+  'definition',
+  'html',
+  'yaml',
+  'toml',
+]);
+
+/** JSX 중 안쪽 본문까지 훑어도 되는 것. 나머지(Layers·InlineQuiz·Mermaid…)는 통째로 건너뛴다. */
+const TERM_INSIDE_JSX = new Set(['Callout', 'Accordions', 'Accordion']);
+
+/**
+ * 텍스트 노드 안의 용어를 <Term> 으로 감싼다. **한 페이지에서 용어당 한 번만** 감싼다.
+ * 전부 감싸면 본문이 점선투성이가 되어 오히려 읽기 힘들어진다.
+ */
+function wrapTerms(tree) {
+  const { re, byForm } = glossary();
+  if (!re) return;
+
+  const used = new Set();
+
+  const replaceIn = (node, parent) => {
+    const value = node.value;
+    const parts = [];
+    let last = 0;
+    let m;
+    re.lastIndex = 0;
+    while ((m = re.exec(value))) {
+      const entry = byForm.get(m[0]);
+      if (!entry || used.has(entry.term)) continue;
+      used.add(entry.term);
+      if (m.index > last) parts.push({ type: 'text', value: value.slice(last, m.index) });
+      parts.push({
+        type: 'mdxJsxTextElement',
+        name: 'Term',
+        attributes: [
+          { type: 'mdxJsxAttribute', name: 'term', value: entry.term },
+          { type: 'mdxJsxAttribute', name: 'en', value: entry.en ?? '' },
+          { type: 'mdxJsxAttribute', name: 'def', value: entry.short ?? '' },
+        ],
+        children: [{ type: 'text', value: m[0] }],
+      });
+      last = m.index + m[0].length;
+    }
+    if (!parts.length) return;
+    if (last < value.length) parts.push({ type: 'text', value: value.slice(last) });
+    const i = parent.children.indexOf(node);
+    parent.children.splice(i, 1, ...parts);
+  };
+
+  const visit = (node) => {
+    if (!node.children) return;
+    for (const child of [...node.children]) {
+      if (NO_TERM.has(child.type)) continue;
+      // 표 머리글 행 — 첫 tableRow 는 열 이름이므로 건드리지 않는다
+      if (node.type === 'table' && node.children[0] === child) continue;
+      if (child.type.startsWith('mdxJsx')) {
+        if (TERM_INSIDE_JSX.has(child.name)) visit(child);
+        continue;
+      }
+      if (child.type === 'text') replaceIn(child, node);
+      else visit(child);
+    }
+  };
+  visit(tree);
+}
+
 const jsx = (name, attrs, children) => ({
   type: 'mdxJsxFlowElement',
   name,
@@ -227,11 +341,17 @@ export default function remarkObsidian() {
         const COMPONENT = {
           '{{learning-path}}': 'LearningPath',
           '{{service-map}}': 'ServiceMindmap',
+          '{{glossary}}': 'GlossaryList',
         };
         const name = COMPONENT[marker];
         if (name) {
           const i = parent.children.indexOf(node);
-          parent.children[i] = jsx(name, { cert: cert || '' }, []);
+          // 용어집은 인증 구분 없이 하나만 쓰므로 cert 를 넘기지 않는다
+          parent.children[i] = jsx(
+            name,
+            name === 'GlossaryList' ? {} : { cert: cert || '' },
+            [],
+          );
           return;
         }
       }
@@ -311,6 +431,13 @@ export default function remarkObsidian() {
       ]);
       tree.children.splice(i, end - i + 1, acc);
     }
+
+    // ── 8. 용어집 자동 링크 ──────────────────────────────────
+    // 콜아웃·아코디언 변환이 끝난 뒤에 돌린다. 그래야 콜아웃 제목이 이미
+    // 속성으로 빠져 있어서 제목에는 용어가 걸리지 않는다.
+    // 용어집 페이지 자신은 설명이 곧 본문이므로 건너뛴다.
+    const isGlossaryPage = filePath ? /(^|[\\/])glossary\.mdx?$/i.test(filePath) : false;
+    if (!isGlossaryPage) wrapTerms(tree);
 
     // ── 강의 모듈 노트 끝에 진행/이전·다음 컴포넌트 삽입 ─────
     if (filePath) {

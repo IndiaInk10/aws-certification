@@ -6,8 +6,6 @@ module:
 status: 미학습
 ---
 
-# Amazon Cognito
-
 > 앱 사용자의 가입·로그인·인증
 
 | | |

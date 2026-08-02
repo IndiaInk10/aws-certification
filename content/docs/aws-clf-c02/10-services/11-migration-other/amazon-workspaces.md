@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# Amazon WorkSpaces
-
 > 클라우드 가상 데스크톱(VDI)
 
 | | |

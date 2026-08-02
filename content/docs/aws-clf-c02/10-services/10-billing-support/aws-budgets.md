@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Budgets
-
 > 예산 한도를 정하고 초과 전에 알림
 
 | | |

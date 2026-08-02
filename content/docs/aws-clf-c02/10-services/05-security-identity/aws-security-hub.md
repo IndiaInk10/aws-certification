@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# AWS Security Hub
-
 > 보안 경보를 한 대시보드로 모음
 
 | | |

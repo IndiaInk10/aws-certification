@@ -6,8 +6,6 @@ module: 5
 status: 미학습
 ---
 
-# AWS Direct Connect
-
 > 온프레미스와 AWS를 잇는 전용 물리 회선
 
 | | |

@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# AWS KMS
-
 > 암호화 키 생성·관리
 
 | | |
@@ -43,7 +41,7 @@ status: 미학습
 |---|---|
 | [[aws-cloudhsm]] | KMS는 AWS가 관리하는 **공유 HSM** 기반이고, CloudHSM은 **전용 하드웨어**를 고객이 단독으로 제어합니다 |
 | [[aws-secrets-manager]] | KMS는 **암호화 키**를, Secrets Manager는 **비밀번호·DB 자격 증명**을 다룹니다. Secrets Manager도 내부적으로는 KMS 키로 암호화합니다 |
-| [[aws-certificate-manager]] | 통신 구간을 보호하는 **SSL/TLS 인증서**는 ACM의 일입니다 |
+| [[aws-certificate-manager]] | 통신 구간을 보호하는 **SSL/TLS 인증서**는 ACM(또는 [[aws-iam]])의 일입니다. KMS는 암호화 **키**만 다루므로 SSL 인증서를 올려 두는 곳이 아닙니다 |
 
 ## 시험 포인트
 

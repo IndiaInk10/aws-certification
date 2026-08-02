@@ -6,8 +6,6 @@ module: 6
 status: 미학습
 ---
 
-# Amazon S3 Glacier
-
 > 아카이브용 초저가 스토리지. 꺼내는 데 시간이 걸림
 
 | | |

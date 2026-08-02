@@ -2,9 +2,7 @@
  "title": "문제 풀이",
  "pages": [
   "00-exam-strategy",
-  "00-question-bank-index",
-  "wrong-answers",
-  "question-bank"
+  "wrong-answers"
  ],
  "icon": "ClipboardCheck"
 }

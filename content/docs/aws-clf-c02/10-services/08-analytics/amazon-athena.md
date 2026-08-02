@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Athena
-
 > S3의 데이터에 바로 SQL 질의. 서버 불필요
 
 | | |

@@ -27,3 +27,6 @@ next-env.d.ts
 # 빌드 산출물 (prepare:content 가 생성)
 /src/generated
 /dev.log
+
+# 검증용 추출본
+.verify/

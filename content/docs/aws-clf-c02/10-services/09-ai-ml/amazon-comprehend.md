@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Comprehend
-
 > 텍스트에서 의미·감정·개체 추출 (NLP)
 
 | | |

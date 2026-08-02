@@ -6,8 +6,6 @@ module: 5
 status: 미학습
 ---
 
-# AWS Transit Gateway
-
 > 여러 VPC·온프레미스를 한 허브로 연결
 
 | | |

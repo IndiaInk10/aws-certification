@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Lex
-
 > 챗봇·음성 봇 (Alexa 엔진)
 
 | | |

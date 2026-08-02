@@ -6,8 +6,6 @@ module: 7
 status: 미학습
 ---
 
-# Amazon ElastiCache
-
 > 인메모리 캐시 (Redis/Memcached)
 
 | | |

@@ -6,8 +6,6 @@ module: 7
 status: 미학습
 ---
 
-# Amazon Neptune
-
 > 그래프 DB. 관계 탐색용
 
 | | |

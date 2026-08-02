@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# AWS CodePipeline
-
 > CI/CD 파이프라인 오케스트레이션
 
 | | |

@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Support Plans
-
 > Basic / Developer / Business / Enterprise 4단계 (+ Enterprise On-Ramp)
 
 | | |

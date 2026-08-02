@@ -6,8 +6,6 @@ module: 5
 status: 미학습
 ---
 
-# AWS Global Accelerator
-
 > AWS 백본망으로 글로벌 트래픽 지연 단축
 
 | | |

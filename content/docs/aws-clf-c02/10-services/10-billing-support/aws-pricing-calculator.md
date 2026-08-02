@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Pricing Calculator
-
 > 쓰기 전에 비용을 미리 추산
 
 | | |

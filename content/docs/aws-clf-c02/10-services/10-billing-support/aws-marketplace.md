@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Marketplace
-
 > 서드파티 소프트웨어를 구매·배포
 
 | | |

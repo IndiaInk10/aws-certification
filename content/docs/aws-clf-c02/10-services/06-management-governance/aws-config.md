@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# AWS Config
-
 > 리소스 구성 변경 추적 + 규정 준수 평가
 
 | | |

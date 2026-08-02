@@ -6,8 +6,6 @@ module: 10
 status: 미학습
 ---
 
-# AWS Artifact
-
 > AWS 규정 준수 보고서 다운로드 창구
 
 | | |

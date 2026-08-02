@@ -6,8 +6,6 @@ module: 6
 status: 미학습
 ---
 
-# Amazon EFS
-
 > 여러 EC2가 동시에 붙는 파일 스토리지. 리전 단위
 
 | | |

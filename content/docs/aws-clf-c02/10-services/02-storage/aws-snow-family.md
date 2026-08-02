@@ -6,8 +6,6 @@ module: 12
 status: 미학습
 ---
 
-# AWS Snow Family
-
 > 물리 장비로 대용량 데이터를 옮긴다 (Snowcone/Snowball/Snowmobile)
 
 | | |

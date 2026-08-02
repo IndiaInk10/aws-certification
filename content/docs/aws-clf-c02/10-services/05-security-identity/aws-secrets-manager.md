@@ -6,8 +6,6 @@ module: 9
 status: 미학습
 ---
 
-# AWS Secrets Manager
-
 > 비밀번호·API 키 저장 및 자동 교체
 
 | | |

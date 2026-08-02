@@ -6,8 +6,6 @@ module: 11
 status: 미학습
 ---
 
-# AWS Cost Explorer
-
 > 비용을 시각화하고 추세를 분석
 
 | | |

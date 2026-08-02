@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon SageMaker
-
 > ML 모델을 만들고 훈련하고 배포하는 통합 환경
 
 | | |

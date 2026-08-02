@@ -7,7 +7,7 @@ import { store, type ExamAttempt } from '@/lib/storage';
 type Entry = {
   cert: string;
   total: number;
-  exams: { exam: number; count: number; multi: number }[];
+  exams: { exam: number; count: number; multi: number; label?: string }[];
 };
 
 export function ExamList({ cert, entry }: { cert: string; entry: Entry }) {
@@ -64,7 +64,9 @@ export function ExamList({ cert, entry }: { cert: string; entry: Entry }) {
                 className={`hover:bg-fd-secondary/50 block rounded-lg border p-3 no-underline ${color}`}
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="font-medium">{String(e.exam).padStart(2, '0')}회</span>
+                  <span className="font-medium">
+                    {e.label ?? `${String(e.exam).padStart(2, '0')}회`}
+                  </span>
                   {b && <span className="text-sm font-semibold">{b.pct}%</span>}
                 </div>
                 <div className="text-fd-muted-foreground mt-0.5 text-xs">

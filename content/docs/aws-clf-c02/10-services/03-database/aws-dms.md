@@ -6,8 +6,6 @@ module: 12
 status: 미학습
 ---
 
-# AWS DMS
-
 > DB를 최소 다운타임으로 옮긴다
 
 | | |

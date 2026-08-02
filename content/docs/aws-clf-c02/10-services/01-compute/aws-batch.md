@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# AWS Batch
-
 > 배치 작업을 대신 스케줄링·실행
 
 | | |

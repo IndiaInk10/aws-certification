@@ -6,8 +6,6 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Redshift
-
 > 데이터 웨어하우스. 대규모 분석용
 
 | | |

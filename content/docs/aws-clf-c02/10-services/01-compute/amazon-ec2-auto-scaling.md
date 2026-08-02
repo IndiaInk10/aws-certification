@@ -6,8 +6,6 @@ module: 2
 status: 미학습
 ---
 
-# Amazon EC2 Auto Scaling
-
 > 수요에 맞춰 EC2 대수를 자동으로 늘리고 줄인다
 
 | | |

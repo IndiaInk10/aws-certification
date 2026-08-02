@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# AWS Elastic Beanstalk
-
 > 코드만 올리면 용량·LB·스케일링·모니터링을 알아서
 
 | | |

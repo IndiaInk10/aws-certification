@@ -6,8 +6,6 @@ module: 7
 status: 미학습
 ---
 
-# AWS Backup
-
 > 여러 서비스의 백업을 한곳에서 중앙 관리
 
 | | |

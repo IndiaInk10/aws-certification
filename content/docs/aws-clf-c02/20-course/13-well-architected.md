@@ -5,8 +5,6 @@ module: 13
 status: 미학습
 ---
 
-# Well-Architected 솔루션
-
 > 강의 5개 · 지식 점검 8문항 · 모듈 평가 9문항
 
 ---

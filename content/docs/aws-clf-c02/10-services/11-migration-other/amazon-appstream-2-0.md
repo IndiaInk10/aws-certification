@@ -6,8 +6,6 @@ module: 13
 status: 미학습
 ---
 
-# Amazon AppStream 2.0
-
 > 데스크톱 앱을 브라우저로 스트리밍
 
 | | |

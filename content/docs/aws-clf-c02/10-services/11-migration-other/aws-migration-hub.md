@@ -6,8 +6,6 @@ module: 12
 status: 미학습
 ---
 
-# AWS Migration Hub
-
 > 마이그레이션 진행 상황을 한곳에서 추적
 
 | | |

@@ -6,9 +6,7 @@ module: 8
 status: 미학습
 ---
 
-# Amazon Translate
-
-> 언어 번역
+> 텍스트를 다른 언어로 번역
 
 | | |
 |---|---|

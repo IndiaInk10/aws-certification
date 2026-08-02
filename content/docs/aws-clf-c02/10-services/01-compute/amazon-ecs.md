@@ -6,8 +6,6 @@ module: 3
 status: 미학습
 ---
 
-# Amazon ECS
-
 > AWS 자체 컨테이너 오케스트레이션
 
 | | |

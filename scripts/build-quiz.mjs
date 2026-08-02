@@ -34,7 +34,11 @@ for (const cert of fs.readdirSync(BANK_ROOT, { withFileTypes: true })) {
 
   for (const f of files) {
     const no = parseInt(f.match(/\d+/)[0]);
-    const lines = fs.readFileSync(path.join(bank, f), 'utf8').split(/\r?\n/);
+    const src = fs.readFileSync(path.join(bank, f), 'utf8');
+    // 프론트매터 title — 회차 번호 대신 보여 줄 이름이 있으면 쓴다 (예: 공식 연습 문제)
+    const fm = src.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const label = fm ? (fm[1].match(/^title:\s*"?(.*?)"?\s*$/m) || [])[1] : undefined;
+    const lines = src.split(/\r?\n/);
     const questions = [];
     let cur = null;
     let inAnswer = false;
@@ -95,7 +99,7 @@ for (const cert of fs.readdirSync(BANK_ROOT, { withFileTypes: true })) {
       path.join(OUT, `${cert.name}-${String(no).padStart(2, '0')}.json`),
       JSON.stringify({ cert: cert.name, exam: no, questions }),
     );
-    exams.push({ exam: no, count: questions.length, multi });
+    exams.push({ exam: no, count: questions.length, multi, ...(label ? { label } : {}) });
   }
 
   index.push({
