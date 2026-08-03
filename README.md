@@ -1,4 +1,4 @@
-# 자격증 학습 볼트
+# 자격증 학습 창고
 
 AWS 자격증 강의를 순서대로 쌓아 올리고, 문제로 확인하는 학습 사이트.
 Next.js + Fumadocs로 만들었고 Vercel에 배포합니다.
@@ -125,6 +125,23 @@ export const config = { matcher: ['/((?!api|_next|.*\\..*).*)'] };
 다른 파일은 이 인터페이스만 쓰므로 수정이 필요 없습니다.
 
 오답노트 화면의 **내보내기 / 가져오기** 로 JSON 백업이 가능합니다.
+
+## 오프라인 (PWA)
+
+폰·아이패드 홈 화면에 설치해 인터넷 없이 볼 수 있습니다.
+
+- **설치** — iOS/iPadOS: 사파리에서 공유 → *홈 화면에 추가*. 안드로이드·데스크톱 크롬: 주소창의 설치 버튼.
+- **캐시 전략** — `public/sw.js`. 정적 파일은 캐시 우선, 페이지·RSC 는 네트워크 우선(온라인이면 늘 최신),
+  둘 다 없으면 `/offline`.
+- **미리 받아 두기** — 설정 → *오프라인 사용* → **전체 저장**. 목록은 `/offline-manifest.json`
+  (`src/app/offline-manifest.json/route.ts`)이 만듭니다. **라우트를 추가하면 이 파일에도 넣으세요.**
+- **한계** — 검색(`/api/search`)은 서버를 거치므로 오프라인에서 동작하지 않습니다.
+- **캐시 무효화** — `sw.js` 의 `CACHE_VERSION` 을 올리면 다음 방문 때 옛 캐시를 버립니다.
+- 서비스 워커는 `next dev` 에서 등록하지 않습니다 (`src/components/service-worker.tsx`).
+  캐시가 코드 수정보다 오래 살아 혼란을 주기 때문입니다. 확인하려면 `npm run build && npm start`.
+
+아이콘 원본은 여전히 `public/icon.svg` 하나입니다. PNG 가 필요한 곳(iOS 홈 화면, 마스커블)은
+`src/lib/app-icon.tsx` 가 같은 도형을 빌드 때 PNG 로 굽습니다 — SVG 를 고치면 여기도 같이 고치세요.
 
 ## 배포 (Vercel)
 

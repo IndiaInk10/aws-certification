@@ -10,7 +10,7 @@
   16px 파비콘에서도 읽히도록 도형을 2겹으로만 유지하세요. 겹을 더 얹으면 작은 크기에서 뭉개집니다.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"
-     role="img" aria-label="자격증 학습 볼트">
+     role="img" aria-label="자격증 학습 창고">
   <defs>
     <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#3C4B59"/>

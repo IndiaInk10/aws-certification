@@ -99,9 +99,20 @@ export function InlineQuiz({
   const [order, setOrder] = useState<number[][]>(() =>
     questions.map((q) => q.choices.map((_, i) => i)),
   );
-  const reshuffle = () =>
-    setOrder(questions.map((q) => shuffle(q.choices.map((_, i) => i))));
-  useEffect(reshuffle, [questions]);
+  const reshuffle = () => setOrder(questions.map((q) => shuffle(q.choices.map((_, i) => i))));
+
+  // 섞기는 렌더 직후 한 틱 뒤에 한다. effect 안에서 곧바로 setState 하면 같은 커밋에서
+  // 렌더가 한 번 더 도는 연쇄가 생긴다 (react-hooks/set-state-in-effect). 마이크로태스크라
+  // 화면에 그려지기 전에 반영되므로 원본 순서가 눈에 보이지는 않는다.
+  useEffect(() => {
+    let alive = true;
+    queueMicrotask(() => {
+      if (alive) setOrder(questions.map((q) => shuffle(q.choices.map((_, i) => i))));
+    });
+    return () => {
+      alive = false;
+    };
+  }, [questions]);
 
   if (!questions.length) return null;
 

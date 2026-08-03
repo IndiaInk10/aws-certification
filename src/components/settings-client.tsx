@@ -19,6 +19,7 @@ import {
 } from '@/lib/storage';
 import { LOCALE_LABEL, QUIZ_LOCALES, useQuizLocale } from '@/lib/quiz-locale';
 import { Modal } from '@/components/ui/modal';
+import { OfflineClient } from '@/components/offline-client';
 import { Download, Trash2, Upload } from 'lucide-react';
 
 const SCOPE_HINT: Record<DataScope, string> = {
@@ -108,6 +109,9 @@ export function SettingsClient() {
           ))}
         </div>
       </section>
+
+      {/* 오프라인 */}
+      <OfflineClient />
 
       {/* 백업 */}
       <section>

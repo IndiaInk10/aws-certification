@@ -10,7 +10,15 @@
  * 툴팁 라이브러리를 쓰지 않는다 (inline-quiz 와 같은 원칙). useState 와 CSS 만 쓴다.
  */
 
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from 'react';
 import { BookMarked, ChevronDown, Search, X } from 'lucide-react';
 import glossaryData from '@/generated/glossary.json';
 
@@ -278,23 +286,39 @@ export function GlossaryList() {
  * 접힘 상태는 localStorage 에 남겨 새로고침해도 유지한다.
  */
 const DOCK_KEY = 'cv.glossary-dock';
+const DOCK_EVENT = 'cv:glossary-dock';
+
+/**
+ * 접힘 상태는 React 가 아니라 **localStorage** 에 있다. 그래서 state 로 복사해 두지 않고
+ * `useSyncExternalStore` 로 바로 구독한다 (마운트 후 setState 로 옮기면 렌더가 한 번 더 돈다).
+ * 서버 스냅샷은 `null` — 첫 렌더에서는 아무것도 그리지 않으므로 하이드레이션이 어긋날 일이 없다.
+ */
+function subscribeDock(onChange: () => void) {
+  window.addEventListener(DOCK_EVENT, onChange);
+  window.addEventListener('storage', onChange);
+  window.addEventListener('resize', onChange); // 저장값이 없을 때는 화면 폭으로 정한다
+  return () => {
+    window.removeEventListener(DOCK_EVENT, onChange);
+    window.removeEventListener('storage', onChange);
+    window.removeEventListener('resize', onChange);
+  };
+}
+
+/** 'open' | 'closed'. 저장값이 없으면 화면 폭으로 정한다 — 좁은 화면에서 펼치면 본문을 덮는다. */
+function dockSnapshot(): string {
+  return localStorage.getItem(DOCK_KEY) ?? (window.innerWidth >= 768 ? 'open' : 'closed');
+}
+
+function setDock(open: boolean) {
+  localStorage.setItem(DOCK_KEY, open ? 'open' : 'closed');
+  window.dispatchEvent(new Event(DOCK_EVENT));
+}
 
 export function GlossaryDock() {
   const [entry, setEntry] = useState<Entry | null>(null);
   const [q, setQ] = useState('');
-  const [open, setOpen] = useState(false);
-  const [ready, setReady] = useState(false);
-
-  // 접힘 상태 복원 — 서버 렌더와 어긋나지 않도록 마운트 후에 읽는다
-  useEffect(() => {
-    const saved = localStorage.getItem(DOCK_KEY);
-    // 좁은 화면에서 기본으로 펼치면 본문을 덮는다. 한 번이라도 직접 고른 적이 있으면 그것을 따른다.
-    setOpen(saved ? saved === 'open' : window.innerWidth >= 768);
-    setReady(true);
-  }, []);
-  useEffect(() => {
-    if (ready) localStorage.setItem(DOCK_KEY, open ? 'open' : 'closed');
-  }, [open, ready]);
+  const dock = useSyncExternalStore(subscribeDock, dockSnapshot, () => null);
+  const open = dock === 'open';
 
   // 본문 용어에 마우스를 올리면 그 뜻으로 바꾼다
   useEffect(() => {
@@ -312,7 +336,7 @@ export function GlossaryDock() {
 
   const query = q.trim().toLowerCase();
   const hits = query ? ENTRIES.filter((e) => matches(e, query)).slice(0, 8) : [];
-  if (!ready) return null;
+  if (dock === null) return null; // 아직 클라이언트가 아니다 (서버 스냅샷)
 
   return (
     <div className="fixed inset-x-2 bottom-2 z-40 sm:inset-x-auto sm:right-4 sm:bottom-4 sm:w-80 print:hidden">
@@ -323,7 +347,7 @@ export function GlossaryDock() {
             <span className="flex-1 text-sm font-semibold">용어 사전</span>
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={() => setDock(false)}
               aria-label="사전 접기"
               className="text-fd-muted-foreground hover:text-fd-foreground rounded p-0.5"
             >
@@ -402,7 +426,7 @@ export function GlossaryDock() {
         // 접었을 때는 정원(正圓). size-11 은 터치 목표 권장 크기(44px)에 맞춘 것이다.
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => setDock(true)}
           aria-label="용어 사전 열기"
           title="용어 사전"
           className="bg-fd-popover text-fd-popover-foreground border-fd-border hover:bg-fd-accent ml-auto grid size-11 place-items-center rounded-full border shadow-lg"

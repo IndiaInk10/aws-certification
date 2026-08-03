@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Check, ChevronLeft, ChevronRight, Circle, ListTree } from 'lucide-react';
 import modulesData from '@/generated/modules.json';
@@ -21,15 +21,13 @@ export function ModuleNav({ cert, slug }: { cert: string; slug: string }) {
   const [done, setDone] = useState<string[] | null>(null);
   const key = `${cert}/${slug}`;
 
-  const load = useCallback(() => {
-    void store.getDone().then(setDone);
-  }, []);
-
+  // load 는 이 effect 밖에서 쓰이지 않으므로 안에 둔다 — useCallback 으로 감쌀 이유가 없다.
   useEffect(() => {
+    const load = () => void store.getDone().then(setDone);
     load();
     window.addEventListener('cv:changed', load);
     return () => window.removeEventListener('cv:changed', load);
-  }, [load]);
+  }, []);
 
   if (!cur) return null;
   const isDone = done?.includes(key) ?? false;

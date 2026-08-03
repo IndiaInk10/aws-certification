@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   Check,
@@ -32,15 +32,14 @@ export function LearningPath({ cert }: { cert: string }) {
 
   const [done, setDone] = useState<string[] | null>(null);
 
-  const load = useCallback(() => {
-    void store.getDone().then(setDone);
-  }, []);
-
+  // 진도는 다른 화면에서도 바뀐다 (모듈 상단의 완료 체크). 'cv:changed' 로 다시 읽는다.
+  // load 는 이 effect 밖에서 쓰이지 않으므로 안에 둔다 — useCallback 으로 감쌀 이유가 없다.
   useEffect(() => {
+    const load = () => void store.getDone().then(setDone);
     load();
     window.addEventListener('cv:changed', load);
     return () => window.removeEventListener('cv:changed', load);
-  }, [load]);
+  }, []);
 
   const key = (m: Module) => `${cert}/${m.slug}`;
   const isDone = (m: Module) => done?.includes(key(m)) ?? false;

@@ -35,7 +35,9 @@ type State = {
   flagged: Record<number, boolean>;
   review: boolean;
   done: boolean;
+  /** 시각은 렌더 중에 읽으면 안 되는 값이라(매번 달라진다) 전부 action 으로 받아 여기 담는다. */
   startedAt: number;
+  finishedAt: number;
 };
 
 type Action =
@@ -44,7 +46,8 @@ type Action =
   | { type: 'goto'; i: number }
   | { type: 'step'; d: number }
   | { type: 'review'; on: boolean }
-  | { type: 'submit' };
+  | { type: 'start'; at: number }
+  | { type: 'submit'; at: number };
 
 function makeReducer(count: number) {
   return (s: State, a: Action): State => {
@@ -66,8 +69,10 @@ function makeReducer(count: number) {
         return { ...s, i: Math.max(0, Math.min(count - 1, s.i + a.d)) };
       case 'review':
         return { ...s, review: a.on };
+      case 'start':
+        return { ...s, startedAt: a.at };
       case 'submit':
-        return { ...s, done: true, review: false };
+        return { ...s, done: true, review: false, finishedAt: a.at };
     }
   };
 }
@@ -117,22 +122,34 @@ export function QuizRunner({
   const tq = (q: Question) => localize(q.q, locale, base);
   const tc = (c: { t: Localized }) => localize(c.t, locale, base);
 
-  // 보기 순서를 섞는다. 정답이 늘 같은 자리에 있으면 위치를 외워버린다.
-  // SSR 결과와 어긋나지 않도록 첫 렌더는 원본 순서로 두고, 마운트 후에 섞는다.
   const [questions, setQuestions] = useState(source);
-  useEffect(() => {
-    setQuestions(source.map((q) => ({ ...q, choices: shuffle(q.choices) })));
-  }, [source]);
-
-  const initial: State = {
+  const [s, dispatch] = useReducer(makeReducer(questions.length), {
     i: 0,
     picked: {},
     flagged: {},
     review: false,
     done: false,
-    startedAt: Date.now(),
-  };
-  const [s, dispatch] = useReducer(makeReducer(questions.length), initial);
+    startedAt: 0,
+    finishedAt: 0,
+  });
+
+  // 마운트 직후에 할 두 가지.
+  //   1) 보기 순서 섞기 — 정답이 늘 같은 자리면 위치를 외워버린다.
+  //      SSR 결과와 어긋나면 안 되므로 첫 렌더는 원본 순서로 두고 여기서 섞는다.
+  //   2) 시작 시각 기록 — Date.now() 는 렌더 중에 부를 수 없다 (부를 때마다 값이 달라진다).
+  // 둘 다 한 틱 미룬다. effect 안에서 바로 setState 하면 같은 커밋에서 렌더가 다시 도는
+  // 연쇄가 생긴다 (react-hooks/set-state-in-effect). 마이크로태스크라 화면에는 보이지 않는다.
+  useEffect(() => {
+    let alive = true;
+    queueMicrotask(() => {
+      if (!alive) return;
+      setQuestions(source.map((q) => ({ ...q, choices: shuffle(q.choices) })));
+      dispatch({ type: 'start', at: Date.now() });
+    });
+    return () => {
+      alive = false;
+    };
+  }, [source]);
   const [studyMode, setStudyMode] = useState(false);
   const [askSubmit, setAskSubmit] = useState(false);
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
@@ -153,7 +170,7 @@ export function QuizRunner({
   }, [s.done, studyMode]);
 
   useEffect(() => {
-    if (left <= 0 && !s.done) dispatch({ type: 'submit' });
+    if (left <= 0 && !s.done) dispatch({ type: 'submit', at: Date.now() });
   }, [left, s.done]);
 
   const q = questions[s.i];
@@ -178,12 +195,12 @@ export function QuizRunner({
     saved.current = true;
 
     const attempt: ExamAttempt = {
-      id: `${cert}-${exam}-${Date.now()}`,
+      id: `${cert}-${exam}-${s.finishedAt}`,
       cert,
       exam,
       total: result.total,
       correct: result.correct,
-      durationSec: Math.round((Date.now() - s.startedAt) / 1000),
+      durationSec: Math.round((s.finishedAt - s.startedAt) / 1000),
       at: new Date().toISOString(),
     };
     void store.addAttempt(attempt);
@@ -205,7 +222,7 @@ export function QuizRunner({
         at: new Date().toISOString(),
       } satisfies WrongItem);
     }
-  }, [s.done, s.startedAt, s.picked, cert, exam, questions, result, locale, base]);
+  }, [s.done, s.startedAt, s.finishedAt, s.picked, cert, exam, questions, result, locale, base]);
 
   // ── 결과 화면 ──────────────────────────────────────────────
   if (s.done) {
@@ -213,7 +230,7 @@ export function QuizRunner({
     // AWS 는 100~1000 스케일, 700점 합격
     const scaled = Math.round(100 + (pct / 100) * 900);
     const pass = scaled >= 700;
-    const mins = Math.round((Date.now() - s.startedAt) / 60000);
+    const mins = Math.round((s.finishedAt - s.startedAt) / 60000);
 
     return (
       <div className="mx-auto max-w-3xl">
@@ -378,7 +395,7 @@ export function QuizRunner({
           <button
             onClick={() => {
               if (answeredCount < questions.length) setAskSubmit(true);
-              else dispatch({ type: 'submit' });
+              else dispatch({ type: 'submit', at: Date.now() });
             }}
             className="bg-fd-primary text-fd-primary-foreground ml-auto rounded-md px-3 py-1.5 text-sm"
           >
@@ -399,7 +416,7 @@ export function QuizRunner({
           cancelLabel="계속 풀기"
           onConfirm={() => {
             setAskSubmit(false);
-            dispatch({ type: 'submit' });
+            dispatch({ type: 'submit', at: Date.now() });
           }}
           onCancel={() => setAskSubmit(false)}
         />
