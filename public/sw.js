@@ -3,8 +3,9 @@
 
   전략 (요청 종류별로 다르다)
     /_next/static, 폰트, 아이콘 …… 캐시 우선. 파일 이름에 해시가 있어 바뀌면 이름도 바뀐다.
+    /_next/image ……………………… 캐시 우선. 폭(w=…)은 키에서 뺀다 (imageKey).
     페이지 이동(navigate) ………… 네트워크 우선 → 실패하면 캐시 → 그것도 없으면 /offline.
-    RSC(라우터가 부르는 조각) …… 네트워크 우선 → 캐시. 둘 다 없으면 503 을 돌려
+    RSC(라우터가 부르는 조각) …… 네트워크 우선 → 캐시. 둘 다 없으면 네트워크 오류를 내서
                                    Next 라우터가 통째 새로고침(=캐시된 HTML)으로 넘어가게 둔다.
     그 밖의 GET(검색 색인 등) …… stale-while-revalidate.
 
@@ -14,7 +15,7 @@
   아래 CACHE_VERSION 을 올리면 다음 방문 때 옛 캐시를 전부 버린다.
 */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v4';
 const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
 const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
 const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
@@ -45,9 +46,42 @@ self.addEventListener('activate', (event) => {
 function isImmutable(url) {
   return (
     url.pathname.startsWith('/_next/static/') ||
-    url.pathname.startsWith('/_next/image') ||
     /\.(?:woff2?|ttf|otf|png|jpe?g|svg|webp|ico)$/.test(url.pathname)
   );
+}
+
+const isImage = (url) => url.pathname === '/_next/image';
+
+/**
+ * 이미지 캐시 키.
+ *
+ * next/image 는 같은 그림을 화면 폭마다 다른 주소로 부른다 (`&w=640`, `&w=1080`, `&w=3840`…).
+ * 폭까지 키에 넣으면 저장해 둔 것과 어긋나 오프라인에서 그림이 전부 깨진다 (강의 페이지가
+ * 텅 빈 것처럼 보이던 이유). 그래서 **원본 주소(url 파라미터)만으로** 키를 만들고,
+ * 어떤 폭을 부르든 저장해 둔 한 장을 돌려준다. 화질만 다를 뿐 그림은 나온다.
+ */
+function imageKey(url) {
+  return new Request(`${url.origin}/_next/image?url=${encodeURIComponent(url.searchParams.get('url') ?? '')}`);
+}
+
+/** 이미지 — 저장해 둔 것 우선, 없으면 받아서 저장. 폭이 달라도 같은 키를 쓴다. */
+async function imageFirst(request, url) {
+  const cache = await caches.open(STATIC);
+  const key = imageKey(url);
+  const hit = await cache.match(key);
+  if (hit) return hit;
+
+  try {
+    const res = await fetch(request);
+    if (res.ok) cache.put(key, res.clone());
+    return res;
+  } catch (err) {
+    // 최적화본이 없어도 원본(/_next/static/media/…)이 캐시에 있으면 그걸로 대신한다.
+    const original = url.searchParams.get('url');
+    const raw = original && original.startsWith('/') ? await cache.match(original) : null;
+    if (raw) return raw;
+    throw err;
+  }
 }
 
 /** Next 라우터가 부르는 조각 요청 */
@@ -130,6 +164,11 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // 남의 도메인은 건드리지 않는다
 
+  if (isImage(url)) {
+    event.respondWith(imageFirst(request, url));
+    return;
+  }
+
   if (isImmutable(url)) {
     event.respondWith(cacheFirst(request, STATIC));
     return;
@@ -165,22 +204,41 @@ function staticAssetsIn(html) {
   return [...found];
 }
 
+/**
+ * HTML 안의 그림 원본 주소를 긁어낸다.
+ * 마크업에는 `/_next/image?url=%2F_next%2F…&amp;w=640&amp;q=75` 꼴로 폭마다 하나씩 들어 있다.
+ * 폭은 버리고 원본 주소만 모은다 — 저장은 한 장이면 된다 (imageKey 참고).
+ */
+function imagesIn(html) {
+  const found = new Set();
+  for (const m of html.matchAll(/\/_next\/image\?url=([^"'\s&\\]+)/g)) found.add(decodeURIComponent(m[1]));
+  return [...found];
+}
+
 async function precache(urls, source) {
   const pages = await caches.open(PAGES);
   const rsc = await caches.open(RSC);
   const statics = await caches.open(STATIC);
+  // 정적 파일과 그림은 **다른 통**으로 센다. 하나로 묶으면 원본 png 를 정적 파일로 이미
+  // 받았다는 이유로 최적화본을 건너뛰어, 페이지에서 부르는 주소는 비어 있게 된다.
   const seenAssets = new Set();
+  const seenImages = new Set();
   let done = 0;
   let failed = 0;
 
   const post = () => source?.postMessage({ type: 'PRECACHE_PROGRESS', done, failed, total: urls.length });
 
-  /** 이 페이지가 쓰는 정적 파일 중 아직 안 받은 것만 */
+  /** 이 페이지가 쓰는 정적 파일·그림 중 아직 안 받은 것만 */
   const saveAssets = async (html) => {
     const fresh = staticAssetsIn(html).filter((a) => !seenAssets.has(a));
     fresh.forEach((a) => seenAssets.add(a));
-    await Promise.all(
-      fresh.map(async (a) => {
+
+    // 그림은 중간 크기(w=1080) 한 장만 받아 둔다. 어떤 폭을 부르든 이걸 돌려준다.
+    const freshImages = imagesIn(html).filter((src) => !seenImages.has(src));
+    freshImages.forEach((src) => seenImages.add(src));
+
+    await Promise.all([
+      ...fresh.map(async (a) => {
         if (await statics.match(a)) return;
         try {
           await statics.add(a);
@@ -188,7 +246,18 @@ async function precache(urls, source) {
           /* 하나 실패해도 페이지 저장은 성공으로 친다 */
         }
       }),
-    );
+      ...freshImages.map(async (src) => {
+        const req = `/_next/image?url=${encodeURIComponent(src)}&w=1080&q=75`;
+        const key = imageKey(new URL(req, self.location.origin));
+        if (await statics.match(key)) return;
+        try {
+          const res = await fetch(req);
+          if (res.ok) await statics.put(key, res);
+        } catch {
+          /* 무시 */
+        }
+      }),
+    ]);
   };
 
   const queue = urls.slice();
