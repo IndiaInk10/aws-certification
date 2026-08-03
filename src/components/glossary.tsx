@@ -29,6 +29,8 @@ type Entry = {
   short: string;
   long?: string;
   aliases?: string[];
+  /** 함께 봐야 뜻이 잡히는 다른 용어들 (build-glossary.mjs 가 존재를 검사한다) */
+  see?: string[];
 };
 
 const ENTRIES = glossaryData as Entry[];
@@ -264,6 +266,20 @@ export function GlossaryList() {
                       {inline(e.long)}
                     </span>
                   )}
+                  {e.see?.length && (
+                    <span className="mt-1.5 flex flex-wrap items-baseline gap-1.5">
+                      <span className="text-fd-muted-foreground text-xs">함께 보기</span>
+                      {e.see.map((s) => (
+                        <a
+                          key={s}
+                          href={'#' + termAnchor(s)}
+                          className="border-fd-border hover:border-fd-primary hover:text-fd-primary rounded-full border px-2 py-0.5 text-xs no-underline"
+                        >
+                          {s}
+                        </a>
+                      ))}
+                    </span>
+                  )}
                 </dd>
               </div>
             ))}
@@ -413,6 +429,22 @@ export function GlossaryDock() {
                     {inline(entry.long)}
                   </p>
                 )}
+                {/* 헷갈리는 짝은 나란히 놓고 봐야 갈린다. 눌러서 바로 넘어간다 */}
+                {entry.see?.length ? (
+                  <div className="mt-2 flex flex-wrap items-baseline gap-1.5 border-t pt-2">
+                    <span className="text-fd-muted-foreground text-xs">함께 보기</span>
+                    {entry.see.map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => setEntry(ENTRIES.find((x) => x.term === s) ?? null)}
+                        className="border-fd-border hover:border-fd-primary hover:text-fd-primary rounded-full border px-2 py-0.5 text-xs"
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
               </>
             ) : (
               <p className="text-fd-muted-foreground text-[13px] leading-relaxed">

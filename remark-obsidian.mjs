@@ -10,7 +10,7 @@
  *  5. ../images/mN/x.png     → /cert-images/<cert>/mN/x.png
  *  6. ```mermaid             → <Mermaid chart="...">
  *  7. ```quiz / ```exam      → <InlineQuiz>  (본문에서 바로 푸는 문제)
- *  8. 용어집 용어             → <Term>  (본문 첫 등장에만 호버 설명을 붙인다)
+ *  8. 용어집 용어             → <Term>  (본문에 나오는 자리마다 호버 설명을 붙인다)
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -186,6 +186,16 @@ function glossary() {
   return GLOSSARY;
 }
 
+/** 낱말 속에 박힌 용어를 걸러내는 데 쓴다 (wrapTerms 참고) */
+const HANGUL = /[가-힣]/;
+
+/**
+ * 용어로 **시작하지만** 뜻이 전혀 다른 낱말.
+ * 뒤에 붙는 글자는 보통 조사라서 통과시키는데, 아래 낱말들은 조사가 아니다.
+ * (로그인의 "로그", 포트폴리오의 "포트")
+ */
+const NOT_A_TERM = ['로그인', '로그아웃', '포트폴리오'];
+
 /** 용어를 걸지 않는 노드 — 제목 · 코드 · 링크 텍스트 · raw html */
 const NO_TERM = new Set([
   'heading',
@@ -203,14 +213,15 @@ const NO_TERM = new Set([
 const TERM_INSIDE_JSX = new Set(['Callout', 'Accordions', 'Accordion']);
 
 /**
- * 텍스트 노드 안의 용어를 <Term> 으로 감싼다. **한 페이지에서 용어당 한 번만** 감싼다.
- * 전부 감싸면 본문이 점선투성이가 되어 오히려 읽기 힘들어진다.
+ * 텍스트 노드 안의 용어를 <Term> 으로 감싼다. **나오는 자리마다 전부** 감싼다.
+ *
+ * 처음에는 페이지당 한 번, 그다음에는 꼭지당 한 번으로 제한했었다.
+ * 읽는 사람은 같은 낱말을 뒤에서 다시 만났을 때 또 궁금해지는데,
+ * 그때 물어볼 데가 없다는 것이 더 큰 문제라서 제한을 걷어냈다.
  */
 function wrapTerms(tree) {
   const { re, byForm } = glossary();
   if (!re) return;
-
-  const used = new Set();
 
   const replaceIn = (node, parent) => {
     const value = node.value;
@@ -220,8 +231,11 @@ function wrapTerms(tree) {
     re.lastIndex = 0;
     while ((m = re.exec(value))) {
       const entry = byForm.get(m[0]);
-      if (!entry || used.has(entry.term)) continue;
-      used.add(entry.term);
+      if (!entry) continue;
+      // 한글은 낱말 사이가 붙어 있어서 "템플릿"의 "플릿", "블로그"의 "로그"처럼 안쪽이 걸린다.
+      // 뒤에 오는 것은 조사(인스턴스**를**)라 정상이지만, **앞**이 한글이면 낱말 속에 박힌 것이다.
+      if (HANGUL.test(m[0][0]) && HANGUL.test(value[m.index - 1] ?? '')) continue;
+      if (NOT_A_TERM.some((w) => value.startsWith(w, m.index))) continue;
       if (m.index > last) parts.push({ type: 'text', value: value.slice(last, m.index) });
       parts.push({
         type: 'mdxJsxTextElement',

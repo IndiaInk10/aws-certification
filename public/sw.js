@@ -15,7 +15,7 @@
   아래 CACHE_VERSION 을 올리면 다음 방문 때 옛 캐시를 전부 버린다.
 */
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
 const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
 const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
