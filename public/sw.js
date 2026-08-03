@@ -14,7 +14,7 @@
   아래 CACHE_VERSION 을 올리면 다음 방문 때 옛 캐시를 전부 버린다.
 */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
 const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
 const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
@@ -53,6 +53,34 @@ function isImmutable(url) {
 /** Next 라우터가 부르는 조각 요청 */
 function isRsc(request, url) {
   return request.headers.get('RSC') === '1' || url.searchParams.has('_rsc');
+}
+
+/**
+ * RSC 캐시 키.
+ *
+ * 라우터는 `/docs/x?_rsc=1a2b3c` 처럼 **매번 다른 해시**를 붙여 부른다. 그 URL 을 그대로
+ * 키로 쓰면 저장해 둔 것과 절대 안 맞는다. 그래서 쿼리를 떼고 경로만으로 키를 만든다.
+ * HTML 과 섞이지 않도록 별도의 캐시 통(RSC)에 담는다.
+ */
+function rscKey(url) {
+  return new Request(url.origin + url.pathname);
+}
+
+/** 페이지 조각 — 네트워크 우선, 없으면 저장해 둔 조각. 둘 다 없으면 네트워크 오류를 그대로 낸다. */
+async function rscFirst(request, url) {
+  const cache = await caches.open(RSC);
+  const key = rscKey(url);
+  try {
+    const res = await fetch(request);
+    if (res.ok && res.type === 'basic') cache.put(key, res.clone());
+    return res;
+  } catch {
+    const hit = await cache.match(key);
+    if (hit) return hit;
+    // 여기서 503 같은 "정상 응답"을 돌려주면 라우터가 그 본문을 화면에 그린다 (그래서 503 화면이 떴다).
+    // 네트워크 오류로 알려야 라우터가 통째 새로고침으로 넘어가고, 그쪽엔 캐시된 HTML 이 있다.
+    return Response.error();
+  }
 }
 
 async function cacheFirst(request, cacheName) {
@@ -108,12 +136,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (isRsc(request, url)) {
-    event.respondWith(
-      networkFirst(request, RSC).catch(
-        // 라우터가 실패를 보면 통째 새로고침으로 넘어간다. 그쪽엔 캐시된 HTML 이 있다.
-        () => new Response('', { status: 503, statusText: 'offline' }),
-      ),
-    );
+    event.respondWith(rscFirst(request, url));
     return;
   }
 
@@ -126,16 +149,47 @@ self.addEventListener('fetch', (event) => {
 });
 
 /* ── 전체 저장 ──────────────────────────────────────────────
-   설정 화면에서 URL 목록을 보내면 페이지 HTML 을 하나씩 받아 캐시에 넣고
-   진행 상황을 되돌려 준다. 한 번에 몰아 받으면 모바일 네트워크가 막히므로
-   동시 6개로 제한한다. */
+   설정 화면에서 URL 목록을 보내면 주소마다 세 가지를 받아 둔다.
+
+     1) HTML          — 주소창으로 바로 열 때 쓰는 것
+     2) RSC 조각      — 링크를 눌러 이동할 때 라우터가 부르는 것
+     3) 그 HTML 이 참조하는 /_next/static/… — 없으면 화면은 떠도 조작이 안 된다
+
+   HTML 만 받아 두면 오프라인에서 링크 이동이 깨진다. 셋을 같이 받아야 실제로 쓸 수 있다.
+   한 번에 몰아 받으면 모바일 네트워크가 막히므로 동시 6개로 제한한다. */
+
+/** HTML 안의 /_next/static/… 주소를 긁어낸다 (script src, link href, 청크 목록 문자열까지) */
+function staticAssetsIn(html) {
+  const found = new Set();
+  for (const m of html.matchAll(/["'(](\/_next\/static\/[^"'()\s\\]+)/g)) found.add(m[1]);
+  return [...found];
+}
 
 async function precache(urls, source) {
-  const cache = await caches.open(PAGES);
+  const pages = await caches.open(PAGES);
+  const rsc = await caches.open(RSC);
+  const statics = await caches.open(STATIC);
+  const seenAssets = new Set();
   let done = 0;
   let failed = 0;
 
   const post = () => source?.postMessage({ type: 'PRECACHE_PROGRESS', done, failed, total: urls.length });
+
+  /** 이 페이지가 쓰는 정적 파일 중 아직 안 받은 것만 */
+  const saveAssets = async (html) => {
+    const fresh = staticAssetsIn(html).filter((a) => !seenAssets.has(a));
+    fresh.forEach((a) => seenAssets.add(a));
+    await Promise.all(
+      fresh.map(async (a) => {
+        if (await statics.match(a)) return;
+        try {
+          await statics.add(a);
+        } catch {
+          /* 하나 실패해도 페이지 저장은 성공으로 친다 */
+        }
+      }),
+    );
+  };
 
   const queue = urls.slice();
   const worker = async () => {
@@ -143,7 +197,23 @@ async function precache(urls, source) {
       try {
         const res = await fetch(next, { credentials: 'same-origin' });
         if (!res.ok) throw new Error(String(res.status));
-        await cache.put(next, res);
+
+        // 본문을 한 번 읽어 캐시용·분석용으로 나눠 쓴다 (Response 본문은 한 번만 읽힌다).
+        const html = await res.clone().text();
+        await pages.put(next, res);
+        await saveAssets(html);
+
+        // 링크로 이동할 때 쓰는 조각. 실패해도 HTML 이 있으니 치명적이지 않다.
+        try {
+          const flight = await fetch(next, {
+            credentials: 'same-origin',
+            headers: { RSC: '1' },
+          });
+          if (flight.ok) await rsc.put(rscKey(new URL(next, self.location.origin)), flight);
+        } catch {
+          /* 무시 */
+        }
+
         done++;
       } catch {
         failed++;

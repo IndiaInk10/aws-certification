@@ -135,6 +135,12 @@ export const config = { matcher: ['/((?!api|_next|.*\\..*).*)'] };
   둘 다 없으면 `/offline`.
 - **미리 받아 두기** — 설정 → *오프라인 사용* → **전체 저장**. 목록은 `/offline-manifest.json`
   (`src/app/offline-manifest.json/route.ts`)이 만듭니다. **라우트를 추가하면 이 파일에도 넣으세요.**
+  주소마다 세 가지를 받습니다 — HTML, **RSC 조각**(링크로 이동할 때 라우터가 부르는 것),
+  그 HTML 이 참조하는 `/_next/static/…`. HTML 만 받으면 오프라인에서 링크 이동이 깨집니다.
+- **RSC 캐시 키** — 라우터는 `?_rsc=<해시>` 를 붙여 부르고 해시가 매번 달라집니다.
+  그래서 쿼리를 떼고 **경로만으로** 키를 만듭니다 (`rscKey`). 조각도 네트워크도 없으면
+  `Response.error()` 를 돌려 라우터가 통째 새로고침(=캐시된 HTML)으로 넘어가게 합니다.
+  여기서 503 같은 정상 응답을 돌려주면 그 본문이 화면에 그대로 그려집니다.
 - **한계** — 검색(`/api/search`)은 서버를 거치므로 오프라인에서 동작하지 않습니다.
 - **캐시 무효화** — `sw.js` 의 `CACHE_VERSION` 을 올리면 다음 방문 때 옛 캐시를 버립니다.
 - 서비스 워커는 `next dev` 에서 등록하지 않습니다 (`src/components/service-worker.tsx`).
