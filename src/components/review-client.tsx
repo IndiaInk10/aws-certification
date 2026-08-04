@@ -83,7 +83,7 @@ export function ReviewClient({ cert }: { cert: string }) {
 
   /** 이 자격증 오답만 비운다. 백업·전체 삭제는 설정 화면 몫. */
   const clearWrong = async () => {
-    await Promise.all((wrong ?? []).map((w) => store.removeWrong(w.id)));
+    await store.removeWrongMany((wrong ?? []).map((w) => w.id));
     setRevealed(false);
     setCursor(0);
     load();

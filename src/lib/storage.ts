@@ -51,6 +51,14 @@ export interface ProgressStore {
   listWrong(): Promise<WrongItem[]>;
   putWrong(w: WrongItem): Promise<void>;
   removeWrong(id: string): Promise<void>;
+  /**
+   * 여러 문항을 한 번에 넣고 뺀다.
+   * 낱개 메서드는 전체 목록을 읽어 통째로 다시 쓰므로, 동시에 여러 번 부르면
+   * 서로의 쓰기를 덮어써 마지막 하나만 남는다. 회차 채점처럼 한꺼번에
+   * 여러 건을 저장할 때는 반드시 이쪽을 쓴다.
+   */
+  putWrongMany(ws: readonly WrongItem[]): Promise<void>;
+  removeWrongMany(ids: readonly string[]): Promise<void>;
 
   getCards(): Promise<Record<string, SrsCard>>;
   putCard(id: string, c: SrsCard): Promise<void>;
@@ -105,14 +113,24 @@ class LocalStorageStore implements ProgressStore {
     return read<WrongItem[]>(KEY.wrong, []);
   }
   async putWrong(w: WrongItem) {
-    const all = await this.listWrong();
-    write(KEY.wrong, [w, ...all.filter((x) => x.id !== w.id)]);
+    return this.putWrongMany([w]);
   }
   async removeWrong(id: string) {
+    return this.removeWrongMany([id]);
+  }
+  async putWrongMany(ws: readonly WrongItem[]) {
+    if (ws.length === 0) return;
+    const all = await this.listWrong();
+    const incoming = new Set(ws.map((w) => w.id));
+    write(KEY.wrong, [...ws, ...all.filter((x) => !incoming.has(x.id))]);
+  }
+  async removeWrongMany(ids: readonly string[]) {
+    if (ids.length === 0) return;
+    const gone = new Set(ids);
     const all = await this.listWrong();
     write(
       KEY.wrong,
-      all.filter((x) => x.id !== id),
+      all.filter((x) => !gone.has(x.id)),
     );
   }
 

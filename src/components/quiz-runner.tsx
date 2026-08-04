@@ -205,23 +205,27 @@ export function QuizRunner({
     };
     void store.addAttempt(attempt);
 
-    for (const i of result.wrong) {
-      const qq = questions[i];
-      // 오답노트에는 응시할 때 보던 언어로 굳혀 둔다 (나중에 번역이 추가돼도 기록은 그대로)
-      void store.putWrong({
-        id: `${cert}-${exam}-${i}`,
-        cert,
-        exam,
-        qi: i,
-        q: localize(qq.q, locale, base),
-        choices: qq.choices.map((c) => ({ k: c.k, t: localize(c.t, locale, base) })),
-        chosen: s.picked[i] ?? [],
-        answers: qq.answers,
-        services: qq.services,
-        modules: qq.modules,
-        at: new Date().toISOString(),
-      } satisfies WrongItem);
-    }
+    // 오답노트에는 응시할 때 보던 언어로 굳혀 둔다 (나중에 번역이 추가돼도 기록은 그대로).
+    // 한 건씩 넣으면 서로의 쓰기를 덮어써 한 문항만 남는다 — 반드시 한 번에 넘긴다.
+    const at = new Date().toISOString();
+    void store.putWrongMany(
+      result.wrong.map((i) => {
+        const qq = questions[i];
+        return {
+          id: `${cert}-${exam}-${i}`,
+          cert,
+          exam,
+          qi: i,
+          q: localize(qq.q, locale, base),
+          choices: qq.choices.map((c) => ({ k: c.k, t: localize(c.t, locale, base) })),
+          chosen: s.picked[i] ?? [],
+          answers: qq.answers,
+          services: qq.services,
+          modules: qq.modules,
+          at,
+        } satisfies WrongItem;
+      }),
+    );
   }, [s.done, s.startedAt, s.finishedAt, s.picked, cert, exam, questions, result, locale, base]);
 
   // ── 결과 화면 ──────────────────────────────────────────────
@@ -272,10 +276,16 @@ export function QuizRunner({
                 : '문제를 더 푸는 대신 해당 모듈 강의로 돌아가는 편이 빠릅니다.'}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Link href="/review" className="rounded-md border px-3 py-1.5 text-sm no-underline">
+            <Link
+              href={`/${cert}/review`}
+              className="rounded-md border px-3 py-1.5 text-sm no-underline"
+            >
               오답노트 {result.wrong.length}문항 →
             </Link>
-            <Link href="/quiz" className="rounded-md border px-3 py-1.5 text-sm no-underline">
+            <Link
+              href={`/${cert}/quiz`}
+              className="rounded-md border px-3 py-1.5 text-sm no-underline"
+            >
               회차 목록
             </Link>
           </div>

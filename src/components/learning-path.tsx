@@ -97,7 +97,7 @@ export function LearningPath({ cert }: { cert: string }) {
         ) : (
           <p className="mt-4 text-sm">
             전 모듈 완료.{' '}
-            <Link href="/quiz" className="underline">
+            <Link href={`/${cert}/quiz`} className="underline">
               문제 풀이
             </Link>
             로 넘어가세요.

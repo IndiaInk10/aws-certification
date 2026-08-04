@@ -95,7 +95,7 @@ export function ModuleNav({ cert, slug }: { cert: string; slug: string }) {
           </Link>
         ) : (
           <Link
-            href="/quiz"
+            href={`/${cert}/quiz`}
             className="hover:bg-fd-secondary/50 flex items-center justify-end gap-2 rounded-md border p-3 text-right no-underline"
           >
             <span>
