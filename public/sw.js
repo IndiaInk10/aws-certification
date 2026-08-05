@@ -135,7 +135,10 @@ async function networkFirst(request, cacheName, fallbackUrl) {
     if (res.ok && res.type === 'basic') cache.put(request, res.clone());
     return res;
   } catch (err) {
-    const hit = await cache.match(request, { ignoreSearch: false });
+    const hit =
+      (await cache.match(request, { ignoreSearch: false })) ??
+      // 같은 페이지를 `?from=…` 같은 꼬리표를 달고 다시 열 때가 있다. 꼬리표는 빼고 한 번 더 본다.
+      (await cache.match(request, { ignoreSearch: true }));
     if (hit) return hit;
     if (fallbackUrl) {
       const off = await cache.match(fallbackUrl);

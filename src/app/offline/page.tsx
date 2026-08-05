@@ -4,6 +4,7 @@
  */
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { OfflineRetry } from './retry';
 
 export const metadata: Metadata = { title: '오프라인' };
 
@@ -16,6 +17,7 @@ export default function OfflinePage() {
         열립니다. 미리 통째로 받아 두려면 온라인일 때 <strong>설정 → 오프라인 사용</strong> 에서
         전체 저장을 눌러 두세요.
       </p>
+      <OfflineRetry />
       <div className="mt-2 flex gap-2">
         <Link href="/" className="hover:bg-fd-secondary rounded-md border px-3 py-1.5 text-sm">
           홈으로

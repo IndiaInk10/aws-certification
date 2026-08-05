@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { createEmptyCard, fsrs, generatorParameters, Rating, type Card, type Grade } from 'ts-fsrs';
 import { store, type WrongItem, type SrsCard } from '@/lib/storage';
 import { ConfirmDialog } from '@/components/ui/modal';
+import { WeakAreas } from '@/components/weak-areas';
+import { moduleLinks, serviceLinks } from '@/lib/quiz-links';
 import { Check, Trash2, X } from 'lucide-react';
 
 const engine = fsrs(generatorParameters({ enable_fuzz: true }));
@@ -136,6 +138,12 @@ export function ReviewClient({ cert }: { cert: string }) {
       />
 
 
+      {total > 0 && (
+        <div className="mb-6 rounded-lg border p-5">
+          <WeakAreas cert={cert} items={wrong} />
+        </div>
+      )}
+
       {total === 0 && (
         <p className="text-fd-muted-foreground text-sm">
           아직 오답이 없습니다. 문제를 풀면 틀린 문항이 여기에 쌓입니다.
@@ -190,6 +198,23 @@ export function ReviewClient({ cert }: { cert: string }) {
             </button>
           ) : (
             <>
+              {/* 이 문항을 다시 틀렸다면 문제집이 아니라 여기로 돌아가야 한다 */}
+              {(item.modules.length > 0 || item.services.length > 0) && (
+                <div className="text-fd-muted-foreground mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                  <span>돌아가서 볼 것:</span>
+                  {moduleLinks(cert, item.modules).map((m) => (
+                    <Link key={m.slug} href={m.url} className="rounded border px-1.5 py-0.5 no-underline">
+                      {m.name}
+                    </Link>
+                  ))}
+                  {serviceLinks(cert, item.services).map((sv) => (
+                    <Link key={sv.slug} href={sv.url} className="rounded border px-1.5 py-0.5 no-underline">
+                      {sv.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
               <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {RATINGS.map((x) => (
                   <button

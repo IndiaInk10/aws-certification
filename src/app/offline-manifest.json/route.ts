@@ -15,6 +15,9 @@ export function GET() {
     '/settings',
     '/offline',
     ...source.getPages().map((p) => p.url),
+    // 시험 화면 옆 오픈북 창이 부르는 본문 전용 쌍둥이 (/docs/x → /embed/x).
+    // 이게 빠지면 비행기 모드에서 자료 창만 텅 빈다.
+    ...source.getPages().map((p) => p.url.replace(/^\/docs\//, '/embed/')),
     ...quizIndex.flatMap((c) => [
       `/${c.cert}/quiz`,
       `/${c.cert}/review`,

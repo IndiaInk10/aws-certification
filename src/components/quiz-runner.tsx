@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import Link from 'next/link';
 import { store, type ExamAttempt, type WrongItem } from '@/lib/storage';
 import {
@@ -11,6 +11,9 @@ import {
   type QuizLocale,
 } from '@/lib/quiz-locale';
 import { ConfirmDialog } from '@/components/ui/modal';
+import { moduleLinks, serviceLinks } from '@/lib/quiz-links';
+import { WeakAreas } from '@/components/weak-areas';
+import { OpenBook } from '@/components/open-book';
 import { Check, ChevronLeft, ChevronRight, Flag, X } from 'lucide-react';
 
 export type Question = {
@@ -42,6 +45,7 @@ type State = {
 
 type Action =
   | { type: 'pick'; k: string; multi: boolean }
+  | { type: 'restore'; saved: Saved }
   | { type: 'flag' }
   | { type: 'goto'; i: number }
   | { type: 'step'; d: number }
@@ -49,9 +53,65 @@ type Action =
   | { type: 'start'; at: number }
   | { type: 'submit'; at: number };
 
+/**
+ * 풀던 회차를 기기에 붙잡아 둔다.
+ *
+ * 시험 화면은 전부 메모리 상태다. 그래서 화면이 한 번 새로 뜨면 — 오프라인에서 캐시가 없어
+ * 대체 화면이 뜨거나, 모바일이 백그라운드로 갔다 오면서 탭을 다시 그리거나, 실수로 새로고침해도
+ * — 풀어 둔 답이 통째로 사라졌다. 문항을 넘길 때마다 여기에 적어 두고, 다시 들어오면 이어서 푼다.
+ */
+type Saved = {
+  i: number;
+  picked: Record<number, string[]>;
+  flagged: Record<number, boolean>;
+  startedAt: number;
+  left: number;
+  studyMode: boolean;
+  count: number;
+};
+
+const sessionKey = (cert: string, exam: number) => `cv:quiz-session:${cert}:${exam}`;
+
+function readSession(cert: string, exam: number, count: number): Saved | null {
+  try {
+    const raw = window.localStorage.getItem(sessionKey(cert, exam));
+    if (!raw) return null;
+    const v = JSON.parse(raw) as Saved;
+    // 회차 문항 수가 바뀌었으면(문제 갱신) 이어 풀 수 없다. 버린다.
+    if (!v || typeof v !== 'object' || v.count !== count) return null;
+    return v;
+  } catch {
+    return null;
+  }
+}
+
+function writeSession(cert: string, exam: number, v: Saved) {
+  try {
+    window.localStorage.setItem(sessionKey(cert, exam), JSON.stringify(v));
+  } catch {
+    /* 저장 공간이 없으면 그냥 포기한다 — 시험은 계속 볼 수 있어야 한다 */
+  }
+}
+
+function clearSession(cert: string, exam: number) {
+  try {
+    window.localStorage.removeItem(sessionKey(cert, exam));
+  } catch {
+    /* 무시 */
+  }
+}
+
 function makeReducer(count: number) {
   return (s: State, a: Action): State => {
     switch (a.type) {
+      case 'restore':
+        return {
+          ...s,
+          i: Math.max(0, Math.min(count - 1, a.saved.i)),
+          picked: a.saved.picked ?? {},
+          flagged: a.saved.flagged ?? {},
+          startedAt: a.saved.startedAt || Date.now(),
+        };
       case 'pick': {
         const cur = s.picked[s.i] ?? [];
         const next = a.multi
@@ -139,23 +199,37 @@ export function QuizRunner({
   //   2) 시작 시각 기록 — Date.now() 는 렌더 중에 부를 수 없다 (부를 때마다 값이 달라진다).
   // 둘 다 한 틱 미룬다. effect 안에서 바로 setState 하면 같은 커밋에서 렌더가 다시 도는
   // 연쇄가 생긴다 (react-hooks/set-state-in-effect). 마이크로태스크라 화면에는 보이지 않는다.
-  useEffect(() => {
-    let alive = true;
-    queueMicrotask(() => {
-      if (!alive) return;
-      setQuestions(source.map((q) => ({ ...q, choices: shuffle(q.choices) })));
-      dispatch({ type: 'start', at: Date.now() });
-    });
-    return () => {
-      alive = false;
-    };
-  }, [source]);
   const [studyMode, setStudyMode] = useState(false);
+  const [loaded, setLoaded] = useState(false); // 복원을 시도하기 전에는 저장하지 않는다
+  const [resumed, setResumed] = useState(false);
   const [askSubmit, setAskSubmit] = useState(false);
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [left, setLeft] = useState(() => secondsFor(questions.length));
   const saved = useRef(false);
   const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let alive = true;
+    queueMicrotask(() => {
+      if (!alive) return;
+      setQuestions(source.map((q) => ({ ...q, choices: shuffle(q.choices) })));
+
+      // 풀다 만 기록이 있으면 이어서, 없으면 새로 시작.
+      const prev = readSession(cert, exam, source.length);
+      if (prev) {
+        dispatch({ type: 'restore', saved: prev });
+        setLeft(prev.left);
+        setStudyMode(prev.studyMode);
+        setResumed(true);
+      } else {
+        dispatch({ type: 'start', at: Date.now() });
+      }
+      setLoaded(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [source, cert, exam]);
 
   // 긴 문항을 읽다가 넘기면 다음 문항이 중간부터 보인다. 문항이 바뀌면 위로 되돌린다.
   useEffect(() => {
@@ -172,6 +246,40 @@ export function QuizRunner({
   useEffect(() => {
     if (left <= 0 && !s.done) dispatch({ type: 'submit', at: Date.now() });
   }, [left, s.done]);
+
+  // 상태가 바뀔 때마다 기기에 적어 둔다. 화면이 다시 떠도 여기서부터 이어 푼다.
+  // 남은 시간은 1초마다 바뀌므로 의존성에서 빼고 ref 로 읽는다 (매 초 저장할 이유가 없다).
+  const leftRef = useRef(left);
+  useEffect(() => {
+    leftRef.current = left;
+  }, [left]);
+
+  const persist = useCallback(() => {
+    if (!loaded || s.done) return;
+    writeSession(cert, exam, {
+      i: s.i,
+      picked: s.picked,
+      flagged: s.flagged,
+      startedAt: s.startedAt,
+      left: leftRef.current,
+      studyMode,
+      count: questions.length,
+    });
+  }, [loaded, s.done, s.i, s.picked, s.flagged, s.startedAt, studyMode, cert, exam, questions.length]);
+
+  useEffect(() => {
+    persist();
+  }, [persist]);
+
+  // 탭을 덮거나 앱이 백그라운드로 갈 때 한 번 더. 남은 시간까지 정확히 남는다.
+  useEffect(() => {
+    document.addEventListener('visibilitychange', persist);
+    window.addEventListener('pagehide', persist);
+    return () => {
+      document.removeEventListener('visibilitychange', persist);
+      window.removeEventListener('pagehide', persist);
+    };
+  }, [persist]);
 
   const q = questions[s.i];
   const multi = q.answers.length > 1;
@@ -193,6 +301,7 @@ export function QuizRunner({
   useEffect(() => {
     if (!s.done || saved.current) return;
     saved.current = true;
+    clearSession(cert, exam); // 제출했으면 이어 풀 것이 없다
 
     const attempt: ExamAttempt = {
       id: `${cert}-${exam}-${s.finishedAt}`,
@@ -291,6 +400,12 @@ export function QuizRunner({
           </div>
         </div>
 
+        {result.wrong.length > 0 && (
+          <div className="mt-8 rounded-lg border p-5">
+            <WeakAreas cert={cert} items={result.wrong.map((i) => questions[i])} />
+          </div>
+        )}
+
         <h2 className="mt-8 mb-3 text-sm font-semibold">틀린 문항 {result.wrong.length}개</h2>
         <ol className="space-y-4">
           {result.wrong.map((i) => {
@@ -327,9 +442,19 @@ export function QuizRunner({
                     );
                   })}
                 </ul>
-                {qq.services.length > 0 && (
-                  <div className="text-fd-muted-foreground mt-2 text-xs">
-                    관련: {qq.services.join(' · ')}
+                {(qq.services.length > 0 || qq.modules.length > 0) && (
+                  <div className="text-fd-muted-foreground mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                    <span>돌아가서 볼 것:</span>
+                    {moduleLinks(cert, qq.modules).map((m) => (
+                      <Link key={m.slug} href={m.url} className="rounded border px-1.5 py-0.5 no-underline">
+                        {m.name}
+                      </Link>
+                    ))}
+                    {serviceLinks(cert, qq.services).map((sv) => (
+                      <Link key={sv.slug} href={sv.url} className="rounded border px-1.5 py-0.5 no-underline">
+                        {sv.name}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </li>
@@ -436,9 +561,11 @@ export function QuizRunner({
 
   // ── 시험 화면 ──────────────────────────────────────────────
   const showAnswer = studyMode && revealed[s.i];
+  const reveal = () => setRevealed((r) => ({ ...r, [s.i]: true }));
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div className={`mx-auto ${studyMode ? 'max-w-7xl lg:flex lg:items-start lg:gap-4' : 'max-w-4xl'}`}>
+      <div className="min-w-0 flex-1">
       {/*
         문항마다 길이가 달라도 Previous/Next 위치는 고정한다.
         카드 높이를 화면에 맞춰 잡고(dvh — 모바일 주소창 높이 변화까지 반영),
@@ -500,7 +627,12 @@ export function QuizRunner({
                       type={multi ? 'checkbox' : 'radio'}
                       name={`q${s.i}`}
                       checked={on}
-                      onChange={() => dispatch({ type: 'pick', k: c.k, multi })}
+                      onChange={() => {
+                        dispatch({ type: 'pick', k: c.k, multi });
+                        // 정답 1개짜리는 고르는 순간 끝이다. 학습 모드에서는 바로 보여 준다.
+                        // 여러 개짜리는 아직 고르는 중일 수 있으니 "정답 확인" 을 누를 때까지 기다린다.
+                        if (studyMode && !multi) reveal();
+                      }}
                       className="mt-0.5 size-4 shrink-0"
                     />
                     <span>{tc(c)}</span>
@@ -515,24 +647,48 @@ export function QuizRunner({
           {studyMode && (
             <div className="mt-4">
               {!revealed[s.i] ? (
-                <button
-                  onClick={() => setRevealed((r) => ({ ...r, [s.i]: true }))}
-                  disabled={!picked.length}
-                  className="rounded-md border px-3 py-1.5 text-sm disabled:opacity-40"
-                >
-                  정답 확인
-                </button>
-              ) : (
-                q.ref && (
-                  <a
-                    href={q.ref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-fd-muted-foreground text-xs underline"
+                // 여러 개 고르는 문항만 버튼이 필요하다 (1개짜리는 고르는 즉시 열린다).
+                multi && (
+                  <button
+                    onClick={reveal}
+                    disabled={!picked.length}
+                    className="rounded-md border px-3 py-1.5 text-sm disabled:opacity-40"
                   >
-                    AWS 공식 문서에서 확인 →
-                  </a>
+                    정답 확인 ({picked.length}/{q.answers.length} 선택)
+                  </button>
                 )
+              ) : (
+                <div className="text-sm">
+                  <span
+                    className={
+                      eq(picked, q.answers)
+                        ? 'font-medium text-green-600 dark:text-green-400'
+                        : 'font-medium text-red-600 dark:text-red-400'
+                    }
+                  >
+                    {eq(picked, q.answers) ? '정답입니다' : '오답입니다'}
+                  </span>
+                  {/* 보기 순서를 섞으므로 "정답 D" 같은 기호는 뜻이 없다. 내용을 그대로 적는다. */}
+                  {!eq(picked, q.answers) && (
+                    <span className="text-fd-muted-foreground">
+                      {' '}· 정답:{' '}
+                      {q.choices
+                        .filter((c) => q.answers.includes(c.k))
+                        .map((c) => tc(c))
+                        .join(' / ')}
+                    </span>
+                  )}
+                  {q.ref && (
+                    <a
+                      href={q.ref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-fd-muted-foreground ml-2 text-xs underline"
+                    >
+                      AWS 공식 문서 →
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           )}
@@ -588,9 +744,19 @@ export function QuizRunner({
             onChange={(e) => setStudyMode(e.target.checked)}
             className="size-3.5"
           />
-          학습 모드 (타이머 끄고 문항마다 정답 확인)
+          학습 모드 (타이머 끄고 정답·강의 자료 보며 풀기)
         </label>
       </div>
+
+      {resumed && (
+        <p className="text-fd-muted-foreground mt-2 text-xs">
+          지난번에 풀던 곳부터 이어서 표시했습니다. 처음부터 다시 풀려면 제출한 뒤 다시 들어오세요.
+        </p>
+      )}
+      </div>
+
+      {/* 오픈북 창 — 학습 모드에서만. 어차피 정답이 바로 나오는 모드라 가릴 이유가 없다. */}
+      {studyMode && <OpenBook cert={cert} question={q} qi={s.i} />}
     </div>
   );
 }
