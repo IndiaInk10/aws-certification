@@ -31,7 +31,13 @@ export function ReviewClient({ cert }: { cert: string }) {
   const [wrong, setWrong] = useState<WrongItem[] | null>(null);
   const [cards, setCards] = useState<Record<string, SrsCard>>({});
   const [revealed, setRevealed] = useState(false);
-  const [cursor, setCursor] = useState(0);
+  /**
+   * 이번에 매긴 문항들. 점수를 매기면 다음 복습일이 미래로 밀려 대기줄에서 저절로 빠지므로
+   * 커서를 따로 앞으로 옮기면 **그 다음 문항까지 함께 건너뛴다** (한 장씩 걸러 나왔던 이유).
+   * 대기줄은 그냥 맨 앞을 보고, 몇 장을 봤는지만 여기서 센다. 혹시 대기줄에서 안 빠지는
+   * 문항이 있어도 같은 문항을 무한히 다시 묻지 않도록 여기서 한 번 더 걸러 준다.
+   */
+  const [reviewed, setReviewed] = useState<string[]>([]);
   const [askClear, setAskClear] = useState(false);
 
   const load = useCallback(() => {
@@ -51,6 +57,7 @@ export function ReviewClient({ cert }: { cert: string }) {
     if (!wrong) return [];
     return wrong
       .filter((w) => {
+        if (reviewed.includes(w.id)) return false; // 이번에 이미 본 문항
         const c = cards[w.id];
         if (!c) return true; // 아직 한 번도 복습 안 함
         return new Date(c.due as string) <= now;
@@ -62,9 +69,9 @@ export function ReviewClient({ cert }: { cert: string }) {
         if (!cb) return 1;
         return new Date(ca.due as string).getTime() - new Date(cb.due as string).getTime();
       });
-  }, [wrong, cards, now]);
+  }, [wrong, cards, now, reviewed]);
 
-  const item = queue[cursor];
+  const item = queue[0];
 
   const rate = async (r: Grade) => {
     if (!item) return;
@@ -73,7 +80,7 @@ export function ReviewClient({ cert }: { cert: string }) {
     await store.putCard(item.id, JSON.parse(JSON.stringify(next)));
     setCards((p) => ({ ...p, [item.id]: JSON.parse(JSON.stringify(next)) }));
     setRevealed(false);
-    setCursor((c) => c + 1);
+    setReviewed((v) => [...v, item.id]);
   };
 
   const drop = async () => {
@@ -87,7 +94,7 @@ export function ReviewClient({ cert }: { cert: string }) {
   const clearWrong = async () => {
     await store.removeWrongMany((wrong ?? []).map((w) => w.id));
     setRevealed(false);
-    setCursor(0);
+    setReviewed([]);
     load();
   };
 
@@ -100,7 +107,7 @@ export function ReviewClient({ cert }: { cert: string }) {
     <div>
       <div className="mb-5 flex flex-wrap items-center gap-2 text-sm">
         <span className="rounded-md border px-2.5 py-1">전체 오답 {total}</span>
-        <span className="rounded-md border px-2.5 py-1">지금 복습 {dueCount}</span>
+        <span className="rounded-md border px-2.5 py-1">남은 복습 {dueCount}</span>
         {total > 0 && (
           <button
             onClick={() => setAskClear(true)}
@@ -162,7 +169,7 @@ export function ReviewClient({ cert }: { cert: string }) {
       {item && (
         <div className="rounded-lg border p-5">
           <div className="text-fd-muted-foreground mb-2 text-xs">
-            회차 {item.exam} · {cursor + 1} / {queue.length}
+            회차 {item.exam} · {reviewed.length + 1} / {reviewed.length + queue.length}
             {item.services.length > 0 && <> · {item.services.slice(0, 3).join(' · ')}</>}
           </div>
           <p className="font-medium">{item.q}</p>

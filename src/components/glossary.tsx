@@ -266,7 +266,8 @@ export function GlossaryList() {
                       {inline(e.long)}
                     </span>
                   )}
-                  {e.see?.length && (
+                  {/* `&&` 로 두면 `see: []` 인 항목에서 길이 0 이 그대로 찍힌다 */}
+                  {e.see?.length ? (
                     <span className="mt-1.5 flex flex-wrap items-baseline gap-1.5">
                       <span className="text-fd-muted-foreground text-xs">함께 보기</span>
                       {e.see.map((s) => (
@@ -279,7 +280,7 @@ export function GlossaryList() {
                         </a>
                       ))}
                     </span>
-                  )}
+                  ) : null}
                 </dd>
               </div>
             ))}

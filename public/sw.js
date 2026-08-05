@@ -18,7 +18,10 @@
 const CACHE_VERSION = 'v5';
 const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
 const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
-const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
+// 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리). 이 통만 버전을 따로 단다 — 아래 rscKey 설명대로
+// 예전 통에는 종류가 다른 조각이 한 키에 섞여 있어 그대로 쓸 수 없다. 그렇다고 CACHE_VERSION 을
+// 통째로 올리면 저장해 둔 HTML·정적 파일까지 함께 날아가 다시 받기 전까지 오프라인이 텅 빈다.
+const RSC = `cv-rsc-${CACHE_VERSION}-b`;
 const DATA = `cv-data-${CACHE_VERSION}`; // 검색 색인 등
 const MINE = [STATIC, PAGES, RSC, DATA];
 
@@ -95,18 +98,33 @@ function isRsc(request, url) {
  * 라우터는 `/docs/x?_rsc=1a2b3c` 처럼 **매번 다른 해시**를 붙여 부른다. 그 URL 을 그대로
  * 키로 쓰면 저장해 둔 것과 절대 안 맞는다. 그래서 쿼리를 떼고 경로만으로 키를 만든다.
  * HTML 과 섞이지 않도록 별도의 캐시 통(RSC)에 담는다.
+ *
+ * 다만 **경로만으로는 모자란다**. Next 16 라우터는 같은 주소에 대해 서로 다른 세 가지를
+ * 부르는데, 구분은 오직 헤더에 있다.
+ *
+ *   (헤더 없음) ………………………… 이동할 때 쓰는 통짜 응답
+ *   Next-Router-Prefetch ………… 미리 받아 두는 응답
+ *   Next-Router-Segment-Prefetch  화면 조각 하나짜리 응답 (`/_tree` 는 뼈대만, 본문은 204 빈 응답)
+ *
+ * 셋을 한 키에 담으면 **마지막에 받은 것이 앞의 것을 덮어쓴다**. 링크에 마우스만 스쳐도
+ * 프리페치가 돌기 때문에 실제로는 조각짜리가 통짜를 밀어낸다. 그 상태로 비행기 모드에서
+ * 링크를 누르면 라우터는 주소와 제목만 바꾸고 본문은 그리지 못한다 — 화면이 그대로 멈춘
+ * 것처럼 보였던 이유다. 그래서 종류를 키에 함께 적는다.
  */
-function rscKey(url) {
-  return new Request(url.origin + url.pathname);
+function rscKey(url, request) {
+  const seg = request?.headers.get('Next-Router-Segment-Prefetch');
+  const variant = seg ? `s:${seg}` : request?.headers.get('Next-Router-Prefetch') ? 'p' : 'f';
+  return new Request(`${url.origin}${url.pathname}?__rsc=${encodeURIComponent(variant)}`);
 }
 
 /** 페이지 조각 — 네트워크 우선, 없으면 저장해 둔 조각. 둘 다 없으면 네트워크 오류를 그대로 낸다. */
 async function rscFirst(request, url) {
   const cache = await caches.open(RSC);
-  const key = rscKey(url);
+  const key = rscKey(url, request);
   try {
     const res = await fetch(request);
-    if (res.ok && res.type === 'basic') cache.put(key, res.clone());
+    // 조각 응답에는 본문이 없는 204 도 섞여 있다. 저장에 실패해도 화면과는 상관없으니 삼킨다.
+    if (res.ok && res.type === 'basic') cache.put(key, res.clone()).catch(() => {});
     return res;
   } catch {
     const hit = await cache.match(key);
@@ -275,7 +293,9 @@ async function precache(urls, source) {
         await pages.put(next, res);
         await saveAssets(html);
 
-        // 링크로 이동할 때 쓰는 조각. 실패해도 HTML 이 있으니 치명적이지 않다.
+        // 링크로 이동할 때 쓰는 조각. 프리페치 헤더를 붙이지 않으므로 통짜('f') 로 들어간다 —
+        // 라우터가 실제로 이동할 때 부르는 것이 바로 이것이다. 실패해도 HTML 이 있으니
+        // 치명적이지 않다.
         try {
           const flight = await fetch(next, {
             credentials: 'same-origin',
