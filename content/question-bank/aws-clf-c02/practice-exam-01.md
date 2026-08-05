@@ -21,6 +21,8 @@ lang: en
 >> [!success]- Answer
 >> d) AWS Management Console.
 
+<sub>관련: [[aws-management-console]]  |  모듈 [[02-cloud-computing]]</sub>
+
 > [!question] Which of the following is an example of horizontal scaling in the AWS Cloud?
 > a) Replacing an existing EC2 instance with a larger, more powerful one.
 > b) Increasing the compute capacity of a single EC2 instance to address the growing demands of an application.
@@ -51,6 +53,8 @@ lang: en
 >> b) Automatically provisioning new resources to meet demand.
 >> e) Ability to recover quickly from failures.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which statement is true regarding the AWS Shared Responsibility Model?
 > a) Responsibilities vary depending on the services used.
 > b) Security of the IaaS services is the responsibility of AWS.
@@ -58,6 +62,8 @@ lang: en
 > d) Security of the managed services is the responsibility of the customer.
 >> [!success]- Answer
 >> a) Responsibilities vary depending on the services used.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] You have set up consolidated billing for several AWS accounts. One of the accounts has purchased a number of reserved instances for 3 years. Which of the following is true regarding this scenario?
 > a) The Reserved Instance discounts can only be shared with the master account.
@@ -67,6 +73,8 @@ lang: en
 >> [!success]- Answer
 >> b) All accounts can receive the hourly cost benefit of the Reserved Instances.
 
+<sub>모듈 [[11-billing-support]]</sub>
+
 > [!question] A company has developed an eCommerce web application in AWS. What should they do to ensure that the application has the highest level of availability?
 > a) Deploy the application across multiple Availability Zones and Edge locations.
 > b) Deploy the application across multiple Availability Zones and subnets.
@@ -74,6 +82,8 @@ lang: en
 > d) Deploy the application across multiple VPC’s and subnets.
 >> [!success]- Answer
 >> c) Deploy the application across multiple Regions and Availability Zones.
+
+<sub>관련: [[amazon-vpc]]  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] What does AWS Snowball provide? (Choose TWO)
 > a) Built-in computing capabilities that allow customers to process data locally.
@@ -135,6 +145,8 @@ lang: en
 >> [!success]- Answer
 >> c) Implement elasticity.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] What are the benefits of having infrastructure hosted in AWS? (Choose TWO)
 > a) Increasing speed and agility.
 > b) There is no need to worry about security.
@@ -145,6 +157,8 @@ lang: en
 >> a) Increasing speed and agility.
 >> e) All of the physical security and most of the data/network security are taken care of for you.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] What is the advantage of the AWS-recommended practice of "decoupling" applications?
 > a) Allows treating an application as a single, cohesive unit.
 > b) Reduces inter-dependencies so that failures do not impact other components of the application.
@@ -152,6 +166,8 @@ lang: en
 > d) Allows tracking of any API call made to any AWS service.
 >> [!success]- Answer
 >> b) Reduces inter-dependencies so that failures do not impact other components of the application.
+
+<sub>모듈 [[13-well-architected]], [[02-cloud-computing]]</sub>
 
 > [!question] Which of the following helps a customer view the Amazon EC2 billing activity for the past month?
 > a) AWS Budgets.
@@ -170,6 +186,8 @@ lang: en
 > d) Each AWS account gets five times the free-tier services capacity.
 >> [!success]- Answer
 >> c) Each AWS account gets volume discounts.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] What should you do in order to keep the data on EBS volumes safe? (Choose TWO)
 > a) Regularly update firmware on EBS devices.
@@ -232,6 +250,8 @@ lang: en
 > d) Networking as a Service (NaaS).
 >> [!success]- Answer
 >> d) Networking as a Service (NaaS).
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] The identification process of an online financial services company requires that new users must complete an online interview with their security team. The completed recorded interviews are only required in the event of a legal issue or a regulatory compliance breach. What is the most cost-effective service to store the recorded videos?
 > a) S3 Intelligent-Tiering.
@@ -375,6 +395,8 @@ lang: en
 >> [!success]- Answer
 >> b) Contact the AWS Abuse team.
 
+<sub>모듈 [[11-billing-support]], [[09-security]]</sub>
+
 > [!question] Select TWO examples of the AWS shared controls.
 > a) Patch Management.
 > b) IAM Management.
@@ -437,6 +459,8 @@ lang: en
 >> [!success]- Answer
 >> b) Configuring infrastructure devices.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] What does the AWS Health Dashboard provide? (Choose TWO)
 > a) Detailed troubleshooting guidance to address AWS events impacting your resources.
 > b) Health checks for Auto Scaling instances.
@@ -490,6 +514,8 @@ lang: en
 >> [!success]- Answer
 >> d) Setting password complexity rules.
 >> e) Configuring network access rules.
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] What does AWS provide to deploy popular technologies such as IBM MQ on AWS with the least amount of effort and time?
 > a) Amazon Aurora.

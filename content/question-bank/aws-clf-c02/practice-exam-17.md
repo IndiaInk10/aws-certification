@@ -31,7 +31,7 @@ lang: en
 >> [!success]- Answer
 >> a) Data center security
 
-<sub>관련: [참고](https://www.awstcocalculator.com/Output/Load/f85bbf7e131446643911859504)  |  [참고](https://www.awstcocalculator.com/Output/Load/f85bbf7e131446643911859504)</sub>
+<sub>관련: [참고](https://www.awstcocalculator.com/Output/Load/f85bbf7e131446643911859504)  |  [참고](https://www.awstcocalculator.com/Output/Load/f85bbf7e131446643911859504)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] According to the AWS shared responsibility model, what is AWS responsible for?
 > a) Configuring Amazon VPC
@@ -101,6 +101,8 @@ lang: en
 >> [!success]- Answer
 >> c) There is no guessing on capacity needs.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which AWS service would a customer use with a static website to achieve lower latency and high transfer speeds?
 > a) AWS Lambda
 > b) Amazon DynamoDB Accelerator
@@ -143,7 +145,7 @@ lang: en
 >> a) Design for automated failure recovery
 >> b) Use multiple Availability Zones
 
-<sub>관련: [참고](https://aws.amazon.com/blogs/apn/the-5-pillars-of-the-aws-well-architected-framework/)  |  [참고](https://aws.amazon.com/blogs/apn/the-5-pillars-of-the-aws-well-architected-framework/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/blogs/apn/the-5-pillars-of-the-aws-well-architected-framework/)  |  [참고](https://aws.amazon.com/blogs/apn/the-5-pillars-of-the-aws-well-architected-framework/)  |  모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>
 
 > [!question] What tasks should a customer perform when that customer suspects an AWS account has been compromised? (Choose two.)
 > a) Rotate passwords and access keys.
@@ -165,7 +167,7 @@ lang: en
 >> [!success]- Answer
 >> b) Ensuring an application remains accessible, even if a resource fails
 
-<sub>관련: [참고](https://aws.amazon.com/blogs/startups/high-availability-for-mere-mortals/)  |  [참고](https://aws.amazon.com/blogs/startups/high-availability-for-mere-mortals/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/blogs/startups/high-availability-for-mere-mortals/)  |  [참고](https://aws.amazon.com/blogs/startups/high-availability-for-mere-mortals/)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which AWS security service protects applications from distributed denial of service attacks with always-on detection and automatic inline mitigations?
 > a) Amazon Inspector
@@ -207,7 +209,7 @@ lang: en
 >> a) They provide a discount over on-demand pricing.
 >> e) Customers can reserve capacity in an Availability Zone.
 
-<sub>관련: [참고](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ri-basics/)  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ri-basics/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ri-basics/)  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-ri-basics/)  |  모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] How do Amazon EC2 Auto Scaling groups help achieve high availability for a web application?
 > a) They automatically add more instances across multiple AWS Regions based on global demand of the application.
@@ -335,6 +337,8 @@ lang: en
 >> [!success]- Answer
 >> b) Loosely couple components.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Under the shared responsibility model; which of the following areas are the customer's responsibility? (Choose two.)
 > a) Firmware upgrades of network infrastructure
 > b) Patching of operating systems
@@ -345,7 +349,7 @@ lang: en
 >> b) Patching of operating systems
 >> e) Configuration of the security group
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] Which service enables customers to audit and monitor changes in AWS resources?
 > a) AWS Trusted Advisor
@@ -375,6 +379,8 @@ lang: en
 >> [!success]- Answer
 >> c) It is shared between AWS and the customer.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which AWS service is a content delivery network that securely delivers data, video, and applications to users globally with low latency and high speeds?
 > a) AWS CloudFormation
 > b) AWS Direct Connect
@@ -393,7 +399,7 @@ lang: en
 >> [!success]- Answer
 >> c) Elasticity
 
-<sub>관련: [참고](https://wa.aws.amazon.com/wat.map.en.html)  |  [참고](https://wa.aws.amazon.com/wat.map.en.html)</sub>
+<sub>관련: [참고](https://wa.aws.amazon.com/wat.map.en.html)  |  [참고](https://wa.aws.amazon.com/wat.map.en.html)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A user is running an application on AWS and notices that one or more AWS-owned IP addresses is involved in a distributed denial-of-service (DDoS) attack. Who should the user contact FIRST about this situation?
 > a) AWS Premium Support
@@ -414,6 +420,8 @@ lang: en
 >> [!success]- Answer
 >> a) There are no upfront commitments.
 >> c) Users have the ability to provision resources on demand.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What AWS service would be used to centrally manage AWS access policies across multiple accounts?
 > a) AWS Service Catalog
@@ -495,7 +503,7 @@ lang: en
 >> [!success]- Answer
 >> b) Availability
 
-<sub>관련: [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] The pay-as-you-go pricing model for AWS services:
 > a) reduces capital expenditures.

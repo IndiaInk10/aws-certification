@@ -21,6 +21,8 @@ lang: en
 >> [!success]- Answer
 >> b) Maintaining physical and environmental controls
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which services can be used to deploy applications on AWS? (Choose two.)
 > a) AWS Elastic Beanstalk
 > b) AWS Config
@@ -101,6 +103,8 @@ lang: en
 >> [!success]- Answer
 >> a) Patching guest OS and applications
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which of the following tasks is required to deploy a PCI-compliant workload on AWS?
 > a) Use any AWS service and implement PCI controls at the application layer
 > b) Use an AWS service that is in-scope for PCI compliance and raise an AWS support ticket to enable PCI compliance at the application layer
@@ -109,7 +113,7 @@ lang: en
 >> [!success]- Answer
 >> d) Use an AWS service that is in scope for PCI compliance and apply PCI controls at the application layer
 
-<sub>관련: [참고](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-pci-controls.html)  |  [참고](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-pci-controls.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-pci-controls.html)  |  [참고](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-pci-controls.html)  |  모듈 [[10-monitoring-governance]]</sub>
 
 > [!question] A company is building an application that requires the ability to send, store, and receive messages between application components. The company has another requirement to process messages in first-in, first-out (FIFO) order. Which AWS service should the company use?
 > a) AWS Step Functions
@@ -359,7 +363,7 @@ lang: en
 >> c) Testing recovery procedures
 >> e) Automatically recovering from failure
 
-<sub>관련: [참고](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)  |  [참고](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)</sub>
+<sub>관련: [참고](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)  |  [참고](https://wa.aws.amazon.com/wat.pillar.reliability.en.html)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] A company is planning to launch an ecommerce site in a single AWS Region to a worldwide user base. Which AWS services will allow the company to reach users and provide low latency and high transfer speeds? (Choose two.)
 > a) Application Load Balancer
@@ -493,7 +497,7 @@ lang: en
 >> [!success]- Answer
 >> d) Economies of scale
 
-<sub>관련: [참고](https://innovationtactics.com/amazon-business-model-amazon-web-services/)  |  [참고](https://innovationtactics.com/amazon-business-model-amazon-web-services/)</sub>
+<sub>관련: [참고](https://innovationtactics.com/amazon-business-model-amazon-web-services/)  |  [참고](https://innovationtactics.com/amazon-business-model-amazon-web-services/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A pharmaceutical company operates its infrastructure in a single AWS Region. The company has thousands of VPCs in a various AWS accounts that it wants to interconnect. Which AWS service or feature should the company use to help simplify management and reduce operational costs?
 > a) VPC endpoint

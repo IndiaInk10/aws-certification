@@ -45,6 +45,8 @@ lang: en
 >> a) Patching databases software
 >> c) Backing up databases
 
+<sub>모듈 [[03-compute-services]], [[01-cloud-intro]]</sub>
+
 > [!question] In which scenario should Amazon EC2 Spot Instances be used?
 > a) A company wants to move its main website to AWS from an on-premises web server.
 > b) A company has a number of application services whose Service Level Agreement (SLA) requires 99.999% uptime.
@@ -93,6 +95,8 @@ lang: en
 >> [!success]- Answer
 >> c) It provides the ability to programmatically provision existing resources.
 
+<sub>모듈 [[02-cloud-computing]], [[01-cloud-intro]]</sub>
+
 > [!question] What can AWS edge locations be used for? (Select TWO.)
 > a) Hosting applications
 > b) Delivering content closer to users
@@ -102,6 +106,8 @@ lang: en
 >> [!success]- Answer
 >> b) Delivering content closer to users
 >> d) Reducing traffic on the server by caching responses
+
+<sub>모듈 [[04-global-infrastructure]], [[05-networking]]</sub>
 
 > [!question] Which of the following can limit Amazon Simple Storage Service (Amazon S3) bucket access to specific users?
 > a) A public and private key-pair
@@ -121,7 +127,7 @@ lang: en
 >> [!success]- Answer
 >> b) Implement elasticity
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] Which of the following tasks is the responsibility of AWS?
 > a) Encrypting client-side data
@@ -181,6 +187,8 @@ lang: en
 >> [!success]- Answer
 >> b) Patch management
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] What can AWS edge locations be used for? (Select TWO.)
 > a) Hosting applications
 > b) Delivering content closer to users
@@ -191,6 +199,8 @@ lang: en
 >> b) Delivering content closer to users
 >> d) Reducing traffic on the server by caching responses
 
+<sub>모듈 [[04-global-infrastructure]], [[05-networking]]</sub>
+
 > [!question] What technology enables compute capacity to adjust as loads change?
 > a) Load balancing
 > b) Automatic failover
@@ -198,6 +208,8 @@ lang: en
 > d) Auto Scaling
 >> [!success]- Answer
 >> d) Auto Scaling
+
+<sub>관련: [[aws-auto-scaling]]  |  모듈 [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS services are defined as global instead of regional? (Select TWO.)
 > a) Amazon Route 53
@@ -231,7 +243,7 @@ lang: en
 >> a) Ensuring that application data is encrypted at rest
 >> c) Ensuring that users have received security training in the use of AWS services
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] Which AWS service can be used to manually launch instances based on resource requirements?
 > a) Amazon EBS
@@ -262,6 +274,8 @@ lang: en
 >> [!success]- Answer
 >> a) reduced Total Cost of Ownership (TCO).
 >> c) reduced operational expenditure (opex).
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which of the following is entirely the responsibility of AWS, according to the AWS shared responsibility model?
 > a) Patching of the guest operating system
@@ -333,6 +347,8 @@ lang: en
 >> [!success]- Answer
 >> c) Moving from upfront capital expense (capex) to variable operational expense (opex).
 
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
+
 > [!question] How should a customer forecast the future costs for running a new web application?
 > a) Amazon Aurora Backtrack
 > b) Amazon CloudWatch Billing Alarms
@@ -361,6 +377,8 @@ lang: en
 >> [!success]- Answer
 >> b) Edge location management
 
+<sub>모듈 [[01-cloud-intro]], [[04-global-infrastructure]]</sub>
+
 > [!question] Which AWS IAM feature is used to associate a set of permissions with multiple users?
 > a) Multi-factor authentication
 > b) Groups
@@ -380,6 +398,8 @@ lang: en
 >> [!success]- Answer
 >> b) Elasticity
 >> c) Agility
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following can a customer use to enable single sign-on (SSO) to the AWS Console?
 > a) Amazon Connect
@@ -411,7 +431,7 @@ lang: en
 >> a) It verifies that hosted workloads are automatically compliant with the controls of supported compliance frameworks.
 >> b) AWS is responsible for the maintenance of common compliance framework documentation.
 
-<sub>관련: [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)  |  [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)</sub>
+<sub>관련: [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)  |  [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)  |  모듈 [[10-monitoring-governance]]</sub>
 
 > [!question] Which of the following services provides on-demand access to AWS compliance reports?
 > a) AWS IAM
@@ -431,7 +451,7 @@ lang: en
 >> [!success]- Answer
 >> d) User and access management
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] When comparing AWS Cloud with on-premises Total Cost of Ownership, which expenses must be considered? (Choose two.)
 > a) Software development
@@ -443,7 +463,7 @@ lang: en
 >> c) Storage hardware
 >> d) Physical servers
 
-<sub>관련: [참고](https://aws.amazon.com/blogs/aws/the-new-aws-tco-calculator/)  |  [참고](https://aws.amazon.com/blogs/aws/the-new-aws-tco-calculator/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/blogs/aws/the-new-aws-tco-calculator/)  |  [참고](https://aws.amazon.com/blogs/aws/the-new-aws-tco-calculator/)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Under the shared responsibility model, which of the following tasks are the responsibility of the customer? (Choose two.)
 > a) Maintaining the underlying Amazon EC2 hardware.
@@ -476,6 +496,8 @@ lang: en
 > d) When an instance should not be stopped.
 >> [!success]- Answer
 >> a) When there is flexibility in when an application needs to run.
+
+<sub>모듈 [[02-cloud-computing]]</sub>
 
 > [!question] A company is considering moving its on-premises data center to AWS. What factors should be included in doing a Total Cost of Ownership (TCO) analysis? (Choose two.)
 > a) Amazon EC2 instance availability
@@ -516,3 +538,5 @@ lang: en
 > d) Multi-site active-active
 >> [!success]- Answer
 >> d) Multi-site active-active
+
+<sub>모듈 [[04-global-infrastructure]], [[13-well-architected]]</sub>

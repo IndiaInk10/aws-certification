@@ -31,7 +31,7 @@ lang: en
 >> [!success]- Answer
 >> b) AWS Regions
 
-<sub>관련: [참고](https://www.botmetric.com/blog/having-a-disaster-recovery-plan-is-pivotal-the-dos-and-donts-on-aws-cloud/)  |  [참고](https://www.botmetric.com/blog/having-a-disaster-recovery-plan-is-pivotal-the-dos-and-donts-on-aws-cloud/)</sub>
+<sub>관련: [참고](https://www.botmetric.com/blog/having-a-disaster-recovery-plan-is-pivotal-the-dos-and-donts-on-aws-cloud/)  |  [참고](https://www.botmetric.com/blog/having-a-disaster-recovery-plan-is-pivotal-the-dos-and-donts-on-aws-cloud/)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which features and benefits does the AWS Organizations service provide? (Choose two.)
 > a) Establishing real-time communications between members of an internal team
@@ -63,7 +63,7 @@ lang: en
 >> [!success]- Answer
 >> b) Consolidated billing
 
-<sub>관련: [[aws-cost-and-usage-report]]  |  [참고](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html)</sub>
+<sub>관련: [[aws-cost-and-usage-report]]  |  [참고](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] The AWS Total Cost of Ownership (TCO) Calculator is used to:
 > a) receive reports that break down AWS Cloud compute costs by duration, resource, or tags
@@ -73,7 +73,7 @@ lang: en
 >> [!success]- Answer
 >> b) estimate savings when comparing the AWS Cloud to an on-premises environment
 
-<sub>관련: [참고](https://aws.amazon.com/tco-calculator/)  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/tco-calculator/)  |  [참고](https://aws.amazon.com/tco-calculator/)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Which AWS services can be used to provide network connectivity between an on-premises network and a VPC? (Choose two.)
 > a) Amazon Route 53
@@ -237,7 +237,7 @@ lang: en
 >> [!success]- Answer
 >> a) One or more physical data centers
 
-<sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which AWS services can be used as infrastructure automation tools? (Choose two.)
 > a) AWS CloudFormation
@@ -279,6 +279,8 @@ lang: en
 >> [!success]- Answer
 >> c) Elasticity of the AWS Cloud
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] What credential components are required to gain programmatic access to an AWS account? (Choose two.)
 > a) An access key ID
 > b) A primary key
@@ -289,7 +291,7 @@ lang: en
 >> a) An access key ID
 >> c) A secret access key
 
-<sub>관련: [참고](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)  |  [참고](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)  |  [참고](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)  |  모듈 [[09-security]]</sub>
 
 > [!question] Which of the following are AWS compute services? (Select two.)
 > a) Amazon Lightsail
@@ -423,6 +425,8 @@ lang: en
 >> d) Security of data in transit
 >> e) Data integrity authentication
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] A cloud practitioner has a data analysis workload that is infrequently executed and can be interrupted without harm. To optimize for cost, which Amazon EC2 purchasing option should be used?
 > a) On-Demand Instances
 > b) Reserved Instances
@@ -524,3 +528,5 @@ lang: en
 > d) the built-in redundancy of an application's components
 >> [!success]- Answer
 >> d) the built-in redundancy of an application's components
+
+<sub>모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>

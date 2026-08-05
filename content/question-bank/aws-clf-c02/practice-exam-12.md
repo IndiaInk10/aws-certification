@@ -21,6 +21,8 @@ lang: en
 >> [!success]- Answer
 >> a) Availability Zone
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] One benefit of On-Demand Amazon Elastic Compute Cloud (Amazon EC2) pricing is:
 > a) The ability to bid for a lower hourly cost.
 > b) Paying a daily rate regardless of time used.
@@ -63,6 +65,8 @@ lang: en
 >> a) Command line interface.
 >> c) Software Development Kits.
 
+<sub>모듈 [[02-cloud-computing]]</sub>
+
 > [!question] What is a value proposition of the AWS Cloud?
 > a) AWS is responsible for security in the AWS Cloud.
 > b) No long-term contract is required.
@@ -70,6 +74,8 @@ lang: en
 > d) AWS manages user applications in the AWS Cloud.
 >> [!success]- Answer
 >> b) No long-term contract is required.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A company is migrating an application that is running non-interruptible workloads for a three-year time frame. Which pricing construct would provide the MOST cost-effective solution?
 > a) Amazon EC2 Spot Instances.
@@ -99,6 +105,8 @@ lang: en
 >> [!success]- Answer
 >> b) Global reach.
 
+<sub>모듈 [[01-cloud-intro]], [[04-global-infrastructure]]</sub>
+
 > [!question] How can one AWS account use Reserved Instances from another AWS account?
 > a) By using Amazon EC2 Dedicated Instances.
 > b) By using AWS Organizations consolidated billing.
@@ -118,6 +126,8 @@ lang: en
 >> [!success]- Answer
 >> c) AWS makes it easy to architect for high availability.
 >> d) AWS can easily accommodate application demand changes.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following services falls under the responsibility of the customer to maintain operating system configuration, security patching, and networking?
 > a) Amazon RDS.
@@ -245,6 +255,8 @@ lang: en
 >> [!success]- Answer
 >> b) Implement elasticity.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which AWS Cloud benefit eliminates the need for users to try estimating future infrastructure usage?
 > a) Easy and fast deployment of applications in multiple Regions around the world.
 > b) Security of the AWS Cloud.
@@ -252,6 +264,8 @@ lang: en
 > d) Lower variable costs due to massive economies of scale.
 >> [!success]- Answer
 >> c) Elasticity of the AWS Cloud.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What can users access from AWS Artifact?
 > a) AWS security and compliance documents.
@@ -270,6 +284,8 @@ lang: en
 > d) Lower variable costs and lower upfront costs.
 >> [!success]- Answer
 >> d) Lower variable costs and lower upfront costs.
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which AWS service would a customer use with a static website to achieve tower latency and high transfer speeds?
 > a) AWS Lambda.
@@ -341,6 +357,8 @@ lang: en
 >> b) Patching of operating systems.
 >> e) Configuration of the security group.
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] A company is looking for a scalable data warehouse solution. Which of the following AWS solutions would meet the company’s needs?
 > a) Amazon Simple Storage Service (Amazon S3).
 > b) Amazon DynamoDB.
@@ -373,6 +391,8 @@ lang: en
 >> b) No need to guess capacity requirements.
 >> c) Increased speed to market.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] How can the AWS Cloud increase user workforce productivity after migration from an on-premises data center?
 > a) Users do not have to wait for infrastructure provisioning.
 > b) The AWS Cloud infrastructure is much faster than an on-premises data center infrastructure.
@@ -380,6 +400,8 @@ lang: en
 > d) Users do not need to address security and compliance issues.
 >> [!success]- Answer
 >> a) Users do not have to wait for infrastructure provisioning.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following services could be used to deploy an application to servers running on-premises? (Select TWO)
 > a) AWS Elastic Beanstalk.
@@ -400,6 +422,8 @@ lang: en
 > d) Decreased acquisition time for new compute resources.
 >> [!success]- Answer
 >> d) Decreased acquisition time for new compute resources.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS security service protects applications from distributed denial of service attacks with always-on detection and automatic inline mitigations?
 > a) Amazon Inspector.

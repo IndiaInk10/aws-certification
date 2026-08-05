@@ -41,7 +41,7 @@ lang: en
 >> [!success]- Answer
 >> b) Maintaining physical hardware
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which component of AWS global infrastructure does Amazon CloudFront use to ensure low-latency delivery?
 > a) AWS Regions
@@ -101,6 +101,8 @@ lang: en
 >> [!success]- Answer
 >> b) By replacing large capital investments with lower variable costs
 
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
+
 > [!question] When designing a typical three-tier web application, which AWS services and/or features improve availability and reduce the impact failures? (Choose two.)
 > a) AWS Auto Scaling for Amazon EC2 instances
 > b) Amazon VPC subnet ACLs to check the health of a service
@@ -120,6 +122,8 @@ lang: en
 > d) Distribute the compute load across multiple resources
 >> [!success]- Answer
 >> d) Distribute the compute load across multiple resources
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] Which of the following are recommended practices for managing IAM users? (Choose two.)
 > a) Require IAM users to change their passwords after a specified period of time
@@ -162,6 +166,8 @@ lang: en
 > d) having elasticity
 >> [!success]- Answer
 >> a) being highly available
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] A new service using AWS must be highly available. Yet, due to regulatory requirements, all of its Amazon EC2 instances must be located in a single geographic area. According to best practices, to meet these requirements, the EC2 instances must be placed in at least two:
 > a) AWS Regions
@@ -303,7 +309,7 @@ lang: en
 >> a) AWS manages the maintenance of the cloud infrastructure
 >> c) AWS manages capacity planning for physical servers
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/data-center/controls/)  |  [참고](https://aws.amazon.com/compliance/data-center/controls/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/data-center/controls/)  |  [참고](https://aws.amazon.com/compliance/data-center/controls/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A user deploys an Amazon RDS DB instance in multiple Availability Zones. This strategy involves which pillar of the AWS Well-Architected Framework?
 > a) Performance efficiency
@@ -395,6 +401,8 @@ lang: en
 >> [!success]- Answer
 >> c) Begin deploying resources in the second Region
 
+<sub>관련: [[aws-management-console]]  |  모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] A user must meet compliance and software licensing requirements that state a workload must be hosted on a physical server. Which Amazon EC2 instance pricing option will meet these requirements?
 > a) Dedicated Hosts
 > b) Dedicated Instances
@@ -479,7 +487,7 @@ lang: en
 >> [!success]- Answer
 >> b) No long-term contract is required
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/aws-whitepaper-business-value-of-aws.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/aws-whitepaper-business-value-of-aws.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/aws-whitepaper-business-value-of-aws.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/aws-whitepaper-business-value-of-aws.pdf)  |  모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] What is a characteristic of Amazon S3 cross-region replication?
 > a) Both source and destination S3 buckets must have versioning disabled
@@ -498,7 +506,7 @@ lang: en
 >> [!success]- Answer
 >> d) Managing application software updates
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A company that does business online needs to quickly deliver new functionality in an iterative manner, minimizing the time to market. Which AWS Cloud feature can provide this?
 > a) Elasticity
@@ -508,7 +516,7 @@ lang: en
 >> [!success]- Answer
 >> c) Agility
 
-<sub>관련: [참고](https://aws.amazon.com/devops/partner-solutions/)  |  [참고](https://aws.amazon.com/devops/partner-solutions/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/devops/partner-solutions/)  |  [참고](https://aws.amazon.com/devops/partner-solutions/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which features or services can be used to monitor costs and expenses for an AWS account? (Choose two.)
 > a) AWS Cost and Usage report

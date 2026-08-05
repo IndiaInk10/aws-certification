@@ -129,6 +129,8 @@ lang: en
 >> b) Allows customers to deliver new solutions faster.
 >> c) Lowers operational complexity.
 
+<sub>모듈 [[03-compute-services]]</sub>
+
 > [!question] Which of the following are use cases for Amazon S3? (Choose TWO)
 > a) Hosting static websites.
 > b) Hosting websites that require sustained high CPU utilization.
@@ -149,6 +151,8 @@ lang: en
 >> [!success]- Answer
 >> c) Rotate them regularly.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] What is the AWS IAM feature that provides an additional layer of security on top of user-name and password authentication?
 > a) Key Pair.
 > b) Access Keys.
@@ -166,6 +170,8 @@ lang: en
 > d) It allows for programmatic management of AWS resources.
 >> [!success]- Answer
 >> d) It allows for programmatic management of AWS resources.
+
+<sub>모듈 [[02-cloud-computing]]</sub>
 
 > [!question] A company is planning to migrate a database with high read/write activity to AWS. What is the best storage option to use?
 > a) AWS Storage Gateway.
@@ -247,6 +253,8 @@ lang: en
 >> [!success]- Answer
 >> c) An AWS Region is a geographical location with a collection of Availability Zones.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] A company has discovered that multiple S3 buckets were deleted, but it is unclear who deleted the buckets. Which of the following can the company use to determine the identity that deleted the buckets?
 > a) SNS logs.
 > b) SQS logs.
@@ -267,6 +275,8 @@ lang: en
 >> c) The number of reads and writes per second.
 >> d) The nature of the queries.
 
+<sub>모듈 [[07-databases]]</sub>
+
 > [!question] What are the benefits of implementing a tagging strategy for AWS resources? (Choose TWO)
 > a) Quickly identify resources that belong to a specific project.
 > b) Quickly identify software solutions on AWS.
@@ -277,6 +287,8 @@ lang: en
 >> a) Quickly identify resources that belong to a specific project.
 >> e) Track AWS spending across multiple resources.
 
+<sub>모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
+
 > [!question] What are AWS shared controls?
 > a) Controls that are solely the responsibility of the customer based on the application they are deploying within AWS services.
 > b) Controls that a customer inherits from AWS.
@@ -284,6 +296,8 @@ lang: en
 > d) Controls that the customer and AWS collaborate together upon to secure the infrastructure.
 >> [!success]- Answer
 >> d) Controls that the customer and AWS collaborate together upon to secure the infrastructure.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which design principles relate to performance efficiency in AWS? (Choose TWO)
 > a) Build multi-region architectures to better serve global customers.
@@ -294,6 +308,8 @@ lang: en
 >> [!success]- Answer
 >> a) Build multi-region architectures to better serve global customers.
 >> d) Use serverless architectures.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] Which of the below are responsibilities of the customer when using Amazon EC2? (Choose TWO)
 > a) Protecting sensitive data.
@@ -316,6 +332,8 @@ lang: en
 >> [!success]- Answer
 >> c) Elastic resources.
 >> e) Cost Savings.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following AWS services can help you perform security analysis and regulatory compliance auditing? (Choose TWO)
 > a) Amazon Inspector.
@@ -399,6 +417,8 @@ lang: en
 >> c) Using AWS, they can reduce time-to-market by focusing on business activities rather than on building and managing data centers.
 >> e) Using AWS allows companies to replace large capital expenditure with low variable costs.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] What are the benefits of using DynamoDB? (Choose TWO)
 > a) Automatically scales to meet required throughput capacity.
 > b) Provides resizable instances to match the current demand.
@@ -464,6 +484,8 @@ lang: en
 >> [!success]- Answer
 >> c) Data center operations.
 >> e) Infrastructure security.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS service can be used to send promotional text messages (SMS) to more than 200 countries worldwide?
 > a) Amazon Simple Email Service (Amazon SES).

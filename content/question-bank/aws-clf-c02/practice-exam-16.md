@@ -61,6 +61,8 @@ lang: en
 >> [!success]- Answer
 >> c) Cloud
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] How is asset management on AWS easier than asset management in a physical data center?
 > a) AWS provides a Configuration Management Database that users can maintain.
 > b) AWS performs infrastructure discovery scans on the customer's behalf.
@@ -101,6 +103,8 @@ lang: en
 >> b) Create separate accounts for each department.
 >> d) Use tags to associate each instance with a particular department.
 
+<sub>모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
+
 > [!question] Under the AWS shared responsibility model, customer responsibilities include which one of the following?
 > a) Securing the hardware, software, facilities, and networks that run all products and services.
 > b) Providing certificates, reports, and other documentation directly to AWS customers under NDA.
@@ -109,7 +113,7 @@ lang: en
 >> [!success]- Answer
 >> c) Configuring the operating system, network, and firewall.
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which managed AWS service provides real-time guidance on AWS security best practices?
 > a) AWS X-Ray
@@ -140,6 +144,8 @@ lang: en
 >> [!success]- Answer
 >> c) Encryption management
 >> e) Firewall management
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] Which AWS hybrid storage service enables on-premises applications to seamlessly use AWS Cloud storage through standard file-storage protocols?
 > a) AWS Direct Connect
@@ -188,6 +194,8 @@ lang: en
 > d) It allows companies to focus on their physical data center operations.
 >> [!success]- Answer
 >> c) It prevents cascading failures between different components.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] A director has been tasked with investigating hybrid cloud architecture. The company currently accesses AWS over the public internet. Which service will facilitate private hybrid connectivity?
 > a) Amazon Virtual Private Cloud (Amazon VPC) NAT Gateway
@@ -289,7 +297,7 @@ lang: en
 >> [!success]- Answer
 >> a) Users do not have to guess about future capacity needs.
 
-<sub>관련: [참고](https://data-flair.training/blogs/aws-advantages/)  |  [참고](https://data-flair.training/blogs/aws-advantages/)</sub>
+<sub>관련: [참고](https://data-flair.training/blogs/aws-advantages/)  |  [참고](https://data-flair.training/blogs/aws-advantages/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following is an AWS-managed compute service?
 > a) Amazon SWF
@@ -308,6 +316,8 @@ lang: en
 > d) Design for failure
 >> [!success]- Answer
 >> d) Design for failure
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] Which mechanism allows developers to access AWS services from application code?
 > a) AWS Software Development Kit
@@ -357,7 +367,7 @@ lang: en
 >> [!success]- Answer
 >> d) AWS CodeCommit
 
-<sub>관련: [[amazon-cognito]] · [[aws-codecommit]]</sub>
+<sub>관련: [[amazon-cognito]] · [[aws-codecommit]]  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] A company is considering migrating its applications to AWS. The company wants to compare the cost of running the workload on-premises to running the equivalent workload on the AWS platform. Which tool can be used to perform this comparison?
 > a) AWS Simple Monthly Calculator
@@ -389,7 +399,7 @@ lang: en
 >> b) Pay-as-you-go
 >> e) Variable cost
 
-<sub>관련: [참고](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)  |  [참고](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)</sub>
+<sub>관련: [참고](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)  |  [참고](https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf)  |  모듈 [[11-billing-support]], [[01-cloud-intro]]</sub>
 
 > [!question] Which load balancer types are available with Elastic Load Balancing (ELB)? (Choose two.)
 > a) Public load balancers with AWS Application Auto Scaling capabilities
@@ -410,6 +420,8 @@ lang: en
 > d) AWS has no limits on the number of resources that can be created.
 >> [!success]- Answer
 >> b) AWS does not require long-term contracts and provides a pay-as-you-go model.
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which solution provides the FASTEST application response times to frequently accessed data to users in multiple AWS Regions?
 > a) AWS CloudTrail across multiple Availability Zones
@@ -479,6 +491,8 @@ lang: en
 >> [!success]- Answer
 >> d) Agility
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which AWS Support plan provides a full set of AWS Trusted Advisor checks?
 > a) Business and Developer Support
 > b) Business and Basic Support
@@ -512,3 +526,5 @@ lang: en
 >> a) Compute costs
 >> c) Storage costs
 >> d) Data transfer costs
+
+<sub>모듈 [[11-billing-support]]</sub>

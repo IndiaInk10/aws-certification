@@ -402,7 +402,13 @@ export function QuizRunner({
 
         {result.wrong.length > 0 && (
           <div className="mt-8 rounded-lg border p-5">
-            <WeakAreas cert={cert} items={result.wrong.map((i) => questions[i])} />
+            {/* 이 회차 문항 전체를 함께 넘겨 "나온 것 중 몇 개를 틀렸나"로 그린다 */}
+            <WeakAreas
+              cert={cert}
+              items={result.wrong.map((i) => questions[i])}
+              attempted={questions}
+              defaultOpen
+            />
           </div>
         )}
 
@@ -621,12 +627,17 @@ export function QuizRunner({
               return (
                 <li key={c.k}>
                   <label
-                    className={`flex cursor-pointer items-start gap-3 rounded-md px-3 py-2.5 text-sm ${cls}`}
+                    className={`flex items-start gap-3 rounded-md px-3 py-2.5 text-sm ${
+                      showAnswer ? 'cursor-default' : 'cursor-pointer'
+                    } ${cls}`}
                   >
                     <input
                       type={multi ? 'checkbox' : 'radio'}
                       name={`q${s.i}`}
                       checked={on}
+                      // 학습 모드에서 정답이 열린 뒤에는 못 바꾼다. 답을 보고 고쳐 놓으면
+                      // 결과 화면과 오답노트가 "맞힌 것" 으로 기록돼 기록 자체가 쓸모없어진다.
+                      disabled={showAnswer}
                       onChange={() => {
                         dispatch({ type: 'pick', k: c.k, multi });
                         // 정답 1개짜리는 고르는 순간 끝이다. 학습 모드에서는 바로 보여 준다.

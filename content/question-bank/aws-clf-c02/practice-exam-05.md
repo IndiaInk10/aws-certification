@@ -31,6 +31,8 @@ lang: en
 >> [!success]- Answer
 >> a) All up-front reservation.
 
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
+
 > [!question] What features does AWS offer to help protect your data in the Cloud? (Choose TWO)
 > a) Access control.
 > b) Physical MFA devices.
@@ -41,6 +43,8 @@ lang: en
 >> a) Access control.
 >> c) Data encryption.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] An AWS customer has used one Amazon Linux instance for 2 hours, 5 minutes and 9 seconds, and one CentOS instance for 4 hours, 23 minutes and 7 seconds. How much time will the customer be billed for?
 > a) 3 hours for the Linux instance and 5 hours for the CentOS instance.
 > b) 2 hours, 5 minutes and 9 seconds for the Linux instance and 4 hours, 23 minutes and 7 seconds for the CentOS instance.
@@ -48,6 +52,8 @@ lang: en
 > d) 3 hours for the Linux instance and 4 hours, 23 minutes and 7 seconds for the CentOS instance.
 >> [!success]- Answer
 >> c) 2 hours, 5 minutes and 9 seconds for the Linux instance and 5 hours for the CentOS instance.
+
+<sub>모듈 [[02-cloud-computing]], [[11-billing-support]]</sub>
 
 > [!question] What is the AWS Support feature that allows customers to manage support cases programmatically?
 > a) AWS Trusted Advisor.
@@ -131,7 +137,7 @@ lang: en
 >> [!success]- Answer
 >> c) Use code to provision and operate your AWS infrastructure.
 
-<sub>관련: [[aws-codedeploy]]</sub>
+<sub>관련: [[aws-codedeploy]]  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] A company is seeking to better secure its AWS account from unauthorized access. Which of the below options can the customer use to achieve this goal?
 > a) Restrict any API call made through SDKs or CLI.
@@ -163,6 +169,8 @@ lang: en
 >> b) Data sovereignty.
 >> c) Cost.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] You are running a financial services web application on AWS. The application uses a MySQL database to store the data. Which of the following AWS services would improve the performance of your application by allowing you to retrieve information from fast in-memory caches?
 > a) Amazon EFS.
 > b) Amazon Neptune.
@@ -191,6 +199,8 @@ lang: en
 >> [!success]- Answer
 >> c) AWS continues to lower the cost of cloud computing for its customers.
 
+<sub>모듈 [[11-billing-support]], [[01-cloud-intro]]</sub>
+
 > [!question] Which of the following are examples of the customer’s responsibility to implement “security IN the cloud”? (Choose TWO)
 > a) Building a schema for an application.
 > b) Replacing physical hardware.
@@ -201,6 +211,8 @@ lang: en
 >> a) Building a schema for an application.
 >> e) File system encryption.
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] Which of the following is a type of MFA device that customers can use to protect their AWS resources?
 > a) AWS CloudHSM.
 > b) U2F Security Key.
@@ -209,7 +221,7 @@ lang: en
 >> [!success]- Answer
 >> b) U2F Security Key.
 
-<sub>관련: [[aws-cloudhsm]]</sub>
+<sub>관련: [[aws-cloudhsm]]  |  모듈 [[09-security]]</sub>
 
 > [!question] A company is seeking to deploy an existing .NET application onto AWS as quickly as possible. Which AWS Service should the customer use to achieve this goal?
 > a) Amazon SNS.
@@ -281,6 +293,8 @@ lang: en
 >> [!success]- Answer
 >> a) Amazon Cloud Directory allows the organization of hierarchies of data across multiple dimensions.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] A user has opened a "Production System Down" support case to get help from AWS Support after a production system disruption. What is the expected response time for this type of support case?
 > a) 12 hours.
 > b) 15 minutes.
@@ -288,6 +302,8 @@ lang: en
 > d) One hour.
 >> [!success]- Answer
 >> d) One hour.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] Which of the below options is a best practice for making your application on AWS highly available?
 > a) Deploy the application to at least two Availability Zones.
@@ -381,6 +397,8 @@ lang: en
 >> [!success]- Answer
 >> d) Reserved Instances.
 
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
+
 > [!question] A company wants to grant a new employee long-term access to manage Amazon DynamoDB databases. Which of the following is a recommended best-practice when granting these permissions?
 > a) Create an IAM role and attach a policy with Amazon DynamoDB access permissions.
 > b) Create an IAM role and attach a policy with Administrator access permissions.
@@ -473,6 +491,8 @@ lang: en
 >> [!success]- Answer
 >> b) Loosely coupling.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which AWS Service offers an NFS file system that can be mounted concurrently from multiple EC2 instances?
 > a) Amazon Elastic File System.
 > b) Amazon Simple Storage Service.
@@ -490,6 +510,8 @@ lang: en
 > d) Make synchronous replication of your data possible.
 >> [!success]- Answer
 >> d) Make synchronous replication of your data possible.
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which of the following are true regarding the languages that are supported on AWS Lambda? (Choose TWO)
 > a) Lambda only supports Python and Node.js, but third party plugins are available to convert code in other languages to these formats.

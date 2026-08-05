@@ -109,6 +109,8 @@ lang: en
 >> [!success]- Answer
 >> a) AWS Resource Groups.
 
+<sub>관련: [[aws-management-console]]  |  모듈 [[10-monitoring-governance]]</sub>
+
 > [!question] Which AWS service collects metrics from running EC2 instances?
 > a) Amazon Inspector.
 > b) Amazon CloudWatch.
@@ -273,6 +275,8 @@ lang: en
 >> b) Loose coupling over tight coupling.
 >> d) Disposable resources instead of fixed servers.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Where can AWS account owners get a list of all users in their account, including the status of their AWS credentials?
 > a) AWS CloudTrail Trails.
 > b) IAM Credential Report.
@@ -300,6 +304,8 @@ lang: en
 > d) Deploy the application in multiple Availability Zones in multiple AWS regions.
 >> [!success]- Answer
 >> d) Deploy the application in multiple Availability Zones in multiple AWS regions.
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] For some services, AWS automatically replicates data across multiple Availability Zones to provide fault tolerance in the event of a server failure or Availability Zone outage. Select TWO services that automatically replicate data across Availability Zones.
 > a) Instance Store.
@@ -345,6 +351,8 @@ lang: en
 >> a) AWS Bulletins.
 >> d) AWS Security Blog.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] How can you protect data stored on Amazon S3 from accidental deletion?
 > a) By enabling S3 Versioning.
 > b) By configuring S3 Bucket Policies.
@@ -362,6 +370,8 @@ lang: en
 > d) Securing access to AWS resources.
 >> [!success]- Answer
 >> a) Securing regions and edge locations.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following AWS support plans provides access to only the seven core AWS Trusted Advisor checks?
 > a) Business & Enterprise Support.
@@ -390,6 +400,8 @@ lang: en
 > d) Many AWS services are assessed regularly to comply with local laws and regulations.
 >> [!success]- Answer
 >> c) AWS has many common assurance certifications such as ISO 9001 and HIPAA.
+
+<sub>모듈 [[10-monitoring-governance]]</sub>
 
 > [!question] Who is responsible for scaling a DynamoDB database in the AWS Shared Responsibility Model?
 > a) Your security team.
@@ -482,6 +494,8 @@ lang: en
 >> [!success]- Answer
 >> c) Data center security controls.
 >> d) Environmental controls.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What can you access by visiting the URL: ?
 > a) AWS Billing Dashboard.

@@ -21,7 +21,7 @@ lang: en
 >> [!success]- Answer
 >> c) Firewall configuration
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] How can an AWS user with an AWS Basic Support plan obtain technical assistance from AWS?
 > a) AWS Senior Support Engineers
@@ -63,7 +63,7 @@ lang: en
 >> [!success]- Answer
 >> b) The application will have higher availability because it can withstand a service disruption in one Availability Zone.
 
-<sub>관련: [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  [참고](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] A Cloud Practitioner is asked how to estimate the cost of using a new application on AWS. What is the MOST appropriate response?
 > a) Inform the user that AWS pricing allows for on-demand pricing.
@@ -105,7 +105,7 @@ lang: en
 >> [!success]- Answer
 >> d) automate the infrastructure provisioning process.
 
-<sub>관련: [참고](https://asperbrothers.com/blog/infrastructure-as-code-aws/)  |  [참고](https://asperbrothers.com/blog/infrastructure-as-code-aws/)</sub>
+<sub>관련: [참고](https://asperbrothers.com/blog/infrastructure-as-code-aws/)  |  [참고](https://asperbrothers.com/blog/infrastructure-as-code-aws/)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] A company requires a dedicated network connection between its on-premises servers and the AWS Cloud. Which AWS service should be used?
 > a) AWS VPN
@@ -167,6 +167,8 @@ lang: en
 >> c) AWS makes it easy to architect for high availability.
 >> d) AWS can easily accommodate application demand changes.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] A user needs an automated security assessment report that will identify unintended network access to Amazon EC2 instances and vulnerabilities on those instances. Which AWS service will provide this assessment report?
 > a) EC2 security groups
 > b) AWS Config
@@ -217,6 +219,8 @@ lang: en
 >> c) User control of infrastructure.
 >> d) Increased agility.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which security service automatically recognizes and classifies sensitive data or intellectual property on AWS?
 > a) Amazon GuardDuty
 > b) Amazon Macie
@@ -255,7 +259,7 @@ lang: en
 >> [!success]- Answer
 >> b) High Availability
 
-<sub>관련: [참고](https://wa.aws.amazon.com/wat.question.REL_7.en.html)  |  [참고](https://wa.aws.amazon.com/wat.question.REL_7.en.html)</sub>
+<sub>관련: [참고](https://wa.aws.amazon.com/wat.question.REL_7.en.html)  |  [참고](https://wa.aws.amazon.com/wat.question.REL_7.en.html)  |  모듈 [[04-global-infrastructure]], [[13-well-architected]]</sub>
 
 > [!question] A Cloud Practitioner needs a consistent and dedicated connection between AWS resources and an on-premises system. Which AWS service can fulfill this requirement?
 > a) AWS Direct Connect
@@ -275,6 +279,8 @@ lang: en
 >> [!success]- Answer
 >> c) AWS and the customer share responsibility.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] To use the AWS CLI, users are required to generate:
 > a) a password policy.
 > b) an access/secret key.
@@ -282,6 +288,8 @@ lang: en
 > d) an API key.
 >> [!success]- Answer
 >> b) an access/secret key.
+
+<sub>모듈 [[09-security]], [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS service is used to provide encryption for Amazon EBS?
 > a) AWS Certificate Manager
@@ -315,6 +323,8 @@ lang: en
 >> b) There are more edge locations than AWS Regions.
 >> e) There are more Availability Zones than AWS Regions.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] What does AWS Shield Standard provide?
 > a) WAF rules
 > b) DDoS protection
@@ -333,7 +343,7 @@ lang: en
 >> [!success]- Answer
 >> c) hardware required to support new applications
 
-<sub>관련: [참고](https://aws.amazon.com/pricing/cost-optimization/)  |  [참고](https://aws.amazon.com/pricing/cost-optimization/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/pricing/cost-optimization/)  |  [참고](https://aws.amazon.com/pricing/cost-optimization/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What does AWS Marketplace allow users to do? (Choose two.)
 > a) Sell unused Amazon EC2 Spot Instances.
@@ -355,7 +365,7 @@ lang: en
 >> [!success]- Answer
 >> d) Some resources run on-premises and some run in the AWS Cloud.
 
-<sub>관련: [참고](https://aws.amazon.com/hybrid/)  |  [참고](https://aws.amazon.com/hybrid/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/hybrid/)  |  [참고](https://aws.amazon.com/hybrid/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS service allows users to identify the changes made to a resource over time?
 > a) Amazon Inspector
@@ -374,6 +384,8 @@ lang: en
 > d) By having AWS manage applications
 >> [!success]- Answer
 >> a) By minimizing large capital expenditures
+
+<sub>모듈 [[11-billing-support]], [[01-cloud-intro]]</sub>
 
 > [!question] Which activity is a customer responsibility in the AWS Cloud according to the AWS shared responsibility model?
 > a) Ensuring network connectivity from AWS to the internet
@@ -395,7 +407,7 @@ lang: en
 >> b) No need to guess capacity requirements
 >> c) Increased speed to market
 
-<sub>관련: [참고](https://data-flair.training/blogs/aws-advantages/)  |  [참고](https://data-flair.training/blogs/aws-advantages/)</sub>
+<sub>관련: [참고](https://data-flair.training/blogs/aws-advantages/)  |  [참고](https://data-flair.training/blogs/aws-advantages/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] When comparing the total cost of ownership (TCO) of an on-premises infrastructure to a cloud architecture, what costs should be considered? (Choose two.)
 > a) The credit card processing fees for application transactions in the cloud.
@@ -407,7 +419,7 @@ lang: en
 >> b) The cost of purchasing and installing server hardware in the on-premises data.
 >> c) The cost of administering the infrastructure, including operating system and software installations, patches, backups, and recovering from failures.
 
-<sub>관련: [참고](https://aws.amazon.com/tco-calculator/)  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/tco-calculator/)  |  [참고](https://aws.amazon.com/tco-calculator/)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Which AWS feature allows a company to take advantage of usage tiers for services across multiple member accounts?
 > a) Service control policies (SCPs)
@@ -427,7 +439,7 @@ lang: en
 >> [!success]- Answer
 >> c) Application security
 
-<sub>관련: [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)</sub>
+<sub>관련: [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] What helps a company provide a lower latency experience to its users globally?
 > a) Using an AWS Region that is central to all users
@@ -437,7 +449,7 @@ lang: en
 >> [!success]- Answer
 >> d) Using edge locations to put content closer to all users
 
-<sub>관련: [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] How can the AWS Cloud increase user workforce productivity after migration from an on-premises data center?
 > a) Users do not have to wait for infrastructure provisioning.
@@ -447,7 +459,7 @@ lang: en
 >> [!success]- Answer
 >> a) Users do not have to wait for infrastructure provisioning.
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/Migration/aws-migration-whitepaper.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/Migration/aws-migration-whitepaper.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/Migration/aws-migration-whitepaper.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/Migration/aws-migration-whitepaper.pdf)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS service provides a quick and automated way to create and manage AWS accounts?
 > a) AWS QuickSight
@@ -497,7 +509,7 @@ lang: en
 >> [!success]- Answer
 >> c) High availability
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] Why is AWS more economical than traditional data centers for applications with varying compute workloads?
 > a) Amazon Elastic Compute Cloud (Amazon EC2) costs are billed on a monthly basis.

@@ -21,6 +21,8 @@ lang: en
 >> [!success]- Answer
 >> d) An AWS Availability Zone is an isolated location within an AWS Region, however edge locations are located in multiple cities worldwide.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] Which features are included in the AWS Business Support Plan? (Choose TWO)
 > a) 24x7 access to customer service.
 > b) Access to Cloud Support Engineers via email only during business hours.
@@ -62,6 +64,8 @@ lang: en
 >> [!success]- Answer
 >> d) Eliminates the need to guess on infrastructure capacity needs.
 >> e) Enables customers to trade their capital expenses for operational expenses.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A customer is planning to migrate their Microsoft SQL Server databases to AWS. Which AWS Services can the customer use to run their Microsoft SQL Server database on AWS? (Choose TWO)
 > a) AWS Fargate.
@@ -157,6 +161,8 @@ lang: en
 >> [!success]- Answer
 >> c) Hybrid.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] A company is hosting business critical workloads in an AWS Region. To protect against data loss and ensure business continuity, a mirror image of the current AWS environment should be created in another AWS Region. Company policy requires that the standby environment must be available in minutes in case of an outage in the primary AWS Region. Which AWS service can be used to meet these requirements?
 > a) CloudEndure Disaster Recovery.
 > b) CloudEndure Migration.
@@ -184,6 +190,8 @@ lang: en
 > d) In another Availability Zone.
 >> [!success]- Answer
 >> b) In another Region.
+
+<sub>관련: [[amazon-vpc]]  |  모듈 [[04-global-infrastructure]], [[06-storage]]</sub>
 
 > [!question] Which statement is true in relation to the security of Amazon EC2?
 > a) You should use instance store volumes to store login data.
@@ -233,6 +241,8 @@ lang: en
 >> [!success]- Answer
 >> a) Delete root user access keys if you do not need them.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] Which of the following are factors should be considered for Amazon EBS pricing? (Choose TWO)
 > a) The size of volumes provisioned per month.
 > b) The compute capacity you consume.
@@ -275,6 +285,8 @@ lang: en
 >> [!success]- Answer
 >> d) A user who chooses to buy Reserved, Standard, All upfront instances.
 
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
+
 > [!question] Which of the following is an available option when purchasing Amazon EC2 instances?
 > a) The ability to bid to get the lowest possible prices.
 > b) The ability to register EC2 instances to get volume discounts on every hour the instances are running.
@@ -292,6 +304,8 @@ lang: en
 > d) It means that you have the ability to pay as you go.
 >> [!success]- Answer
 >> c) It means that AWS will continuously lower costs as it grows.
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] A company experiences fluctuations in traffic patterns to their e-commerce website when running flash sales. What service can help the company dynamically match the required compute capacity to handle spikes in traffic during flash sales?
 > a) AWS Auto Scaling.
@@ -375,6 +389,8 @@ lang: en
 >> [!success]- Answer
 >> b) Testing your network to find security vulnerabilities that an attacker could exploit.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] Which of the following are use cases for Amazon EMR? (Choose TWO)
 > a) Enables you to backup extremely large amounts of data at very low costs.
 > b) Enables you to move Exabyte-scale data from on-premises datacenters into AWS.
@@ -414,6 +430,8 @@ lang: en
 > d) With AWS, you replace large capital expenses with low variable payments.
 >> [!success]- Answer
 >> d) With AWS, you replace large capital expenses with low variable payments.
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] For Amazon RDS databases, what does AWS perform on your behalf? (Choose TWO)
 > a) Database setup.
@@ -484,6 +502,8 @@ lang: en
 > d) With Serverless Architectures you have the ability to scale automatically up or down as demand changes.
 >> [!success]- Answer
 >> b) With the Server-based Architectures, compute resources continue to run all the time but with serverless architecture, compute resources are only used when code is being executed.
+
+<sub>모듈 [[03-compute-services]]</sub>
 
 > [!question] Which of the below options are use cases of the Amazon Route 53 service? (Choose TWO)
 > a) Point-to-point connectivity between an on-premises data center and AWS.

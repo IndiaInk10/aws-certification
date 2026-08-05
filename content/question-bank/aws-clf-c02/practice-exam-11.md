@@ -21,6 +21,8 @@ lang: en
 >> [!success]- Answer
 >> a) By minimizing large capital expenditures.
 
+<sub>모듈 [[11-billing-support]], [[01-cloud-intro]]</sub>
+
 > [!question] Which options does AWS make available for customers who want to learn about security in the cloud in an instructor-led setting? (Select TWO)
 > a) AWS Trusted Advisor.
 > b) AWS Online Tech Talks.
@@ -89,6 +91,8 @@ lang: en
 >> a) Patching databases software.
 >> c) Backing up databases.
 
+<sub>모듈 [[03-compute-services]], [[07-databases]]</sub>
+
 > [!question] A company wants to expand from one AWS Region into a second AWS Region. What does the company need to do to start supporting the new Region?
 > a) Contact an AWS Account Manager to sign a new contract.
 > b) Move an Availability Zone to the new Region.
@@ -96,6 +100,8 @@ lang: en
 > d) Download the AWS Management Console for the new Region.
 >> [!success]- Answer
 >> c) Begin deploying resources in the second Region.
+
+<sub>관련: [[aws-management-console]]  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Why is it beneficial to use Elastic Load Balancers with applications?
 > a) They allow for the conversion from Application Load.
@@ -197,6 +203,8 @@ lang: en
 >> [!success]- Answer
 >> c) Ensuring that data is encrypted at rest.
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] Which AWS service provides a simple and scalable shared file storage solution for use with Linux-based AWS and on-premises servers?
 > a) Amazon S3.
 > b) Amazon Glacier.
@@ -216,6 +224,8 @@ lang: en
 >> [!success]- Answer
 >> a) An access key ID.
 >> c) A secret access key.
+
+<sub>모듈 [[09-security]]</sub>
 
 > [!question] Which of the following is a shared control between the customer and AWS?
 > a) Providing a key for Amazon S3 client-side encryption.
@@ -244,6 +254,8 @@ lang: en
 > d) Eliminates the need for tagging.
 >> [!success]- Answer
 >> a) Volume pricing qualification.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] Which services are parts of the AWS serverless platform?
 > a) Amazon EC2, Amazon S3, Amazon Athena.
@@ -295,6 +307,8 @@ lang: en
 >> [!success]- Answer
 >> b) The application will have higher availability because it can withstand a service disruption in one Availability Zone.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] A customer needs to run a MySQL database that easily scales. Which AWS service should they use?
 > a) Amazon Aurora.
 > b) Amazon Redshift.
@@ -312,6 +326,8 @@ lang: en
 > d) Implement vertical scaling.
 >> [!success]- Answer
 >> b) Implement loose coupling.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] AWS Enterprise Support users have access to which service or feature that is not available to users with other AWS Support plans?
 > a) AWS Trusted Advisor.
@@ -331,6 +347,8 @@ lang: en
 >> [!success]- Answer
 >> c) Moving from upfront capital expense (capex) to variable operational expense ( opex ).
 
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
+
 > [!question] When performing a cost analysis that supports physical isolation of a customer workload, which compute hosting model should be accounted for in the Total Cost of Ownership (TCO)?
 > a) Dedicated Hosts
 > b) Reserved Instances
@@ -338,6 +356,8 @@ lang: en
 > d) No Upfront Reserved Instances
 >> [!success]- Answer
 >> a) Dedicated Hosts
+
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS service should be used for long-term, low-cost storage of data backups?
 > a) Amazon RDS.
@@ -391,6 +411,8 @@ lang: en
 >> b) Delivering content closer to users.
 >> d) Reducing traffic on the server by caching responses.
 
+<sub>모듈 [[04-global-infrastructure]], [[05-networking]]</sub>
+
 > [!question] A company is planning to migrate from on-premises to the AWS Cloud. When AWS tool or service provides detailed reports on estimated cost savings after migration?
 > a) AWS Total Cost of Ownership (TCO) Calculator.
 > b) Cost Explorer.
@@ -418,6 +440,8 @@ lang: en
 > d) It allows the business to leave servers unpatched.
 >> [!success]- Answer
 >> c) It allows the business to focus on business activities.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] How can an AWS user with an AWS Basic Support plan obtain technical assistance from AWS?
 > a) AWS Senior Support Engineers.
@@ -469,6 +493,8 @@ lang: en
 >> a) Reduced latency to users.
 >> c) Data sovereignty compliance.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] Which AWS service provides alerts when an AWS event may impact a company’s AWS resources?
 > a) AWS Personal Health Dashboard.
 > b) AWS Service Health Dashboard.
@@ -487,6 +513,8 @@ lang: en
 >> [!success]- Answer
 >> d) Multi-site active-active.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] Which service’s PRIMARY purpose is software version control?
 > a) Amazon CodeStar.
 > b) AWS Command Line Interface (AWS CLI).
@@ -495,7 +523,7 @@ lang: en
 >> [!success]- Answer
 >> d) AWS CodeCommit.
 
-<sub>관련: [[amazon-cognito]] · [[aws-codecommit]]</sub>
+<sub>관련: [[amazon-cognito]] · [[aws-codecommit]]  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] How can a customer increase security to AWS account logons? (Select TWO)
 > a) Configure AWS Certificate Manager

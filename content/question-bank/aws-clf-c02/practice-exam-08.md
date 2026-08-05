@@ -41,6 +41,8 @@ lang: en
 >> [!success]- Answer
 >> b) Add the accounts to an AWS Organization and use Consolidated Billing.
 
+<sub>모듈 [[11-billing-support]]</sub>
+
 > [!question] You have been tasked with auditing the security of your VPC. As part of this process, you need to start by analyzing what inbound and outbound traffic is allowed on your EC2 instances. What two parts of the VPC do you need to check to accomplish this task?
 > a) Network ACLs and Traffic Manager.
 > b) Network ACLs and Subnets.
@@ -104,6 +106,8 @@ lang: en
 >> [!success]- Answer
 >> a) With the AWS pay-as-you-go pricing model, you don't have to pay any upfront fee.
 >> c) You only pay for the individual services that you need with no long-term contracts.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] Which AWS service provides the EASIEST way to set up and manage a secure, well-architected, multi-account AWS environment?
 > a) AWS Control Tower.
@@ -273,6 +277,8 @@ lang: en
 >> [!success]- Answer
 >> d) It allows individual application components or services to be modified without affecting other components.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] A company needs to host a big data application on AWS using EC2 instances. Which of the following AWS Storage services would they choose to automatically get high throughput to multiple compute nodes?
 > a) Amazon Elastic Block Store.
 > b) AWS Storage Gateway.
@@ -290,6 +296,8 @@ lang: en
 > d) Cloud.
 >> [!success]- Answer
 >> d) Cloud.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What are the benefits of the AWS Marketplace service? (Choose TWO)
 > a) Protects customers by performing periodic security checks on listed products.
@@ -399,6 +407,8 @@ lang: en
 >> [!success]- Answer
 >> d) It is a distinct location within a region that is insulated from « failures in other Availability Zones.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] AWS provides disaster recovery capability by allowing customers to deploy infrastructure into multiple [...].
 > a) Regions.
 > b) Transportation devices.
@@ -418,6 +428,8 @@ lang: en
 >> [!success]- Answer
 >> b) Ensure that AWS services are configured properly to meet all PCI DSS standards.
 >> c) Restrict any access to cardholder data and create a policy that addresses information security for all personnel.
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] What is the maximum amount of data that can be stored in S3 in a single AWS account?
 > a) 100 PetaBytes.
@@ -487,6 +499,8 @@ lang: en
 >> [!success]- Answer
 >> b) A minimum of two.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] The AWS Cloud’s multiple Regions are an example of:
 > a) Agility.
 > b) Global infrastructure.
@@ -494,6 +508,8 @@ lang: en
 > d) Pay-as-you-go pricing.
 >> [!success]- Answer
 >> b) Global infrastructure.
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which AWS service can be used to manually launch instances based on resource requirements?
 > a) Amazon EBS.
@@ -524,3 +540,5 @@ lang: en
 >> [!success]- Answer
 >> c) Elasticity.
 >> d) Pay-as-you-go pricing.
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>

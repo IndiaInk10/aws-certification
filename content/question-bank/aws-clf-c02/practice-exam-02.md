@@ -123,6 +123,8 @@ lang: en
 >> [!success]- Answer
 >> c) Automate wherever possible to make architectural (© ) experimentation easier.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] According to the AWS Acceptable Use Policy, which of the following statements is true regarding penetration testing of EC2 instances?
 > a) Penetration testing is not allowed in AWS.
 > b) Penetration testing is performed automatically by AWS to determine vulnerabilities in your AWS infrastructure.
@@ -207,6 +209,8 @@ lang: en
 >> [!success]- Answer
 >> c) Access Keys.
 
+<sub>모듈 [[09-security]]</sub>
+
 > [!question] What does Amazon ElastiCache provide?
 > a) In-memory caching for read-heavy applications.
 > b) An Ehcache compatible in-memory data store.
@@ -245,6 +249,8 @@ lang: en
 >> [!success]- Answer
 >> c) Reduced Capital Expenditure (CapEx).
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which of the following are important design principles you should adopt when designing systems on AWS? (Choose TWO)
 > a) Always use Global Services in your architecture rather than Regional Services.
 > b) Always choose to pay as you go.
@@ -254,6 +260,8 @@ lang: en
 >> [!success]- Answer
 >> d) Automate wherever possible.
 >> e) Remove single points of failure.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] Which AWS Service can be used to establish a dedicated, private network connection between AWS and your datacenter?
 > a) AWS Direct Connect.
@@ -346,6 +354,8 @@ lang: en
 >> [!success]- Answer
 >> b) Eliminating Single Points of Failure (SPOFs).
 >> c) Distributed infrastructure.
+
+<sub>모듈 [[01-cloud-intro]], [[13-well-architected]]</sub>
 
 > [!question] Which of the following aspects of security are managed by AWS? (Choose TWO)
 > a) Encryption of EBS volumes.
@@ -504,6 +514,8 @@ lang: en
 > d) AWS Professional Services.
 >> [!success]- Answer
 >> a) APN Consulting Partners.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] What is the AWS serverless service that allows you to run your applications without any administrative burden?
 > a) Amazon LightSail.

@@ -41,6 +41,8 @@ lang: en
 >> [!success]- Answer
 >> b) Data encryption
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] Which of the following AWS Cloud services can be used to run a customer-managed relational database?
 > a) Amazon EC2
 > b) Amazon Route 53
@@ -81,6 +83,8 @@ lang: en
 >> a) Command line interface
 >> c) Software Development Kits
 
+<sub>모듈 [[02-cloud-computing]]</sub>
+
 > [!question] The AWS Cloud's multiple Regions are an example of:
 > a) agility.
 > b) global infrastructure.
@@ -88,6 +92,8 @@ lang: en
 > d) pay-as-you-go pricing.
 >> [!success]- Answer
 >> b) global infrastructure.
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which of the following AWS services can be used to serve large amounts of online video content with the lowest possible latency? (Select TWO.)
 > a) AWS Storage Gateway
@@ -181,6 +187,8 @@ lang: en
 >> [!success]- Answer
 >> d) Implement elasticity
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which AWS service should be used for long-term, low-cost storage of data backups?
 > a) Amazon RDS
 > b) Amazon Glacier
@@ -219,6 +227,8 @@ lang: en
 >> [!success]- Answer
 >> b) Ability to focus on revenue-generating activities.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] When performing a cost analysis that supports physical isolation of a customer workload, which compute hosting model should be accounted for in the Total Cost of Ownership (TCO)?
 > a) Dedicated Hosts
 > b) Reserved Instances
@@ -226,6 +236,8 @@ lang: en
 > d) No Upfront Reserved Instances
 >> [!success]- Answer
 >> a) Dedicated Hosts
+
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS service provides the ability to manage infrastructure as code?
 > a) AWS CodePipeline
@@ -299,6 +311,8 @@ lang: en
 >> c) Implement loose coupling.
 >> e) Design for scalability.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which is the MINIMUM AWS Support plan that allows for one-hour target response time for support cases?
 > a) Enterprise
 > b) Business
@@ -336,6 +350,8 @@ lang: en
 > d) Eliminates the need for tagging
 >> [!success]- Answer
 >> a) Volume pricing qualification
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] Which of the following steps should be taken by a customer when conducting penetration testing on AWS?
 > a) Conduct penetration testing using Amazon Inspector, and then notify AWS support.
@@ -397,6 +413,8 @@ lang: en
 >> [!success]- Answer
 >> b) Implement loose coupling.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which of the following security measures protect access to an AWS account? (Select TWO.)
 > a) Enable AWS CloudTrail.
 > b) Grant least privilege access to IAM users.
@@ -437,6 +455,8 @@ lang: en
 >> [!success]- Answer
 >> a) Use multiple Availability Zones.
 
+<sub>모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>
+
 > [!question] Which AWS support plan includes a dedicated Technical Account Manager?
 > a) Developer
 > b) Enterprise
@@ -474,6 +494,8 @@ lang: en
 > d) Auditing physical data center assets
 >> [!success]- Answer
 >> d) Auditing physical data center assets
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which options does AWS make available for customers who want to learn about security in the cloud in an instructor-led setting? (Select TWO.)
 > a) AWS Trusted Advisor

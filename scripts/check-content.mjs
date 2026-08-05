@@ -190,6 +190,47 @@ for (const f of files) {
   }
 }
 
+// ── 7. 문제은행 태그 ────────────────────────────────────────
+/*
+   문항 끝의 <sub>관련: [[서비스]] | 모듈 [[…]]</sub> 줄이 오답노트의 "무엇을 주로 틀리는가"
+   와 학습 모드 오픈북 창의 재료다. 이 줄이 없으면 그 문항은 어디에도 집계되지 않고,
+   틀려도 어느 강의로 돌아가야 하는지 알려 줄 수 없다.
+
+   서비스 이름이 안 나오는 개념 문항(공동 책임 모델, 통합 결제 …)이라도 **모듈**은 붙일 수 있다.
+   서비스는 비어도 되지만 모듈은 있어야 한다는 뜻. 아직 안 붙은 것이 많아 오류가 아니라 경고다.
+*/
+const BANK = path.resolve('content/question-bank');
+if (fs.existsSync(BANK)) {
+  for (const cert of fs.readdirSync(BANK, { withFileTypes: true })) {
+    if (!cert.isDirectory()) continue;
+    const dir = path.join(BANK, cert.name);
+    for (const f of fs.readdirSync(dir).filter((x) => /^practice-exam-\d+\.md$/.test(x))) {
+      const lines = fs.readFileSync(path.join(dir, f), 'utf8').split(/\r?\n/);
+      const missing = [];
+      let cur = null;
+      let n = 0;
+      const flush = () => {
+        if (!cur) return;
+        if (!cur.sub || !/모듈/.test(cur.sub)) missing.push(cur.n);
+      };
+      for (const l of lines) {
+        if (/^>\s*\[!question\]/.test(l)) {
+          flush();
+          cur = { n: ++n, sub: null };
+          continue;
+        }
+        if (cur && /^<sub>/.test(l)) cur.sub = l;
+      }
+      flush();
+      if (missing.length) {
+        warn.push(
+          `${cert.name}/${f} :: 모듈 태그 없는 문항 ${missing.length}개 — Q${missing.slice(0, 8).join(', Q')}${missing.length > 8 ? ' …' : ''}`,
+        );
+      }
+    }
+  }
+}
+
 // ── 출력 ────────────────────────────────────────────────────
 const line = '─'.repeat(60);
 if (warn.length) {

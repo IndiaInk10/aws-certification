@@ -135,7 +135,7 @@ lang: en
 >> [!success]- Answer
 >> c) Design loosely coupled components
 
-<sub>관련: [참고](https://www.botmetric.com/blog/aws-cloud-architecture-design-principles/)  |  [참고](https://www.botmetric.com/blog/aws-cloud-architecture-design-principles/)</sub>
+<sub>관련: [참고](https://www.botmetric.com/blog/aws-cloud-architecture-design-principles/)  |  [참고](https://www.botmetric.com/blog/aws-cloud-architecture-design-principles/)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] Which AWS services can be used to move data from on-premises data centers to AWS? (Choose two.)
 > a) AWS Snowball
@@ -259,7 +259,7 @@ lang: en
 >> c) Configuration management of user's applications
 >> e) Security groups configuration
 
-<sub>관련: [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)</sub>
+<sub>관련: [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)  |  모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] IT systems should be designed to reduce interdependencies, so that a change or failure in one component does not cascade to other components. This is an example of which principle of cloud architecture design?
 > a) Scalability
@@ -269,7 +269,7 @@ lang: en
 >> [!success]- Answer
 >> b) Loose coupling
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] Which AWS service or feature can enhance network security by blocking requests from a particular network for a web application on AWS? (Choose two.)
 > a) AWS WAF
@@ -313,7 +313,7 @@ lang: en
 >> [!success]- Answer
 >> d) Automatically adjust the required compute capacity to maintain consistent performance.
 
-<sub>관련: [참고](https://aimconsulting.com/insights/blog/the-elastic-cloud-opportunity/)  |  [참고](https://aimconsulting.com/insights/blog/the-elastic-cloud-opportunity/)</sub>
+<sub>관련: [참고](https://aimconsulting.com/insights/blog/the-elastic-cloud-opportunity/)  |  [참고](https://aimconsulting.com/insights/blog/the-elastic-cloud-opportunity/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] The continual reduction of AWS Cloud pricing is due to:
 > a) pay-as-you go pricing
@@ -322,6 +322,8 @@ lang: en
 > d) reserved storage pricing
 >> [!success]- Answer
 >> c) economies of scale
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A company needs an Amazon S3 bucket that cannot have any public objects due to compliance requirements. How can this be accomplished?
 > a) Enable S3 Block Public Access from the AWS Management Console.
@@ -395,7 +397,7 @@ lang: en
 >> [!success]- Answer
 >> d) AWS Support
 
-<sub>관련: [참고](https://aws.amazon.com/premiumsupport/knowledge-center/reactivate-suspended-account/)  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/reactivate-suspended-account/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/premiumsupport/knowledge-center/reactivate-suspended-account/)  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/reactivate-suspended-account/)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Which AWS Cloud best practice uses the elasticity and agility of cloud computing?
 > a) Provision capacity based on past usage and theoretical peaks
@@ -405,6 +407,8 @@ lang: en
 >> [!success]- Answer
 >> b) Dynamically and predictively scale to meet usage demands
 
+<sub>모듈 [[01-cloud-intro]], [[13-well-architected]]</sub>
+
 > [!question] Which method helps to optimize costs of users moving to the AWS Cloud?
 > a) Paying only for what is used
 > b) Purchasing hardware before it is needed
@@ -413,7 +417,7 @@ lang: en
 >> [!success]- Answer
 >> a) Paying only for what is used
 
-<sub>관련: [참고](https://www.cloudmanagementinsider.com/ways-to-optimize-aws-cost/)  |  [참고](https://www.cloudmanagementinsider.com/ways-to-optimize-aws-cost/)</sub>
+<sub>관련: [참고](https://www.cloudmanagementinsider.com/ways-to-optimize-aws-cost/)  |  [참고](https://www.cloudmanagementinsider.com/ways-to-optimize-aws-cost/)  |  모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Under the AWS shared responsibility model, which of the following is a customer responsibility?
 > a) Installing security patches for the Xen and KVM hypervisors
@@ -485,6 +489,8 @@ lang: en
 >> [!success]- Answer
 >> b) Assume that all components within an application can fail
 
+<sub>관련: [[aws-auto-scaling]]  |  모듈 [[13-well-architected]]</sub>
+
 > [!question] A user needs to generate a report that outlines the status of key security checks in an AWS account. The report must include: (The status of Amazon S3 bucket permissions, Whether multi-factor authentication is enabled for the AWS account root user, If any security groups are configured to allow unrestricted access.) Where can all this information be found in one location?
 > a) Amazon QuickSight dashboard
 > b) AWS CloudTrail trails
@@ -512,6 +518,8 @@ lang: en
 > d) Data centers
 >> [!success]- Answer
 >> c) Edge locations
+
+<sub>모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Using AWS Config to record, audit, and evaluate changes to AWS resources to enable traceability is an example of which AWS Well-Architected Framework pillar?
 > a) Security

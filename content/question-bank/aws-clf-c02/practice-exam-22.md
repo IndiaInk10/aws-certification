@@ -165,6 +165,8 @@ lang: en
 >> [!success]- Answer
 >> d) Loose coupling
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] What is the MOST effective resource for staying up to date on AWS security announcements?
 > a) AWS Personal Health Dashboard
 > b) AWS Secrets Manager
@@ -192,6 +194,8 @@ lang: en
 > d) Running all operations on a single AWS account
 >> [!success]- Answer
 >> a) Tagging resources
+
+<sub>모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
 > [!question] Which AWS service allows users to download security and compliance reports about the AWS infrastructure on demand?
 > a) Amazon GuardDuty
@@ -245,6 +249,8 @@ lang: en
 >> [!success]- Answer
 >> d) Scalability
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] During a compliance review, one of the auditors requires a copy of the AWS SOC 2 report. Which service should be used to submit this request?
 > a) AWS Personal Health Dashboard
 > b) AWS Trusted Advisor
@@ -264,7 +270,7 @@ lang: en
 >> b) Run on two Availability Zones in one AWS Region, using another AWS Region for the disaster recovery site.
 >> d) Run across two AWS Regions, using a third AWS Region for the disaster recovery site.
 
-<sub>관련: [참고](https://aws.amazon.com/blogs/startups/large-scale-disaster-recovery-using-aws-regions/)  |  [참고](https://aws.amazon.com/blogs/startups/large-scale-disaster-recovery-using-aws-regions/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/blogs/startups/large-scale-disaster-recovery-using-aws-regions/)  |  [참고](https://aws.amazon.com/blogs/startups/large-scale-disaster-recovery-using-aws-regions/)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] A company has a 500 TB image repository that needs to be transported to AWS for processing. Which AWS service can import this data MOST cost-effectively?
 > a) AWS Snowball
@@ -396,6 +402,8 @@ lang: en
 >> [!success]- Answer
 >> b) Implementing controls to route application traffic
 
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
+
 > [!question] An architecture design includes Amazon EC2, an Elastic Load Balancer, and Amazon RDS. What is the BEST way to get a monthly cost estimation for this architecture?
 > a) Open an AWS Support case, provide the architecture proposal, and ask for a monthly cost estimation.
 > b) Collect the published prices of the AWS services and calculate the monthly estimate.
@@ -456,7 +464,7 @@ lang: en
 >> [!success]- Answer
 >> b) Elasticity
 
-<sub>관련: [참고](https://www.gremlin.com/blog/implementing-cost-saving-strategies-on-amazon-ec-2-with-chaos-engineering/)  |  [참고](https://www.gremlin.com/blog/implementing-cost-saving-strategies-on-amazon-ec-2-with-chaos-engineering/)</sub>
+<sub>관련: [참고](https://www.gremlin.com/blog/implementing-cost-saving-strategies-on-amazon-ec-2-with-chaos-engineering/)  |  [참고](https://www.gremlin.com/blog/implementing-cost-saving-strategies-on-amazon-ec-2-with-chaos-engineering/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A user has a stateful workload that will run on Amazon EC2 for the next 3 years. What is the MOST cost-effective pricing model for this workload?
 > a) On-Demand Instances

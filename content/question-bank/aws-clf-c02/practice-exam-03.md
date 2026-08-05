@@ -191,6 +191,8 @@ lang: en
 >> d) Environmental controls.
 >> e) Physical controls.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] A company needs to host a database in Amazon RDS for at least three years. Which of the following options would be the most cost-effective solution?
 > a) Reserved instances - No Upfront.
 > b) Reserved instances - Partial Upfront.
@@ -208,6 +210,8 @@ lang: en
 > d) High availability.
 >> [!success]- Answer
 >> b) Global reach.
+
+<sub>모듈 [[01-cloud-intro]], [[04-global-infrastructure]]</sub>
 
 > [!question] Savings Plans are available for which of the following AWS compute services? (Choose TWO)
 > a) AWS Batch.
@@ -315,6 +319,8 @@ lang: en
 >> [!success]- Answer
 >> d) Physical hardware.
 
+<sub>모듈 [[11-billing-support]]</sub>
+
 > [!question] How are AWS customers billed for Linux-based Amazon EC2 usage?
 > a) EC2 instances will be billed on one second increments, with a minimum of one minute.
 > b) EC2 instances will be billed on one hour increments, with a minimum of one day.
@@ -364,6 +370,8 @@ lang: en
 > d) AWS allows you to pay upfront to reduce costs.
 >> [!success]- Answer
 >> c) AWS allows you to provision resources in minutes.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What are the benefits of using the Amazon Relational Database Service? (Choose TWO)
 > a) Lower administrative burden.
@@ -417,6 +425,8 @@ lang: en
 >> [!success]- Answer
 >> b) Spot Instances.
 
+<sub>모듈 [[02-cloud-computing]]</sub>
+
 > [!question] Which AWS Service provides the current status of all AWS Services in all AWS Regions?
 > a) AWS Service Health Dashboard.
 > b) AWS Management Console.
@@ -435,7 +445,7 @@ lang: en
 >> [!success]- Answer
 >> a) AWS Software Development Kit.
 
-<sub>관련: [[aws-codedeploy]]</sub>
+<sub>관련: [[aws-codedeploy]]  |  모듈 [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS Service can be used to register a new domain name?
 > a) Amazon Personalize.
@@ -499,6 +509,8 @@ lang: en
 >> [!success]- Answer
 >> a) Multiple Availability Zones allows you to build resilient and highly available architectures.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] What is the most cost-effective purchasing option for running a set of EC2 instances that must always be available for a period of two months?
 > a) On-Demand Instances.
 > b) Spot Instances.
@@ -517,6 +529,8 @@ lang: en
 >> [!success]- Answer
 >> d) Increases the availability of your application.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] Data security is one of the top priorities of AWS. How does AWS deal with old storage devices that have reached the end of their useful life?
 > a) AWS sells the old devices to other hosting providers.
 > b) AWS destroys the old devices in accordance with industry-standard practices.
@@ -524,3 +538,5 @@ lang: en
 > d) AWS stores the old devices in a secure place.
 >> [!success]- Answer
 >> b) AWS destroys the old devices in accordance with industry-standard practices.
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>

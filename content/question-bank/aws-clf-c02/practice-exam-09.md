@@ -102,6 +102,8 @@ lang: en
 >> [!success]- Answer
 >> c) Accessing forums, blogs, and whitepapers.
 
+<sub>모듈 [[09-security]], [[11-billing-support]]</sub>
+
 > [!question] Which storage service can be used as a low-cost option for hosting static websites?
 > a) Amazon Glacier.
 > b) Amazon DynamoDB.
@@ -119,6 +121,8 @@ lang: en
 > d) Client-side data.
 >> [!success]- Answer
 >> b) Edge location management.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following are pillars of the AWS Well-Architected Framework? (Select TWO)
 > a) Multiple Availability Zones.
@@ -152,6 +156,8 @@ lang: en
 >> c) Implement loose coupling.
 >> e) Design for scalability.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] When architecting cloud applications, which of the following are a key design principle?
 > a) Use the largest instance possible.
 > b) Provision capacity for peak load.
@@ -159,6 +165,8 @@ lang: en
 > d) Implement elasticity.
 >> [!success]- Answer
 >> d) Implement elasticity.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] A company has deployed several relational databases on Amazon EC2 instances. Every month the database software vendor releases new security patches that need to be applied to the databases. What is the MOST efficient way to apply the security patches?
 > a) Connect to each database instance on a monthly basis and download and apply the necessary security patches from the vendor.
@@ -188,6 +196,8 @@ lang: en
 >> [!success]- Answer
 >> c) Elastic computing.
 
+<sub>모듈 [[11-billing-support]], [[01-cloud-intro]]</sub>
+
 > [!question] Which of the following is a benefit of using the AWS Cloud?
 > a) Permissive security removes the administrative burden.
 > b) Ability to focus on revenue-generating activities.
@@ -195,6 +205,8 @@ lang: en
 > d) Choice of specific cloud hardware vendors.
 >> [!success]- Answer
 >> b) Ability to focus on revenue-generating activities.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which of the following are categories of AWS Trusted Advisor? (Select TWO)
 > a) Fault Tolerance.
@@ -237,6 +249,8 @@ lang: en
 > d) Data center auditing.
 >> [!success]- Answer
 >> b) Patch management.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS service is used to pay AWS bills, and monitor usage and budget costs?
 > a) AWS Billing and Cost Management.
@@ -330,6 +344,8 @@ lang: en
 >> [!success]- Answer
 >> b) Loosely couple components.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which service enables risk auditing by continuously monitoring and logging account activity, including user actions in the AWS Management Console and AWS SDKs?
 > a) Amazon CloudWatch.
 > b) AWS CloudTrail.
@@ -359,6 +375,8 @@ lang: en
 >> [!success]- Answer
 >> a) Reduced Total Cost of Ownership (TCO).
 >> c) Reduced operational expenditure ( opex ).
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which AWS service can serve a static website?
 > a) Amazon S3.
@@ -392,6 +410,8 @@ lang: en
 >> b) Availability Zones.
 >> d) Regions.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] What is the AWS customer responsible for according to the AWS shared responsibility model?
 > a) Physical access controls.
 > b) Data encryption.
@@ -399,6 +419,8 @@ lang: en
 > d) Environmental risk management.
 >> [!success]- Answer
 >> b) Data encryption.
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] If each department within a company has its own AWS account, what is one way to enable consolidated billing?
 > a) Use AWS Budgets on each account to pay only to budget.
@@ -417,6 +439,8 @@ lang: en
 > d) Software development.
 >> [!success]- Answer
 >> c) Data center security.
+
+<sub>모듈 [[11-billing-support]]</sub>
 
 > [!question] What is the benefit of using AWS managed services, such as Amazon ElastiCache and Amazon Relational Database Service (Amazon RDS)?
 > a) They require the customer to monitor and replace failing instances.
@@ -499,6 +523,8 @@ lang: en
 > d) Provision extra capacity.
 >> [!success]- Answer
 >> a) Use multiple Availability Zones.
+
+<sub>모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>
 
 > [!question] Which service allows a company with multiple AWS accounts to combine its usage to obtain volume discounts?
 > a) AWS Server Migration Service.

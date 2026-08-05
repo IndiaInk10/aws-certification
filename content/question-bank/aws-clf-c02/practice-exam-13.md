@@ -61,6 +61,8 @@ lang: en
 >> [!success]- Answer
 >> c) Design for failure.
 
+<sub>모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>
+
 > [!question] Which AWS services can host a Microsoft SQL Server database? (Select TWO)
 > a) Amazon EC2
 > b) Amazon Relational Database Service (Amazon RDS)
@@ -102,6 +104,8 @@ lang: en
 >> [!success]- Answer
 >> c) Elasticity
 >> d) Pay-as-you-go pricing
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which service enables risk auditing by continuously monitoring and logging account activity, including user actions in the AWS Management Console and AWS SDKs?
 > a) Amazon CloudWatch
@@ -145,7 +149,7 @@ lang: en
 >> [!success]- Answer
 >> c) Data center security
 
-<sub>관련: [참고](https://media.amazonwebservices.com/AWS_TCO_Web_Applications.pdf)  |  [참고](https://media.amazonwebservices.com/AWS_TCO_Web_Applications.pdf)</sub>
+<sub>관련: [참고](https://media.amazonwebservices.com/AWS_TCO_Web_Applications.pdf)  |  [참고](https://media.amazonwebservices.com/AWS_TCO_Web_Applications.pdf)  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] A company is considering using AWS for a self-hosted database that requires a nightly shutdown for maintenance and cost-saving purposes. Which service should the company use?
 > a) Amazon Redshift
@@ -165,7 +169,7 @@ lang: en
 >> [!success]- Answer
 >> b) Regions contain Availability Zones.
 
-<sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)</sub>
+<sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which AWS tools assist with estimating costs? (Select three.)
 > a) Detailed billing report
@@ -200,7 +204,7 @@ lang: en
 >> [!success]- Answer
 >> c) Three-year, All Upfront, Standard RI pricing
 
-<sub>관련: [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)  |  [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)  |  [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/pricing/)  |  모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] Compared with costs in traditional and virtualized data centers, AWS has:
 > a) greater variable costs and greater upfront costs.
@@ -210,7 +214,7 @@ lang: en
 >> [!success]- Answer
 >> d) lower variable costs and lower upfront costs.
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/introduction-to-aws-cloud-economics-final.pdf> (10))  |  [참고](https://d1.awsstatic.com/whitepapers/introduction-to-aws-cloud-economics-final.pdf> (10))</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/introduction-to-aws-cloud-economics-final.pdf> (10))  |  [참고](https://d1.awsstatic.com/whitepapers/introduction-to-aws-cloud-economics-final.pdf> (10))  |  모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] A characteristic of edge locations is that they:
 > a) host Amazon EC2 instances closer to users.
@@ -240,6 +244,8 @@ lang: en
 >> [!success]- Answer
 >> c) Accessing forums, blogs, and whitepapers
 
+<sub>모듈 [[09-security]], [[11-billing-support]]</sub>
+
 > [!question] Which of the Reserved Instance (RI) pricing models can change the attributes of the RI as long as the exchange results in the creation of RIs of equal or greater value?
 > a) Dedicated RIs
 > b) Scheduled RIs
@@ -248,7 +254,7 @@ lang: en
 >> [!success]- Answer
 >> c) Convertible RIs
 
-<sub>관련: [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/)  |  [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/)  |  [참고](https://aws.amazon.com/ec2/pricing/reserved-instances/)  |  모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] Which AWS feature will reduce the customer's total cost of ownership (TCO)?
 > a) Shared responsibility security model
@@ -257,6 +263,8 @@ lang: en
 > d) Encryption
 >> [!success]- Answer
 >> c) Elastic computing
+
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
 
 > [!question] Which of the following services will automatically scale with an expected increase in web traffic?
 > a) AWS CodePipeline
@@ -308,7 +316,7 @@ lang: en
 >> [!success]- Answer
 >> b) Use loosely coupled components.
 
-<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)</sub>
+<sub>관련: [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  [참고](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] AWS supports which of the following methods to add security to Identity and Access Management (IAM) users? (Select TWO.)
 > a) Implementing Amazon Rekognition
@@ -362,7 +370,7 @@ lang: en
 >> [!success]- Answer
 >> a) Availability Zone
 
-<sub>관련: [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)</sub>
+<sub>관련: [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/global-infrastructure.html)  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Which of the following is a shared control between the customer and AWS?
 > a) Providing a key for Amazon S3 client-side encryption
@@ -382,6 +390,8 @@ lang: en
 >> [!success]- Answer
 >> b) A minimum of two
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] One of the advantages to moving infrastructure from an on-premises data center to the AWS Cloud is:
 > a) it allows the business to eliminate IT bills.
 > b) it allows the business to put a server in each customer's data center.
@@ -389,6 +399,8 @@ lang: en
 > d) it allows the business to leave servers unpatched.
 >> [!success]- Answer
 >> c) it allows the business to focus on business activities.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] What is the lowest-cost, durable storage option for retaining database backups for immediate retrieval?
 > a) Amazon S3
@@ -428,7 +440,7 @@ lang: en
 >> [!success]- Answer
 >> d) Decreased acquisition time for new compute resources
 
-<sub>관련: [참고](https://aws.amazon.com/blogs/enterprise-strategy/risk-is-lack-of-agility/)  |  [참고](https://aws.amazon.com/blogs/enterprise-strategy/risk-is-lack-of-agility/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/blogs/enterprise-strategy/risk-is-lack-of-agility/)  |  [참고](https://aws.amazon.com/blogs/enterprise-strategy/risk-is-lack-of-agility/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which service should a customer use to consolidate and centrally manage multiple AWS accounts?
 > a) AWS IAM
@@ -448,7 +460,7 @@ lang: en
 >> [!success]- Answer
 >> a) Using many instances in parallel
 
-<sub>관련: [참고](https://aws.amazon.com/solutions/case-studies/encoding/)  |  [참고](https://aws.amazon.com/solutions/case-studies/encoding/)</sub>
+<sub>관련: [참고](https://aws.amazon.com/solutions/case-studies/encoding/)  |  [참고](https://aws.amazon.com/solutions/case-studies/encoding/)  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] For which auditing process does AWS have sole responsibility?
 > a) AWS IAM policies
@@ -467,6 +479,8 @@ lang: en
 > d) High availability
 >> [!success]- Answer
 >> b) Global reach
+
+<sub>모듈 [[01-cloud-intro]], [[04-global-infrastructure]]</sub>
 
 > [!question] Which of the following is the customer's responsibility under the AWS shared responsibility model?
 > a) Patching underlying infrastructure
@@ -519,3 +533,5 @@ lang: en
 >> [!success]- Answer
 >> a) Reduced latency to users
 >> c) Data sovereignty compliance
+
+<sub>모듈 [[04-global-infrastructure]]</sub>

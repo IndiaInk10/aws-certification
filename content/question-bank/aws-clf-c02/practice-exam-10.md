@@ -33,6 +33,8 @@ lang: en
 >> [!success]- Answer
 >> c) Three-year, All Upfront, Standard RI pricing.
 
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
+
 > [!question] Which of the following are features of Amazon CloudWatch Logs? (Select TWO)
 > a) Summaries by Amazon Simple Notification Service (Amazon SNS).
 > b) Free Amazon Elasticsearch Service analytics.
@@ -83,6 +85,8 @@ lang: en
 >> [!success]- Answer
 >> c) It is shared between AWS and the customer.
 
+<sub>모듈 [[01-cloud-intro]]</sub>
+
 > [!question] Which security service automatically recognizes and classifies sensitive data or intellectual property on AWS?
 > a) Amazon GuardDuty.
 > b) Amazon Macie.
@@ -103,6 +107,8 @@ lang: en
 >> b) Pay-as-you-go.
 >> e) Variable cost.
 
+<sub>모듈 [[01-cloud-intro]], [[11-billing-support]]</sub>
+
 > [!question] Under the shared responsibility model, which of the following tasks are the responsibility of the AWS customer? (Select TWO)
 > a) Ensuring that application data is encrypted at rest.
 > b) Ensuring that AWS NTP servers are set to the correct time.
@@ -112,6 +118,8 @@ lang: en
 >> [!success]- Answer
 >> a) Ensuring that application data is encrypted at rest.
 >> c) Ensuring that users have received security training in the use of AWS services.
+
+<sub>모듈 [[01-cloud-intro]], [[09-security]]</sub>
 
 > [!question] A customer is using multiple AWS accounts with separate billing. How can the customer take advantage of volume discounts with minimal impact to the AWS resources?
 > a) Create one global AWS account and move all AWS resources to that account.
@@ -163,6 +171,8 @@ lang: en
 >> [!success]- Answer
 >> b) Use loosely coupled components.
 
+<sub>모듈 [[13-well-architected]]</sub>
+
 > [!question] Which benefits are included with the AWS Business Support plan? (Select TWO)
 > a) 24/7 assistance by way of live chat or a telephone call.
 > b) Support from a dedicated AWS Technical Account Manager.
@@ -202,6 +212,8 @@ lang: en
 > d) Standard RIs.
 >> [!success]- Answer
 >> c) Convertible RIs.
+
+<sub>모듈 [[11-billing-support]], [[02-cloud-computing]]</sub>
 
 > [!question] Which service is best for storing common database query results, which helps to alleviate database access load?
 > a) Amazon Machine Learning.
@@ -286,6 +298,8 @@ lang: en
 >> [!success]- Answer
 >> c) It provides the ability to programmatically provision existing resources.
 
+<sub>모듈 [[02-cloud-computing]]</sub>
+
 > [!question] Which AWS services can be used to gather information about AWS account activity? (Select TWO)
 > a) Amazon CloudFront.
 > b) AWS Cloud9.
@@ -368,6 +382,8 @@ lang: en
 >> [!success]- Answer
 >> d) Auto Scaling.
 
+<sub>관련: [[aws-auto-scaling]]  |  모듈 [[02-cloud-computing]]</sub>
+
 > [!question] Which AWS service is a managed NoSQL database?
 > a) Amazon Redshift.
 > b) Amazon DynamoDB.
@@ -386,6 +402,8 @@ lang: en
 >> [!success]- Answer
 >> b) Regions contain Availability Zones.
 
+<sub>모듈 [[04-global-infrastructure]]</sub>
+
 > [!question] What approach to transcoding a large number of individual video files adheres to AWS architecture principles?
 > a) Using many instances in parallel.
 > b) Using a single large instance during off-peak hours.
@@ -393,6 +411,8 @@ lang: en
 > d) Using a large GPU instance type.
 >> [!success]- Answer
 >> a) Using many instances in parallel.
+
+<sub>모듈 [[13-well-architected]]</sub>
 
 > [!question] Which AWS services can host a Microsoft SQL Server database? (Select TWO)
 > a) Amazon EC2.
@@ -423,6 +443,8 @@ lang: en
 > d) Implementing controls to route application traffic.
 >> [!success]- Answer
 >> d) Implementing controls to route application traffic.
+
+<sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] Which AWS support plan includes a dedicated Technical Account Manager?
 > a) Developer.
@@ -501,6 +523,8 @@ lang: en
 > d) Implement elasticity.
 >> [!success]- Answer
 >> c) Design for failure.
+
+<sub>모듈 [[13-well-architected]], [[04-global-infrastructure]]</sub>
 
 > [!question] Which service should a customer use to consolidate and centrally manage multiple AWS accounts?
 > a) AWS IAM.
