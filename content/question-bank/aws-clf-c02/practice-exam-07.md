@@ -497,7 +497,7 @@ lang: en
 
 <sub>모듈 [[01-cloud-intro]]</sub>
 
-> [!question] What can you access by visiting the URL: ?
+> [!question] What can you access by visiting the URL: https://status.aws.amazon.com/ ?
 > a) AWS Billing Dashboard.
 > b) AWS Cost Dashboard.
 > c) AWS Service Health Dashboard.
@@ -534,9 +534,9 @@ lang: en
 > [!question] A company is migrating production workloads to AWS, and they are concerned about cost management across different departments. Which option should the company implement to categorize and track AWS spending?
 > a) Use the AWS Pricing Calculator service to monitor the costs incurred by each department.
 > b) Use Amazon Aurora to forecast AWS spending based on usage.
-> c) Apply cost allocation tags to segment AWS costs by different e projects and departments.
+> c) Apply cost allocation tags to segment AWS costs by different projects and departments.
 > d) Configure AWS Price List API to receive billing updates for each department automatically.
 >> [!success]- Answer
->> c) Apply cost allocation tags to segment AWS costs by different e projects and departments.
+>> c) Apply cost allocation tags to segment AWS costs by different projects and departments.
 
 <sub>관련: [[amazon-aurora]] · [[aws-pricing-calculator]]  |  모듈 [[07-databases]], [[11-billing-support]]</sub>

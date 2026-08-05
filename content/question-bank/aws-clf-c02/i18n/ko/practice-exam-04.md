@@ -10,7 +10,7 @@ exam: 4
   순서를 바꾸거나 문항을 빼면 원문과 어긋나므로 그대로 두세요.
 -->
 
-> [!question] 한 개발자가 HTTPS 프로토콜을 사용하기 위해 고객의 전자 상거래 웹 사이트에 SSL 보안 인증서를 설정해야 한다. 다음 중 필요한 SSL 서버 인증서를 배포하는 데 사용할 수 있는 AWS 서비스는 무엇인가? (2개 선택)
+> [!question] 한 개발자가 HTTPS 프로토콜을 사용하기 위해 고객의 전자상거래 웹 사이트에 SSL 보안 인증서를 설정해야 한다. 다음 중 필요한 SSL 서버 인증서를 배포하는 데 사용할 수 있는 AWS 서비스는 무엇인가? (2개 선택)
 > a) Amazon Route 53.
 > b) AWS ACM.
 > c) AWS Directory Service.
@@ -40,7 +40,7 @@ exam: 4
 >> b) 용량 관리.
 >> d) 운영 체제 유지 관리.
 
-> [!question] ELB는 애플리케이션의 안정성을 어떻게 개선하는가?
+> [!question] ELB는 애플리케이션의 신뢰성을 어떻게 개선하는가?
 > a) 여러 S3 버킷에 트래픽을 분산함으로써.
 > b) 여러 가용 영역에 데이터를 복제함으로써.
 > c) 데이터베이스 읽기 전용 복제본을 생성함으로써.
@@ -80,7 +80,7 @@ exam: 4
 >> [!success]- Answer
 >> c) AWS IAM.
 
-> [!question] AWS Support Concierge 서비스가 포함된 지원 플랜은 무엇인가?
+> [!question] AWS Support Concierge 서비스가 포함된 AWS Support 플랜은 무엇인가?
 > a) Premium Support.
 > b) Business Support.
 > c) Enterprise Support.
@@ -193,10 +193,10 @@ exam: 4
 > [!question] 한 회사가 최근 AWS 계정에 적용된 비용을 분석하려고 한다. 다음 중 AWS 비용 및 사용량에 대해 가장 세분화된 데이터를 제공하는 것은 무엇인가?
 > a) Amazon Machine Image.
 > b) AWS Cost Explorer.
-> c) AWS Cost & Usage Report.
+> c) AWS Cost and Usage Report.
 > d) Amazon CloudWatch.
 >> [!success]- Answer
->> c) AWS Cost & Usage Report.
+>> c) AWS Cost and Usage Report.
 
 > [!question] AWS 리전의 개념을 가장 잘 설명한 것은 무엇인가?
 > a) AWS 리전은 엣지 로케이션의 모음이 있는 지리적 위치이다.
@@ -234,18 +234,18 @@ exam: 4
 >> a) 특정 프로젝트에 속한 리소스를 빠르게 식별한다.
 >> e) 여러 리소스에 걸친 AWS 지출을 추적한다.
 
-> [!question] AWS 공유 통제란 무엇인가?
-> a) AWS 서비스 내에 배포하는 애플리케이션에 따라 전적으로 고객의 책임이 되는 통제.
-> b) 고객이 AWS로부터 상속받는 통제.
-> c) 인프라 계층과 고객 계층 모두에 적용되는 통제.
-> d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 통제.
+> [!question] AWS 공동 제어란 무엇인가?
+> a) AWS 서비스 내에 배포하는 애플리케이션에 따라 전적으로 고객의 책임이 되는 제어.
+> b) 고객이 AWS로부터 상속받는 제어.
+> c) 인프라 계층과 고객 계층 모두에 적용되는 제어.
+> d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 제어.
 >> [!success]- Answer
->> d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 통제.
+>> d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 제어.
 
 > [!question] 다음 중 AWS의 성능 효율성과 관련된 설계 원칙은 무엇인가? (2개 선택)
 > a) 글로벌 고객에게 더 나은 서비스를 제공하기 위해 다중 리전 아키텍처를 구축한다.
 > b) 모든 계층에 보안을 적용한다.
-> c) 강력한 자격 증명 및 액세스 통제를 구현한다.
+> c) 강력한 자격 증명 및 액세스 제어를 구현한다.
 > d) 서버리스 아키텍처를 사용한다.
 > e) 감사 로깅을 활성화한다.
 >> [!success]- Answer
@@ -316,11 +316,11 @@ exam: 4
 
 > [!question] TYMO Cloud Corp는 온프레미스 데이터 센터 전체를 AWS로 마이그레이션하기를 기대하고 있다. AWS 클라우드로 이전하는 것에 대한 비용 편익 분석을 수행하기 위해 어떤 도구를 사용할 수 있는가?
 > a) AWS Cost Explorer.
-> b) AWS TCO Calculator.
+> b) AWS 총 소유 비용(TCO) 계산기.
 > c) AWS Budgets.
 > d) AWS Pricing Calculator.
 >> [!success]- Answer
->> b) AWS TCO Calculator.
+>> b) AWS 총 소유 비용(TCO) 계산기.
 
 > [!question] 다음 중 AWS Well-Architected Framework의 운영 우수성 원칙을 지원하는 활동은 무엇인가?
 > a) AWS Trusted Advisor를 사용하여 충분히 활용되지 않는 리소스를 찾는다.

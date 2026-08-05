@@ -85,7 +85,7 @@ exam: 13
 > b) 공동 보안 모델
 > c) 탄력성
 > d) 종량제 요금
-> e) 안정성
+> e) 신뢰성
 >> [!success]- Answer
 >> c) 탄력성
 >> d) 종량제 요금
@@ -158,7 +158,7 @@ exam: 13
 > b) 모든 계정에서 기본적으로 증가하는 서비스 한도
 > c) 월 청구서에 대한 고정 할인
 > d) 모든 계정의 사용량이 합산되므로 발생할 수 있는 볼륨 할인
-> e) 마스터 계정의 AWS 지원 플랜이 모든 계정으로 자동 확장됨
+> e) 마스터 계정의 AWS Support 플랜이 모든 계정으로 자동으로 확대 적용됨
 >> [!success]- Answer
 >> a) 여러 계정에 대해 하나의 청구서를 받을 수 있는 기능
 >> d) 모든 계정의 사용량이 합산되므로 발생할 수 있는 볼륨 할인
@@ -187,7 +187,7 @@ exam: 13
 >> [!success]- Answer
 >> b) 사용자를 위해 지연 시간을 낮추고 성능을 개선하는 데 도움이 된다.
 
-> [!question] 다음 중 Amazon Storage Service(Amazon S3) 버킷 액세스를 특정 사용자로 제한할 수 있는 것은 무엇인가?
+> [!question] 다음 중 Amazon Simple Storage Service(Amazon S3) 버킷 액세스를 특정 사용자로 제한할 수 있는 것은 무엇인가?
 > a) 퍼블릭 및 프라이빗 키 페어
 > b) Amazon Inspector
 > c) AWS Identity and Access Management(IAM) 정책
@@ -254,7 +254,7 @@ exam: 13
 >> c) 애플리케이션이 단일 구성 요소의 장애를 수용하도록 설계되었는지 확인한다.
 
 > [!question] 모범 사례에 따르면 애플리케이션은 AWS 클라우드에서 실행되도록 어떻게 설계되어야 하는가?
-> a) 밀접하게 결합된 구성 요소를 사용한다.
+> a) 긴밀하게 결합된 구성 요소를 사용한다.
 > b) 느슨하게 결합된 구성 요소를 사용한다.
 > c) 드물게 결합된 구성 요소를 사용한다.
 > d) 자주 결합된 구성 요소를 사용한다.
@@ -281,9 +281,9 @@ exam: 13
 >> b) Amazon RDS
 >> e) Amazon EFS
 
-> [!question] Amazon Relational Database Service(Amazon RDS)의 장점 중 하나는 무엇인가?
+> [!question] Amazon Relational Database Service(Amazon RDS)의 이점 중 하나는 무엇인가?
 > a) 관계형 데이터베이스 관리 작업을 단순화한다.
-> b) 99.99999999999%의 안정성과 내구성을 제공한다.
+> b) 99.99999999999%의 신뢰성과 내구성을 제공한다.
 > c) 부하에 맞게 데이터베이스를 자동으로 확장한다.
 > d) 사용자가 CPU 및 RAM 리소스를 동적으로 조정할 수 있게 한다.
 >> [!success]- Answer
@@ -309,9 +309,9 @@ exam: 13
 > a) Amazon S3 클라이언트 측 암호화를 위한 키 제공
 > b) Amazon EC2 인스턴스의 구성
 > c) 물리적 AWS 데이터 센터의 환경 제어
-> d) 인식 및 교육
+> d) 인지 및 교육
 >> [!success]- Answer
->> d) 인식 및 교육
+>> d) 인지 및 교육
 
 > [!question] 고가용성을 달성하기 위해 컴퓨팅 리소스는 몇 개의 가용 영역에 걸쳐 프로비저닝되어야 하는가?
 > a) 최소 1개
@@ -321,7 +321,7 @@ exam: 13
 >> [!success]- Answer
 >> b) 최소 2개
 
-> [!question] 온프레미스 데이터 센터에서 AWS 클라우드로 인프라를 이전하는 것의 장점 중 하나는 다음과 같다:
+> [!question] 온프레미스 데이터 센터에서 AWS 클라우드로 인프라를 이전하는 것의 이점 중 하나는 다음과 같다:
 > a) 비즈니스가 IT 청구서를 없앨 수 있게 해 준다.
 > b) 비즈니스가 각 고객의 데이터 센터에 서버를 둘 수 있게 해 준다.
 > c) 비즈니스가 비즈니스 활동에 집중할 수 있게 해 준다.
@@ -405,7 +405,7 @@ exam: 13
 > a) 하나의 글로벌 AWS 계정을 생성하고 모든 AWS 리소스를 해당 계정으로 이동한다.
 > b) 3년 예약 인스턴스 요금을 선결제로 신청한다.
 > c) AWS Organizations의 통합 결제 기능을 사용한다.
-> d) 볼륨 할인을 받기 위해 AWS Enterprise 지원 플랜에 가입한다.
+> d) 볼륨 할인을 받기 위해 AWS Enterprise Support 플랜에 가입한다.
 >> [!success]- Answer
 >> c) AWS Organizations의 통합 결제 기능을 사용한다.
 

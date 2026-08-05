@@ -27,9 +27,9 @@ lang: en
 > a) AWS Config
 > b) Amazon Route 53
 > c) AWS Direct Connect
-> d) Amazon Virtual Private Cloud (Amazon VPC.
+> d) Amazon Virtual Private Cloud (Amazon VPC).
 >> [!success]- Answer
->> d) Amazon Virtual Private Cloud (Amazon VPC.
+>> d) Amazon Virtual Private Cloud (Amazon VPC).
 
 <sub>관련: [[amazon-vpc]] · [[amazon-route-53]] · [[aws-direct-connect]] · [[aws-config]]  |  모듈 [[05-networking]], [[10-monitoring-governance]]  |  [참고](https://aws.amazon.com/vpc/)</sub>
 
@@ -47,7 +47,7 @@ lang: en
 > a) AWS Regions
 > b) AWS edge locations
 > c) AWS Availability Zones
-> d) Amazon Virtual Private Cloud (Amazon VPC.
+> d) Amazon Virtual Private Cloud (Amazon VPC).
 >> [!success]- Answer
 >> b) AWS edge locations
 
@@ -364,12 +364,12 @@ lang: en
 <sub>관련: [[amazon-ec2]] · [[amazon-vpc]]  |  모듈 [[02-cloud-computing]], [[05-networking]]</sub>
 
 > [!question] Which AWS service can be used to automatically scale an application up and down without making capacity planning decisions?
-> a) Amazon AutoScaling
+> a) Amazon EC2 Auto Scaling
 > b) Amazon Redshift
 > c) AWS CloudTrail
 > d) AWS Lambda
 >> [!success]- Answer
->> a) Amazon AutoScaling
+>> a) Amazon EC2 Auto Scaling
 
 <sub>관련: [[amazon-ec2-auto-scaling]] · [[aws-lambda]] · [[amazon-redshift]] · [[aws-cloudtrail]]  |  모듈 [[02-cloud-computing]], [[03-compute-services]], [[08-ai-ml-analytics]], [[10-monitoring-governance]]  |  [참고](https://aws.amazon.com/blogs/aws/category/auto-scaling/)</sub>
 
@@ -499,7 +499,8 @@ lang: en
 
 <sub>관련: [[amazon-s3]]  |  모듈 [[06-storage]]  |  [참고](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication.html)</sub>
 
-> [!question] What is a user responsible for when running an application in the AWS Cloud? - A. Managing physical hardware
+> [!question] What is a user responsible for when running an application in the AWS Cloud?
+> a) Managing physical hardware
 > b) Updating the underlying hypervisor
 > c) Providing a list of users approved for data center access
 > d) Managing application software updates

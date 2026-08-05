@@ -39,7 +39,7 @@ exam: 17
 >> d) 네트워크 인프라 관리
 
 > [!question] AWS에서 새 프로젝트를 실행하는 비용을 추정하는 데 사용해야 하는 서비스는 무엇인가?
-> a) AWS TCO Calculator
+> a) AWS 총 소유 비용(TCO) 계산기
 > b) AWS Simple Monthly Calculator
 > c) AWS Cost Explorer API
 > d) AWS Budgets
@@ -151,7 +151,7 @@ exam: 17
 > [!question] 한 회사가 Amazon EC2 리소스의 CPU 사용률을 모니터링하려고 한다. 이 회사가 사용해야 하는 AWS 서비스는 무엇인가?
 > a) AWS CloudTrail
 > b) Amazon CloudWatch
-> c) AWS 비용 및 사용 보고서
+> c) AWS Cost and Usage Report
 > d) Amazon Simple Notification Service(Amazon SNS)
 >> [!success]- Answer
 >> b) Amazon CloudWatch
@@ -255,17 +255,17 @@ exam: 17
 > [!question] 기존 호스팅 환경에서 웹 애플리케이션을 실행하는 비용과 AWS에서 실행하는 비용을 비교하는 데 사용할 수 있는 도구는 무엇인가?
 > a) AWS Cost Explorer
 > b) AWS Budgets
-> c) AWS 비용 및 사용 보고서
+> c) AWS Cost and Usage Report
 > d) AWS 총 소유 비용(TCO) 계산기
 >> [!success]- Answer
 >> d) AWS 총 소유 비용(TCO) 계산기
 
-> [!question] Amazon EC2에 타사 소프트웨어를 설치하는 대신 AWS Marketplace의 타사 소프트웨어를 사용하는 것의 가치는 무엇인가? (2개 선택)
+> [!question] Amazon EC2에 서드 파티 소프트웨어를 설치하는 대신 AWS Marketplace의 서드 파티 소프트웨어를 사용하는 것의 가치는 무엇인가? (2개 선택)
 > a) 사용자는 라이선스에 따라 시간당 또는 월별로 소프트웨어 비용을 지불한다.
 > b) AWS Marketplace를 사용하면 사용자가 1-Click으로 애플리케이션을 시작할 수 있다.
-> c) AWS Marketplace 데이터 암호화는 타사 공급업체가 관리한다.
+> c) AWS Marketplace 데이터 암호화는 서드 파티 공급업체가 관리한다.
 > d) AWS Marketplace는 최신 소프트웨어 버전으로 업그레이드할 필요를 없애 준다.
-> e) 사용자는 테스트 없이 타사 소프트웨어를 배포할 수 있다.
+> e) 사용자는 테스트 없이 서드 파티 소프트웨어를 배포할 수 있다.
 >> [!success]- Answer
 >> a) 사용자는 라이선스에 따라 시간당 또는 월별로 소프트웨어 비용을 지불한다.
 >> b) AWS Marketplace를 사용하면 사용자가 1-Click으로 애플리케이션을 시작할 수 있다.
@@ -330,7 +330,7 @@ exam: 17
 
 > [!question] 한 사용자가 AWS에서 애플리케이션을 실행하던 중 하나 이상의 AWS 소유 IP 주소가 분산 서비스 거부(DDoS) 공격에 관여하고 있음을 발견했다. 이 상황에 대해 사용자가 가장 먼저 연락해야 하는 곳은 어디인가?
 > a) AWS Premium Support
-> b) AWS 기술 계정 관리자
+> b) 기술 계정 관리자
 > c) AWS 솔루션스 아키텍트
 > d) AWS Abuse 팀
 >> [!success]- Answer
@@ -358,7 +358,7 @@ exam: 17
 > a) AWS 사용 방법에 대한 권장 사항과 모범 사례를 제공하는 AWS 직원이다.
 > b) AWS 사용 방법에 대한 권장 사항과 모범 사례를 제공하는 AWS 파트너 네트워크이다.
 > c) 비용 최적화, 성능, 보안에 대한 권장 사항을 제공하는 자동화된 검사 세트를 갖춘 온라인 도구이다.
-> d) 비용 최적화, 성능, 보안에 대한 권장 사항을 제공하는 AWS 기술 계정 관리자의 다른 이름이다.
+> d) 비용 최적화, 성능, 보안에 대한 권장 사항을 제공하는 기술 계정 관리자의 다른 이름이다.
 >> [!success]- Answer
 >> c) 비용 최적화, 성능, 보안에 대한 권장 사항을 제공하는 자동화된 검사 세트를 갖춘 온라인 도구이다.
 
@@ -380,7 +380,7 @@ exam: 17
 
 > [!question] 전 세계 여러 국가에 고객을 둔 회사가 AWS 클라우드를 사용하는 것의 이점은 무엇인가? (2개 선택)
 > a) 회사는 지연 시간을 줄이기 위해 여러 AWS 리전에 애플리케이션을 배포할 수 있다.
-> b) Amazon Translate는 타사 웹 사이트 인터페이스를 여러 언어로 자동 번역한다.
+> b) Amazon Translate는 서드 파티 웹 사이트 인터페이스를 여러 언어로 자동 번역한다.
 > c) Amazon CloudFront는 지연 시간을 줄이기 위해 전 세계에 여러 엣지 로케이션을 두고 있다.
 > d) Amazon Comprehend를 사용하면 사용자가 여러 언어로 사용자 요청에 응답할 수 있는 애플리케이션을 구축할 수 있다.
 > e) Elastic Load Balancing은 애플리케이션 웹 트래픽을 전 세계 여러 AWS 리전에 분산할 수 있으며, 이는 지연 시간을 줄여 준다.

@@ -44,7 +44,7 @@ exam: 6
 >> [!success]- Answer
 >> a) AWS CloudFormation.
 
-> [!question] 다음 중 클라우드 컴퓨팅 공급자로서 AWS를 사용할 때의 장점은 무엇인가? (2개 선택)
+> [!question] 다음 중 클라우드 컴퓨팅 공급자로서 AWS를 사용할 때의 이점은 무엇인가? (2개 선택)
 > a) 서버와 애플리케이션을 모니터링할 필요를 없앤다.
 > b) 모든 규정 준수 및 감사 작업을 관리한다.
 > c) 모든 사양을 충족하는 사용자 지정 하드웨어를 제공한다.
@@ -100,7 +100,7 @@ exam: 6
 
 > [!question] DevOps 팀에 AWS 계정의 모든 리소스에 대한 전체 관리자 액세스 권한을 부여해야 하는 요구 사항이 있다. 누가 이러한 권한을 부여할 수 있는가?
 > a) AWS 계정 소유자.
-> b) AWS 기술 계정 관리자.
+> b) 기술 계정 관리자.
 > c) AWS 보안 팀.
 > d) AWS 클라우드 지원 엔지니어.
 >> [!success]- Answer
@@ -140,7 +140,7 @@ exam: 6
 >> [!success]- Answer
 >> a) CloudEndure Disaster Recovery.
 
-> [!question] 다음 중 액세스 패턴이 안정적인 인기 전자 상거래 웹 사이트의 정적 자산을 호스팅하는 데 가장 적합한 S3 스토리지 클래스는 무엇인가?
+> [!question] 다음 중 액세스 패턴이 안정적인 인기 전자상거래 웹 사이트의 정적 자산을 호스팅하는 데 가장 적합한 S3 스토리지 클래스는 무엇인가?
 > a) S3 Standard-IA.
 > b) S3 Intelligent-Tiering.
 > c) S3 Glacier Deep Archive.
@@ -248,7 +248,7 @@ exam: 6
 >> [!success]- Answer
 >> c) AWS가 성장함에 따라 비용을 지속적으로 낮춘다는 의미이다.
 
-> [!question] 한 회사가 반짝 세일을 진행할 때 전자 상거래 웹 사이트의 트래픽 패턴에 변동을 겪고 있다. 반짝 세일 중 트래픽 급증을 처리하는 데 필요한 컴퓨팅 용량을 동적으로 맞추는 데 도움이 되는 서비스는 무엇인가?
+> [!question] 한 회사가 반짝 세일을 진행할 때 전자상거래 웹 사이트의 트래픽 패턴에 변동을 겪고 있다. 반짝 세일 중 트래픽 급증을 처리하는 데 필요한 컴퓨팅 용량을 동적으로 맞추는 데 도움이 되는 서비스는 무엇인가?
 > a) AWS Auto Scaling.
 > b) Amazon Elastic Compute Cloud.
 > c) Amazon Elastic File System.
@@ -268,9 +268,9 @@ exam: 6
 > a) AWS Cost Explorer.
 > b) AWS Pricing Calculator.
 > c) AWS Budgets.
-> d) AWS TCO Calculator.
+> d) AWS 총 소유 비용(TCO) 계산기.
 >> [!success]- Answer
->> d) AWS TCO Calculator.
+>> d) AWS 총 소유 비용(TCO) 계산기.
 
 > [!question] 다음 중 규정 준수와 취약점에 대한 실시간 감사를 제공하는 서비스는 무엇인가? (2개 선택)
 > a) AWS Config.
@@ -329,10 +329,10 @@ exam: 6
 > [!question] CTO가 EBS와 관련된 안내를 요청하기 위해 채팅 기능을 사용하여 AWS Support에 문의하도록 요청했다. 그러나 AWS Support Center를 열었을 때 채팅을 통해 지원에 문의하는 방법이 보이지 않는다. 어떻게 해야 하는가?
 > a) AWS Support에는 채팅 기능이 없다.
 > b) 채팅 기능은 추가 요금으로 모든 플랜에서 사용할 수 있지만 먼저 요청해야 한다.
-> c) 최소한 Business 지원 플랜으로 업그레이드해야 한다.
-> d) Basic 지원 플랜에서 Developer 지원으로 업그레이드해야 한다.
+> c) 최소한 Business Support 플랜으로 업그레이드해야 한다.
+> d) Basic Support 플랜에서 Developer Support로 업그레이드해야 한다.
 >> [!success]- Answer
->> c) 최소한 Business 지원 플랜으로 업그레이드해야 한다.
+>> c) 최소한 Business Support 플랜으로 업그레이드해야 한다.
 
 > [!question] 한 개발자가 AWS 클라우드에서 애플리케이션을 신속하게 배포하고 관리하려고 하지만 클라우드 컴퓨팅 경험이 전혀 없다. 다음 중 이 개발자가 목표를 달성하는 데 도움이 되는 AWS 서비스는 무엇인가?
 > a) AWS Fargate.

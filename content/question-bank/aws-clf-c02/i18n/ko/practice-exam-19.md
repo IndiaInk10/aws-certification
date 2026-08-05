@@ -26,9 +26,9 @@ exam: 19
 > a) AWS Config
 > b) Amazon Route 53
 > c) AWS Direct Connect
-> d) Amazon Virtual Private Cloud (Amazon VPC.
+> d) Amazon Virtual Private Cloud(Amazon VPC).
 >> [!success]- Answer
->> d) Amazon Virtual Private Cloud (Amazon VPC.
+>> d) Amazon Virtual Private Cloud(Amazon VPC).
 
 > [!question] 다음 중 AWS 공동 책임 모델에서 AWS의 책임에 해당하는 것은 무엇인가?
 > a) 서드 파티 애플리케이션 구성
@@ -42,41 +42,41 @@ exam: 19
 > a) AWS 리전
 > b) AWS 엣지 로케이션
 > c) AWS 가용 영역
-> d) Amazon Virtual Private Cloud (Amazon VPC.
+> d) Amazon Virtual Private Cloud(Amazon VPC).
 >> [!success]- Answer
 >> b) AWS 엣지 로케이션
 
 > [!question] 시스템 관리자가 사용자의 AWS Management Console에 로그인 보안 계층을 추가로 적용하려면 어떻게 해야 하는가?
 > a) AWS Cloud Directory를 사용한다
 > b) AWS Identity and Access Management(IAM) 역할을 감사한다
-> c) 다중 인증(MFA)을 활성화한다
+> c) 다중 인증을 활성화한다
 > d) AWS CloudTrail을 활성화한다
 >> [!success]- Answer
->> c) 다중 인증(MFA)을 활성화한다
+>> c) 다중 인증을 활성화한다
 
 > [!question] Amazon Elastic Compute Cloud(Amazon EC2) 인스턴스가 종료되었을 때 해당 API 호출을 수행한 사용자를 식별할 수 있는 서비스는 무엇인가?
 > a) Amazon CloudWatch
 > b) AWS CloudTrail
 > c) AWS X-Ray
-> d) AWS Identity and Access Management (AWS IAM)
+> d) AWS Identity and Access Management(AWS IAM)
 >> [!success]- Answer
 >> b) AWS CloudTrail
 
 > [!question] Amazon CloudWatch 경보를 기반으로 알림을 전송하는 데 사용하는 서비스는 무엇인가?
-> a) Amazon Simple Notification Service (Amazon SNS)
+> a) Amazon Simple Notification Service(Amazon SNS)
 > b) AWS CloudTrail
 > c) AWS Trusted Advisor
 > d) Amazon Route 53
 >> [!success]- Answer
->> a) Amazon Simple Notification Service (Amazon SNS)
+>> a) Amazon Simple Notification Service(Amazon SNS)
 
 > [!question] 고객이 AWS 인프라에서 금지된 행위에 대한 정보를 확인할 수 있는 곳은 어디인가?
 > a) AWS Trusted Advisor
-> b) AWS Identity and Access Management (IAM)
+> b) AWS Identity and Access Management(IAM)
 > c) AWS Billing Console
-> d) AWS 이용 정책(Acceptable Use Policy)
+> d) AWS 이용 목적 제한 방침(AWS Acceptable Use Policy)
 >> [!success]- Answer
->> d) AWS 이용 정책(Acceptable Use Policy)
+>> d) AWS 이용 목적 제한 방침(AWS Acceptable Use Policy)
 
 > [!question] 다음 중 AWS 클라우드로 이전함으로써 초기 비용이 절감되는 방식의 예는 무엇인가?
 > a) 큰 변동 비용을 더 낮은 자본 투자로 대체함으로써
@@ -90,7 +90,7 @@ exam: 19
 > a) Amazon EC2 인스턴스에 대한 AWS Auto Scaling
 > b) 서비스의 상태를 확인하기 위한 Amazon VPC 서브넷 ACL
 > c) 여러 가용 영역에 분산된 리소스
-> d) Amazon EC2 인스턴스를 다른 리전으로 이동하기 위한 AWS Server Migration Service (AWS SMS)
+> d) Amazon EC2 인스턴스를 다른 리전으로 이동하기 위한 AWS Server Migration Service(AWS SMS)
 > e) 여러 AWS 접속 지점(point of presence)에 분산된 리소스
 >> [!success]- Answer
 >> a) Amazon EC2 인스턴스에 대한 AWS Auto Scaling
@@ -116,7 +116,7 @@ exam: 19
 
 > [!question] 한 회사가 온프레미스 데이터 센터에서 AWS 클라우드로 마이그레이션하고 있으며 해당 프로젝트에 대한 실무 지원을 찾고 있다. 이 회사는 어떻게 이러한 지원을 받을 수 있는가? (2개 선택)
 > a) 회사의 AWS 계정으로 마이그레이션을 수행하도록 AWS Marketplace 팀에 견적을 요청한다.
-> b) AWS Support에 문의하여 지원 케이스를 연다
+> b) AWS Support에 문의하여 지원 사례를 연다
 > c) AWS Professional Services를 사용하여 지침을 제공받고 회사의 AWS 계정에 AWS Landing Zone을 설정한다
 > d) 마이그레이션을 지원할 파트너를 AWS Partner Network(APN)에서 선택한다
 > e) Amazon Connect를 사용하여 AWS 클라우드로의 마이그레이션에 대한 전문가 지원을 요청하는 새로운 제안 요청서(RFP)를 작성한다.
@@ -128,7 +128,7 @@ exam: 19
 > a) 애플리케이션 개발 지원
 > b) 아키텍처 지침 제공
 > c) 결제 및 계정 문의에 대한 답변
-> d) 기술 지원 케이스에 관한 질문에 대한 답변
+> d) 기술 지원 사례에 관한 질문에 대한 답변
 >> [!success]- Answer
 >> c) 결제 및 계정 문의에 대한 답변
 
@@ -172,7 +172,7 @@ exam: 19
 >> [!success]- Answer
 >> b) AWS IP 주소에서 침입 시도가 이루어진다
 
-> [!question] 한 회사가 전 세계 사용자를 대상으로 단일 AWS 리전에서 전자상거래 사이트를 시작할 계획이다. 회사가 사용자에게 도달하고 낮은 지연 시간과 높은 전송 속도를 제공할 수 있게 해 주는 AWS 서비스는 무엇인가? (2개 선택)
+> [!question] 한 회사가 전 세계 사용자 기반을 대상으로 단일 AWS 리전에서 전자상거래 사이트를 시작할 계획이다. 이 회사가 사용자에게 도달하고 짧은 지연 시간과 빠른 전송 속도를 제공할 수 있게 해 주는 AWS 서비스는 무엇인가? (2개 선택)
 > a) Application Load Balancer
 > b) AWS Global Accelerator
 > c) AWS Direct Connect
@@ -211,11 +211,11 @@ exam: 19
 > [!question] 다음 중 AWS Management Console에 대한 액세스 보안을 강화하는 것은 무엇인가? (2개 선택)
 > a) AWS Secrets Manager
 > b) AWS Certificate Manager
-> c) AWS 다중 인증 (AWS MFA)
+> c) AWS 다중 인증(AWS MFA)
 > d) 보안 그룹
 > e) 암호 정책
 >> [!success]- Answer
->> c) AWS 다중 인증 (AWS MFA)
+>> c) AWS 다중 인증(AWS MFA)
 >> e) 암호 정책
 
 > [!question] AWS Trusted Advisor 검사에는 다음 중 무엇에 관한 권장 사항이 포함되는가? (2개 선택)
@@ -258,11 +258,11 @@ exam: 19
 
 > [!question] 한 사용자가 Amazon RDS DB 인스턴스를 여러 가용 영역에 배포한다. 이 전략은 AWS Well-Architected Framework의 어떤 원칙과 관련되는가?
 > a) 성능 효율성
-> b) 안정성
+> b) 신뢰성
 > c) 비용 최적화
 > d) 보안
 >> [!success]- Answer
->> b) 안정성
+>> b) 신뢰성
 
 > [!question] 사용자에게 AWS 클라우드와 온프레미스 리소스 간의 연결을 제공하는 AWS 서비스는 무엇인가? (2개 선택)
 > a) AWS VPN
@@ -299,12 +299,12 @@ exam: 19
 >> d) VPC 흐름 로그
 
 > [!question] 용량 계획에 대한 결정을 내리지 않고 애플리케이션을 자동으로 확장 및 축소하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
-> a) Amazon AutoScaling
+> a) Amazon EC2 Auto Scaling
 > b) Amazon Redshift
 > c) AWS CloudTrail
 > d) AWS Lambda
 >> [!success]- Answer
->> a) Amazon AutoScaling
+>> a) Amazon EC2 Auto Scaling
 
 > [!question] AWS Enterprise Support 사용자는 다른 AWS Support 플랜 사용자에게는 제공되지 않는 어떤 서비스 또는 기능에 액세스할 수 있는가?
 > a) AWS Trusted Advisor
@@ -341,11 +341,11 @@ exam: 19
 > [!question] 데이터를 암호화하는 데 사용할 수 있는 암호화 키를 생성하는 방법을 제공하는 AWS 서비스는 무엇인가? (2개 선택)
 > a) Amazon Macie
 > b) AWS Certificate Manager
-> c) AWS Key Management Service (AWS KMS)
+> c) AWS Key Management Service(AWS KMS)
 > d) AWS Secrets Manager
 > e) AWS CloudHSM
 >> [!success]- Answer
->> c) AWS Key Management Service (AWS KMS)
+>> c) AWS Key Management Service(AWS KMS)
 >> e) AWS CloudHSM
 
 > [!question] 한 회사가 온프레미스에서 AWS 클라우드로 마이그레이션할 계획이다. 마이그레이션 후 예상되는 비용 절감에 대한 상세 보고서를 제공하는 AWS 도구 또는 서비스는 무엇인가?
@@ -360,16 +360,16 @@ exam: 19
 > a) AWS Trusted Advisor
 > b) AWS Professional Services
 > c) AWS Systems Manager
-> d) AWS Partner Network (APN)
+> d) AWS Partner Network(APN)
 > e) AWS Secrets Manager
 >> [!success]- Answer
 >> b) AWS Professional Services
->> d) AWS Partner Network (APN)
+>> d) AWS Partner Network(APN)
 
 > [!question] AWS 클라우드 내에서 전용 하드웨어 어플라이언스를 사용함으로써 사용자가 데이터 보안에 대한 계약상 및 규제상의 규정 준수 요구 사항을 충족하는 데 도움이 되는 AWS 서비스는 무엇인가?
 > a) AWS Secrets Manager
 > b) AWS CloudHSM
-> c) AWS Key Management Service (AWS KMS)
+> c) AWS Key Management Service(AWS KMS)
 > d) AWS Directory Service
 >> [!success]- Answer
 >> b) AWS CloudHSM
@@ -408,8 +408,9 @@ exam: 19
 >> [!success]- Answer
 >> c) 교차 리전 복제로 구성된 S3 버킷은 단일 AWS 계정이 소유하거나 서로 다른 계정이 소유할 수 있다
 
-> [!question] AWS 클라우드에서 애플리케이션을 실행할 때 사용자가 책임지는 것은 무엇인가? - A. 물리적 하드웨어 관리
-> b) 기본 하이퍼바이저 업데이트
+> [!question] AWS 클라우드에서 애플리케이션을 실행할 때 사용자가 책임지는 것은 무엇인가?
+> a) 물리적 하드웨어 관리
+> b) 기반 하이퍼바이저 업데이트
 > c) 데이터 센터 액세스가 승인된 사용자 목록 제공
 > d) 애플리케이션 소프트웨어 업데이트 관리
 >> [!success]- Answer
@@ -419,18 +420,18 @@ exam: 19
 > a) 탄력성
 > b) 고가용성
 > c) 민첩성
-> d) 안정성
+> d) 신뢰성
 >> [!success]- Answer
 >> c) 민첩성
 
 > [!question] AWS 계정의 비용과 지출을 모니터링하는 데 사용할 수 있는 기능 또는 서비스는 무엇인가? (2개 선택)
-> a) AWS 비용 및 사용 보고서
+> a) AWS Cost and Usage Report
 > b) AWS 제품 페이지
 > c) AWS Simple Monthly Calculator
 > d) 결제 알림 및 Amazon CloudWatch 경보
 > e) AWS Price List API
 >> [!success]- Answer
->> a) AWS 비용 및 사용 보고서
+>> a) AWS Cost and Usage Report
 >> d) 결제 알림 및 Amazon CloudWatch 경보
 
 > [!question] Amazon Route 53은 사용자가 다음 중 무엇을 할 수 있게 해 주는가?

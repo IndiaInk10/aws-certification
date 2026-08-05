@@ -11,7 +11,7 @@ exam: 0
   정답 블록은 파서가 문항을 인식하기 위해 필요하며, 실제 채점은 원문 기준입니다.
 -->
 
-> [!question] A company has customers in several countries around the world. What is a benefit of using the AWS Cloud for this company?
+> [!question] A company has customers in several countries around the world. What is a benefit of using the AWS Cloud for this company? (Choose two.)
 > a) Elastic Load Balancing can distribute application web traffic to multiple AWS Regions around the world to reduce latency.
 > b) Amazon CloudFront has multiple edge locations around the world to reduce latency.
 > c) Amazon Translate automatically translates third-party website interfaces into multiple languages.

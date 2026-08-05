@@ -432,12 +432,12 @@ lang: en
 > [!question] The AWS Cost Management tools give users the ability to do which of the following? (Choose two.)
 > a) Terminate all AWS resources automatically if budget thresholds are exceeded.
 > b) Break down AWS costs by day, service, and linked AWS account.
-> c) Create budgets and receive notifications if current of forecasted usage exceeds the budgets.
+> c) Create budgets and receive notifications if current or forecasted usage exceeds the budgets.
 > d) Switch automatically to Reserved Instances or Spot Instances, whichever is most cost-effective.
 > e) Move data stored in Amazon S3 to a more cost-effective storage class.
 >> [!success]- Answer
 >> b) Break down AWS costs by day, service, and linked AWS account.
->> c) Create budgets and receive notifications if current of forecasted usage exceeds the budgets.
+>> c) Create budgets and receive notifications if current or forecasted usage exceeds the budgets.
 
 <sub>관련: [[amazon-s3]] · [[aws-budgets]]  |  모듈 [[06-storage]], [[11-billing-support]]</sub>
 

@@ -300,7 +300,7 @@ lang: en
 > [!question] How do Amazon EC2 Auto Scaling groups help achieve high availability for a web application?
 > a) They automatically add more instances across multiple AWS Regions based on global demand of the application.
 > b) They automatically add or replace instances across multiple Availability Zones when the application needs it.
-> c) They enable the application’s stalk: content to reside closer to end users.
+> c) They enable the application’s static content to reside closer to end users.
 > d) They are able to distribute incoming requests across a tier of web server instances.
 >> [!success]- Answer
 >> b) They automatically add or replace instances across multiple Availability Zones when the application needs it.

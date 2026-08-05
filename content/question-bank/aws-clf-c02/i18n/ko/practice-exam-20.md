@@ -38,7 +38,7 @@ exam: 20
 >> [!success]- Answer
 >> b) Amazon DynamoDB
 
-> [!question] 결제 알람을 생성하는 데 사용해야 하는 AWS 서비스는 무엇인가?
+> [!question] 결제 경보를 생성하는 데 사용해야 하는 AWS 서비스는 무엇인가?
 > a) AWS Trusted Advisor
 > b) AWS CloudTrail
 > c) Amazon CloudWatch
@@ -74,11 +74,11 @@ exam: 20
 
 > [!question] AWS VPC 인프라에서 수신 및 발신 트래픽에 대한 정보를 캡처하는 데 사용할 수 있는 AWS 기능 또는 서비스는 무엇인가?
 > a) AWS Config
-> b) VPC 플로우 로그
+> b) VPC 흐름 로그
 > c) AWS Trusted Advisor
 > d) AWS CloudTrail
 >> [!success]- Answer
->> b) VPC 플로우 로그
+>> b) VPC 흐름 로그
 
 > [!question] 한 회사가 애플리케이션 엔드포인트의 상태를 모니터링하고, 정상 상태인 리전 엔드포인트로 트래픽을 라우팅하여 애플리케이션 가용성을 개선할 수 있는 AWS 서비스를 사용하고자 한다. 이러한 요구 사항을 지원하는 서비스는 무엇인가?
 > a) Amazon Inspector
@@ -88,7 +88,7 @@ exam: 20
 >> [!success]- Answer
 >> c) AWS Global Accelerator
 
-> [!question] AWS Well-Architected 프레임워크에 따르면, AWS 클라우드에서 신뢰성을 달성하기 위해 취해야 하는 변경 관리 단계는 무엇인가? (2개 선택)
+> [!question] AWS Well-Architected Framework에 따르면, AWS 클라우드에서 신뢰성을 달성하기 위해 취해야 하는 변경 관리 단계는 무엇인가? (2개 선택)
 > a) AWS Config를 사용하여 AWS 리소스의 인벤토리를 생성한다
 > b) 서비스 한도를 사용하여 사용자가 AWS 리소스를 생성하거나 변경하지 못하도록 한다
 > c) AWS CloudTrail을 사용하여 AWS API 호출을 감사 가능한 로그 파일에 기록한다
@@ -110,7 +110,7 @@ exam: 20
 > a) 서버를 폐기할 수 없는 리소스로 생각한다
 > b) 서비스의 동기식 통합을 사용한다
 > c) 느슨하게 결합된 구성 요소를 설계한다
-> d) 보안 그룹에 대해 가장 허용적인 규칙을 구현한다
+> d) 보안 그룹에 대해 가장 제한적인 규칙을 구현한다
 >> [!success]- Answer
 >> c) 느슨하게 결합된 구성 요소를 설계한다
 
@@ -218,7 +218,7 @@ exam: 20
 > a) 확장성
 > b) 느슨한 결합
 > c) 자동화
-> d) 자동 확장
+> d) 자동 스케일링
 >> [!success]- Answer
 >> b) 느슨한 결합
 
@@ -274,7 +274,7 @@ exam: 20
 >> [!success]- Answer
 >> a) AWS Management Console에서 S3 Block Public Access를 활성화한다.
 
-> [!question] 한 클라우드 실무자가 AWS Management Console에서 AWS 비용 및 사용 보고서를 검토한 후 결제 문제를 발견했다. 이를 해결하기 위해 취할 수 있는 조치는 무엇인가?
+> [!question] 한 클라우드 실무자가 AWS Management Console에서 AWS Cost and Usage Report를 검토한 후 결제 문제를 발견했다. 이를 해결하기 위해 취할 수 있는 조치는 무엇인가?
 > a) 결제와 관련된 상세한 케이스를 열어 도움을 받기 위해 AWS Support에 제출한다.
 > b) 문제를 설명하는 데이터를 프라이빗 Amazon S3 버킷의 새 객체에 업로드한다.
 > c) 요금 애플리케이션을 생성하고 자세한 정보를 위해 적정 크기의 Amazon EC2 인스턴스에 배포한다.
@@ -424,7 +424,7 @@ exam: 20
 >> [!success]- Answer
 >> c) 엣지 로케이션
 
-> [!question] 추적 가능성을 활성화하기 위해 AWS Config를 사용하여 AWS 리소스에 대한 변경을 기록, 감사 및 평가하는 것은 AWS Well-Architected 프레임워크의 어떤 원칙에 대한 예인가?
+> [!question] 추적 가능성을 활성화하기 위해 AWS Config를 사용하여 AWS 리소스에 대한 변경을 기록, 감사 및 평가하는 것은 AWS Well-Architected Framework의 어떤 원칙에 대한 예인가?
 > a) 보안
 > b) 운영 우수성
 > c) 성능 효율성

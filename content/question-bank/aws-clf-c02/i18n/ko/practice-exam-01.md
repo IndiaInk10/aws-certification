@@ -38,7 +38,7 @@ exam: 1
 >> [!success]- Answer
 >> b) AWS CloudTrail.
 
-> [!question] 다음 중 AWS의 안정성과 관련된 것은 무엇인가? (2개 선택)
+> [!question] 다음 중 AWS의 신뢰성과 관련된 것은 무엇인가? (2개 선택)
 > a) 모든 AWS 리소스에 최소 권한의 원칙을 적용한다.
 > b) 수요를 충족하기 위해 새 리소스를 자동으로 프로비저닝한다.
 > c) 모든 AWS 서비스는 글로벌 서비스로 간주되며, 이 설계는 고객이 국제 사용자에게 서비스를 제공하는 데 도움이 된다.
@@ -64,7 +64,7 @@ exam: 1
 >> [!success]- Answer
 >> b) 모든 계정이 예약 인스턴스의 시간당 비용 혜택을 받을 수 있다.
 
-> [!question] 한 회사가 AWS에서 eCommerce 웹 애플리케이션을 개발했다. 애플리케이션이 최고 수준의 가용성을 갖추도록 하려면 어떻게 해야 하는가?
+> [!question] 한 회사가 AWS에서 전자상거래 웹 애플리케이션을 개발했다. 애플리케이션이 최고 수준의 가용성을 갖추도록 하려면 어떻게 해야 하는가?
 > a) 여러 가용 영역과 엣지 로케이션에 애플리케이션을 배포한다.
 > b) 여러 가용 영역과 서브넷에 애플리케이션을 배포한다.
 > c) 여러 리전과 가용 영역에 애플리케이션을 배포한다.
@@ -144,9 +144,9 @@ exam: 1
 > a) AWS Budgets.
 > b) AWS Pricing Calculator.
 > c) AWS Systems Manager.
-> d) AWS Cost & Usage Reports.
+> d) AWS Cost and Usage Reports.
 >> [!success]- Answer
->> d) AWS Cost & Usage Reports.
+>> d) AWS Cost and Usage Reports.
 
 > [!question] 5개의 서로 다른 AWS 계정을 다른 마스터 계정 아래에 두고 통합 결제를 설정하면 무엇을 얻는가?
 > a) AWS 서비스 비용이 원래 요금의 절반으로 줄어든다.
@@ -324,7 +324,7 @@ exam: 1
 >> [!success]- Answer
 >> b) AWS Abuse 팀에 문의한다.
 
-> [!question] AWS 공유 통제의 예를 2개 선택하시오.
+> [!question] AWS 공동 제어의 예는 무엇인가? (2개 선택)
 > a) 패치 관리.
 > b) IAM 관리.
 > c) VPC 관리.

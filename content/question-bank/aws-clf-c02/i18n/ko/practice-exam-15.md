@@ -148,23 +148,13 @@ exam: 15
 >> [!success]- Answer
 >> c) AWS Step Functions, Amazon DynamoDB, Amazon SNS
 
-> [!question] 공동 책임 모델에서 다음 중 고객과 AWS 간의 공유 제어에 해당하는 것은 무엇인가?
+> [!question] 공동 책임 모델에서 다음 중 고객과 AWS 간의 공동 제어에 해당하는 것은 무엇인가?
 > a) 물리적 제어
 > b) 패치 관리
 > c) 영역 보안
 > d) 데이터 센터 감사
 >> [!success]- Answer
 >> b) 패치 관리
-
-> [!question] AWS 엣지 로케이션은 무엇에 사용할 수 있는가? (2개 선택)
-> a) 애플리케이션 호스팅
-> b) 사용자에게 더 가까운 위치에서 콘텐츠 전송
-> c) NoSQL 데이터베이스 캐싱 서비스 실행
-> d) 응답을 캐싱하여 서버의 트래픽 감소
-> e) 최종 사용자에게 알림 메시지 전송
->> [!success]- Answer
->> b) 사용자에게 더 가까운 위치에서 콘텐츠 전송
->> d) 응답을 캐싱하여 서버의 트래픽 감소
 
 > [!question] 부하가 변화함에 따라 컴퓨팅 용량을 조정할 수 있게 해 주는 기술은 무엇인가?
 > a) 로드 밸런싱
@@ -230,7 +220,7 @@ exam: 15
 
 > [!question] AWS 공동 책임 모델에 따르면 다음 중 전적으로 AWS의 책임에 해당하는 것은 무엇인가?
 > a) 게스트 운영 체제 패치
-> b) 보안 인식 및 교육
+> b) 보안 인지 및 교육
 > c) 물리적 및 환경적 제어
 > d) IAM 암호 정책 개발
 >> [!success]- Answer
@@ -271,7 +261,8 @@ exam: 15
 >> a) 내결함성
 >> d) 성능
 
-> [!question] 다음 중 운영 체제 구성, 보안 패치 적용 및 네트워킹을 유지 관리하는 것이 고객의 책임에 해당하는 서비스는 무엇인가? - A. Amazon RDS
+> [!question] 다음 중 운영 체제 구성, 보안 패치 적용 및 네트워킹을 유지 관리하는 것이 고객의 책임에 해당하는 서비스는 무엇인가?
+> a) Amazon RDS
 > b) Amazon EC2
 > c) Amazon ElastiCache
 > d) AWS Fargate
@@ -279,18 +270,18 @@ exam: 15
 >> b) Amazon EC2
 
 > [!question] 한 회사가 온프레미스 데이터 센터에서 AWS 클라우드로 이전하려고 한다. 이전 후의 재무적 차이점 중 하나는 무엇인가?
-> a) 가변 운영 지출(OpEx)에서 선불 자본 지출(CapEx)로 이동한다.
-> b) 선불 자본 지출(CapEx)에서 가변 자본 지출(CapEx)로 이동한다.
-> c) 선불 자본 지출(CapEx)에서 가변 운영 지출(OpEx)로 이동한다.
-> d) 선불 자본 지출(CapEx)의 제거 및 가변 운영 지출(OpEx)의 제거
+> a) 가변 운영 지출(OpEx)에서 선결제 자본 지출(CapEx)로 이동한다.
+> b) 선결제 자본 지출(CapEx)에서 가변 자본 지출(CapEx)로 이동한다.
+> c) 선결제 자본 지출(CapEx)에서 가변 운영 지출(OpEx)로 이동한다.
+> d) 선결제 자본 지출(CapEx)의 제거 및 가변 운영 지출(OpEx)의 제거
 >> [!success]- Answer
->> c) 선불 자본 지출(CapEx)에서 가변 운영 지출(OpEx)로 이동한다.
+>> c) 선결제 자본 지출(CapEx)에서 가변 운영 지출(OpEx)로 이동한다.
 
 > [!question] 고객은 새로운 웹 애플리케이션 실행에 대한 향후 비용을 어떻게 예측해야 하는가?
 > a) Amazon Aurora Backtrack
 > b) Amazon CloudWatch 결제 경보
 > c) AWS Simple Monthly Calculator
-> d) AWS 비용 및 사용 보고서
+> d) AWS Cost and Usage Report
 >> [!success]- Answer
 >> c) AWS Simple Monthly Calculator
 
@@ -311,7 +302,7 @@ exam: 15
 >> b) 엣지 로케이션 관리
 
 > [!question] 여러 사용자에게 권한 집합을 연결하는 데 사용되는 AWS IAM 기능은 무엇인가?
-> a) 다중 인증(MFA)
+> a) 다중 인증
 > b) 그룹
 > c) 암호 정책
 > d) 액세스 키

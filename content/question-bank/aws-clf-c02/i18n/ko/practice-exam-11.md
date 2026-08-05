@@ -16,7 +16,7 @@ exam: 11
 
 > [!question] 회사가 AWS를 사용하여 총 소유 비용(TCO)을 어떻게 절감할 수 있는가?
 > a) 대규모 자본 지출을 최소화함으로써.
-> b) 타사 라이선스 비용에 대한 책임을 지지 않음으로써.
+> b) 서드 파티 라이선스 비용에 대한 책임을 지지 않음으로써.
 > c) 운영 지출이 발생하지 않음으로써.
 > d) AWS가 애플리케이션을 관리하도록 함으로써.
 >> [!success]- Answer
@@ -35,14 +35,14 @@ exam: 11
 > [!question] 다음 중 AWS Management Console에 대한 액세스의 보안을 강화하는 것은 무엇인가? (2개 선택)
 > a) AWS Secrets Manager.
 > b) AWS Certificate Manager.
-> c) AWS Multi-Factor Authentication (AWS MFA).
+> c) AWS 다중 인증(AWS MFA).
 > d) 보안 그룹.
 > e) 암호 정책.
 >> [!success]- Answer
->> c) AWS Multi-Factor Authentication (AWS MFA).
+>> c) AWS 다중 인증(AWS MFA).
 >> e) 암호 정책.
 
-> [!question] 다음 중 Amazon Virtual Private Cloud (Amazon VPC) 대시보드를 통해 구성할 수 있는 기능은 무엇인가? (2개 선택)
+> [!question] 다음 중 Amazon Virtual Private Cloud(Amazon VPC) 대시보드를 통해 구성할 수 있는 기능은 무엇인가? (2개 선택)
 > a) Amazon CloudFront 배포.
 > b) Amazon Route 53.
 > c) 보안 그룹.
@@ -65,7 +65,7 @@ exam: 11
 > b) 모든 계정에서 기본적으로 증가하는 서비스 한도.
 > c) 월별 청구서에 대한 고정 할인.
 > d) 모든 계정의 사용량이 합산되므로 발생할 수 있는 볼륨 할인.
-> e) 마스터 계정의 AWS 지원 플랜이 모든 계정으로 자동 확장됨.
+> e) 마스터 계정의 AWS Support 플랜이 모든 계정으로 자동으로 확대 적용됨.
 >> [!success]- Answer
 >> a) 여러 계정에 대해 하나의 청구서를 받을 수 있는 기능.
 >> d) 모든 계정의 사용량이 합산되므로 발생할 수 있는 볼륨 할인.
@@ -89,14 +89,14 @@ exam: 11
 >> c) 두 번째 리전에 리소스를 배포하기 시작한다.
 
 > [!question] 애플리케이션에 Elastic Load Balancer를 사용하는 것이 유익한 이유는 무엇인가?
-> a) Application Load에서의 전환을 허용한다.
-> b) Classic Load Balancer로의 Balancer.
-> c) 네트워크 트래픽 패턴의 지속적인 변화를 처리할 수 있다.
-> d) 용량을 자동으로 조정한다. 사용자에게 무료로 제공된다.
+> a) Application Load Balancer에서 Classic Load Balancer로의 전환을 허용한다.
+> b) 네트워크 트래픽 패턴의 지속적인 변화를 처리할 수 있다.
+> c) 용량을 자동으로 조정한다.
+> d) 사용자에게 무료로 제공된다.
 >> [!success]- Answer
->> c) 네트워크 트래픽 패턴의 지속적인 변화를 처리할 수 있다.
+>> b) 네트워크 트래픽 패턴의 지속적인 변화를 처리할 수 있다.
 
-> [!question] 지원 사례에 대해 1시간 목표 응답 시간을 제공하는 최소 AWS 지원 플랜은 무엇인가?
+> [!question] 지원 사례에 대해 1시간 목표 응답 시간을 제공하는 최소 AWS Support 플랜은 무엇인가?
 > a) Enterprise.
 > b) Business.
 > c) Developer
@@ -120,7 +120,7 @@ exam: 11
 >> [!success]- Answer
 >> c) AWS Professional Services.
 
-> [!question] 어떤 회사는 프로덕션 시스템에 서비스 중단이 발생할 경우 1시간 미만의 응답 시간으로 연중무휴 24시간 전화, 이메일 및 채팅 액세스가 필요하다. 이러한 요구 사항을 가장 낮은 비용으로 충족하는 AWS 지원 플랜은 무엇인가?
+> [!question] 어떤 회사는 프로덕션 시스템에 서비스 중단이 발생할 경우 1시간 미만의 응답 시간으로 연중무휴 24시간 전화, 이메일 및 채팅 액세스가 필요하다. 이러한 요구 사항을 가장 낮은 비용으로 충족하는 AWS Support 플랜은 무엇인가?
 > a) Basic.
 > b) Developer.
 > c) Business.
@@ -154,7 +154,7 @@ exam: 11
 >> [!success]- Answer
 >> d) Amazon RDS.
 
-> [!question] AWS Command Line Interface (AWS CLI)를 사용할 때 액세스 키 ID 및 비밀 액세스 키와 연결되는 Identity and Access Management (IAM) 엔터티는 다음 중 무엇인가?
+> [!question] AWS Command Line Interface(AWS CLI)를 사용할 때 액세스 키 ID 및 비밀 액세스 키와 연결되는 Identity and Access Management(IAM) 엔터티는 다음 중 무엇인가?
 > a) IAM 그룹.
 > b) IAM 사용자.
 > c) IAM 역할.
@@ -188,13 +188,13 @@ exam: 11
 >> a) 액세스 키 ID.
 >> c) 비밀 액세스 키.
 
-> [!question] 다음 중 고객과 AWS 간의 공유 제어에 해당하는 것은 무엇인가?
+> [!question] 다음 중 고객과 AWS 간의 공동 제어에 해당하는 것은 무엇인가?
 > a) Amazon S3 클라이언트 측 암호화를 위한 키 제공.
 > b) Amazon EC2 인스턴스의 구성.
 > c) 물리적 AWS 데이터 센터의 환경 제어.
-> d) 인식 교육.
+> d) 인지.
 >> [!success]- Answer
->> d) 인식 교육.
+>> d) 인지.
 
 > [!question] 인스턴스가 중지되거나 종료될 때 삭제되는 임시(ephemeral) AWS 스토리지 유형은 무엇인가?
 > a) Amazon EBS.
@@ -270,21 +270,21 @@ exam: 11
 >> [!success]- Answer
 >> b) 느슨한 결합을 구현한다.
 
-> [!question] AWS Enterprise Support 사용자는 다른 AWS 지원 플랜 사용자가 이용할 수 없는 어떤 서비스 또는 기능에 액세스할 수 있는가?
+> [!question] AWS Enterprise Support 사용자는 다른 AWS Support 플랜 사용자가 이용할 수 없는 어떤 서비스 또는 기능에 액세스할 수 있는가?
 > a) AWS Trusted Advisor.
-> b) AWS 지원 사례.
+> b) AWS Support 사례.
 > c) 컨시어지 팀.
 > d) Amazon Connect.
 >> [!success]- Answer
 >> c) 컨시어지 팀.
 
 > [!question] 어떤 회사가 온프레미스 데이터 센터에서 AWS 클라우드로 이전하려고 한다. 이전 후의 재무적 차이점 중 하나는 무엇인가?
-> a) 가변 운영 지출(opex)에서 선불 자본 지출(capex)로 이동.
-> b) 선불 자본 지출(capex)에서 가변 자본 지출(capex)로 이동.
-> c) 선불 자본 지출(capex)에서 가변 운영 지출(opex)로 이동.
-> d) 선불 자본 지출(capex) 제거 및 가변 운영 지출(opex) 제거.
+> a) 가변 운영 지출(opex)에서 선결제 자본 지출(capex)로 이동.
+> b) 선결제 자본 지출(capex)에서 가변 자본 지출(capex)로 이동.
+> c) 선결제 자본 지출(capex)에서 가변 운영 지출(opex)로 이동.
+> d) 선결제 자본 지출(capex) 제거 및 가변 운영 지출(opex) 제거.
 >> [!success]- Answer
->> c) 선불 자본 지출(capex)에서 가변 운영 지출(opex)로 이동.
+>> c) 선결제 자본 지출(capex)에서 가변 운영 지출(opex)로 이동.
 
 > [!question] 고객 워크로드의 물리적 격리를 지원하는 비용 분석을 수행할 때, 총 소유 비용(TCO)에서 고려해야 하는 컴퓨팅 호스팅 모델은 무엇인가?
 > a) 전용 호스트
@@ -302,7 +302,7 @@ exam: 11
 >> [!success]- Answer
 >> b) Amazon Glacier.
 
-> [!question] 전화 통화를 통한 기술 지원을 제공하는 최소 AWS 지원 플랜은 무엇인가?
+> [!question] 전화 통화를 통한 기술 지원을 제공하는 최소 AWS Support 플랜은 무엇인가?
 > a) Enterprise.
 > b) Business.
 > c) Developer.
@@ -339,12 +339,12 @@ exam: 11
 >> d) 응답을 캐싱하여 서버의 트래픽 감소.
 
 > [!question] 어떤 회사가 온프레미스에서 AWS 클라우드로 마이그레이션할 계획이다. 마이그레이션 후 예상되는 비용 절감에 대한 상세 보고서를 제공하는 AWS 도구 또는 서비스는 무엇인가?
-> a) AWS Total Cost of Ownership (TCO) Calculator.
+> a) AWS 총 소유 비용(TCO) 계산기.
 > b) Cost Explorer.
 > c) AWS Budgets.
 > d) AWS Migration Hub.
 >> [!success]- Answer
->> a) AWS Total Cost of Ownership (TCO) Calculator.
+>> a) AWS 총 소유 비용(TCO) 계산기.
 
 > [!question] AWS에서 실행되는 고객의 워크로드를 지원하는 특정 AWS 서비스의 상태에 대한 맞춤형 보기를 제공하는 AWS 서비스는 무엇인가?
 > a) AWS Service Health Dashboard.
@@ -362,9 +362,9 @@ exam: 11
 >> [!success]- Answer
 >> c) 기업이 비즈니스 활동에 집중할 수 있게 해 준다.
 
-> [!question] AWS Basic 지원 플랜을 사용하는 AWS 사용자는 어떻게 AWS로부터 기술 지원을 받을 수 있는가?
+> [!question] AWS Basic Support 플랜을 사용하는 AWS 사용자는 어떻게 AWS로부터 기술 지원을 받을 수 있는가?
 > a) AWS 선임 지원 엔지니어.
-> b) AWS 기술 계정 관리자.
+> b) 기술 계정 관리자.
 > c) AWS Trusted Advisor.
 > d) AWS 토론 포럼.
 >> [!success]- Answer

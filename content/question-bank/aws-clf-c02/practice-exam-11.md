@@ -104,12 +104,12 @@ lang: en
 <sub>관련: [[aws-management-console]]  |  모듈 [[04-global-infrastructure]]</sub>
 
 > [!question] Why is it beneficial to use Elastic Load Balancers with applications?
-> a) They allow for the conversion from Application Load.
-> b) Balancers to Classic Load Balancers.
-> c) They are capable of handling constant changes in network traffic patterns.
-> d) They automatically adjust capacity. They are provided at no charge to users.
+> a) They allow for the conversion from Application Load Balancers to Classic Load Balancers.
+> b) They are capable of handling constant changes in network traffic patterns.
+> c) They automatically adjust capacity.
+> d) They are provided at no charge to users.
 >> [!success]- Answer
->> c) They are capable of handling constant changes in network traffic patterns.
+>> b) They are capable of handling constant changes in network traffic patterns.
 
 <sub>관련: [[elastic-load-balancing]]  |  모듈 [[02-cloud-computing]]</sub>
 

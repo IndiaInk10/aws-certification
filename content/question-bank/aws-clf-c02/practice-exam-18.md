@@ -216,7 +216,7 @@ lang: en
 > d) Increased agility.
 > e) AWS holds responsibility for security in the cloud.
 >> [!success]- Answer
->> c) User control of infrastructure.
+>> b) Capital expenses are replaced with variable expenses.
 >> d) Increased agility.
 
 <sub>모듈 [[01-cloud-intro]]</sub>
@@ -443,7 +443,7 @@ lang: en
 
 > [!question] What helps a company provide a lower latency experience to its users globally?
 > a) Using an AWS Region that is central to all users
-> b) Using a second Availability Zone in the AWS Region that is using used
+> b) Using a second Availability Zone in the AWS Region that is being used
 > c) Enabling caching in the AWS Region that is being used
 > d) Using edge locations to put content closer to all users
 >> [!success]- Answer

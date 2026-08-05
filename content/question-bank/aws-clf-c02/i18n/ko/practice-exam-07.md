@@ -29,7 +29,7 @@ exam: 7
 >> d) AWS CodeBuild.
 
 > [!question] 다음 중 S3에 객체를 저장할 때 부과되는 요금에 영향을 주는 것은 무엇인가? (2개 선택)
-> a) 여러 S3 버킷에 기본 암호화를 사용하는 것.
+> a) 임의 개수의 S3 버킷에 기본 암호화를 사용하는 것.
 > b) 인스턴스에 연결된 EBS 볼륨의 수.
 > c) 저장된 객체에 사용된 스토리지 클래스.
 > d) S3 버킷을 생성하고 삭제하는 것.
@@ -57,12 +57,12 @@ exam: 7
 >> b) Amazon Connect.
 
 > [!question] 최근 애플리케이션을 AWS로 마이그레이션했다. 계정에 적용된 AWS 비용을 어떻게 확인할 수 있는가?
-> a) AWS Cost & Usage Report를 사용하여.
-> b) AWS 총소유비용(TCO) 대시보드를 사용하여.
+> a) AWS Cost and Usage Report를 사용하여.
+> b) AWS 총 소유 비용(TCO) 대시보드를 사용하여.
 > c) AWS CloudWatch 로그 대시보드를 사용하여.
 > d) Amazon VPC 대시보드를 사용하여.
 >> [!success]- Answer
->> a) AWS Cost & Usage Report를 사용하여.
+>> a) AWS Cost and Usage Report를 사용하여.
 
 > [!question] 다음 중 유효한 Amazon EC2 예약 인스턴스 유형은 무엇인가? (2개 선택)
 > a) 컨버터블.
@@ -117,18 +117,18 @@ exam: 7
 >> c) AWS Lambda.
 
 > [!question] 규정 준수 및 규제 목적으로 한 정부 기관은 애플리케이션이 자신들에게만 전용으로 제공되는 하드웨어에서 실행되어야 한다고 요구한다. 이 요구 사항을 어떻게 충족할 수 있는가?
-> a) EC2 Dedicated Hosts를 사용한다.
+> a) EC2 전용 호스트를 사용한다.
 > b) EC2 예약 인스턴스를 사용한다.
 > c) EC2 스팟 인스턴스를 사용한다.
 > d) EC2 온디맨드 인스턴스를 사용한다.
 >> [!success]- Answer
->> a) EC2 Dedicated Hosts를 사용한다.
+>> a) EC2 전용 호스트를 사용한다.
 
 > [!question] 기존 AWS 리소스를 최대한 활용하고 비용을 줄이기 위해 워크로드를 정기적으로 개선하도록 권장하는 AWS 비용 거버넌스 모범 사례는 무엇인가?
 > a) 태그 지정 적용.
 > b) 아키텍처 최적화.
 > c) 예산 편성 프로세스.
-> d) 리소스 통제.
+> d) 리소스 제어.
 >> [!success]- Answer
 >> b) 아키텍처 최적화.
 
@@ -148,7 +148,7 @@ exam: 7
 >> [!success]- Answer
 >> d) IAM 정책.
 
-> [!question] 한 전자 상거래 애플리케이션의 소유자는 컴퓨팅 용량 요구 사항이 시시각각 크게 달라진다는 것을 알게 되었다. 이러한 유형의 애플리케이션에서 AWS가 기존 데이터 센터보다 경제적인 이유는 무엇인가?
+> [!question] 한 전자상거래 애플리케이션의 소유자는 컴퓨팅 용량 요구 사항이 시시각각 크게 달라진다는 것을 알게 되었다. 이러한 유형의 애플리케이션에서 AWS가 기존 데이터 센터보다 경제적인 이유는 무엇인가?
 > a) AWS를 사용하면 고객이 부하 급증을 처리하기 위해 강력한 EC2 인스턴스를 시작할 수 있다.
 > b) AWS를 사용하면 고객이 더 큰 할인을 받기 위해 선결제할 수 있다.
 > c) AWS를 사용하면 고객이 수요에 따라 EC2 인스턴스를 시작하고 종료할 수 있다.
@@ -216,12 +216,12 @@ exam: 7
 
 > [!question] 퍼블릭 클라우드 시스템을 설계할 때의 핵심 설계 원칙은 무엇인가? (2개 선택)
 > a) 온디맨드 대신 예약 용량.
-> b) 강한 결합보다 느슨한 결합.
+> b) 긴밀한 결합보다 느슨한 결합.
 > c) 관리형 서비스 대신 서버.
 > d) 고정된 서버 대신 폐기 가능한 리소스.
 > e) 다중 리전 배포 대신 다중 AZ 배포.
 >> [!success]- Answer
->> b) 강한 결합보다 느슨한 결합.
+>> b) 긴밀한 결합보다 느슨한 결합.
 >> d) 고정된 서버 대신 폐기 가능한 리소스.
 
 > [!question] AWS 계정 소유자는 자격 증명 상태를 포함하여 계정의 모든 사용자 목록을 어디에서 얻을 수 있는가?
@@ -248,7 +248,7 @@ exam: 7
 >> [!success]- Answer
 >> d) 여러 AWS 리전의 여러 가용 영역에 애플리케이션을 배포한다.
 
-> [!question] 일부 서비스의 경우 AWS는 서버 장애나 가용 영역 중단 시 내결함성을 제공하기 위해 여러 가용 영역에 데이터를 자동으로 복제한다. 여러 가용 영역에 데이터를 자동으로 복제하는 서비스를 2개 선택하시오.
+> [!question] 일부 서비스의 경우 AWS는 서버 장애나 가용 영역 중단 시 내결함성을 제공하기 위해 여러 가용 영역에 데이터를 자동으로 복제한다. 여러 가용 영역에 데이터를 자동으로 복제하는 서비스는 무엇인가? (2개 선택)
 > a) Instance Store.
 > b) S3.
 > c) DynamoDB.
@@ -272,9 +272,9 @@ exam: 7
 > a) AWS 서비스 제어 정책(SCP).
 > b) AWS Artifact.
 > c) AWS Budgets.
-> d) AWS 이용 정책(Acceptable Use Policy).
+> d) AWS 이용 목적 제한 방침(AWS Acceptable Use Policy).
 >> [!success]- Answer
->> d) AWS 이용 정책(Acceptable Use Policy).
+>> d) AWS 이용 목적 제한 방침(AWS Acceptable Use Policy).
 
 > [!question] 다음 중 모든 사용자가 무료로 사용할 수 있는 보안 리소스는 무엇인가? (2개 선택)
 > a) AWS 게시판.
@@ -302,7 +302,7 @@ exam: 7
 >> [!success]- Answer
 >> a) 리전과 엣지 로케이션 보호.
 
-> [!question] 다음 중 7가지 핵심 AWS Trusted Advisor 검사에만 액세스할 수 있는 AWS 지원 플랜은 무엇인가?
+> [!question] 다음 중 7가지 핵심 AWS Trusted Advisor 검사에만 액세스할 수 있는 AWS Support 플랜은 무엇인가?
 > a) Business 및 Enterprise Support.
 > b) Basic 및 Developer Support.
 > c) Developer 및 Enterprise Support.
@@ -392,21 +392,21 @@ exam: 7
 >> [!success]- Answer
 >> a) 페더레이션.
 
-> [!question] AWS 공동 책임 모델에 따를 때, 고객이 AWS로부터 전적으로 상속받는 통제는 무엇인가? (2개 선택)
-> a) 인식 제고 및 교육.
-> b) 커뮤니케이션 통제.
-> c) 데이터 센터 보안 통제.
-> d) 환경 통제.
+> [!question] AWS 공동 책임 모델에 따를 때, 고객이 AWS로부터 전적으로 상속받는 제어는 무엇인가? (2개 선택)
+> a) 인지 및 교육.
+> b) 커뮤니케이션 제어.
+> c) 데이터 센터 보안 제어.
+> d) 환경 제어.
 > e) 리소스 구성 관리.
 >> [!success]- Answer
->> c) 데이터 센터 보안 통제.
->> d) 환경 통제.
+>> c) 데이터 센터 보안 제어.
+>> d) 환경 제어.
 
-> [!question] 다음 URL을 방문하면 무엇에 액세스할 수 있는가?
-> a) AWS 결제 대시보드.
-> b) AWS 비용 대시보드.
+> [!question] https://status.aws.amazon.com/ URL을 방문하면 무엇에 액세스할 수 있는가?
+> a) AWS Billing Dashboard.
+> b) AWS Cost Dashboard.
 > c) AWS Service Health Dashboard.
-> d) AWS 보안 대시보드.
+> d) AWS Security Dashboard.
 >> [!success]- Answer
 >> c) AWS Service Health Dashboard.
 

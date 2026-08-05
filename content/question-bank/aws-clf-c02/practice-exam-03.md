@@ -48,7 +48,7 @@ lang: en
 > [!question] A company is migrating its on-premises database to Amazon RDS. What should the company do to ensure Amazon RDS costs are kept to a minimum?
 > a) Right-size before and after migration.
 > b) Use a Multi-Region Active-Passive architecture.
-> c) Combine On-demand Capacity Reservations with Saving Plans.
+> c) Combine On-demand Capacity Reservations with Savings Plans.
 > d) Use a Multi-Region Active-Active architecture.
 >> [!success]- Answer
 >> a) Right-size before and after migration.
@@ -120,7 +120,7 @@ lang: en
 <sub>관련: [[amazon-rds]] · [[amazon-emr]] · [[aws-iam]]  |  모듈 [[07-databases]], [[08-ai-ml-analytics]], [[09-security]]</sub>
 
 > [!question] Using Amazon EC2 falls under which of the following cloud computing models?
-> a) Iaas & SaaS.
+> a) IaaS & SaaS.
 > b) IaaS.
 > c) SaaS.
 > d) PaaS.

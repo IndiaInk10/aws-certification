@@ -31,7 +31,7 @@ exam: 14
 >> d) 스팟 인스턴스
 
 > [!question] AWS 공동 책임 모델에 따라 AWS 고객이 책임지는 것은 무엇인가?
-> a) 물리적 접근 통제
+> a) 물리적 접근 제어
 > b) 데이터 암호화
 > c) 스토리지 디바이스의 안전한 폐기
 > d) 환경적 위험 관리
@@ -101,10 +101,10 @@ exam: 14
 > [!question] Amazon ElastiCache 및 Amazon Relational Database Service(Amazon RDS)와 같은 AWS 관리형 서비스를 사용하는 이점은 무엇인가?
 > a) 고객이 장애가 발생한 인스턴스를 모니터링하고 교체해야 한다.
 > b) 고객이 관리하는 서비스보다 성능이 우수하다.
-> c) 기본 OS의 패치 적용과 업데이트를 단순화한다.
+> c) 기반 OS의 패치 적용과 업데이트를 단순화한다.
 > d) 고객이 인스턴스 유형이나 크기 선택을 최적화할 필요가 없다.
 >> [!success]- Answer
->> c) 기본 OS의 패치 적용과 업데이트를 단순화한다.
+>> c) 기반 OS의 패치 적용과 업데이트를 단순화한다.
 
 > [!question] 사실상 무제한의 온라인 고내구성 객체 스토리지를 제공하는 서비스는 무엇인가?
 > a) Amazon Redshift
@@ -289,12 +289,12 @@ exam: 14
 >> a) 볼륨 요금 자격 획득
 
 > [!question] 다음 중 고객이 AWS에서 침투 테스트를 수행할 때 취해야 하는 단계는 무엇인가?
-> a) Amazon Inspector를 사용하여 침투 테스트를 수행한 다음 AWS 지원에 통지한다.
+> a) Amazon Inspector를 사용하여 침투 테스트를 수행한 다음 AWS Support에 통지한다.
 > b) 고객의 내부 보안 팀에 승인을 요청하고 대기한 다음 테스트를 수행한다.
-> c) AWS 지원에 통지한 다음 즉시 테스트를 수행한다.
-> d) AWS 지원에 승인을 요청하고 대기한 다음 테스트를 수행한다.
+> c) AWS Support에 통지한 다음 즉시 테스트를 수행한다.
+> d) AWS Support에 승인을 요청하고 대기한 다음 테스트를 수행한다.
 >> [!success]- Answer
->> d) AWS 지원에 승인을 요청하고 대기한 다음 테스트를 수행한다.
+>> d) AWS Support에 승인을 요청하고 대기한 다음 테스트를 수행한다.
 
 > [!question] 다음 중 사용자가 사전 구성된 Amazon Elastic Compute Cloud(Amazon EC2) 인스턴스를 시작할 수 있게 해 주는 AWS 기능은 무엇인가?
 > a) Amazon Elastic Block Store(Amazon EBS)
@@ -315,10 +315,10 @@ exam: 14
 > [!question] AWS 청구서에 대한 가장 세분화된 데이터를 볼 수 있게 해 주는 AWS 비용 관리 도구는 무엇인가?
 > a) AWS Cost Explorer
 > b) AWS Budgets
-> c) AWS Cost and Usage report
+> c) AWS Cost and Usage Report
 > d) AWS Billing 대시보드
 >> [!success]- Answer
->> c) AWS Cost and Usage report
+>> c) AWS Cost and Usage Report
 
 > [!question] 다음 중 AWS 고객이 새로운 Amazon Relational Database Service(Amazon RDS) 클러스터를 시작하는 데 사용할 수 있는 것은 무엇인가? (2개 선택)
 > a) AWS Concierge
@@ -366,13 +366,13 @@ exam: 14
 
 > [!question] 다음 중 클라우드 애플리케이션을 설계할 때 중요한 아키텍처 설계 원칙은 무엇인가?
 > a) 여러 가용 영역을 사용한다.
-> b) 밀결합된 구성 요소를 사용한다.
+> b) 긴밀하게 결합된 구성 요소를 사용한다.
 > c) 오픈 소스 소프트웨어를 사용한다.
 > d) 추가 용량을 프로비저닝한다.
 >> [!success]- Answer
 >> a) 여러 가용 영역을 사용한다.
 
-> [!question] 전담 기술 계정 관리자(TAM)가 포함된 AWS 지원 플랜은 무엇인가?
+> [!question] 기술 계정 관리자가 포함된 AWS Support 플랜은 무엇인가?
 > a) Developer
 > b) Enterprise
 > c) Business

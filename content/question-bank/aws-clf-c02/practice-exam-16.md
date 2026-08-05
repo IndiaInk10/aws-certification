@@ -136,7 +136,7 @@ lang: en
 <sub>관련: [[amazon-ec2-auto-scaling]] · [[elastic-load-balancing]] · [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
 
 > [!question] Under the AWS shared responsibility model, customers are responsible for which aspects of security in the cloud? (Choose two.)
-> a) Visualization management
+> a) Virtualization management
 > b) Hardware management
 > c) Encryption management
 > d) Facilities management

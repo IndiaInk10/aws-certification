@@ -14,7 +14,7 @@ exam: 21
   ("~은 무엇인가?", "다음 중 ~", 서비스명은 영문 유지, 자연스러운 의역은 하지 않음)
 -->
 
-> [!question] 한 사용자가 AWS에서 비관계형 데이터베이스를 신속하게 배포해야 한다. 이 사용자는 기본 하드웨어나 데이터베이스 소프트웨어를 관리하기를 원하지 않는다. 이를 달성하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
+> [!question] 한 사용자가 AWS에서 비관계형 데이터베이스를 신속하게 배포해야 한다. 이 사용자는 기반 하드웨어나 데이터베이스 소프트웨어를 관리하기를 원하지 않는다. 이를 달성하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
 > a) Amazon RDS
 > b) Amazon DynamoDB
 > c) Amazon Aurora
@@ -51,7 +51,7 @@ exam: 21
 > [!question] 이전에 서로 독립적이었던 AWS 계정의 결제를 결합하는 데 가장 적합한 도구는 무엇인가?
 > a) 상세 결제 보고서
 > b) 통합 결제
-> c) AWS 비용 및 사용 보고서
+> c) AWS Cost and Usage Report
 > d) 비용 할당 보고서
 >> [!success]- Answer
 >> b) 통합 결제
@@ -156,7 +156,7 @@ exam: 21
 >> [!success]- Answer
 >> d) AWS Transit Gateway를 사용한다
 
-> [!question] 아키텍처 및 운영 검토에 대한 액세스와, 이메일, 온라인 채팅, 전화를 통한 선임 클라우드 지원 엔지니어에 대한 연중무휴 액세스를 제공하는 AWS Support 플랜은 무엇인가?
+> [!question] 아키텍처 및 운영 검토에 대한 액세스와, 이메일, 온라인 채팅, 전화를 통한 선임 클라우드 지원 엔지니어에 대한 연중무휴 24시간 액세스를 제공하는 AWS Support 플랜은 무엇인가?
 > a) Basic
 > b) Business
 > c) Developer
@@ -286,7 +286,7 @@ exam: 21
 > a) AWS 총 소유 비용(TCO) 계산기
 > b) AWS Trusted Advisor
 > c) AWS Personal Health Dashboard
-> d) AWS 비용 및 사용 보고서
+> d) AWS Cost and Usage Report
 >> [!success]- Answer
 >> b) AWS Trusted Advisor
 
@@ -375,7 +375,7 @@ exam: 21
 > [!question] Developer 수준의 AWS Support 플랜을 사용하는 한 회사가 Amazon RDS 데이터베이스를 프로비저닝했으나 여기에 연결할 수 없다. 이 지원 수준에서 개발자는 누구에게 문의해야 하는가?
 > a) 지원 사례를 통해 AWS Support
 > b) AWS Professional Services
-> c) AWS 기술 계정 관리자
+> c) 기술 계정 관리자
 > d) AWS 컨설팅 파트너
 >> [!success]- Answer
 >> a) 지원 사례를 통해 AWS Support

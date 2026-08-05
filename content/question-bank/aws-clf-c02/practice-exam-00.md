@@ -16,7 +16,7 @@ lang: ko
 > 실제 시험의 난이도와 문장 스타일을 먼저 겪어 보고, 부족한 영역을 찾아 거기부터 학습하는 순서입니다.
 > 사설 모의고사보다 **실제 시험에 가장 가깝습니다.**
 
-> [!question] 전 세계 여러 국가에서 고객을 보유한 기업이 AWS 클라우드를 사용하면 어떤 이점이 있는가?
+> [!question] 전 세계 여러 국가에서 고객을 보유한 기업이 AWS 클라우드를 사용하면 어떤 이점이 있는가? (2개 선택)
 > a) Elastic Load Balancing은 애플리케이션 웹 트래픽을 전 세계 여러 AWS 리전에 분산하여 지연 시간을 줄일 수 있다.
 > b) Amazon CloudFront는 지연 시간을 줄이기 위해 전 세계에 여러 엣지 로케이션을 보유하고 있다.
 > c) Amazon Translate는 서드 파티 웹 사이트 인터페이스를 여러 언어로 자동 번역한다.
@@ -48,7 +48,7 @@ lang: ko
 
 <sub>관련: [[amazon-ec2]] | 모듈 [[02-cloud-computing]]</sub>
 
-> [!question] AWS 공동 책임 모델에 따라 고객이 책임을 져야 할 태스크는 무엇인가?
+> [!question] AWS 공동 책임 모델에 따라 고객이 책임을 져야 할 태스크는 무엇인가? (2개 선택)
 > a) 고객의 VPC가 포함된 데이터 센터에 대한 물리적 액세스를 제어한다.
 > b) 최소 권한의 원칙에 따라 IAM 사용자를 구성한다.
 > c) Amazon RDS DB 인스턴스에 패치를 설치한다.
@@ -60,7 +60,7 @@ lang: ko
 
 <sub>관련: [[aws-iam]] [[amazon-ec2]] | 모듈 [[09-security]]</sub>
 
-> [!question] 여러 가용 영역에 Amazon EC2 인스턴스를 사용하여 애플리케이션을 배포하면 어떤 이점이 있는가?
+> [!question] 여러 가용 영역에 Amazon EC2 인스턴스를 사용하여 애플리케이션을 배포하면 어떤 이점이 있는가? (2개 선택)
 > a) 애플리케이션이 짧은 지연 시간으로 교차 리전 사용자에게 서비스를 제공할 수 있음
 > b) 애플리케이션의 로드 증대
 > c) 단일 장애 지점 방지
@@ -72,7 +72,7 @@ lang: ko
 
 <sub>관련: [[amazon-ec2]] | 모듈 [[04-global-infrastructure]]</sub>
 
-> [!question] Amazon S3의 특징적인 기능은 다음 중 무엇인가?
+> [!question] Amazon S3의 특징적인 기능은 다음 중 무엇인가? (2개 선택)
 > a) 네트워크 파일 시스템
 > b) 글로벌 파일 시스템
 > c) 객체 스토어
@@ -94,7 +94,7 @@ lang: ko
 
 <sub>관련: [[amazon-cloudfront]] [[amazon-s3]] | 모듈 [[05-networking]]</sub>
 
-> [!question] AWS 계정에 프로그래밍 방식으로 액세스하려면 어떤 자격 증명 구성 요소가 필요한가?
+> [!question] AWS 계정에 프로그래밍 방식으로 액세스하려면 어떤 자격 증명 구성 요소가 필요한가? (2개 선택)
 > a) 비밀 액세스 키
 > b) 사용자 ID
 > c) 액세스 키 ID
@@ -176,7 +176,7 @@ lang: ko
 
 <sub>관련: [[aws-direct-connect]] | 모듈 [[05-networking]]</sub>
 
-> [!question] 프리 티어를 초과한 경우 AWS는 AWS Lambda 사용량에 대한 요금을 어떻게 청구하는가?
+> [!question] 프리 티어를 초과한 경우 AWS는 AWS Lambda 사용량에 대한 요금을 어떻게 청구하는가? (2개 선택)
 > a) 특정 Lambda 함수의 버전 수 기준
 > b) Lambda 함수에 사용되는 프로그래밍 언어 기준
 > c) AWS 계정의 총 Lambda 함수 수 기준

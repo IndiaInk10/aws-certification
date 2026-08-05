@@ -189,18 +189,6 @@ lang: en
 
 <sub>모듈 [[01-cloud-intro]]</sub>
 
-> [!question] What can AWS edge locations be used for? (Select TWO.)
-> a) Hosting applications
-> b) Delivering content closer to users
-> c) Running NoSQL database caching services
-> d) Reducing traffic on the server by caching responses
-> e) Sending notification messages to end users
->> [!success]- Answer
->> b) Delivering content closer to users
->> d) Reducing traffic on the server by caching responses
-
-<sub>모듈 [[04-global-infrastructure]], [[05-networking]]</sub>
-
 > [!question] What technology enables compute capacity to adjust as loads change?
 > a) Load balancing
 > b) Automatic failover
@@ -270,7 +258,7 @@ lang: en
 > b) increased capital expenditure (capex).
 > c) reduced operational expenditure (opex).
 > d) deferred payment plans for startups.
-> e) business credit lines for stratups.
+> e) business credit lines for startups.
 >> [!success]- Answer
 >> a) reduced Total Cost of Ownership (TCO).
 >> c) reduced operational expenditure (opex).
@@ -330,7 +318,8 @@ lang: en
 
 <sub>관련: [[aws-trusted-advisor]]  |  모듈 [[10-monitoring-governance]]</sub>
 
-> [!question] Which of the following services falls under the responsibility of the customer to maintain operating system configuration, security patching, and networking? - A. Amazon RDS
+> [!question] Which of the following services falls under the responsibility of the customer to maintain operating system configuration, security patching, and networking?
+> a) Amazon RDS
 > b) Amazon EC2
 > c) Amazon ElastiCache
 > d) AWS Fargate

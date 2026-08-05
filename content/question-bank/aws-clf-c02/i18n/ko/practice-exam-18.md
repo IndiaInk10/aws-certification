@@ -24,13 +24,13 @@ exam: 18
 
 > [!question] AWS Basic Support 플랜을 사용하는 AWS 사용자는 어떻게 AWS로부터 기술 지원을 받을 수 있는가?
 > a) AWS 선임 지원 엔지니어
-> b) AWS 기술 계정 관리자
+> b) 기술 계정 관리자
 > c) AWS Trusted Advisor
 > d) AWS 토론 포럼
 >> [!success]- Answer
 >> d) AWS 토론 포럼
 
-> [!question] 다음 중 AWS Well-Architected Framework의 원칙(pillar)에 해당하는 것은 무엇인가? (2개 선택)
+> [!question] 다음 중 AWS Well-Architected Framework의 원칙에 해당하는 것은 무엇인가? (2개 선택)
 > a) 다중 가용 영역
 > b) 성능 효율성
 > c) 보안
@@ -123,7 +123,7 @@ exam: 18
 >> a) Amazon Redshift
 
 > [!question] 한 클라우드 실무자가 AWS 계정의 보안 그룹 중 특정 포트에 대해 무제한 액세스를 허용하도록 프로비저닝된 것이 있는지 확인해야 한다. 이를 수행하는 가장 간단한 방법은 무엇인가?
-> a) Amazon EC2 관리 콘솔에서 각 보안 그룹의 인바운드 규칙을 검토하여 포트 0.0.0.0/0을 확인한다.
+> a) Amazon EC2 콘솔에서 각 보안 그룹의 인바운드 규칙을 검토하여 포트 0.0.0.0/0을 확인한다.
 > b) AWS Trusted Advisor를 실행하고 결과를 검토한다.
 > c) AWS IAM 콘솔을 열고 개방형 액세스에 대한 인바운드 규칙 필터를 확인한다.
 > d) AWS Config에서 인바운드 액세스 규칙을 검토하는 AWS Lambda 함수를 호출하는 사용자 지정 규칙을 생성한다.
@@ -179,7 +179,7 @@ exam: 18
 > d) 민첩성 향상.
 > e) AWS가 클라우드 내부의 보안에 대한 책임을 진다.
 >> [!success]- Answer
->> c) 사용자의 인프라 제어.
+>> b) 자본 지출(CapEx)이 가변 비용으로 대체된다.
 >> d) 민첩성 향상.
 
 > [!question] AWS에서 민감한 데이터 또는 지적 재산을 자동으로 인식하고 분류하는 보안 서비스는 무엇인가?
@@ -324,11 +324,11 @@ exam: 18
 >> [!success]- Answer
 >> d) Amazon EBS 볼륨이 백업되도록 보장
 
-> [!question] AWS 클라우드의 장점은 무엇인가? (2개 선택)
+> [!question] AWS 클라우드의 이점은 무엇인가? (2개 선택)
 > a) 고정 요금의 월별 비용
 > b) 용량 요구 사항을 추측할 필요가 없음
 > c) 시장 출시 속도 향상
-> d) 초기 자본 지출(CapEx) 증가
+> d) 선결제 자본 지출(CapEx) 증가
 > e) 클라우드 데이터 센터에 대한 물리적 액세스
 >> [!success]- Answer
 >> b) 용량 요구 사항을 추측할 필요가 없음
@@ -403,7 +403,7 @@ exam: 18
 > [!question] AWS Management Console 내의 모든 사용자 계정 변경 사항을 추적하려면 어떤 AWS 서비스를 활성화해야 하는가?
 > a) AWS CloudTrail
 > b) Amazon Simple Notification Service(Amazon SNS)
-> c) VPC 플로우 로그
+> c) VPC 흐름 로그
 > d) AWS CloudHSM
 >> [!success]- Answer
 >> a) AWS CloudTrail

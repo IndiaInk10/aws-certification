@@ -270,7 +270,7 @@ lang: en
 
 <sub>관련: [[aws-support-plans]]  |  모듈 [[11-billing-support]]</sub>
 
-> [!question] Access keys in AWS Identity and Access Management (IM1) are used to:
+> [!question] Access keys in AWS Identity and Access Management (IAM) are used to:
 > a) Log in to the AWS Management Console.
 > b) Make programmatic calls to AWS from AWS APIs.
 > c) Log in to Amazon EC2 instances.
@@ -459,7 +459,7 @@ lang: en
 > [!question] What time-savings advantage is offered with the use of Amazon Rekognition?
 > a) Amazon Rekognition provides automatic watermarking of images.
 > b) Amazon Rekognition provides automatic detection of objects appearing in pictures.
-> c) Amazon Recognition provides the ability to resize millions of images automatically.
+> c) Amazon Rekognition provides the ability to resize millions of images automatically.
 > d) Amazon Rekognition uses Amazon Mechanical Turk to allow humans to bid on object detection jobs.
 >> [!success]- Answer
 >> b) Amazon Rekognition provides automatic detection of objects appearing in pictures.
@@ -467,12 +467,12 @@ lang: en
 <sub>관련: [[amazon-rekognition]]  |  모듈 [[08-ai-ml-analytics]]</sub>
 
 > [!question] Which AWS service can be used to automatically scale an application up and down without making capacity planning decisions?
-> a) Amazon AutoScaling.
+> a) Amazon EC2 Auto Scaling.
 > b) Amazon Redshift.
 > c) AWS CloudTrail.
 > d) AWS Lambda.
 >> [!success]- Answer
->> a) Amazon AutoScaling.
+>> a) Amazon EC2 Auto Scaling.
 
 <sub>관련: [[amazon-ec2-auto-scaling]] · [[aws-lambda]] · [[amazon-redshift]] · [[aws-cloudtrail]]  |  모듈 [[02-cloud-computing]], [[03-compute-services]], [[08-ai-ml-analytics]], [[10-monitoring-governance]]</sub>
 
@@ -486,13 +486,13 @@ lang: en
 
 <sub>관련: [[amazon-rds]]  |  모듈 [[07-databases]]</sub>
 
-> [!question] A company’s web application currently has light dependencies on underlying components so when one component fails the entire web application fails. Applying which AWS Cloud design principle will address the current design issue?
+> [!question] A company’s web application currently has tight dependencies on underlying components so when one component fails the entire web application fails. Applying which AWS Cloud design principle will address the current design issue?
 > a) Implementing elasticity enabling the application to scale up or scale down as demand changes.
 > b) Enabling several EC2 instances to run in parallel to achieve better performance.
-> c) Focusing on decoupling components by isolating them and ensuring individual components can function when other components.
+> c) Focusing on decoupling components by isolating them and ensuring individual components can function when other components fail.
 > d) Doubling EC2 computing resources to increase system fault tolerance.
 >> [!success]- Answer
->> c) Focusing on decoupling components by isolating them and ensuring individual components can function when other components.
+>> c) Focusing on decoupling components by isolating them and ensuring individual components can function when other components fail.
 
 <sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
 

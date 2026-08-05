@@ -42,7 +42,7 @@ exam: 8
 >> [!success]- Answer
 >> d) 보안 그룹과 네트워크 ACL.
 
-> [!question] AWS "Business" 지원 플랜은 무엇을 제공하는가? (2개 선택)
+> [!question] AWS "Business" Support 플랜은 무엇을 제공하는가? (2개 선택)
 > a) 전체 Trusted Advisor 검사에 대한 액세스.
 > b) Support Concierge 서비스.
 > c) 비즈니스 크리티컬 시스템이 중단될 경우 15분 미만의 응답 시간 지원.
@@ -198,7 +198,7 @@ exam: 8
 >> [!success]- Answer
 >> b) 여러 가용 영역에 애플리케이션을 배포한다.
 
-> [!question] 다음 중 이메일과 전화를 통해 클라우드 지원 엔지니어에게 연중무휴 24시간 액세스할 수 있는 AWS 지원 플랜은 무엇인가? (2개 선택)
+> [!question] 다음 중 이메일과 전화를 통해 클라우드 지원 엔지니어에게 연중무휴 24시간 액세스할 수 있는 AWS Support 플랜은 무엇인가? (2개 선택)
 > a) Developer.
 > b) Premium.
 > c) Enterprise.
@@ -335,7 +335,7 @@ exam: 8
 > [!question] AWS는 고객이 여러 [...]에 인프라를 배포할 수 있게 하여 재해 복구 기능을 제공한다.
 > a) 리전.
 > b) 운송 디바이스.
-> c) 지원 플랜.
+> c) Support 플랜.
 > d) 엣지 로케이션.
 >> [!success]- Answer
 >> a) 리전.
@@ -362,7 +362,7 @@ exam: 8
 > a) 운영 우수성.
 > b) 보안.
 > c) 성능 효율성.
-> d) 안정성.
+> d) 신뢰성.
 >> [!success]- Answer
 >> c) 성능 효율성.
 
@@ -385,10 +385,10 @@ exam: 8
 > [!question] AWS 청구서에 대한 가장 세분화된 데이터를 볼 수 있게 해 주는 AWS 비용 관리 도구는 무엇인가?
 > a) AWS Cost Explorer.
 > b) AWS Budgets.
-> c) AWS Cost and Usage report.
+> c) AWS Cost and Usage Report.
 > d) AWS 결제 대시보드.
 >> [!success]- Answer
->> c) AWS Cost and Usage report.
+>> c) AWS Cost and Usage Report.
 
 > [!question] AWS 글로벌 인프라의 요소 중 별도의 시설에 수용되며 각각 중복 전력 네트워킹과 연결을 갖춘 하나 이상의 개별 데이터 센터로 구성된 것은 무엇인가?
 > a) AWS 리전.
@@ -435,7 +435,7 @@ exam: 8
 > b) 공동 보안 모델.
 > c) 탄력성.
 > d) 종량제 요금.
-> e) 안정성.
+> e) 신뢰성.
 >> [!success]- Answer
 >> c) 탄력성.
 >> d) 종량제 요금.

@@ -226,7 +226,7 @@ lang: en
 
 <sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
 
-> [!question] Which of the following can limit Amazon Storage Service (Amazon S3) bucket access to specific users?
+> [!question] Which of the following can limit Amazon Simple Storage Service (Amazon S3) bucket access to specific users?
 > a) A public and private key-pair
 > b) Amazon Inspector
 > c) AWS Identity and Access Management (IAM) policies

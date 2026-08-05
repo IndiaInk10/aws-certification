@@ -42,7 +42,7 @@ exam: 23
 
 > [!question] AWS 계정이 없는 고객이 거의 모든 AWS 서비스의 비용을 추정할 수 있게 해 주는 도구는 무엇인가?
 > a) Cost Explorer
-> b) TCO Calculator
+> b) 총 소유 비용(TCO) 계산기
 > c) AWS Budgets
 > d) AWS Pricing Calculator
 >> [!success]- Answer
@@ -105,7 +105,7 @@ exam: 23
 >> d) Amazon Simple Queue Service(Amazon SQS)
 
 > [!question] AnyCompany가 최근 Example Corp.를 인수했다. 두 회사 모두 AWS 리소스를 사용하고 있으며, AnyCompany는 단일 통합 청구서를 원한다. 다음 중 AnyCompany가 단일 청구서를 받을 수 있게 해 주는 옵션은 무엇인가?
-> a) Example Corp.는 계정을 연결하고 결제를 통합하기 위해 자사의 AWS 솔루션스 아키텍트 또는 AWS 기술 계정 관리자에게 요청을 제출해야 한다.
+> a) Example Corp.는 계정을 연결하고 결제를 통합하기 위해 자사의 AWS 솔루션스 아키텍트 또는 기술 계정 관리자에게 요청을 제출해야 한다.
 > b) AnyCompany는 두 청구서를 통합해 달라고 요청하는 새 지원 사례를 AWS Support Center에 생성해야 한다.
 > c) AnyCompany의 AWS Organizations 마스터 계정에서 Example Corp.로 조직 가입 초대를 보낸다.
 > d) Example Corp.의 VPC, Amazon EC2 인스턴스 및 기타 리소스를 AnyCompany AWS 계정으로 마이그레이션한다.
@@ -199,7 +199,7 @@ exam: 23
 >> a) AWS Personal Health Dashboard
 
 > [!question] 다음 중 Amazon RDS를 사용할 때 고객의 책임에 해당하는 것은 무엇인가?
-> a) 기본 하드웨어의 운영 체제 패치 적용
+> a) 기반 하드웨어의 운영 체제 패치 적용
 > b) 보안 그룹을 통해 데이터베이스로 들어오고 나가는 트래픽 제어
 > c) DB 인스턴스의 특정 시점 복구를 가능하게 하는 백업 실행
 > d) 장애가 발생한 DB 인스턴스 교체
@@ -288,7 +288,7 @@ exam: 23
 >> [!success]- Answer
 >> a) Amazon Simple Notification Service(Amazon SNS)
 
-> [!question] 안정성을 높이는 데 도움이 되는 AWS 클라우드 설계 원칙은 무엇인가? (2개 선택)
+> [!question] 신뢰성을 높이는 데 도움이 되는 AWS 클라우드 설계 원칙은 무엇인가? (2개 선택)
 > a) 모놀리식 아키텍처 사용
 > b) 전반적인 효율성 측정
 > c) 복구 절차 테스트
@@ -340,7 +340,7 @@ exam: 23
 >> [!success]- Answer
 >> a) 애플리케이션의 여러 인스턴스를 여러 가용 영역에 배포한다.
 
-> [!question] 한 회사가 정상 상태 데이터베이스를 위해 Amazon EC2에서 직접 자체 관리형 Oracle 데이터베이스를 실행하고 있다. 이 회사는 컴퓨팅 비용을 절감하려고 한다. 3년 기간에 걸쳐 절감액을 최대화하기 위해 이 회사가 사용해야 하는 옵션은 무엇인가?
+> [!question] 한 회사가 사용량이 일정한 데이터베이스를 위해 Amazon EC2에서 직접 자체 관리형 Oracle 데이터베이스를 실행하고 있다. 이 회사는 컴퓨팅 비용을 절감하려고 한다. 3년 기간에 걸쳐 절감액을 최대화하기 위해 이 회사가 사용해야 하는 옵션은 무엇인가?
 > a) EC2 전용 인스턴스
 > b) EC2 스팟 인스턴스
 > c) EC2 예약 인스턴스

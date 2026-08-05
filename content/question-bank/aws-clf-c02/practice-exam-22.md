@@ -261,7 +261,7 @@ lang: en
 
 <sub>관련: [[amazon-s3]] · [[aws-artifact]] · [[aws-trusted-advisor]] · [[aws-health-dashboard]]  |  모듈 [[06-storage]], [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
-> [!question] A company wants to set up a highly available workload in AWS with a disaster recovery plan that will allow the company to recover in case of a regional service interruption. Which configuration will meet these requirements?
+> [!question] A company wants to set up a highly available workload in AWS with a disaster recovery plan that will allow the company to recover in case of a regional service interruption. Which configuration will meet these requirements? (Choose two.)
 > a) Run on two Availability Zones in one AWS Region, using the additional Availability Zones in the AWS Region for the disaster recovery site.
 > b) Run on two Availability Zones in one AWS Region, using another AWS Region for the disaster recovery site.
 > c) Run on two Availability Zones in one AWS Region, using a local AWS Region for the disaster recovery site.
