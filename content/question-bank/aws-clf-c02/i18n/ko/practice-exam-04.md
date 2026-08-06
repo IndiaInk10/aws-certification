@@ -17,8 +17,9 @@ exam: 4
 > d) AWS Identity & Access Management.
 > e) AWS Data Pipeline.
 >> [!success]- Answer
->> a) Amazon Route 53.
 >> b) AWS ACM.
+>> d) AWS Identity & Access Management.
+>> 정정 — 원문 정답은 `a`·`b`였습니다. Route 53은 DNS 서비스라 SSL 서버 인증서를 배포하지 않습니다. 인증서를 보관·배포하는 곳은 ACM과 IAM 서버 인증서 스토어입니다.
 
 > [!question] 다음 중 사용자의 개입 없이 자동으로 확장되는 AWS 서비스는 무엇인가? (2개 선택)
 > a) Amazon EC2.
@@ -56,13 +57,13 @@ exam: 4
 >> [!success]- Answer
 >> c) 전용 인스턴스.
 
-> [!question] 한 고객이 수십억 개의 이미지와 동영상을 Amazon S3에 저장하기 위해 이동할 계획이다. 이 고객은 약 60페타바이트의 데이터를 이동해야 한다. 다음 중 데이터를 AWS로 전송하는 데 가장 적합한 AWS 서비스는 무엇인가?
-> a) Snowball.
-> b) S3 Transfer Acceleration.
-> c) Snowmobile.
-> d) Amazon VPC.
+> [!question] 한 회사가 Amazon EC2 인스턴스에서 애플리케이션을 실행하고 있다. 이 애플리케이션은 Amazon S3 버킷에서 객체를 읽어야 한다. 이 액세스 권한을 부여하는 가장 안전한 방법은 무엇인가?
+> a) IAM 사용자의 액세스 키를 애플리케이션 코드에 저장한다.
+> b) 필요한 권한이 있는 IAM 역할을 EC2 인스턴스에 연결한다.
+> c) S3 버킷을 퍼블릭 읽기 가능으로 설정한다.
+> d) AWS 계정 루트 사용자 자격 증명을 애플리케이션과 공유한다.
 >> [!success]- Answer
->> c) Snowmobile.
+>> b) 필요한 권한이 있는 IAM 역할을 EC2 인스턴스에 연결한다.
 
 > [!question] 한 회사가 대량의 아카이브 데이터를 AWS로 마이그레이션할 계획이다. 아카이브 데이터는 5년 동안 보관되어야 하며 요청 후 5시간 이내에 검색할 수 있어야 한다. 사용하기에 가장 비용 효율적인 AWS 스토리지 서비스는 무엇인가?
 > a) Amazon S3 Glacier.
@@ -240,7 +241,8 @@ exam: 4
 > c) 인프라 계층과 고객 계층 모두에 적용되는 제어.
 > d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 제어.
 >> [!success]- Answer
->> d) 인프라를 보호하기 위해 고객과 AWS가 함께 협력하는 제어.
+>> c) 인프라 계층과 고객 계층 모두에 적용되는 제어.
+>> 정정 — 원문 정답은 `d`였습니다. 공유 제어(shared controls)의 AWS 공식 정의가 그대로 나온 보기입니다. 상속 제어는 물려받는 것, 공유 제어는 양쪽 계층에 모두 적용되는 것입니다.
 
 > [!question] 다음 중 AWS의 성능 효율성과 관련된 설계 원칙은 무엇인가? (2개 선택)
 > a) 글로벌 고객에게 더 나은 서비스를 제공하기 위해 다중 리전 아키텍처를 구축한다.
@@ -316,11 +318,11 @@ exam: 4
 
 > [!question] TYMO Cloud Corp는 온프레미스 데이터 센터 전체를 AWS로 마이그레이션하기를 기대하고 있다. AWS 클라우드로 이전하는 것에 대한 비용 편익 분석을 수행하기 위해 어떤 도구를 사용할 수 있는가?
 > a) AWS Cost Explorer.
-> b) AWS 총 소유 비용(TCO) 계산기.
+> b) Migration Evaluator.
 > c) AWS Budgets.
 > d) AWS Pricing Calculator.
 >> [!success]- Answer
->> b) AWS 총 소유 비용(TCO) 계산기.
+>> b) Migration Evaluator.
 
 > [!question] 다음 중 AWS Well-Architected Framework의 운영 우수성 원칙을 지원하는 활동은 무엇인가?
 > a) AWS Trusted Advisor를 사용하여 충분히 활용되지 않는 리소스를 찾는다.

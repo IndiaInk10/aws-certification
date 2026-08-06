@@ -205,9 +205,10 @@ lang: en
 > c) Updating Amazon EC2 host firmware
 > d) Updating operating systems
 >> [!success]- Answer
->> b) Encrypting data in transit
+>> c) Updating Amazon EC2 host firmware
+>> 정정 — 원문 정답은 `b`였습니다. 전송 중 데이터 암호화는 공동 책임 모델 그림에서 **고객 책임**칸(네트워크 트래픽 보호)에 있습니다. AWS 책임은 하드웨어·소프트웨어·네트워킹·시설이며, 호스트 펌웨어가 여기에 해당합니다.
 
-<sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
+<sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
 
 > [!question] Where should a company go to search software listings from independent software vendors to find, test, buy and deploy software that runs on AWS?
 > a) AWS Marketplace
@@ -279,17 +280,15 @@ lang: en
 
 <sub>관련: [[aws-organizations]] · [[aws-trusted-advisor]] · [[aws-budgets]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
-> [!question] Which of the following services could be used to deploy an application to servers running on-premises? (Select TWO.)
-> a) AWS Elastic Beanstalk
-> b) AWS OpsWorks
-> c) AWS CodeDeploy
-> d) AWS Batch
-> e) AWS X-Ray
+> [!question] Which AWS service helps protect web applications from common exploits such as SQL injection and cross-site scripting?
+> a) AWS WAF
+> b) Amazon Inspector
+> c) AWS Shield Standard
+> d) Amazon Macie
 >> [!success]- Answer
->> b) AWS OpsWorks
->> c) AWS CodeDeploy
+>> a) AWS WAF
 
-<sub>관련: [[aws-elastic-beanstalk]] · [[aws-batch]] · [[aws-codedeploy]] · [[aws-x-ray]] · [[aws-opsworks]]  |  모듈 [[03-compute-services]], [[13-well-architected]]</sub>
+<sub>관련: [[aws-waf]] · [[amazon-inspector]] · [[aws-shield]] · [[amazon-macie]]  |  모듈 [[09-security]]  |  [참고](https://aws.amazon.com/waf/)</sub>
 
 > [!question] Which Amazon EC2 pricing model adjusts based on supply and demand of EC2 instances?
 > a) On-Demand Instances
@@ -359,9 +358,10 @@ lang: en
 > c) Notify AWS support, and then conduct testing immediately.
 > d) Request and wait for approval from AWS support, and then conduct testing.
 >> [!success]- Answer
->> d) Request and wait for approval from AWS support, and then conduct testing.
+>> b) Request and wait for approval from the customer's internal security team, and then conduct testing.
+>> 정정 — 원문 정답은 `d`였습니다. 지금은 **허용된 서비스에 대해서는 AWS 승인 없이 바로** 침투 테스트를 할 수 있습니다. AWS에 요청해야 하는 것은 DDoS 시뮬레이션 같은 특수한 경우뿐입니다.
 
-<sub>관련: [[amazon-inspector]]  |  모듈 [[09-security]]</sub>
+<sub>관련: [[amazon-inspector]]  |  모듈 [[09-security]]  |  [참고](https://aws.amazon.com/security/penetration-testing/)</sub>
 
 > [!question] Which of the following AWS features enables a user to launch a pre-configured Amazon Elastic Compute Cloud (Amazon EC2) instance?
 > a) Amazon Elastic Block Store (Amazon EBS)

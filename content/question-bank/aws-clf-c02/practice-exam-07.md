@@ -413,15 +413,15 @@ lang: en
 
 <sub>관련: [[amazon-dynamodb]]  |  모듈 [[07-databases]]</sub>
 
-> [!question] You are working as a web app developer. You are currently facing issues in media playback for mobile devices because your media format is not supported. Which of the following AWS services can help you convert your media into another format?
-> a) Amazon Elastic Transcoder.
-> b) Amazon Pinpoint.
-> c) AmazonS3.
-> d) Amazon Rekognition.
+> [!question] A development team wants to run Docker containers on AWS without provisioning or managing the underlying Amazon EC2 instances. Which AWS service meets this requirement?
+> a) AWS Fargate.
+> b) Amazon EC2 Auto Scaling.
+> c) AWS Batch.
+> d) Amazon Lightsail.
 >> [!success]- Answer
->> a) Amazon Elastic Transcoder.
+>> a) AWS Fargate.
 
-<sub>관련: [[amazon-rekognition]]  |  모듈 [[08-ai-ml-analytics]]</sub>
+<sub>관련: [[aws-fargate]] · [[amazon-ec2-auto-scaling]] · [[aws-batch]] · [[amazon-lightsail]]  |  모듈 [[03-compute-services]]  |  [참고](https://aws.amazon.com/fargate/)</sub>
 
 > [!question] What are the benefits of the AWS Organizations service? (Choose TWO)
 > a) Control access to AWS services.

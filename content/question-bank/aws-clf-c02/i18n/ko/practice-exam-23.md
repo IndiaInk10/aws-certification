@@ -22,15 +22,15 @@ exam: 23
 >> [!success]- Answer
 >> b) 물리적 및 환경적 제어 유지 관리
 
-> [!question] AWS에서 애플리케이션을 배포하는 데 사용할 수 있는 서비스는 무엇인가? (2개 선택)
-> a) AWS Elastic Beanstalk
-> b) AWS Config
-> c) AWS OpsWorks
-> d) AWS Application Discovery Service
-> e) Amazon Kinesis
+> [!question] 다음 중 기존 온프레미스 데이터 센터에 비해 AWS 클라우드가 갖는 이점은 무엇인가? (2개 선택)
+> a) 사용자는 몇 분 안에 여러 리전에 리소스를 배포할 수 있다.
+> b) AWS가 고객의 애플리케이션 코드를 관리한다.
+> c) 사용자는 거대한 규모의 경제로부터 이점을 얻는다.
+> d) 사용자는 더 이상 자신의 데이터에 대한 액세스를 제어할 필요가 없다.
+> e) AWS는 애플리케이션이 절대 실패하지 않음을 보장한다.
 >> [!success]- Answer
->> a) AWS Elastic Beanstalk
->> c) AWS OpsWorks
+>> a) 사용자는 몇 분 안에 여러 리전에 리소스를 배포할 수 있다.
+>> c) 사용자는 거대한 규모의 경제로부터 이점을 얻는다.
 
 > [!question] 온디맨드 방식의 클라우드 기반 고객 센터를 제공하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
 > a) AWS Direct Connect

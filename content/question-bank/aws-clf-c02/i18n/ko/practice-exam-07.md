@@ -334,13 +334,13 @@ exam: 7
 >> [!success]- Answer
 >> c) AWS.
 
-> [!question] 웹 앱 개발자로 일하고 있다. 현재 미디어 형식이 지원되지 않아 모바일 디바이스에서 미디어 재생 문제를 겪고 있다. 다음 중 미디어를 다른 형식으로 변환하는 데 도움이 되는 AWS 서비스는 무엇인가?
-> a) Amazon Elastic Transcoder.
-> b) Amazon Pinpoint.
-> c) Amazon S3.
-> d) Amazon Rekognition.
+> [!question] 한 개발 팀이 기반 Amazon EC2 인스턴스를 프로비저닝하거나 관리하지 않고 AWS에서 Docker 컨테이너를 실행하려고 한다. 이 요구 사항을 충족하는 AWS 서비스는 무엇인가?
+> a) AWS Fargate.
+> b) Amazon EC2 Auto Scaling.
+> c) AWS Batch.
+> d) Amazon Lightsail.
 >> [!success]- Answer
->> a) Amazon Elastic Transcoder.
+>> a) AWS Fargate.
 
 > [!question] AWS Organizations 서비스의 이점은 무엇인가? (2개 선택)
 > a) AWS 서비스에 대한 액세스를 제어한다.

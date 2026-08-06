@@ -170,7 +170,8 @@ exam: 14
 > c) Amazon EC2 호스트 펌웨어 업데이트
 > d) 운영 체제 업데이트
 >> [!success]- Answer
->> b) 전송 중 데이터 암호화
+>> c) Amazon EC2 호스트 펌웨어 업데이트
+>> 정정 — 원문 정답은 `b`였습니다. 전송 중 데이터 암호화는 공동 책임 모델에서 고객 책임(네트워크 트래픽 보호)입니다. AWS 책임은 하드웨어·소프트웨어·네트워킹·시설입니다.
 
 > [!question] 회사가 AWS에서 실행되는 소프트웨어를 찾고, 테스트하고, 구매하고, 배포하기 위해 독립 소프트웨어 공급업체의 소프트웨어 목록을 검색하려면 어디로 가야 하는가?
 > a) AWS Marketplace
@@ -228,15 +229,13 @@ exam: 14
 >> [!success]- Answer
 >> b) AWS Organizations
 
-> [!question] 다음 중 온프레미스에서 실행되는 서버에 애플리케이션을 배포하는 데 사용할 수 있는 서비스는 무엇인가? (2개 선택)
-> a) AWS Elastic Beanstalk
-> b) AWS OpsWorks
-> c) AWS CodeDeploy
-> d) AWS Batch
-> e) AWS X-Ray
+> [!question] 다음 중 SQL 인젝션 및 교차 사이트 스크립팅과 같은 일반적인 공격으로부터 웹 애플리케이션을 보호하는 데 도움이 되는 AWS 서비스는 무엇인가?
+> a) AWS WAF
+> b) Amazon Inspector
+> c) AWS Shield Standard
+> d) Amazon Macie
 >> [!success]- Answer
->> b) AWS OpsWorks
->> c) AWS CodeDeploy
+>> a) AWS WAF
 
 > [!question] EC2 인스턴스의 수요와 공급에 따라 조정되는 Amazon EC2 요금 모델은 무엇인가?
 > a) 온디맨드 인스턴스
@@ -294,7 +293,8 @@ exam: 14
 > c) AWS Support에 통지한 다음 즉시 테스트를 수행한다.
 > d) AWS Support에 승인을 요청하고 대기한 다음 테스트를 수행한다.
 >> [!success]- Answer
->> d) AWS Support에 승인을 요청하고 대기한 다음 테스트를 수행한다.
+>> b) 고객의 내부 보안 팀에 승인을 요청하고 대기한 다음 테스트를 수행한다.
+>> 정정 — 원문 정답은 `d`였습니다. 지금은 허용된 서비스에 대해서는 AWS 승인 없이 바로 침투 테스트를 할 수 있습니다.
 
 > [!question] 다음 중 사용자가 사전 구성된 Amazon Elastic Compute Cloud(Amazon EC2) 인스턴스를 시작할 수 있게 해 주는 AWS 기능은 무엇인가?
 > a) Amazon Elastic Block Store(Amazon EBS)

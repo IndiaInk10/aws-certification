@@ -361,9 +361,10 @@ lang: en
 > c) Managed partners
 > d) AWS Support
 >> [!success]- Answer
->> b) The customer Database Administrator
+>> a) The AWS Product team
+>> 정정 — 원문 정답은 `b`였습니다. RDS는 관리형 서비스라 기반 운영 체제 패치를 AWS가 수행합니다. 게스트 OS 패치가 고객 몫인 것은 EC2입니다.
 
-<sub>관련: [[amazon-rds]]  |  모듈 [[07-databases]]  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
+<sub>관련: [[amazon-rds]]  |  모듈 [[07-databases]]  |  [참고](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html)</sub>
 
 > [!question] Which AWS services may be scaled using AWS Auto Scaling? (Choose two.)
 > a) Amazon EC2

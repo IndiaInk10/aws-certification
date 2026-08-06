@@ -45,15 +45,15 @@ lang: en
 
 <sub>관련: [[aws-organizations]]  |  모듈 [[10-monitoring-governance]]  |  [참고](https://aws.amazon.com/organizations/)</sub>
 
-> [!question] Which AWS service is used to automate configuration management using Chef and Puppet?
-> a) AWS Config
-> b) AWS OpsWorks
-> c) AWS CloudFormation
-> d) AWS Systems Manager
+> [!question] According to AWS security best practices, how should the AWS account root user be managed?
+> a) Use the root user for all daily administrative tasks.
+> b) Enable MFA on the root user and use it only for tasks that require it.
+> c) Create access keys for the root user and share them with administrators.
+> d) Delete the root user after the first IAM user is created.
 >> [!success]- Answer
->> b) AWS OpsWorks
+>> b) Enable MFA on the root user and use it only for tasks that require it.
 
-<sub>관련: [[aws-config]] · [[aws-cloudformation]] · [[aws-systems-manager]] · [[aws-opsworks]]  |  모듈 [[04-global-infrastructure]], [[09-security]], [[10-monitoring-governance]]  |  [참고](https://aws.amazon.com/opsworks/)</sub>
+<sub>관련: [[aws-iam]]  |  모듈 [[09-security]]  |  [참고](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)</sub>
 
 > [!question] Which tool is best suited for combining the billing of AWS accounts that were previously independent from one another?
 > a) Detailed billing report
@@ -125,9 +125,10 @@ lang: en
 > c) across multiple Availability Zones in one AWS Region
 > d) across multiple Availability Zones in two AWS Regions
 >> [!success]- Answer
->> c) across multiple Availability Zones in one AWS Region
+>> d) across multiple Availability Zones in two AWS Regions
+>> 정정 — 원문 정답은 `c`였습니다. 문제가 **"글로벌"** 과 **"최고 수준의 이중화"** 를 함께 요구하므로, 리전 하나가 통째로 나가도 버티는 구성이 답입니다. 다만 **보기에 다중 리전이 없으면 다중 AZ가 답**입니다. 두 경우를 갈라서 기억하시기 바랍니다.
 
-<sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]  |  [참고](https://jayendrapatil.com/aws-high-availability-fault-tolerance-architecture-certification/)</sub>
+<sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]], [[04-global-infrastructure]]</sub>
 
 > [!question] A company has an application with users in both Australia and Brazil. All the company infrastructure is currently provisioned in the Asia Pacific (Sydney) Region in Australia, and Brazilian users are experiencing high latency. What should the company do to reduce latency?
 > a) Implement AWS Direct Connect for users in Brazil
@@ -239,17 +240,15 @@ lang: en
 
 <sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)  |  모듈 [[04-global-infrastructure]]</sub>
 
-> [!question] Which AWS services can be used as infrastructure automation tools? (Choose two.)
-> a) AWS CloudFormation
-> b) Amazon CloudFront
-> c) AWS Batch
-> d) AWS OpsWorks
-> e) Amazon QuickSight
+> [!question] Which Amazon RDS feature provides high availability by automatically failing over to a standby database instance in another Availability Zone?
+> a) Read replicas
+> b) Multi-AZ deployment
+> c) Automated backups
+> d) Provisioned IOPS
 >> [!success]- Answer
->> a) AWS CloudFormation
->> d) AWS OpsWorks
+>> b) Multi-AZ deployment
 
-<sub>관련: [[aws-batch]] · [[amazon-cloudfront]] · [[amazon-quicksight]] · [[aws-cloudformation]] · [[aws-opsworks]]  |  모듈 [[03-compute-services]], [[04-global-infrastructure]], [[05-networking]], [[08-ai-ml-analytics]]  |  [참고](https://blog.newrelic.com/engineering/best-cloud-infrastructure-automation-tools/)</sub>
+<sub>관련: [[amazon-rds]]  |  모듈 [[07-databases]]  |  [참고](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)</sub>
 
 > [!question] Which AWS service enables users to create copies of resources across AWS Regions?
 > a) Amazon ElastiCache

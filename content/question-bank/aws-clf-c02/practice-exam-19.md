@@ -182,12 +182,12 @@ lang: en
 > [!question] Which AWS tool is used to compare the cost of running an application on-premises to running the application in the AWS Cloud?
 > a) AWS Trusted Advisor
 > b) AWS Simple Monthly Calculator
-> c) AWS Pricing Calculator
+> c) Migration Evaluator
 > d) Cost Explorer
 >> [!success]- Answer
->> c) AWS Pricing Calculator
+>> c) Migration Evaluator
 
-<sub>관련: [[aws-trusted-advisor]] · [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-trusted-advisor]] · [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
 
 > [!question] A company has multiple AWS accounts within AWS Organizations and wants to apply the Amazon EC2 Reserved Instances benefit to a single account only. Which action should be taken?
 > a) Purchase the Reserved Instances from master payer account and turn off Reserved Instance sharing.
@@ -249,9 +249,10 @@ lang: en
 > c) set resource limits in AWS accounts to prevent overspending
 > d) split an AWS bill across multiple forms of payment
 >> [!success]- Answer
->> c) set resource limits in AWS accounts to prevent overspending
+>> b) send an alert when the utilization of Reserved Instances drops below a certain percentage
+>> 정정 — 원문 정답은 `c`였습니다. AWS Budgets는 **한도를 걸어 지출을 막는 도구가 아니라 알림을 보내는 도구**입니다. 비용·사용량뿐 아니라 **예약 인스턴스 사용률·적용률**에도 예산을 걸고 임곗값 미만으로 떨어지면 알림을 받을 수 있습니다.
 
-<sub>관련: [[aws-budgets]]  |  모듈 [[11-billing-support]]  |  [참고](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)</sub>
+<sub>관련: [[aws-budgets]]  |  모듈 [[11-billing-support]]  |  [참고](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-create.html)</sub>
 
 > [!question] Which of the following will enhance the security of access to the AWS Management Console? (Choose two.)
 > a) AWS Secrets Manager
@@ -426,14 +427,14 @@ lang: en
 <sub>관련: [[aws-kms]] · [[aws-cloudhsm]] · [[aws-certificate-manager]] · [[aws-secrets-manager]] · [[amazon-macie]]  |  모듈 [[09-security]]</sub>
 
 > [!question] A company is planning to migrate from on-premises to the AWS Cloud. Which AWS tool or service provides detailed reports on estimated cost savings after migration?
-> a) AWS Total Cost of Ownership (TCO) Calculator
+> a) Migration Evaluator
 > b) Cost Explorer
 > c) AWS Budgets
 > d) AWS Migration Hub
 >> [!success]- Answer
->> a) AWS Total Cost of Ownership (TCO) Calculator
+>> a) Migration Evaluator
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-migration-hub]]  |  모듈 [[11-billing-support]], [[12-migration]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-migration-hub]]  |  모듈 [[11-billing-support]], [[12-migration]]</sub>
 
 > [!question] What can assist in evaluating an application for migration to the cloud? (Choose two.)
 > a) AWS Trusted Advisor

@@ -414,14 +414,14 @@ lang: en
 <sub>모듈 [[04-global-infrastructure]], [[05-networking]]</sub>
 
 > [!question] A company is planning to migrate from on-premises to the AWS Cloud. When AWS tool or service provides detailed reports on estimated cost savings after migration?
-> a) AWS Total Cost of Ownership (TCO) Calculator.
+> a) Migration Evaluator.
 > b) Cost Explorer.
 > c) AWS Budgets.
 > d) AWS Migration Hub.
 >> [!success]- Answer
->> a) AWS Total Cost of Ownership (TCO) Calculator.
+>> a) Migration Evaluator.
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-migration-hub]]  |  모듈 [[11-billing-support]], [[12-migration]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-migration-hub]]  |  모듈 [[11-billing-support]], [[12-migration]]</sub>
 
 > [!question] Which AWS service provides a customized view of the health of specific AWS services that power a customer’s workloads running on AWS?
 > a) AWS Service Health Dashboard.
@@ -447,9 +447,9 @@ lang: en
 > a) AWS Senior Support Engineers.
 > b) AWS Technical Account Managers.
 > c) AWS Trusted Advisor.
-> d) AWS Discussion Forums.
+> d) AWS re:Post.
 >> [!success]- Answer
->> d) AWS Discussion Forums.
+>> d) AWS re:Post.
 
 <sub>관련: [[aws-trusted-advisor]] · [[aws-support-plans]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
 

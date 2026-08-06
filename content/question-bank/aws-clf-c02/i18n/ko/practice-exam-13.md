@@ -142,16 +142,13 @@ exam: 13
 >> [!success]- Answer
 >> b) 리전은 가용 영역을 포함한다.
 
-> [!question] 비용 추정에 도움이 되는 AWS 도구는 무엇인가? (3개 선택)
-> a) 상세 결제 보고서
-> b) 비용 할당 태그
-> c) AWS Simple Monthly Calculator
-> d) AWS 총 소유 비용(TCO) 계산기
-> e) Cost Eliminator
+> [!question] 다음 중 워크로드가 장애로부터 복구하고 수요를 충족하는 능력에 중점을 두는 AWS Well-Architected Framework의 기둥은 무엇인가?
+> a) 운영 우수성
+> b) 안정성
+> c) 비용 최적화
+> d) 성능 효율성
 >> [!success]- Answer
->> b) 비용 할당 태그
->> c) AWS Simple Monthly Calculator
->> d) AWS 총 소유 비용(TCO) 계산기
+>> b) 안정성
 
 > [!question] 다음 중 AWS 통합 결제의 이점은 무엇인가? (2개 선택)
 > a) 여러 계정에 대해 하나의 청구서를 받을 수 있는 기능

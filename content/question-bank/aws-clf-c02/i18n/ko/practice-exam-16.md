@@ -16,11 +16,11 @@ exam: 16
 
 > [!question] AWS 클라우드로의 마이그레이션에 대한 비용 편익 분석을 수행하는 데 도움이 되는 것은 무엇인가?
 > a) Cost Explorer
-> b) AWS 총 소유 비용(TCO) 계산기
-> c) AWS Simple Monthly Calculator
+> b) Migration Evaluator
+> c) AWS Cost and Usage Report
 > d) AWS Trusted Advisor
 >> [!success]- Answer
->> b) AWS 총 소유 비용(TCO) 계산기
+>> b) Migration Evaluator
 
 > [!question] 다음 중 AWS 계정 간에 예약 인스턴스의 비용 이점을 공유할 수 있는 기능을 제공하는 것은 무엇인가?
 > a) AWS 계정 간의 AWS Cost Explorer
@@ -60,7 +60,8 @@ exam: 16
 > c) Amazon EC2가 자동으로 자산 보고서를 생성하여 고객이 지정한 Amazon S3 버킷에 배치한다.
 > d) 사용자가 몇 번의 API 호출로 자산 메타데이터를 안정적으로 수집할 수 있다.
 >> [!success]- Answer
->> b) AWS가 고객을 대신하여 인프라 검색 스캔을 수행한다.
+>> d) 사용자가 몇 번의 API 호출로 자산 메타데이터를 안정적으로 수집할 수 있다.
+>> 정정 — 원문 정답은 `b`였습니다. AWS는 고객을 대신하여 인프라 검색 스캔을 수행하지 않습니다.
 
 > [!question] 전역적으로 중복된 데이터베이스를 생성하는 데 도움이 되는 Amazon RDS의 기능은 무엇인가?
 > a) 스냅샷
@@ -301,20 +302,20 @@ exam: 16
 >> d) AWS CodeCommit
 
 > [!question] 한 회사가 애플리케이션을 AWS로 마이그레이션하는 것을 고려하고 있다. 이 회사는 온프레미스에서 워크로드를 실행하는 비용과 AWS 플랫폼에서 동등한 워크로드를 실행하는 비용을 비교하려고 한다. 이 비교를 수행하는 데 사용할 수 있는 도구는 무엇인가?
-> a) AWS Simple Monthly Calculator
-> b) AWS 총 소유 비용(TCO) 계산기
+> a) AWS Cost and Usage Report
+> b) Migration Evaluator
 > c) AWS Billing and Cost Management 콘솔
 > d) Cost Explorer
 >> [!success]- Answer
->> b) AWS 총 소유 비용(TCO) 계산기
+>> b) Migration Evaluator
 
-> [!question] 엑사바이트 규모의 데이터 세트를 AWS로 마이그레이션하거나 전송하는 안전하고 빠르며 비용 효율적인 방법을 제공하는 AWS 서비스는 무엇인가?
-> a) AWS Batch
-> b) AWS Snowball
-> c) AWS Migration Hub
-> d) AWS Snowmobile
+> [!question] 한 회사가 필요한 인프라 용량을 더 이상 추측할 필요가 없어졌고, 수요가 변할 때 규모를 확장하거나 축소할 수 있게 되었다. 이는 클라우드 컴퓨팅의 어떤 이점을 설명하는가?
+> a) 용량 추정 불필요
+> b) 몇 분 만에 전 세계 배포
+> c) 자본 지출을 가변 비용으로 대체
+> d) 거대한 규모의 경제로 얻는 이점
 >> [!success]- Answer
->> d) AWS Snowmobile
+>> a) 용량 추정 불필요
 
 > [!question] 다음 중 AWS 요금 모델을 가장 잘 설명하는 것은 무엇인가? (2개 선택)
 > a) 고정 기간

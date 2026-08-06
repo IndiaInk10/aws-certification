@@ -263,10 +263,10 @@ exam: 12
 > [!question] 고객은 새 웹 애플리케이션을 실행하는 데 드는 향후 비용을 어떻게 예측해야 하는가?
 > a) Amazon Aurora Backtrack.
 > b) Amazon CloudWatch 결제 경보.
-> c) AWS Simple Monthly Calculator.
+> c) AWS Pricing Calculator.
 > d) AWS Cost and Usage Report.
 >> [!success]- Answer
->> c) AWS Simple Monthly Calculator.
+>> c) AWS Pricing Calculator.
 
 > [!question] SOC 1 보고서와 같은 AWS 규정 준수 문서는 어디에 있는가?
 > a) Amazon Inspector.
@@ -330,15 +330,13 @@ exam: 12
 >> [!success]- Answer
 >> a) 사용자가 인프라 프로비저닝을 기다릴 필요가 없다.
 
-> [!question] 다음 중 온프레미스에서 실행되는 서버에 애플리케이션을 배포하는 데 사용할 수 있는 서비스는 무엇인가? (2개 선택)
-> a) AWS Elastic Beanstalk.
-> b) AWS OpsWorks.
-> c) AWS CodeDeploy.
-> d) AWS Batch.
-> e) AWS X-Ray.
+> [!question] 한 회사가 여러 리전에서 동일한 환경을 반복적으로 생성할 수 있도록 AWS 인프라를 템플릿 파일로 정의하려고 한다. 이 회사가 사용해야 하는 AWS 서비스는 무엇인가?
+> a) AWS CloudFormation
+> b) AWS Config
+> c) AWS CloudTrail
+> d) AWS Systems Manager
 >> [!success]- Answer
->> b) AWS OpsWorks.
->> c) AWS CodeDeploy.
+>> a) AWS CloudFormation
 
 > [!question] AWS 클라우드에서 민첩성의 예는 무엇인가?
 > a) 여러 인스턴스 유형에 대한 액세스.

@@ -40,13 +40,13 @@ exam: 21
 >> d) 통합 결제 구현
 >> e) AWS 계정의 거버넌스 적용
 
-> [!question] Chef와 Puppet을 사용하여 구성 관리를 자동화하는 데 사용되는 AWS 서비스는 무엇인가?
-> a) AWS Config
-> b) AWS OpsWorks
-> c) AWS CloudFormation
-> d) AWS Systems Manager
+> [!question] AWS 보안 모범 사례에 따르면 AWS 계정 루트 사용자는 어떻게 관리해야 하는가?
+> a) 모든 일상적인 관리 작업에 루트 사용자를 사용한다.
+> b) 루트 사용자에 MFA를 활성화하고, 반드시 필요한 작업에만 사용한다.
+> c) 루트 사용자의 액세스 키를 생성하여 관리자들과 공유한다.
+> d) 첫 번째 IAM 사용자를 생성한 후 루트 사용자를 삭제한다.
 >> [!success]- Answer
->> b) AWS OpsWorks
+>> b) 루트 사용자에 MFA를 활성화하고, 반드시 필요한 작업에만 사용한다.
 
 > [!question] 이전에 서로 독립적이었던 AWS 계정의 결제를 결합하는 데 가장 적합한 도구는 무엇인가?
 > a) 상세 결제 보고서
@@ -106,7 +106,8 @@ exam: 21
 > c) 하나의 AWS 리전 내 여러 가용 영역에 걸쳐
 > d) 두 개의 AWS 리전 내 여러 가용 영역에 걸쳐
 >> [!success]- Answer
->> c) 하나의 AWS 리전 내 여러 가용 영역에 걸쳐
+>> d) 두 개의 AWS 리전 내 여러 가용 영역에 걸쳐
+>> 정정 — 원문 정답은 `c`였습니다. "글로벌"과 "최고 수준의 중복성"을 함께 요구하므로 리전 하나가 통째로 나가도 버티는 구성이 답입니다. 다만 보기에 다중 리전이 없으면 다중 AZ가 답입니다.
 
 > [!question] 한 회사에 호주와 브라질 모두에 사용자가 있는 애플리케이션이 있다. 회사의 모든 인프라는 현재 호주의 아시아 태평양(시드니) 리전에 프로비저닝되어 있으며, 브라질 사용자는 높은 지연 시간을 경험하고 있다. 지연 시간을 줄이기 위해 회사는 무엇을 해야 하는가?
 > a) 브라질 사용자를 위해 AWS Direct Connect를 구현한다
@@ -196,15 +197,13 @@ exam: 21
 >> [!success]- Answer
 >> a) 하나 이상의 물리적 데이터 센터
 
-> [!question] 다음 중 인프라 자동화 도구로 사용할 수 있는 AWS 서비스는 무엇인가? (2개 선택)
-> a) AWS CloudFormation
-> b) Amazon CloudFront
-> c) AWS Batch
-> d) AWS OpsWorks
-> e) Amazon QuickSight
+> [!question] 다음 중 다른 가용 영역의 대기 데이터베이스 인스턴스로 자동 장애 조치하여 고가용성을 제공하는 Amazon RDS 기능은 무엇인가?
+> a) 읽기 전용 복제본
+> b) 다중 AZ 배포
+> c) 자동 백업
+> d) 프로비저닝된 IOPS
 >> [!success]- Answer
->> a) AWS CloudFormation
->> d) AWS OpsWorks
+>> b) 다중 AZ 배포
 
 > [!question] 사용자가 AWS 리전 전반에 걸쳐 리소스의 사본을 생성할 수 있게 해 주는 AWS 서비스는 무엇인가?
 > a) Amazon ElastiCache

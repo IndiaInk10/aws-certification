@@ -15,13 +15,13 @@ lang: en
 
 > [!question] What will help a company perform a cost benefit analysis of migrating to the AWS Cloud?
 > a) Cost Explorer
-> b) AWS Total Cost of Ownership (TCO) Calculator
-> c) AWS Simple Monthly Calculator
+> b) Migration Evaluator
+> c) AWS Cost and Usage Report
 > d) AWS Trusted Advisor
 >> [!success]- Answer
->> b) AWS Total Cost of Ownership (TCO) Calculator
+>> b) Migration Evaluator
 
-<sub>관련: [[aws-trusted-advisor]] · [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-trusted-advisor]] · [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
 > [!question] Which of the following provides the ability to share the cost benefits of Reserved Instances across AWS accounts?
 > a) AWS Cost Explorer between AWS accounts
@@ -69,7 +69,8 @@ lang: en
 > c) Amazon EC2 automatically generates an asset report and places it in the customer's specified Amazon S3 bucket.
 > d) Users can gather asset metadata reliably with a few API calls.
 >> [!success]- Answer
->> b) AWS performs infrastructure discovery scans on the customer's behalf.
+>> d) Users can gather asset metadata reliably with a few API calls.
+>> 정정 — 원문 정답은 `b`였습니다. AWS는 고객을 대신해 인프라 디스커버리 스캔을 수행하지 않습니다. 클라우드에서 자산 관리가 쉬운 이유는 **API 호출 몇 번으로 자산 목록을 정확하게 가져올 수 있기 때문**입니다.
 
 <sub>관련: [[amazon-ec2]] · [[amazon-s3]]  |  모듈 [[02-cloud-computing]], [[06-storage]]</sub>
 
@@ -370,24 +371,24 @@ lang: en
 <sub>관련: [[amazon-cognito]] · [[aws-codecommit]]  |  모듈 [[13-well-architected]]</sub>
 
 > [!question] A company is considering migrating its applications to AWS. The company wants to compare the cost of running the workload on-premises to running the equivalent workload on the AWS platform. Which tool can be used to perform this comparison?
-> a) AWS Simple Monthly Calculator
-> b) AWS Total Cost of Ownership (TCO) Calculator
+> a) AWS Cost and Usage Report
+> b) Migration Evaluator
 > c) AWS Billing and Cost Management console
 > d) Cost Explorer
 >> [!success]- Answer
->> b) AWS Total Cost of Ownership (TCO) Calculator
+>> b) Migration Evaluator
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
 
-> [!question] Which AWS service provides a secure, fast, and cost-effective way to migrate or transport exabyte-scale datasets into AWS?
-> a) AWS Batch
-> b) AWS Snowball
-> c) AWS Migration Hub
-> d) AWS Snowmobile
+> [!question] A company no longer needs to guess how much infrastructure capacity it will require, and can scale up or down as demand changes. Which benefit of cloud computing does this describe?
+> a) Stop guessing capacity
+> b) Go global in minutes
+> c) Trade capital expense for variable expense
+> d) Benefit from massive economies of scale
 >> [!success]- Answer
->> d) AWS Snowmobile
+>> a) Stop guessing capacity
 
-<sub>관련: [[aws-batch]] · [[aws-snow-family]] · [[aws-migration-hub]]  |  모듈 [[03-compute-services]], [[12-migration]]</sub>
+<sub>모듈 [[01-cloud-intro]]  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)</sub>
 
 > [!question] Which of the following BEST describe the AWS pricing model? (Choose two.)
 > a) Fixed-term

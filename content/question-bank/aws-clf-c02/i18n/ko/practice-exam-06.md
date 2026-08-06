@@ -108,11 +108,11 @@ exam: 6
 
 > [!question] 다수의 온프레미스 워크로드를 AWS로 마이그레이션해야 한다. 가장 적합한 AWS 서비스는 무엇인가?
 > a) AWS File Transfer Acceleration.
-> b) AWS Server Migration Service.
+> b) AWS Application Migration Service.
 > c) AWS Database Migration Service.
 > d) AWS Application Discovery Service.
 >> [!success]- Answer
->> b) AWS Server Migration Service.
+>> b) AWS Application Migration Service.
 
 > [!question] AWS CloudFormation을 사용할 때의 주요 이점은 무엇인가? (2개 선택)
 > a) AWS 고객이 기반 인프라를 걱정하지 않고 애플리케이션을 배포하는 데 도움이 된다.
@@ -133,12 +133,12 @@ exam: 6
 >> c) 하이브리드.
 
 > [!question] 한 회사가 AWS 리전에서 비즈니스 크리티컬 워크로드를 호스팅하고 있다. 데이터 손실을 방지하고 비즈니스 연속성을 보장하기 위해 현재 AWS 환경의 미러 이미지를 다른 AWS 리전에 생성해야 한다. 회사 정책에 따라 기본 AWS 리전에 중단이 발생할 경우 대기 환경을 몇 분 이내에 사용할 수 있어야 한다. 이러한 요구 사항을 충족하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
-> a) CloudEndure Disaster Recovery.
+> a) AWS Elastic Disaster Recovery.
 > b) CloudEndure Migration.
 > c) AWS Backup.
 > d) AWS Glue.
 >> [!success]- Answer
->> a) CloudEndure Disaster Recovery.
+>> a) AWS Elastic Disaster Recovery.
 
 > [!question] 다음 중 액세스 패턴이 안정적인 인기 전자상거래 웹 사이트의 정적 자산을 호스팅하는 데 가장 적합한 S3 스토리지 클래스는 무엇인가?
 > a) S3 Standard-IA.
@@ -268,9 +268,9 @@ exam: 6
 > a) AWS Cost Explorer.
 > b) AWS Pricing Calculator.
 > c) AWS Budgets.
-> d) AWS 총 소유 비용(TCO) 계산기.
+> d) Migration Evaluator.
 >> [!success]- Answer
->> d) AWS 총 소유 비용(TCO) 계산기.
+>> d) Migration Evaluator.
 
 > [!question] 다음 중 규정 준수와 취약점에 대한 실시간 감사를 제공하는 서비스는 무엇인가? (2개 선택)
 > a) AWS Config.
@@ -282,13 +282,13 @@ exam: 6
 >> a) AWS Config.
 >> d) AWS Trusted Advisor.
 
-> [!question] 다음 중 EC2 인스턴스 구성 방식을 자동화하기 위해 Puppet을 사용하는 AWS 서비스는 무엇인가?
-> a) AWS OpsWorks.
-> b) AWS CloudFormation.
-> c) AWS Quick Starts.
-> d) AWS CloudTrail.
+> [!question] 다음 중 AWS Organizations의 서비스 제어 정책(SCP)을 올바르게 설명한 것은 무엇인가?
+> a) 멤버 계정의 IAM 사용자에게 권한을 부여한다.
+> b) 멤버 계정에서 사용할 수 있는 최대 권한을 정의한다.
+> c) 멤버 계정에서 IAM 정책의 필요성을 없앤다.
+> d) 멤버 계정에 저장된 모든 데이터를 자동으로 암호화한다.
 >> [!success]- Answer
->> a) AWS OpsWorks.
+>> b) 멤버 계정에서 사용할 수 있는 최대 권한을 정의한다.
 
 > [!question] 한 조직이 비즈니스를 운영하기 위해 하이브리드 클라우드 아키텍처를 사용한다. 이 조직이 애플리케이션을 AWS 또는 온프레미스 서버 어디에나 배포할 수 있게 해 주는 AWS 서비스는 무엇인가?
 > a) Amazon Kinesis.

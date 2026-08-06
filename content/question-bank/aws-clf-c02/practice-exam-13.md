@@ -171,18 +171,15 @@ lang: en
 
 <sub>관련: [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)  |  [참고](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/#Region_Maps_and_Edge_Networks)  |  모듈 [[04-global-infrastructure]]</sub>
 
-> [!question] Which AWS tools assist with estimating costs? (Select three.)
-> a) Detailed billing report
-> b) Cost allocation tags
-> c) AWS Simple Monthly Calculator
-> d) AWS Total Cost of Ownership (TCO) Calculator
-> e) Cost Eliminator
+> [!question] Which pillar of the AWS Well-Architected Framework focuses on the ability of a workload to recover from failures and to meet demand?
+> a) Operational excellence
+> b) Reliability
+> c) Cost optimization
+> d) Performance efficiency
 >> [!success]- Answer
->> b) Cost allocation tags
->> c) AWS Simple Monthly Calculator
->> d) AWS Total Cost of Ownership (TCO) Calculator
+>> b) Reliability
 
-<sub>관련: [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/estimating-aws-resource-costs/)</sub>
+<sub>관련: [[aws-well-architected-tool]]  |  모듈 [[13-well-architected]]  |  [참고](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)</sub>
 
 > [!question] Which of the following are advantages of AWS consolidated billing? (Select TWO.)
 > a) The ability to receive one bill for multiple accounts

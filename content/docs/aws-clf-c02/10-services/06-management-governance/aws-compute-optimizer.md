@@ -37,7 +37,7 @@ status: 미학습
 
 | 비교 대상 | 차이 |
 |---|---|
-| [[aws-trusted-advisor]] | Trusted Advisor는 비용·성능·보안·내결함성·서비스 한도 **5개 범주 전반**을 점검합니다. Compute Optimizer는 **리소스 크기 하나**를 깊게 파고듭니다 |
+| [[aws-trusted-advisor]] | Trusted Advisor는 비용·성능·보안·내결함성·서비스 한도(+운영 우수성) **여러 범주 전반**을 점검합니다. Compute Optimizer는 **리소스 크기 하나**를 깊게 파고듭니다 |
 | [[aws-cost-explorer]] | Cost Explorer는 **돈이 어디에 얼마나 나갔는지** 보여 줍니다. Compute Optimizer는 **어떤 사양으로 바꾸라**고 알려 줍니다 |
 | [[aws-well-architected-tool]] | Compute Optimizer는 **리소스 단위** 권장, Well-Architected Tool은 **워크로드 전체를 6개 기둥 기준으로 검토**합니다 |
 

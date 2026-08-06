@@ -237,18 +237,15 @@ lang: en
 
 <sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
 
-> [!question] Which AWS tools assist with estimating costs? (Select three)
-> a) Detailed billing report.
-> b) Cost allocation tags.
-> c) AWS Simple Monthly Calculator.
-> d) AWS Total Cost of Ownership (TCO) Calculator.
-> e) Cost Estimator.
+> [!question] A company is designing a new architecture that will use Amazon EC2, Amazon RDS, and an Elastic Load Balancer. Which AWS tool should be used to estimate the monthly cost before the architecture is deployed?
+> a) AWS Cost Explorer
+> b) AWS Pricing Calculator
+> c) AWS Budgets
+> d) AWS Cost and Usage Report
 >> [!success]- Answer
->> b) Cost allocation tags.
->> c) AWS Simple Monthly Calculator.
->> d) AWS Total Cost of Ownership (TCO) Calculator.
+>> b) AWS Pricing Calculator
 
-<sub>관련: [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[aws-pricing-calculator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-cost-and-usage-report]]  |  모듈 [[11-billing-support]]  |  [참고](https://calculator.aws/)</sub>
 
 > [!question] A company wants to focus on business activities instead of managing compute and capacity. Which AWS service can be used to automatically add or remove Amazon EC2 instances based on demand?
 > a) Elastic Load Balancer.
@@ -327,12 +324,12 @@ lang: en
 > [!question] A user wants guidance on possible savings when migrating from on-premises to AWS. Which tool is suitable for this scenario?
 > a) AWS Budgets.
 > b) Cost Explorer.
-> c) AWS Total Cost of Ownership (TCO) Calculator.
+> c) Migration Evaluator.
 > d) AWS Well-Architected Tool.
 >> [!success]- Answer
->> c) AWS Total Cost of Ownership (TCO) Calculator.
+>> c) Migration Evaluator.
 
-<sub>관련: [[aws-well-architected-tool]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[11-billing-support]], [[13-well-architected]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-well-architected-tool]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[11-billing-support]], [[13-well-architected]]</sub>
 
 > [!question] Which of the following services is in the category of AWS serverless platform?
 > a) Amazon EMR.

@@ -280,10 +280,10 @@ exam: 15
 > [!question] 고객은 새로운 웹 애플리케이션 실행에 대한 향후 비용을 어떻게 예측해야 하는가?
 > a) Amazon Aurora Backtrack
 > b) Amazon CloudWatch 결제 경보
-> c) AWS Simple Monthly Calculator
+> c) AWS Pricing Calculator
 > d) AWS Cost and Usage Report
 >> [!success]- Answer
->> c) AWS Simple Monthly Calculator
+>> c) AWS Pricing Calculator
 
 > [!question] 전화 통화를 통해 기술 지원을 제공하는 최소 AWS Support 플랜은 무엇인가?
 > a) Enterprise
@@ -342,8 +342,9 @@ exam: 15
 > d) 다른 클라우드 공급자가 사용하고 있는 규정 준수 프레임워크의 사용을 보장한다.
 > e) 고객 워크로드와 관련이 있게 되는 새로운 규정 준수 프레임워크를 채택한다.
 >> [!success]- Answer
->> a) 호스팅된 워크로드가 지원되는 규정 준수 프레임워크의 제어 항목을 자동으로 준수하는지 확인해 준다.
->> b) AWS가 공통 규정 준수 프레임워크 문서의 유지 관리를 책임진다.
+>> c) AWS가 물리적 보안과 데이터 보호를 유지하고 있음을 고객에게 보증한다.
+>> e) 고객 워크로드와 관련이 있게 되는 새로운 규정 준수 프레임워크를 채택한다.
+>> 정정 — 원문 정답은 `a`·`b`였습니다. AWS의 인증이 고객 워크로드의 준수를 자동으로 보장하지 않으며(공동 책임 모델 위배), 규정 준수 프레임워크 문서는 AWS가 아니라 각 표준 기관이 관리합니다.
 
 > [!question] 다음 중 AWS 규정 준수 보고서에 대한 온디맨드 액세스를 제공하는 서비스는 무엇인가?
 > a) AWS IAM
@@ -359,7 +360,8 @@ exam: 15
 > c) 구성 관리
 > d) 사용자 및 액세스 관리
 >> [!success]- Answer
->> d) 사용자 및 액세스 관리
+>> a) 데이터 센터의 보안 관리
+>> 정정 — 원문 정답은 `d`였습니다. 고객이 AWS로부터 완전히 상속받는 통제는 물리적·환경적 통제뿐이고, 사용자 및 액세스 관리는 고객 책임입니다.
 
 > [!question] AWS 클라우드와 온프레미스의 총 소유 비용을 비교할 때 고려해야 하는 비용은 무엇인가? (2개 선택)
 > a) 소프트웨어 개발

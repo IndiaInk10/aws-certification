@@ -39,12 +39,13 @@ exam: 17
 >> d) 네트워크 인프라 관리
 
 > [!question] AWS에서 새 프로젝트를 실행하는 비용을 추정하는 데 사용해야 하는 서비스는 무엇인가?
-> a) AWS 총 소유 비용(TCO) 계산기
-> b) AWS Simple Monthly Calculator
+> a) AWS Cost and Usage Report
+> b) AWS Pricing Calculator
 > c) AWS Cost Explorer API
 > d) AWS Budgets
 >> [!success]- Answer
->> c) AWS Cost Explorer API
+>> b) AWS Pricing Calculator
+>> 정정 — 원문 정답은 `c`였습니다. Cost Explorer는 이미 발생한 사용량을 분석하는 도구라, 아직 시작하지 않은 프로젝트의 견적에는 쓸 수 없습니다.
 
 > [!question] 제한된 포트 목록에 대해 무제한 인터넷 액세스를 허용하는 보안 그룹을 식별해 주는 AWS 도구는 무엇인가?
 > a) AWS Organizations
@@ -107,10 +108,10 @@ exam: 17
 > [!question] 한 사용자가 온프레미스에서 AWS로 마이그레이션할 때 가능한 절감액에 대한 지침을 원한다. 이 시나리오에 적합한 도구는 무엇인가?
 > a) AWS Budgets
 > b) Cost Explorer
-> c) AWS 총 소유 비용(TCO) 계산기
+> c) Migration Evaluator
 > d) AWS Well-Architected Tool
 >> [!success]- Answer
->> c) AWS 총 소유 비용(TCO) 계산기
+>> c) Migration Evaluator
 
 > [!question] AWS 클라우드에서 신뢰성을 갖춘 애플리케이션을 설계하는 데 사용되는 원칙은 무엇인가? (2개 선택)
 > a) 자동화된 장애 복구를 위한 설계
@@ -256,9 +257,9 @@ exam: 17
 > a) AWS Cost Explorer
 > b) AWS Budgets
 > c) AWS Cost and Usage Report
-> d) AWS 총 소유 비용(TCO) 계산기
+> d) Migration Evaluator
 >> [!success]- Answer
->> d) AWS 총 소유 비용(TCO) 계산기
+>> d) Migration Evaluator
 
 > [!question] Amazon EC2에 서드 파티 소프트웨어를 설치하는 대신 AWS Marketplace의 서드 파티 소프트웨어를 사용하는 것의 가치는 무엇인가? (2개 선택)
 > a) 사용자는 라이선스에 따라 시간당 또는 월별로 소프트웨어 비용을 지불한다.

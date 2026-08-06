@@ -320,10 +320,10 @@ lang: en
 > [!question] How should a customer forecast the future costs for running a new web application?
 > a) Amazon Aurora Backtrack.
 > b) Amazon CloudWatch Billing Alarms.
-> c) AWS Simple Monthly Calculator.
+> c) AWS Pricing Calculator.
 > d) AWS Cost and Usage report.
 >> [!success]- Answer
->> c) AWS Simple Monthly Calculator.
+>> c) AWS Pricing Calculator.
 
 <sub>관련: [[amazon-aurora]] · [[amazon-cloudwatch]] · [[aws-cost-and-usage-report]] · [[aws-pricing-calculator]]  |  모듈 [[07-databases]], [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
@@ -403,17 +403,15 @@ lang: en
 
 <sub>모듈 [[01-cloud-intro]]</sub>
 
-> [!question] Which of the following services could be used to deploy an application to servers running on-premises? (Select TWO)
-> a) AWS Elastic Beanstalk.
-> b) AWS OpsWorks.
-> c) AWS CodeDeploy.
-> d) AWS Batch.
-> e) AWS X-Ray.
+> [!question] A company wants to define its AWS infrastructure in template files so that identical environments can be created repeatedly in multiple Regions. Which AWS service should the company use?
+> a) AWS CloudFormation
+> b) AWS Config
+> c) AWS CloudTrail
+> d) AWS Systems Manager
 >> [!success]- Answer
->> b) AWS OpsWorks.
->> c) AWS CodeDeploy.
+>> a) AWS CloudFormation
 
-<sub>관련: [[aws-elastic-beanstalk]] · [[aws-batch]] · [[aws-codedeploy]] · [[aws-x-ray]] · [[aws-opsworks]]  |  모듈 [[03-compute-services]], [[13-well-architected]]</sub>
+<sub>관련: [[aws-cloudformation]] · [[aws-config]] · [[aws-cloudtrail]] · [[aws-systems-manager]]  |  모듈 [[10-monitoring-governance]]  |  [참고](https://aws.amazon.com/cloudformation/)</sub>
 
 > [!question] What is an example of agility in the AWS Cloud?
 > a) Access to multiple instance types.

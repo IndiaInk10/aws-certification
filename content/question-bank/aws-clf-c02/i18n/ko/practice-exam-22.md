@@ -96,13 +96,14 @@ exam: 22
 >> [!success]- Answer
 >> a) AWS Budgets
 
-> [!question] AWS 리소스에 대한 침투 테스트를 요청하는 권장 방법은 무엇인가?
-> a) 지원 사례를 연다
-> b) 침투 테스트 요청 양식을 작성한다
-> c) 기술 계정 관리자에게 침투 테스트를 요청한다
-> d) AWS 영업 담당자에게 문의한다
+> [!question] 한 회사가 AWS에 있는 자사의 Amazon EC2 인스턴스와 Amazon RDS 데이터베이스에 대해 침투 테스트를 수행하려고 한다. 테스트를 시작하기 전에 이 회사가 해야 하는 것은 무엇인가?
+> a) 없다. AWS는 고객이 사전 승인 없이 이러한 서비스를 테스트하도록 허용한다.
+> b) 요청을 제출하고 AWS Support의 서면 승인을 기다린다.
+> c) 해당 리소스를 먼저 별도의 AWS 계정으로 옮긴다.
+> d) AWS Enterprise Support 플랜으로 업그레이드한다.
 >> [!success]- Answer
->> b) 침투 테스트 요청 양식을 작성한다
+>> a) 없다. AWS는 고객이 사전 승인 없이 이러한 서비스를 테스트하도록 허용한다.
+>> 정정 — 원래 문항은 "침투 테스트를 요청하는 방법"을 물었으나, 지금은 허용된 서비스에 대해 사전 승인이 필요 없어 문항이 성립하지 않아 다시 썼습니다.
 
 > [!question] 한 사용자가 Amazon S3에 저장된 민감한 데이터를 자동으로 검색, 분류 및 보호해야 한다. 다음 중 이러한 요구 사항을 충족할 수 있는 AWS 서비스는 무엇인가?
 > a) Amazon Inspector
@@ -204,7 +205,8 @@ exam: 22
 > c) 보안
 > d) 확장성
 >> [!success]- Answer
->> d) 확장성
+>> a) 탄력성
+>> 정정 — 원문 정답은 `d`였습니다. 늘리고 줄이는 능력은 탄력성이고, 확장성은 늘어나는 부하를 감당하는 능력입니다.
 
 > [!question] 규정 준수 검토 중에 감사자 중 한 명이 AWS SOC 2 보고서 사본을 요구한다. 이 요청을 제출하는 데 사용해야 하는 서비스는 무엇인가?
 > a) AWS Personal Health Dashboard
@@ -332,10 +334,10 @@ exam: 22
 > [!question] 한 아키텍처 설계에 Amazon EC2, Elastic Load Balancer 및 Amazon RDS가 포함되어 있다. 이 아키텍처에 대한 월별 비용 견적을 얻는 가장 좋은 방법은 무엇인가?
 > a) AWS Support 사례를 열고 아키텍처 제안을 제공한 다음 월별 비용 견적을 요청한다.
 > b) AWS 서비스의 공개된 가격을 수집하고 월별 견적을 계산한다.
-> c) AWS Simple Monthly Calculator를 사용하여 월별 비용을 추정한다.
-> d) AWS 총 소유 비용(TCO) 계산기를 사용하여 월별 비용을 추정한다.
+> c) AWS Pricing Calculator를 사용하여 월별 비용을 추정한다.
+> d) 이전 달의 AWS Cost and Usage Report를 검토한다.
 >> [!success]- Answer
->> c) AWS Simple Monthly Calculator를 사용하여 월별 비용을 추정한다.
+>> c) AWS Pricing Calculator를 사용하여 월별 비용을 추정한다.
 
 > [!question] 다음 중 AWS에서 관계형 데이터베이스를 실행할 때 Amazon EC2 대신 Amazon RDS를 사용하는 것의 이점은 무엇인가? (2개 선택)
 > a) 자동 백업

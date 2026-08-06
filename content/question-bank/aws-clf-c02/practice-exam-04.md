@@ -20,10 +20,11 @@ lang: en
 > d) AWS Identity & Access Management.
 > e) AWS Data Pipeline.
 >> [!success]- Answer
->> a) Amazon Route 53.
 >> b) AWS ACM.
+>> d) AWS Identity & Access Management.
+>> 정정 — 원문 정답은 `a`·`b`였습니다. Route 53은 DNS 서비스라 SSL 서버 인증서를 저장·배포하지 않습니다. 인증서를 보관하고 로드 밸런서 같은 리소스에 배포할 수 있는 곳은 **ACM**과 **IAM 서버 인증서 스토어** 두 곳입니다.
 
-<sub>관련: [[amazon-route-53]] · [[aws-directory-service]]  |  모듈 [[05-networking]]</sub>
+<sub>관련: [[aws-certificate-manager]] · [[aws-iam]] · [[amazon-route-53]]  |  모듈 [[09-security]]  |  [참고](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html)</sub>
 
 > [!question] Which of the following AWS services scale automatically without your intervention? (Choose TWO)
 > a) Amazon EC2.
@@ -69,15 +70,15 @@ lang: en
 
 <sub>관련: [[amazon-ec2]]  |  모듈 [[02-cloud-computing]]</sub>
 
-> [!question] A customer is planning to move billions of images and videos to be stored on Amazon S3. The customer has approximately 60 Petabytes of data to move. Which of the following AWS Services is the best choice to transfer the data to AWS?
-> a) Snowball.
-> b) S3 Transfer Acceleration.
-> c) Snowmobile.
-> d) Amazon VPC.
+> [!question] A company runs an application on an Amazon EC2 instance. The application must read objects from an Amazon S3 bucket. What is the MOST secure way to grant this access?
+> a) Store an IAM user's access keys in the application code.
+> b) Attach an IAM role with the required permissions to the EC2 instance.
+> c) Make the S3 bucket publicly readable.
+> d) Share the AWS account root user credentials with the application.
 >> [!success]- Answer
->> c) Snowmobile.
+>> b) Attach an IAM role with the required permissions to the EC2 instance.
 
-<sub>관련: [[amazon-s3]] · [[aws-snow-family]] · [[amazon-vpc]]  |  모듈 [[05-networking]], [[06-storage]], [[12-migration]]</sub>
+<sub>관련: [[amazon-ec2]] · [[amazon-s3]] · [[aws-iam]]  |  모듈 [[09-security]]  |  [참고](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)</sub>
 
 > [!question] A company plans to migrate a large amount of archived data to AWS. The archived data must be maintained for a period of 5 years and must be retrievable within 5 hours of a request. What is the most cost-effective AWS storage service to use?
 > a) Amazon S3 Glacier.
@@ -295,9 +296,10 @@ lang: en
 > c) Controls that apply to both the infrastructure layer and customer layers.
 > d) Controls that the customer and AWS collaborate together upon to secure the infrastructure.
 >> [!success]- Answer
->> d) Controls that the customer and AWS collaborate together upon to secure the infrastructure.
+>> c) Controls that apply to both the infrastructure layer and customer layers.
+>> 정정 — 원문 정답은 `d`였습니다. AWS 공식 정의가 그대로 나온 보기입니다. 공동 책임 모델의 통제는 세 가지로 나뉩니다 — **상속(Inherited)** 은 고객이 AWS에서 통째로 물려받는 물리·환경 통제, **공유(Shared)** 는 인프라 계층과 고객 계층에 **양쪽 다 적용되는** 통제(패치 관리·구성 관리·교육), **고객 전용**은 고객만의 책임입니다.
 
-<sub>모듈 [[01-cloud-intro]]</sub>
+<sub>모듈 [[01-cloud-intro]], [[09-security]]  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
 
 > [!question] Which design principles relate to performance efficiency in AWS? (Choose TWO)
 > a) Build multi-region architectures to better serve global customers.
@@ -389,13 +391,13 @@ lang: en
 
 > [!question] TYMO Cloud Corp is looking forward to migrating their entire on-premises data center to AWS. What tool can they use to perform a cost-benefit analysis of moving to the AWS Cloud?
 > a) AWS Cost Explorer.
-> b) AWS TCO Calculator.
+> b) Migration Evaluator.
 > c) AWS Budgets.
 > d) AWS Pricing Calculator.
 >> [!success]- Answer
->> b) AWS TCO Calculator.
+>> b) Migration Evaluator.
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Which of the following activities supports the Operational Excellence pillar of the AWS Well-Architected Framework?
 > a) Using AWS Trusted Advisor to find underutilized resources.

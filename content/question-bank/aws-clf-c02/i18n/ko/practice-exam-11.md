@@ -339,12 +339,12 @@ exam: 11
 >> d) 응답을 캐싱하여 서버의 트래픽 감소.
 
 > [!question] 어떤 회사가 온프레미스에서 AWS 클라우드로 마이그레이션할 계획이다. 마이그레이션 후 예상되는 비용 절감에 대한 상세 보고서를 제공하는 AWS 도구 또는 서비스는 무엇인가?
-> a) AWS 총 소유 비용(TCO) 계산기.
+> a) Migration Evaluator.
 > b) Cost Explorer.
 > c) AWS Budgets.
 > d) AWS Migration Hub.
 >> [!success]- Answer
->> a) AWS 총 소유 비용(TCO) 계산기.
+>> a) Migration Evaluator.
 
 > [!question] AWS에서 실행되는 고객의 워크로드를 지원하는 특정 AWS 서비스의 상태에 대한 맞춤형 보기를 제공하는 AWS 서비스는 무엇인가?
 > a) AWS Service Health Dashboard.
@@ -366,9 +366,9 @@ exam: 11
 > a) AWS 선임 지원 엔지니어.
 > b) 기술 계정 관리자.
 > c) AWS Trusted Advisor.
-> d) AWS 토론 포럼.
+> d) AWS re:Post.
 >> [!success]- Answer
->> d) AWS 토론 포럼.
+>> d) AWS re:Post.
 
 > [!question] 자연재해가 전체 지리적 영역에 영향을 미치는 경우 사용자는 어떻게 AWS 서비스 중단으로부터 보호할 수 있는가?
 > a) AWS 리전 내의 여러 가용 영역에 애플리케이션을 배포한다.

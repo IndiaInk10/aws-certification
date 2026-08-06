@@ -44,14 +44,15 @@ lang: en
 <sub>관련: [[amazon-vpc]]  |  모듈 [[05-networking]]  |  [참고](https://cloudacademy.com/blog/aws-shared-responsibility-model-security/)</sub>
 
 > [!question] Which service should be used to estimate the costs of running a new project on AWS?
-> a) AWS TCO Calculator
-> b) AWS Simple Monthly Calculator
+> a) AWS Cost and Usage Report
+> b) AWS Pricing Calculator
 > c) AWS Cost Explorer API
 > d) AWS Budgets
 >> [!success]- Answer
->> c) AWS Cost Explorer API
+>> b) AWS Pricing Calculator
+>> 정정 — 원문 정답은 `c`였습니다. Cost Explorer는 **이미 발생한** 사용량을 분석하는 도구라, 아직 시작하지 않은 프로젝트의 견적에는 쓸 수 없습니다.
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[aws-pricing-calculator]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[11-billing-support]]  |  [참고](https://docs.aws.amazon.com/pricing-calculator/latest/userguide/migrate-SMC.html)</sub>
 
 > [!question] Which AWS tool will identify security groups that grant unrestricted Internet access to a limited list of ports?
 > a) AWS Organizations
@@ -128,12 +129,12 @@ lang: en
 > [!question] A user wants guidance on possible savings when migrating from on-premises to AWS. Which tool is suitable for this scenario?
 > a) AWS Budgets
 > b) Cost Explorer
-> c) AWS Total Cost of Ownership (TCO) Calculator
+> c) Migration Evaluator
 > d) AWS Well-Architected Tool
 >> [!success]- Answer
->> c) AWS Total Cost of Ownership (TCO) Calculator
+>> c) Migration Evaluator
 
-<sub>관련: [[aws-well-architected-tool]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[11-billing-support]], [[13-well-architected]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-well-architected-tool]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[11-billing-support]], [[13-well-architected]]</sub>
 
 > [!question] Which principles are used to architect applications for reliability on the AWS Cloud? (Choose two.)
 > a) Design for automated failure recovery
@@ -311,11 +312,11 @@ lang: en
 > a) AWS Cost Explorer
 > b) AWS Budgets
 > c) AWS Cost and Usage report
-> d) AWS Total Cost of Ownership (TCO) Calculator
+> d) Migration Evaluator
 >> [!success]- Answer
->> d) AWS Total Cost of Ownership (TCO) Calculator
+>> d) Migration Evaluator
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-cost-and-usage-report]]  |  모듈 [[11-billing-support]]  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-cost-and-usage-report]]  |  모듈 [[11-billing-support]]  |  [참고](https://aws.amazon.com/tco-calculator/)</sub>
 
 > [!question] What is the value of using third-party software from AWS Marketplace instead of installing third-party software on Amazon EC2? (Choose two.)
 > a) Users pay for software by the hour or month depending on licensing.

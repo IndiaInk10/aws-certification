@@ -133,11 +133,11 @@ lang: en
 
 > [!question] You need to migrate a large number of on-premises workloads to AWS. Which AWS service is the most appropriate?
 > a) AWS File Transfer Acceleration.
-> b) AWS Server Migration Service.
+> b) AWS Application Migration Service.
 > c) AWS Database Migration Service.
 > d) AWS Application Discovery Service.
 >> [!success]- Answer
->> b) AWS Server Migration Service.
+>> b) AWS Application Migration Service.
 
 <sub>관련: [[aws-dms]]  |  모듈 [[12-migration]]</sub>
 
@@ -164,12 +164,12 @@ lang: en
 <sub>모듈 [[01-cloud-intro]]</sub>
 
 > [!question] A company is hosting business critical workloads in an AWS Region. To protect against data loss and ensure business continuity, a mirror image of the current AWS environment should be created in another AWS Region. Company policy requires that the standby environment must be available in minutes in case of an outage in the primary AWS Region. Which AWS service can be used to meet these requirements?
-> a) CloudEndure Disaster Recovery.
+> a) AWS Elastic Disaster Recovery.
 > b) CloudEndure Migration.
 > c) AWS Backup.
 > d) AWS Glue.
 >> [!success]- Answer
->> a) CloudEndure Disaster Recovery.
+>> a) AWS Elastic Disaster Recovery.
 
 <sub>관련: [[aws-backup]] · [[aws-glue]]  |  모듈 [[07-databases]], [[08-ai-ml-analytics]]</sub>
 
@@ -331,11 +331,11 @@ lang: en
 > a) AWS Cost Explorer.
 > b) AWS Pricing Calculator.
 > c) AWS Budgets.
-> d) AWS TCO Calculator.
+> d) Migration Evaluator.
 >> [!success]- Answer
->> d) AWS TCO Calculator.
+>> d) Migration Evaluator.
 
-<sub>관련: [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[migration-evaluator]] · [[aws-cost-explorer]] · [[aws-budgets]] · [[aws-pricing-calculator]]  |  모듈 [[11-billing-support]]</sub>
 
 > [!question] Which of the following services provide real-time auditing for compliance and vulnerabilities? (Choose TWO)
 > a) AWS Config.
@@ -349,15 +349,15 @@ lang: en
 
 <sub>관련: [[amazon-redshift]] · [[amazon-cognito]] · [[aws-config]] · [[aws-trusted-advisor]]  |  모듈 [[08-ai-ml-analytics]], [[10-monitoring-governance]]</sub>
 
-> [!question] Which of the following AWS services uses Puppet to automate how EC2 instances are configured?
-> a) AWS OpsWorks.
-> b) AWS CloudFormation.
-> c) AWS Quick Starts.
-> d) AWS CloudTrail.
+> [!question] Which statement correctly describes a service control policy (SCP) in AWS Organizations?
+> a) It grants permissions to IAM users in member accounts.
+> b) It defines the maximum permissions available to member accounts.
+> c) It removes the need for IAM policies in member accounts.
+> d) It automatically encrypts all data stored in member accounts.
 >> [!success]- Answer
->> a) AWS OpsWorks.
+>> b) It defines the maximum permissions available to member accounts.
 
-<sub>관련: [[amazon-ec2]] · [[aws-cloudtrail]] · [[aws-cloudformation]] · [[aws-opsworks]]  |  모듈 [[02-cloud-computing]], [[04-global-infrastructure]], [[10-monitoring-governance]]</sub>
+<sub>관련: [[aws-organizations]] · [[aws-iam]]  |  모듈 [[10-monitoring-governance]]  |  [참고](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html)</sub>
 
 > [!question] An organization uses a hybrid cloud architecture to run their business. Which AWS service enables them to deploy their applications to any AWS or on-premises server?
 > a) Amazon Kinesis.

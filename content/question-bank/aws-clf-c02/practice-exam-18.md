@@ -27,9 +27,9 @@ lang: en
 > a) AWS Senior Support Engineers
 > b) AWS Technical Account Managers
 > c) AWS Trusted Advisor
-> d) AWS Discussion Forums
+> d) AWS re:Post
 >> [!success]- Answer
->> d) AWS Discussion Forums
+>> d) AWS re:Post
 
 <sub>관련: [[aws-trusted-advisor]] · [[aws-support-plans]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]  |  [참고](https://aws.amazon.com/premiumsupport/faqs/)</sub>
 
@@ -67,11 +67,11 @@ lang: en
 
 > [!question] A Cloud Practitioner is asked how to estimate the cost of using a new application on AWS. What is the MOST appropriate response?
 > a) Inform the user that AWS pricing allows for on-demand pricing.
-> b) Direct the user to the AWS Simple Monthly Calculator for an estimate.
+> b) Direct the user to the AWS Pricing Calculator for an estimate.
 > c) Use Amazon QuickSight to analyze current spending on-premises.
 > d) Use Amazon AppStream 2.0 for real-time pricing analytics.
 >> [!success]- Answer
->> b) Direct the user to the AWS Simple Monthly Calculator for an estimate.
+>> b) Direct the user to the AWS Pricing Calculator for an estimate.
 
 <sub>관련: [[amazon-quicksight]] · [[aws-pricing-calculator]] · [[amazon-appstream-2-0]]  |  모듈 [[08-ai-ml-analytics]], [[11-billing-support]], [[13-well-architected]]  |  [참고](https://aws.amazon.com/premiumsupport/knowledge-center/estimating-aws-resource-costs/)</sub>
 

@@ -26,9 +26,9 @@ exam: 18
 > a) AWS 선임 지원 엔지니어
 > b) 기술 계정 관리자
 > c) AWS Trusted Advisor
-> d) AWS 토론 포럼
+> d) AWS re:Post
 >> [!success]- Answer
->> d) AWS 토론 포럼
+>> d) AWS re:Post
 
 > [!question] 다음 중 AWS Well-Architected Framework의 원칙에 해당하는 것은 무엇인가? (2개 선택)
 > a) 다중 가용 영역
@@ -58,11 +58,11 @@ exam: 18
 
 > [!question] 한 클라우드 실무자가 AWS에서 새 애플리케이션을 사용하는 비용을 추정하는 방법에 대해 질문을 받았다. 가장 적절한 답변은 무엇인가?
 > a) AWS 요금이 온디맨드 요금 방식을 허용한다고 사용자에게 알린다.
-> b) 견적을 위해 사용자를 AWS Simple Monthly Calculator로 안내한다.
+> b) 견적을 위해 사용자를 AWS Pricing Calculator로 안내한다.
 > c) Amazon QuickSight를 사용하여 현재 온프레미스 지출을 분석한다.
 > d) 실시간 요금 분석을 위해 Amazon AppStream 2.0을 사용한다.
 >> [!success]- Answer
->> b) 견적을 위해 사용자를 AWS Simple Monthly Calculator로 안내한다.
+>> b) 견적을 위해 사용자를 AWS Pricing Calculator로 안내한다.
 
 > [!question] 한 회사가 자사 애플리케이션을 AWS의 VPC로 마이그레이션하려고 한다. 이 애플리케이션은 온프레미스 리소스에 액세스해야 한다. 회사가 이 목표를 달성할 수 있게 해 주는 작업의 조합은 무엇인가? (2개 선택)
 > a) AWS Service Catalog를 사용하여 마이그레이션할 수 있는 온프레미스 리소스 목록을 식별한다.

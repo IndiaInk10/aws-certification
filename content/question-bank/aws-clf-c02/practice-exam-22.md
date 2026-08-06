@@ -115,15 +115,16 @@ lang: en
 
 <sub>관련: [[aws-organizations]] · [[aws-cost-explorer]] · [[aws-budgets]]  |  모듈 [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
-> [!question] What is the recommended method to request penetration testing on AWS resources?
-> a) Open a support case
-> b) Fill out the Penetration Testing Request Form
-> c) Request a penetration test from your technical account manager
-> d) Contact your AWS sales representative
+> [!question] A company wants to run penetration tests against its own Amazon EC2 instances and Amazon RDS databases on AWS. What must the company do before it starts testing?
+> a) Nothing. AWS permits customers to test these services without prior approval.
+> b) Submit a request and wait for written approval from AWS Support.
+> c) Move the resources into a separate AWS account first.
+> d) Upgrade to an AWS Enterprise Support plan.
 >> [!success]- Answer
->> b) Fill out the Penetration Testing Request Form
+>> a) Nothing. AWS permits customers to test these services without prior approval.
+>> 정정 — 원래 문항은 "침투 테스트를 **요청하는** 방법"을 물었고 정답이 "요청 양식 작성"이었습니다. 지금은 **허용된 서비스에 대해서는 사전 승인 없이** 바로 테스트할 수 있어 문항 자체가 성립하지 않아 다시 썼습니다. AWS에 요청해야 하는 것은 DDoS 시뮬레이션 같은 특수한 경우뿐입니다.
 
-<sub>관련: [[aws-support-plans]]  |  모듈 [[11-billing-support]]</sub>
+<sub>관련: [[amazon-ec2]] · [[amazon-rds]]  |  모듈 [[09-security]]  |  [참고](https://aws.amazon.com/security/penetration-testing/)</sub>
 
 > [!question] A user needs to automatically discover, classify, and protect sensitive data stored in Amazon S3. Which AWS service can meet these requirements?
 > a) Amazon Inspector
@@ -247,7 +248,8 @@ lang: en
 > c) Security
 > d) Scalability
 >> [!success]- Answer
->> d) Scalability
+>> a) Elasticity
+>> 정정 — 원문 정답은 `d`였습니다. **늘리고 줄이는(up and down)** 능력은 탄력성입니다. 확장성은 늘어나는 부하를 감당하는 능력을 가리킵니다.
 
 <sub>모듈 [[01-cloud-intro]]</sub>
 
@@ -407,10 +409,10 @@ lang: en
 > [!question] An architecture design includes Amazon EC2, an Elastic Load Balancer, and Amazon RDS. What is the BEST way to get a monthly cost estimation for this architecture?
 > a) Open an AWS Support case, provide the architecture proposal, and ask for a monthly cost estimation.
 > b) Collect the published prices of the AWS services and calculate the monthly estimate.
-> c) Use the AWS Simple Monthly Calculator to estimate the monthly cost.
-> d) Use the AWS Total Cost of Ownership (TCO) Calculator to estimate the monthly cost.
+> c) Use the AWS Pricing Calculator to estimate the monthly cost.
+> d) Review the AWS Cost and Usage Report from a previous month.
 >> [!success]- Answer
->> c) Use the AWS Simple Monthly Calculator to estimate the monthly cost.
+>> c) Use the AWS Pricing Calculator to estimate the monthly cost.
 
 <sub>관련: [[elastic-load-balancing]] · [[amazon-ec2]] · [[amazon-rds]] · [[aws-pricing-calculator]]  |  모듈 [[02-cloud-computing]], [[07-databases]], [[11-billing-support]]  |  [참고](https://docs.aws.amazon.com/pricing-calculator/latest/userguide/aws-pc.pdf)</sub>
 

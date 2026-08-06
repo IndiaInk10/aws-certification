@@ -341,10 +341,10 @@ lang: en
 > [!question] How should a customer forecast the future costs for running a new web application?
 > a) Amazon Aurora Backtrack
 > b) Amazon CloudWatch Billing Alarms
-> c) AWS Simple Monthly Calculator
+> c) AWS Pricing Calculator
 > d) AWS Cost and Usage report
 >> [!success]- Answer
->> c) AWS Simple Monthly Calculator
+>> c) AWS Pricing Calculator
 
 <sub>관련: [[amazon-aurora]] · [[amazon-cloudwatch]] · [[aws-cost-and-usage-report]] · [[aws-pricing-calculator]]  |  모듈 [[07-databases]], [[10-monitoring-governance]], [[11-billing-support]]</sub>
 
@@ -417,10 +417,11 @@ lang: en
 > d) It ensures the use of compliance frameworks that are being used by other cloud providers.
 > e) It will adopt new compliance frameworks as they become relevant to customer workloads.
 >> [!success]- Answer
->> a) It verifies that hosted workloads are automatically compliant with the controls of supported compliance frameworks.
->> b) AWS is responsible for the maintenance of common compliance framework documentation.
+>> c) It assures customers that AWS is maintaining physical security and data protection.
+>> e) It will adopt new compliance frameworks as they become relevant to customer workloads.
+>> 정정 — 원문 정답은 `a`·`b`였습니다. AWS의 인증이 고객 워크로드의 준수를 **자동으로 보장하지는 않습니다.** 공동 책임 모델에 정면으로 어긋나므로 `a`는 오답이고, 규정 준수 프레임워크 문서는 AWS가 아니라 각 표준 기관이 관리하므로 `b`도 오답입니다.
 
-<sub>관련: [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)  |  [참고](https://d0.awsstatic.com/whitepapers/compliance/AWS_Risk_and_Compliance_Whitepaper.pdf)  |  모듈 [[10-monitoring-governance]]</sub>
+<sub>관련: [[aws-artifact]]  |  모듈 [[09-security]]  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)</sub>
 
 > [!question] Which of the following services provides on-demand access to AWS compliance reports?
 > a) AWS IAM
@@ -438,9 +439,10 @@ lang: en
 > c) Configuration management
 > d) User and access management
 >> [!success]- Answer
->> d) User and access management
+>> a) Security management of data center
+>> 정정 — 원문 정답은 `d`였습니다. 고객이 AWS로부터 **완전히 상속받는(fully inherit)** 통제는 물리적·환경적 통제뿐입니다. 사용자·액세스 관리는 명백한 고객 책임입니다.
 
-<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
+<sub>관련: [참고](https://aws.amazon.com/compliance/shared-responsibility-model/)  |  모듈 [[01-cloud-intro]]</sub>
 
 > [!question] When comparing AWS Cloud with on-premises Total Cost of Ownership, which expenses must be considered? (Choose two.)
 > a) Software development

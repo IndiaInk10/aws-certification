@@ -47,6 +47,9 @@ AWS가 제공하는 기술 지원을 **Basic · Developer · Business · Enterpr
 > **기술 지원 = Developer부터 · 24/7 전화 + Trusted Advisor 전체 = Business부터 · TAM = Enterprise부터.**
 > 이 세 줄만 정확히 알아도 지원 플랜 문제의 대부분을 맞히실 수 있습니다.
 
+> [!info] AWS가 최근 플랜 이름을 개편했지만, 시험은 위 5단계로 나옵니다
+> **위 표를 그대로 외우시면 됩니다.** 지금 판매되는 플랜 구성이 다르다는 것만 알아 두세요.
+
 ### 응답 시간 등급
 
 | 심각도 | Developer | Business | On-Ramp | Enterprise |

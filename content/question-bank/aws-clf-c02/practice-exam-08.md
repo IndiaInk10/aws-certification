@@ -467,9 +467,10 @@ lang: en
 > c) Notify AWS support, and then conduct testing immediately.
 > d) Request and wait for approval from AWS support, and then conduct testing.
 >> [!success]- Answer
->> d) Request and wait for approval from AWS support, and then conduct testing.
+>> b) Request and wait for approval from the customer’s internal security team, and then conduct testing.
+>> 정정 — 원문 정답은 `d`였습니다. 지금은 **허용된 서비스에 대해서는 AWS 승인 없이 바로** 침투 테스트를 할 수 있습니다. AWS에 요청해야 하는 것은 DDoS 시뮬레이션 같은 특수한 경우뿐입니다.
 
-<sub>관련: [[amazon-inspector]]  |  모듈 [[09-security]]</sub>
+<sub>관련: [[amazon-inspector]]  |  모듈 [[09-security]]  |  [참고](https://aws.amazon.com/security/penetration-testing/)</sub>
 
 > [!question] Which AWS Cost Management tool allows you to view the most granular data about your AWS bill?
 > a) AWS Cost Explorer.

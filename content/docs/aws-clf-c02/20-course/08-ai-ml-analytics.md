@@ -700,5 +700,3 @@ flowchart TB
 - [ ] 위 `모듈 평가` 10문항을 다시 풀어 전부 맞혔다
 
 확인 문제: [문제 풀이](/aws-clf-c02/quiz) · 틀린 것은 [[wrong-answers]]로.
-</content>
-</invoke>

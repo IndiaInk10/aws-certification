@@ -151,10 +151,10 @@ exam: 19
 > [!question] 애플리케이션을 온프레미스에서 실행하는 비용과 AWS 클라우드에서 실행하는 비용을 비교하는 데 사용되는 AWS 도구는 무엇인가?
 > a) AWS Trusted Advisor
 > b) AWS Simple Monthly Calculator
-> c) AWS Pricing Calculator
+> c) Migration Evaluator
 > d) Cost Explorer
 >> [!success]- Answer
->> c) AWS Pricing Calculator
+>> c) Migration Evaluator
 
 > [!question] 한 회사가 AWS Organizations 내에 여러 AWS 계정을 보유하고 있으며 Amazon EC2 예약 인스턴스 혜택을 단일 계정에만 적용하려고 한다. 어떤 조치를 취해야 하는가?
 > a) 마스터 결제 계정에서 예약 인스턴스를 구매하고 예약 인스턴스 공유를 끈다.
@@ -206,7 +206,8 @@ exam: 19
 > c) 과다 지출을 방지하기 위해 AWS 계정에 리소스 한도를 설정한다
 > d) AWS 청구서를 여러 결제 수단으로 분할한다
 >> [!success]- Answer
->> c) 과다 지출을 방지하기 위해 AWS 계정에 리소스 한도를 설정한다
+>> b) 예약 인스턴스의 사용률이 특정 비율 아래로 떨어질 때 알림을 전송한다
+>> 정정 — 원문 정답은 `c`였습니다. AWS Budgets는 한도를 걸어 지출을 막는 도구가 아니라 알림을 보내는 도구이며, 예약 인스턴스 사용률에도 예산을 걸 수 있습니다.
 
 > [!question] 다음 중 AWS Management Console에 대한 액세스 보안을 강화하는 것은 무엇인가? (2개 선택)
 > a) AWS Secrets Manager
@@ -349,12 +350,12 @@ exam: 19
 >> e) AWS CloudHSM
 
 > [!question] 한 회사가 온프레미스에서 AWS 클라우드로 마이그레이션할 계획이다. 마이그레이션 후 예상되는 비용 절감에 대한 상세 보고서를 제공하는 AWS 도구 또는 서비스는 무엇인가?
-> a) AWS 총 소유 비용(TCO) 계산기
+> a) Migration Evaluator
 > b) Cost Explorer
 > c) AWS Budgets
 > d) AWS Migration Hub
 >> [!success]- Answer
->> a) AWS 총 소유 비용(TCO) 계산기
+>> a) Migration Evaluator
 
 > [!question] 애플리케이션의 클라우드 마이그레이션을 평가하는 데 도움이 되는 것은 무엇인가? (2개 선택)
 > a) AWS Trusted Advisor

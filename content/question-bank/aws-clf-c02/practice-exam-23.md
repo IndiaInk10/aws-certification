@@ -23,17 +23,17 @@ lang: en
 
 <sub>모듈 [[01-cloud-intro]]</sub>
 
-> [!question] Which services can be used to deploy applications on AWS? (Choose two.)
-> a) AWS Elastic Beanstalk
-> b) AWS Config
-> c) AWS OpsWorks
-> d) AWS Application Discovery Service
-> e) Amazon Kinesis
+> [!question] Which of the following are advantages of the AWS Cloud over a traditional on-premises data center? (Choose two.)
+> a) Users can deploy resources in multiple Regions within minutes.
+> b) AWS manages the customer's application code.
+> c) Users benefit from massive economies of scale.
+> d) Users no longer need to control access to their own data.
+> e) AWS guarantees that applications will never fail.
 >> [!success]- Answer
->> a) AWS Elastic Beanstalk
->> c) AWS OpsWorks
+>> a) Users can deploy resources in multiple Regions within minutes.
+>> c) Users benefit from massive economies of scale.
 
-<sub>관련: [[aws-elastic-beanstalk]] · [[amazon-kinesis]] · [[aws-config]] · [[aws-opsworks]]  |  모듈 [[03-compute-services]], [[08-ai-ml-analytics]], [[10-monitoring-governance]]  |  [참고](https://d0.awsstatic.com/whitepapers/overview-of-deployment-options-on-aws.pdf)</sub>
+<sub>모듈 [[01-cloud-intro]], [[04-global-infrastructure]]  |  [참고](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html)</sub>
 
 > [!question] Which AWS service can be used to provide an on-demand, cloud-based contact center?
 > a) AWS Direct Connect

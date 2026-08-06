@@ -196,16 +196,13 @@ exam: 10
 >> a) 프로덕션이 아닌 애플리케이션의 경우.
 >> d) 내결함성이 있고 유연한 애플리케이션의 경우.
 
-> [!question] 비용 추정에 도움이 되는 AWS 도구는 무엇인가? (3개 선택)
-> a) 상세 청구 보고서.
-> b) 비용 할당 태그.
-> c) AWS Simple Monthly Calculator.
-> d) AWS 총 소유 비용(TCO) 계산기.
-> e) Cost Estimator.
+> [!question] 한 회사가 Amazon EC2, Amazon RDS, Elastic Load Balancer를 사용하는 새 아키텍처를 설계하고 있다. 아키텍처를 배포하기 전에 월별 비용을 추정하는 데 사용해야 하는 AWS 도구는 무엇인가?
+> a) AWS Cost Explorer
+> b) AWS Pricing Calculator
+> c) AWS Budgets
+> d) AWS Cost and Usage Report
 >> [!success]- Answer
->> b) 비용 할당 태그.
->> c) AWS Simple Monthly Calculator.
->> d) AWS 총 소유 비용(TCO) 계산기.
+>> b) AWS Pricing Calculator
 
 > [!question] 한 회사가 컴퓨팅 및 용량 관리 대신 비즈니스 활동에 집중하려고 한다. 수요에 따라 Amazon EC2 인스턴스를 자동으로 추가하거나 제거하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
 > a) Elastic Load Balancer.
@@ -270,10 +267,10 @@ exam: 10
 > [!question] 한 사용자가 온프레미스에서 AWS로 마이그레이션할 때 가능한 절감액에 대한 안내를 원한다. 이 시나리오에 적합한 도구는 무엇인가?
 > a) AWS Budgets.
 > b) Cost Explorer.
-> c) AWS 총 소유 비용(TCO) 계산기.
+> c) Migration Evaluator.
 > d) AWS Well-Architected Tool.
 >> [!success]- Answer
->> c) AWS 총 소유 비용(TCO) 계산기.
+>> c) Migration Evaluator.
 
 > [!question] 다음 중 AWS 서버리스 플랫폼 범주에 속하는 서비스는 무엇인가?
 > a) Amazon EMR.

@@ -290,13 +290,13 @@ exam: 5
 >> [!success]- Answer
 >> b) AWS ACM.
 
-> [!question] EC2 인스턴스의 구성을 자동화하기 위해 Chef와의 통합을 제공하는 AWS 서비스는 무엇인가?
-> a) AWS Config.
-> b) AWS OpsWorks.
-> c) AutoScaling.
-> d) AWS CloudFormation.
+> [!question] 한 회사가 모놀리식 애플리케이션의 구성 요소를 분리하여, 한 구성 요소의 장애가 다른 구성 요소를 중단시키지 않도록 하려고 한다. 구성 요소 간에 메시지를 전달하는 데 사용해야 하는 AWS 서비스는 무엇인가?
+> a) Amazon SQS.
+> b) Amazon CloudFront.
+> c) AWS Direct Connect.
+> d) Amazon EBS.
 >> [!success]- Answer
->> b) AWS OpsWorks.
+>> a) Amazon SQS.
 
 > [!question] 한 고객이 AWS 환경에 객체를 저장하고 해당 객체를 인터넷을 통해 다운로드할 수 있게 하려고 한다. 이를 달성하는 데 사용할 수 있는 AWS 서비스는 무엇인가?
 > a) Amazon EBS.

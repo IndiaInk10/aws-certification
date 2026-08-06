@@ -296,7 +296,8 @@ exam: 20
 > c) 관리형 파트너
 > d) AWS Support
 >> [!success]- Answer
->> b) 고객 데이터베이스 관리자
+>> a) AWS 제품 팀
+>> 정정 — 원문 정답은 `b`였습니다. RDS는 관리형 서비스라 기반 운영 체제 패치를 AWS가 수행합니다. 게스트 OS 패치가 고객 몫인 것은 EC2입니다.
 
 > [!question] 다음 중 AWS Auto Scaling을 사용하여 확장할 수 있는 AWS 서비스는 무엇인가? (2개 선택)
 > a) Amazon EC2

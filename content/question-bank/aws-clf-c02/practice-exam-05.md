@@ -359,15 +359,15 @@ lang: en
 
 <sub>관련: [[aws-waf]] · [[amazon-guardduty]]  |  모듈 [[09-security]]</sub>
 
-> [!question] Which AWS Service provides integration with Chef to automate the configuration of EC2 instances?
-> a) AWS Config.
-> b) AWS OpsWorks.
-> c) AutoScaling.
-> d) AWS CloudFormation.
+> [!question] A company wants to decouple the components of a monolithic application so that a failure in one component does not stop the others. Which AWS service should the company use to pass messages between the components?
+> a) Amazon SQS.
+> b) Amazon CloudFront.
+> c) AWS Direct Connect.
+> d) Amazon EBS.
 >> [!success]- Answer
->> b) AWS OpsWorks.
+>> a) Amazon SQS.
 
-<sub>관련: [[amazon-ec2-auto-scaling]] · [[amazon-ec2]] · [[aws-config]] · [[aws-cloudformation]] · [[aws-opsworks]]  |  모듈 [[02-cloud-computing]], [[04-global-infrastructure]], [[10-monitoring-governance]]</sub>
+<sub>관련: [[amazon-sqs]] · [[amazon-cloudfront]] · [[aws-direct-connect]] · [[amazon-ebs]]  |  모듈 [[02-cloud-computing]]  |  [참고](https://aws.amazon.com/sqs/)</sub>
 
 > [!question] A customer is seeking to store objects in their AWS environment and to make those objects downloadable over the internet. Which AWS Service can be used to accomplish this?
 > a) Amazon EBS.
