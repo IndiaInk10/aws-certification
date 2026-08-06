@@ -77,6 +77,10 @@ export function OfflineClient() {
         아래 버튼을 누르면 <strong>모든 강의·문제 화면</strong>을 미리 받아 둡니다. 학습 기록은
         원래도 이 기기에 저장되므로 오프라인에서 푼 문제도 그대로 남습니다.
       </p>
+      <p className="text-fd-muted-foreground mt-1 text-sm">
+        내용이 새로 배포되면 저장분은 자동으로 다시 받습니다. 지난 배포의 화면 조각이 섞이면
+        문제가 안 뜨기 때문에, 한 번 받아 두면 그 뒤로는 손댈 것이 없습니다.
+      </p>
 
       {ready === false && (
         <p className="text-fd-muted-foreground mt-3 rounded-md border border-dashed px-3 py-2 text-xs">

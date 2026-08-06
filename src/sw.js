@@ -1,5 +1,8 @@
 /*
-  서비스 워커 — 비행기 모드/지하철에서도 앱이 뜨게 한다.
+  서비스 워커 **원본** — 비행기 모드/지하철에서도 앱이 뜨게 한다.
+
+  이 파일을 직접 고쳐라. 실제로 브라우저가 받아 가는 public/sw.js 는
+  scripts/build-sw.mjs 가 이 파일을 복사해 만든다 (아래 CACHE_VERSION 설명 참고).
 
   전략 (요청 종류별로 다르다)
     /_next/static, 폰트, 아이콘 …… 캐시 우선. 파일 이름에 해시가 있어 바뀌면 이름도 바뀐다.
@@ -12,36 +15,85 @@
   "네트워크 우선"이라 온라인일 때는 늘 최신을 본다. 캐시는 어디까지나 안전망이다.
 
   전체 저장(설정 화면의 버튼)은 postMessage({type:'PRECACHE'}) 로 들어온다.
-  아래 CACHE_VERSION 을 올리면 다음 방문 때 옛 캐시를 전부 버린다.
 */
 
-const CACHE_VERSION = 'v5';
+/*
+  캐시 버전 — **빌드할 때마다 자동으로 바뀐다.**
+
+  예전에는 여기에 'v5' 같은 숫자를 손으로 적었다. 그런데 배포할 때 이 숫자를 같이 올리는 걸
+  잊으면 옛 캐시가 그대로 살아남아, **지난 배포의 HTML·조각과 이번 배포의 파일이 뒤섞인다.**
+  Next 는 빌드마다 파일 이름(해시)과 빌드 ID가 바뀌므로, 뒤섞이면 브라우저가 이미 사라진 주소를
+  부르게 되고 그 요청이 404 로 떨어진다. 화면 껍데기는 떠도 자바스크립트가 못 붙어서
+  문제가 한 개도 안 나오던 원인이 이것이다.
+
+  그래서 사람 손을 뗐다. scripts/build-sw.mjs 가 빌드마다 다른 값을 여기에 박아 넣는다.
+  파일 내용이 달라지면 브라우저가 새 워커로 알아서 갈아 끼우고, activate 에서 옛 통을 전부 버린다.
+*/
+const CACHE_VERSION = '__BUILD_STAMP__';
 const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
 const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
-// 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리). 이 통만 버전을 따로 단다 — 아래 rscKey 설명대로
-// 예전 통에는 종류가 다른 조각이 한 키에 섞여 있어 그대로 쓸 수 없다. 그렇다고 CACHE_VERSION 을
-// 통째로 올리면 저장해 둔 HTML·정적 파일까지 함께 날아가 다시 받기 전까지 오프라인이 텅 빈다.
-const RSC = `cv-rsc-${CACHE_VERSION}-b`;
+const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
 const DATA = `cv-data-${CACHE_VERSION}`; // 검색 색인 등
-const MINE = [STATIC, PAGES, RSC, DATA];
+
+/*
+  버전을 타지 않는 통. 여기 담긴 건 새 배포에서도 살아남는다.
+  지금은 "이 사람이 전체 저장을 눌렀었다"는 표시 하나만 들어 있다 (아래 wantsAll 참고).
+*/
+const META = 'cv-meta';
+const MINE = [STATIC, PAGES, RSC, DATA, META];
 
 const OFFLINE_URL = '/offline';
 
+/*
+  앱 껍데기에 늘 붙어 있는 그림들.
+
+  헤더 로고는 <img src="/icon.svg">, 홈 화면 아이콘은 /apple-icon · /icon-512.png 다.
+  전부 /_next/static 바깥에 있어서 **예전에는 미리 받는 목록에 아예 없었다.** 그래서 비행기
+  모드로 들어가면 로고 자리가 깨진 그림으로 남았다. 설치할 때 같이 받아 둔다.
+*/
+const SHELL = [
+  '/icon.svg',
+  '/apple-icon',
+  '/icon-512.png',
+  '/icon-maskable.png',
+  '/manifest.webmanifest',
+];
+const isShell = (url) => SHELL.includes(url.pathname);
+
+/** 하나가 실패해도 나머지는 받는다 (addAll 은 하나만 실패해도 통째로 취소된다). */
+async function addEach(cache, urls) {
+  await Promise.all(
+    urls.map(async (u) => {
+      try {
+        await cache.add(u);
+      } catch {
+        /* 무시 */
+      }
+    }),
+  );
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches
-      .open(PAGES)
-      .then((c) => c.addAll([OFFLINE_URL, '/']))
-      .then(() => self.skipWaiting()),
+    (async () => {
+      const pages = await caches.open(PAGES);
+      await addEach(pages, [OFFLINE_URL, '/']);
+      const statics = await caches.open(STATIC);
+      await addEach(statics, SHELL);
+      await self.skipWaiting();
+    })(),
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((k) => !MINE.includes(k)).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim()),
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(keys.filter((k) => !MINE.includes(k)).map((k) => caches.delete(k)));
+      await self.clients.claim();
+      // 새 배포라 옛 통을 버렸다. 전에 전체 저장을 눌렀던 사람이면 조용히 다시 받아 둔다.
+      await restoreIfWanted();
+    })(),
   );
 });
 
@@ -190,7 +242,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (isImmutable(url)) {
+  // 껍데기 그림은 확장자가 없는 것(/apple-icon)도 있어서 isImmutable 로는 안 걸린다.
+  if (isShell(url) || isImmutable(url)) {
     event.respondWith(cacheFirst(request, STATIC));
     return;
   }
@@ -236,6 +289,16 @@ function imagesIn(html) {
   return [...found];
 }
 
+/** 설정 화면이 열려 있으면 그쪽에, 아니면 열려 있는 탭 전부에 진행 상황을 알린다. */
+async function broadcast(message, source) {
+  if (source) {
+    source.postMessage(message);
+    return;
+  }
+  const clients = await self.clients.matchAll({ type: 'window' });
+  for (const c of clients) c.postMessage(message);
+}
+
 async function precache(urls, source) {
   const pages = await caches.open(PAGES);
   const rsc = await caches.open(RSC);
@@ -247,7 +310,14 @@ async function precache(urls, source) {
   let done = 0;
   let failed = 0;
 
-  const post = () => source?.postMessage({ type: 'PRECACHE_PROGRESS', done, failed, total: urls.length });
+  // 껍데기 그림(로고·홈 화면 아이콘)도 같이 받아 둔다. 설치할 때 한 번 받지만
+  // 그새 캐시가 비워졌을 수 있으니 여기서 한 번 더 확인한다.
+  const missingShell = [];
+  for (const u of SHELL) if (!(await statics.match(u))) missingShell.push(u);
+  await addEach(statics, missingShell);
+
+  const post = () =>
+    void broadcast({ type: 'PRECACHE_PROGRESS', done, failed, total: urls.length }, source);
 
   /** 이 페이지가 쓰는 정적 파일·그림 중 아직 안 받은 것만 */
   const saveAssets = async (html) => {
@@ -316,7 +386,40 @@ async function precache(urls, source) {
 
   post();
   await Promise.all(Array.from({ length: 6 }, worker));
-  source?.postMessage({ type: 'PRECACHE_DONE', done, failed, total: urls.length });
+  await broadcast({ type: 'PRECACHE_DONE', done, failed, total: urls.length }, source);
+}
+
+/* ── 새 배포 뒤 자동 복구 ────────────────────────────────────
+   배포가 새로 뜨면 위 activate 가 옛 캐시를 통째로 버린다. 안 버리면 지난 배포의 조각이
+   섞여 404 가 나기 때문에 어쩔 수 없다. 문제는 **전체 저장을 눌러 뒀던 사람**이다. 그대로 두면
+   본인은 여전히 저장돼 있는 줄 알고 지하철에 들어갔다가 텅 빈 화면을 본다.
+
+   그래서 "전체 저장을 눌렀다"는 사실만 버전 없는 통(META)에 남겨 두고, 새 배포에서 캐시를
+   비운 직후 온라인이면 조용히 다시 받아 둔다. */
+
+const WANT_ALL = '/__cv/precache-all';
+
+async function rememberWantsAll() {
+  const meta = await caches.open(META);
+  await meta.put(WANT_ALL, new Response('1'));
+}
+
+async function forgetWantsAll() {
+  const meta = await caches.open(META);
+  await meta.delete(WANT_ALL);
+}
+
+async function restoreIfWanted() {
+  const meta = await caches.open(META);
+  if (!(await meta.match(WANT_ALL))) return;
+  try {
+    const { urls } = await fetch('/offline-manifest.json', { credentials: 'same-origin' }).then((r) =>
+      r.json(),
+    );
+    if (Array.isArray(urls) && urls.length) await precache(urls, null);
+  } catch {
+    // 오프라인이라 못 받았다. 표시는 남아 있으니 다음 배포·다음 실행 때 다시 시도한다.
+  }
 }
 
 self.addEventListener('message', (event) => {
@@ -324,7 +427,7 @@ self.addEventListener('message', (event) => {
   if (!data || typeof data !== 'object') return;
 
   if (data.type === 'PRECACHE' && Array.isArray(data.urls)) {
-    event.waitUntil(precache(data.urls, event.source));
+    event.waitUntil(rememberWantsAll().then(() => precache(data.urls, event.source)));
   }
 
   if (data.type === 'CLEAR') {
@@ -332,6 +435,8 @@ self.addEventListener('message', (event) => {
       caches
         .keys()
         .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+        // 비우기는 사용자가 일부러 누른 것이다. 자동 복구 표시도 같이 지운다.
+        .then(forgetWantsAll)
         .then(() => event.source?.postMessage({ type: 'CLEARED' })),
     );
   }
