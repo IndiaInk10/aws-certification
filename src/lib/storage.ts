@@ -28,6 +28,8 @@ export interface WrongItem {
   services: string[];
   modules: string[];
   at: string;
+  /** 시험 중 검토 표시한 문항. 맞혔더라도 오답노트에 담는다. */
+  flagged?: boolean;
 }
 
 /** ts-fsrs Card 를 그대로 직렬화한 것 */

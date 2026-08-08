@@ -7,7 +7,10 @@ import { store, type WrongItem, type SrsCard } from '@/lib/storage';
 import { ConfirmDialog } from '@/components/ui/modal';
 import { WeakAreas } from '@/components/weak-areas';
 import { moduleLinks, serviceLinks } from '@/lib/quiz-links';
-import { Check, Trash2, X } from 'lucide-react';
+import { Check, Flag, Trash2, X } from 'lucide-react';
+
+const sameSet = (a: string[], b: string[]) =>
+  a.length === b.length && [...a].sort().join() === [...b].sort().join();
 
 const engine = fsrs(generatorParameters({ enable_fuzz: true }));
 
@@ -102,11 +105,12 @@ export function ReviewClient({ cert }: { cert: string }) {
 
   const total = wrong.length;
   const dueCount = queue.length;
+  const shaky = !!item?.flagged && sameSet(item.chosen, item.answers);
 
   return (
     <div>
       <div className="mb-5 flex flex-wrap items-center gap-2 text-sm">
-        <span className="rounded-md border px-2.5 py-1">전체 오답 {total}</span>
+        <span className="rounded-md border px-2.5 py-1">전체 {total}문항</span>
         <span className="rounded-md border px-2.5 py-1">남은 복습 {dueCount}</span>
         {total > 0 && (
           <button
@@ -130,7 +134,7 @@ export function ReviewClient({ cert }: { cert: string }) {
         title="오답노트를 비울까요?"
         description={
           <>
-            이 자격증의 오답 <strong>{total}문항</strong>이 오답노트에서 사라집니다. 응시 기록과 강의
+            이 자격증 오답노트의 <strong>{total}문항</strong>이 사라집니다. 응시 기록과 강의
             진도는 그대로 남습니다. 다시 틀리면 또 쌓입니다.
           </>
         }
@@ -168,9 +172,16 @@ export function ReviewClient({ cert }: { cert: string }) {
 
       {item && (
         <div className="rounded-lg border p-5">
-          <div className="text-fd-muted-foreground mb-2 text-xs">
-            회차 {item.exam} · {reviewed.length + 1} / {reviewed.length + queue.length}
-            {item.services.length > 0 && <> · {item.services.slice(0, 3).join(' · ')}</>}
+          <div className="text-fd-muted-foreground mb-2 flex flex-wrap items-center gap-x-1.5 text-xs">
+            <span>
+              회차 {item.exam} · {reviewed.length + 1} / {reviewed.length + queue.length}
+            </span>
+            {item.flagged && (
+              <span className="flex items-center gap-1">
+                · <Flag className="size-3" />검토 표시
+              </span>
+            )}
+            {item.services.length > 0 && <span>· {item.services.slice(0, 3).join(' · ')}</span>}
           </div>
           <p className="font-medium">{item.q}</p>
 
@@ -205,6 +216,12 @@ export function ReviewClient({ cert }: { cert: string }) {
             </button>
           ) : (
             <>
+              {shaky && (
+                <p className="text-fd-muted-foreground mt-3 text-xs">
+                  응시 때는 정답을 골랐지만 검토 표시를 한 문항입니다.
+                </p>
+              )}
+
               {/* 이 문항을 다시 틀렸다면 문제집이 아니라 여기로 돌아가야 한다 */}
               {(item.modules.length > 0 || item.services.length > 0) && (
                 <div className="text-fd-muted-foreground mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">

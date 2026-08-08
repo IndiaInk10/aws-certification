@@ -290,12 +290,16 @@ export function QuizRunner({
   const result = useMemo(() => {
     let correct = 0;
     const wrong: number[] = [];
+    const shaky: number[] = []; // 맞혔지만 검토 표시한 문항
     questions.forEach((qq, i) => {
-      if (eq(s.picked[i] ?? [], qq.answers)) correct++;
-      else wrong.push(i);
+      if (eq(s.picked[i] ?? [], qq.answers)) {
+        correct++;
+        if (s.flagged[i]) shaky.push(i);
+      } else wrong.push(i);
     });
-    return { correct, wrong, total: questions.length };
-  }, [s.picked, questions]);
+    const noted = [...wrong, ...shaky].sort((a, b) => a - b);
+    return { correct, wrong, shaky, noted, total: questions.length };
+  }, [s.picked, s.flagged, questions]);
 
   // 결과 저장
   useEffect(() => {
@@ -318,7 +322,7 @@ export function QuizRunner({
     // 한 건씩 넣으면 서로의 쓰기를 덮어써 한 문항만 남는다 — 반드시 한 번에 넘긴다.
     const at = new Date().toISOString();
     void store.putWrongMany(
-      result.wrong.map((i) => {
+      result.noted.map((i) => {
         const qq = questions[i];
         return {
           id: `${cert}-${exam}-${i}`,
@@ -332,10 +336,23 @@ export function QuizRunner({
           services: qq.services,
           modules: qq.modules,
           at,
+          ...(s.flagged[i] ? { flagged: true } : {}),
         } satisfies WrongItem;
       }),
     );
-  }, [s.done, s.startedAt, s.finishedAt, s.picked, cert, exam, questions, result, locale, base]);
+  }, [
+    s.done,
+    s.startedAt,
+    s.finishedAt,
+    s.picked,
+    s.flagged,
+    cert,
+    exam,
+    questions,
+    result,
+    locale,
+    base,
+  ]);
 
   // ── 결과 화면 ──────────────────────────────────────────────
   if (s.done) {
@@ -389,7 +406,7 @@ export function QuizRunner({
               href={`/${cert}/review`}
               className="rounded-md border px-3 py-1.5 text-sm no-underline"
             >
-              오답노트 {result.wrong.length}문항 →
+              오답노트 {result.noted.length}문항 →
             </Link>
             <Link
               href={`/${cert}/quiz`}
@@ -412,17 +429,27 @@ export function QuizRunner({
           </div>
         )}
 
-        <h2 className="mt-8 mb-3 text-sm font-semibold">틀린 문항 {result.wrong.length}개</h2>
+        <h2 className="mt-8 mb-1 text-sm font-semibold">
+          오답노트에 담은 문항 {result.noted.length}개
+        </h2>
+        <p className="text-fd-muted-foreground mb-3 text-xs">
+          틀린 문항 {result.wrong.length}개
+          {result.shaky.length > 0 && <> · 검토 표시했지만 맞힌 문항 {result.shaky.length}개</>}
+        </p>
         <ol className="space-y-4">
-          {result.wrong.map((i) => {
+          {result.noted.map((i) => {
             const qq = questions[i];
             const chosen = s.picked[i] ?? [];
+            const shaky = result.shaky.includes(i);
             return (
               <li key={i} className="rounded-lg border p-4 text-sm">
                 <div className="text-fd-muted-foreground mb-1 flex gap-2 text-xs">
                   <span>Q{i + 1}</span>
                   {s.flagged[i] && (
-                    <span className="flex items-center gap-1"><Flag className="size-3" />검토 표시함</span>
+                    <span className="flex items-center gap-1">
+                      <Flag className="size-3" />
+                      {shaky ? '검토 표시 · 맞힘' : '검토 표시함'}
+                    </span>
                   )}
                   {chosen.length === 0 && <span>미응답</span>}
                 </div>
