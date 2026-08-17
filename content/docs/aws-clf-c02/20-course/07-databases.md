@@ -1,6 +1,7 @@
 ---
 title: "데이터베이스"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 7
 status: 미학습
 ---

@@ -222,6 +222,13 @@ export function ReviewClient({ cert }: { cert: string }) {
                 </p>
               )}
 
+              {/* 선지 분석. 정답만 확인하고 넘어가면 같은 쌍을 다른 지문으로 또 틀린다. */}
+              {item.explain && (
+                <p className="text-fd-muted-foreground mt-3 rounded-md border p-3 text-sm whitespace-pre-line">
+                  {item.explain}
+                </p>
+              )}
+
               {/* 이 문항을 다시 틀렸다면 문제집이 아니라 여기로 돌아가야 한다 */}
               {(item.modules.length > 0 || item.services.length > 0) && (
                 <div className="text-fd-muted-foreground mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">

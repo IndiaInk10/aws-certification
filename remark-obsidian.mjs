@@ -19,7 +19,22 @@ import { keyOf, readCache, render, closeD2 } from './scripts/d2-render.mjs';
 const DOCS_ROOT = path.resolve(process.cwd(), 'content/docs');
 const GLOSSARY_PATH = path.resolve(process.cwd(), 'content/glossary.json');
 
-/** 노트 이름(확장자 제외) → { path, title }. 동명이인은 첫 번째 우선. */
+/** 파일이 속한 자격증 폴더 이름. content/docs 바로 밑의 파일은 null. */
+function certOf(filePath) {
+  const segs = path.relative(DOCS_ROOT, filePath).split(path.sep);
+  return segs.length > 1 ? segs[0] : null;
+}
+
+/**
+ * 노트 이름(확장자 제외) → 같은 이름을 가진 노트 **전부**.
+ *
+ * 자격증이 둘이 되는 순간 `00-learning-path` · `glossary` · `service-comparisons` 처럼
+ * **자격증마다 같은 이름**인 노트가 생긴다. 예전에는 먼저 찾은 하나만 남겼는데, 그러면
+ * SAA 노트가 쓴 [[00-learning-path]] 가 폴더 이름 순으로 앞서는 CLF 쪽으로 조용히 넘어간다.
+ * 링크가 깨지지도 않아서 눈치채기도 어렵다.
+ *
+ * 그래서 후보를 전부 들고 있다가 **읽고 있는 노트와 같은 자격증**을 먼저 고른다 → resolveNote.
+ */
 function buildIndex(dir, acc = new Map()) {
   let entries;
   try {
@@ -33,7 +48,6 @@ function buildIndex(dir, acc = new Map()) {
       if (e.name !== 'images') buildIndex(p, acc);
     } else if (e.name.endsWith('.md') || e.name.endsWith('.mdx')) {
       const key = e.name.replace(/\.mdx?$/, '');
-      if (acc.has(key)) continue;
       // 표시 이름은 파일명이 아니라 frontmatter title 에서 가져온다
       let title = key;
       try {
@@ -44,7 +58,8 @@ function buildIndex(dir, acc = new Map()) {
       } catch {
         /* 읽기 실패 시 파일명 사용 */
       }
-      acc.set(key, { path: p, title });
+      if (!acc.has(key)) acc.set(key, []);
+      acc.get(key).push({ path: p, title, cert: certOf(p) });
     }
   }
   return acc;
@@ -54,6 +69,23 @@ let INDEX = null;
 function noteIndex() {
   if (!INDEX) INDEX = buildIndex(DOCS_ROOT);
   return INDEX;
+}
+
+/**
+ * 위키링크는 **자격증을 넘지 않는다.**
+ *
+ * 같은 자격증 안에서 찾고, 없으면 자격증에 속하지 않는 공통 문서(references 등)까지만 본다.
+ * 다른 자격증의 같은 이름 노트로는 넘어가지 않는다 — 자격증끼리 독립이라는 것이 이 저장소의
+ * 규칙이고, SAA 노트만 읽어도 완결되어야 한다. 자격증을 넘는 링크는 노트 맨 아래 한 줄,
+ * 그것도 `/docs/...` 경로를 직접 써서 건다.
+ *
+ * 못 찾으면 null 이고, 그러면 링크가 아니라 **글자로 남는다**(아래 walk 참고).
+ * 아직 안 쓴 서비스 노트를 미리 가리켜 두고 나중에 채우면 그때부터 저절로 링크가 된다.
+ */
+function resolveNote(target, cert) {
+  const list = noteIndex().get(target);
+  if (!list || !list.length) return null;
+  return list.find((e) => e.cert === cert) ?? list.find((e) => e.cert === null) ?? null;
 }
 
 const CALLOUT_TYPE = {
@@ -414,12 +446,14 @@ export default function remarkObsidian() {
       if (node.type === 'text' && parent && /\[\[[^\]]+\]\]/.test(node.value)) {
         const parts = [];
         let last = 0;
-        const re = /\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g;
+        // 표 안에서는 별칭 구분자를 `\|` 로 escape 해야 GFM 이 칸을 쪼개지 않는다.
+        // 여기 오는 값은 이미 escape 가 풀린 뒤지만, 풀리지 않은 경우도 같이 받는다.
+        const re = /\[\[([^\]|#\\]+)(?:#[^\]|]*)?(?:\\?\|([^\]]+))?\]\]/g;
         let m;
         while ((m = re.exec(node.value))) {
           if (m.index > last) parts.push({ type: 'text', value: node.value.slice(last, m.index) });
           const target = m[1].trim();
-          const entry = noteIndex().get(target);
+          const entry = resolveNote(target, cert);
           // 별칭이 없으면 대상 노트의 frontmatter title 을 표시 이름으로 쓴다
           const label = (m[2] || entry?.title || target).trim();
           if (entry && fileDir) {

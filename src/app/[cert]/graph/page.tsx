@@ -1,6 +1,6 @@
 import { GraphView } from '@/components/graph-view';
 import graph from '@/generated/graph.json';
-import quizIndex from '@/generated/quiz/index.json';
+import { allCerts } from '@/lib/certs';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,8 +8,9 @@ export const metadata: Metadata = {
   description: '노트 사이의 링크 관계',
 };
 
+// 그래프는 graph.json 만 있으면 그려진다 — 문제은행 유무와 상관없다 (src/lib/certs.ts 참고)
 export function generateStaticParams() {
-  return quizIndex.map((c) => ({ cert: c.cert }));
+  return allCerts.map((cert) => ({ cert }));
 }
 
 export default async function GraphPage({

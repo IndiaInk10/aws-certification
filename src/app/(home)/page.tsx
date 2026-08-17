@@ -9,6 +9,19 @@ const CERTS = [
     name: 'AWS Certified Cloud Practitioner',
     code: 'CLF-C02',
     status: '진행 중',
+    start: '/docs/aws-clf-c02/00-map/00-learning-path',
+    startDesc: '13개 모듈을 순서대로',
+    unit: '모듈',
+  },
+  {
+    slug: 'aws-saa-c03',
+    name: 'AWS Certified Solutions Architect – Associate',
+    code: 'SAA-C03',
+    status: '뼈대 세우는 중',
+    // SAA 는 문제 읽는 법부터 읽히는 것이 설계다 (30-exam/00-exam-strategy 참고)
+    start: '/docs/aws-saa-c03/30-exam/00-exam-strategy',
+    startDesc: '문제 읽는 기술부터',
+    unit: '과제 명세',
   },
 ];
 
@@ -39,38 +52,46 @@ export default function HomePage() {
 
               <dl className="text-fd-muted-foreground mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm">
                 <div className="flex gap-1.5">
-                  <dt>모듈</dt>
+                  <dt>{c.unit}</dt>
                   <dd className="text-fd-foreground font-medium">{mods}</dd>
                 </div>
-                <div className="flex gap-1.5">
-                  <dt>모의고사</dt>
-                  <dd className="text-fd-foreground font-medium">
-                    {quiz?.exams.length ?? 0}회 / {quiz?.total ?? 0}문항
-                  </dd>
-                </div>
+                {quiz && (
+                  <div className="flex gap-1.5">
+                    <dt>모의고사</dt>
+                    <dd className="text-fd-foreground font-medium">
+                      {quiz.exams.length}회 / {quiz.total}문항
+                    </dd>
+                  </div>
+                )}
               </dl>
 
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
                 {[
                   {
-                    href: `/docs/${c.slug}/00-map/00-learning-path`,
-                    label: '학습 경로',
-                    desc: '13개 모듈을 순서대로',
+                    href: c.start,
+                    label: '시작하기',
+                    desc: c.startDesc,
                     Icon: BookOpen,
                     primary: true,
                   },
-                  {
-                    href: `/${c.slug}/quiz`,
-                    label: '문제 풀이',
-                    desc: '실제 시험 화면으로 응시',
-                    Icon: ClipboardList,
-                  },
-                  {
-                    href: `/${c.slug}/review`,
-                    label: '오답노트',
-                    desc: '간격 반복 복습',
-                    Icon: RotateCcw,
-                  },
+                  // 문제 풀이 · 오답노트는 문항이 없으면 빈 화면이라 라우트가 없다.
+                  // 노트 그래프는 문항과 무관하므로 자격증마다 항상 있다 (src/lib/certs.ts)
+                  ...(quiz
+                    ? [
+                        {
+                          href: `/${c.slug}/quiz`,
+                          label: '문제 풀이',
+                          desc: '실제 시험 화면으로 응시',
+                          Icon: ClipboardList,
+                        },
+                        {
+                          href: `/${c.slug}/review`,
+                          label: '오답노트',
+                          desc: '간격 반복 복습',
+                          Icon: RotateCcw,
+                        },
+                      ]
+                    : []),
                   {
                     href: `/${c.slug}/graph`,
                     label: '노트 그래프',

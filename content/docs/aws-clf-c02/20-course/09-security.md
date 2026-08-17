@@ -1,6 +1,7 @@
 ---
 title: "보안"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 9
 status: 미학습
 ---

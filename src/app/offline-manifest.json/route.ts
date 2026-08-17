@@ -6,6 +6,7 @@
  */
 import { source } from '@/lib/source';
 import quizIndex from '@/generated/quiz/index.json';
+import { allCerts } from '@/lib/certs';
 
 export const dynamic = 'force-static';
 
@@ -18,10 +19,11 @@ export function GET() {
     // 시험 화면 옆 오픈북 창이 부르는 본문 전용 쌍둥이 (/docs/x → /embed/x).
     // 이게 빠지면 비행기 모드에서 자료 창만 텅 빈다.
     ...source.getPages().map((p) => p.url.replace(/^\/docs\//, '/embed/')),
+    // 그래프는 문제은행이 없는 자격증에도 있다 (src/lib/certs.ts)
+    ...allCerts.map((cert) => `/${cert}/graph`),
     ...quizIndex.flatMap((c) => [
       `/${c.cert}/quiz`,
       `/${c.cert}/review`,
-      `/${c.cert}/graph`,
       ...c.exams.map((e) => `/${c.cert}/quiz/${e.exam}`),
     ]),
   ];

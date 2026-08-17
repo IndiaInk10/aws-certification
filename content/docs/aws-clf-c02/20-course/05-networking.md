@@ -1,6 +1,7 @@
 ---
 title: "네트워킹"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 5
 status: 미학습
 ---

@@ -1,6 +1,7 @@
 ---
 title: "스토리지"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 6
 status: 미학습
 ---

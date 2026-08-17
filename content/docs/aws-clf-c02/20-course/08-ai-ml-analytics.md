@@ -1,6 +1,7 @@
 ---
 title: "AI/ML 및 데이터 분석"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 8
 status: 미학습
 ---

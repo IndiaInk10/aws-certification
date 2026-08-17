@@ -1,0 +1,24 @@
+{
+ "title": "과제 명세 (14개)",
+ "pages": [
+  "---도메인 1 · 보안 아키텍처 30%---",
+  "01-secure-access",
+  "02-secure-workloads",
+  "03-data-protection",
+  "---도메인 2 · 복원력 26%---",
+  "04-scalable-decoupled",
+  "05-high-availability",
+  "---도메인 3 · 고성능 24%---",
+  "06-perf-storage",
+  "07-perf-compute",
+  "08-perf-database",
+  "09-perf-network",
+  "10-data-ingestion",
+  "---도메인 4 · 비용 최적화 20%---",
+  "11-cost-storage",
+  "12-cost-compute",
+  "13-cost-database",
+  "14-cost-network"
+ ],
+ "icon": "Target"
+}
