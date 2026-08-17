@@ -1,6 +1,7 @@
 ---
 title: "컴퓨팅 서비스 살펴보기"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 3
 status: 미학습
 ---

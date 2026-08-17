@@ -30,8 +30,24 @@ function walk(dir, acc = []) {
 const files = walk(DOCS);
 const rel = (f) => path.relative(process.cwd(), f).split(path.sep).join('/');
 
-// 위키링크 대상 인덱스
-const noteNames = new Set(files.map((f) => path.basename(f, '.md')));
+/** content/docs 바로 밑의 공통 문서는 자격증이 없다(null). */
+const certOf = (f) => {
+  const segs = path.relative(DOCS, f).split(path.sep);
+  return segs.length > 1 ? segs[0] : null;
+};
+
+/*
+   위키링크 대상 인덱스 — 이름 하나에 후보 여럿.
+
+   자격증마다 `00-learning-path` · `glossary` 가 따로 있으므로 이름만으로는 어느 쪽인지 모른다.
+   remark-obsidian.mjs 가 **같은 자격증을 먼저** 고르므로 여기서도 같은 규칙으로 본다.
+*/
+const noteCerts = new Map();
+for (const f of files) {
+  const base = path.basename(f, '.md');
+  if (!noteCerts.has(base)) noteCerts.set(base, []);
+  noteCerts.get(base).push(certOf(f));
+}
 
 // ── 1. 추출 잔재 ────────────────────────────────────────────
 const JUNK = [
@@ -84,6 +100,7 @@ function parseQuestions(body) {
 for (const f of files) {
   const src = fs.readFileSync(f, 'utf8');
   const name = rel(f);
+  const cert = certOf(f);
   const isCourse = name.includes('/20-course/');
   const isService = name.includes('/10-services/');
   const isTemplate = name.includes('/90-templates/');
@@ -94,12 +111,29 @@ for (const f of files) {
     if (src.includes(needle)) problems.push(`${name} :: ${why} — "${needle}"`);
   }
 
-  // 2. 위키링크 해석
-  for (const m of src.matchAll(/\[\[([^\]|#]+)(?:[#|][^\]]*)?\]\]/g)) {
+  /*
+     2. 위키링크 해석
+
+     resolveNote(remark-obsidian.mjs · build-graph.mjs)와 같은 규칙으로 본다 —
+     **같은 자격증 안**, 아니면 자격증에 속하지 않는 공통 문서까지. 자격증은 넘지 않는다.
+     못 찾은 링크는 화면에서 링크가 아니라 글자로 남는다.
+
+     그게 오류가 아닌 이유는, 아직 안 쓴 서비스 노트를 **미리 가리켜 두는 것이 정상 절차**이기
+     때문이다. 노트를 채우면 그때부터 저절로 링크가 된다. 그래서 이 목록은 경고이자
+     **남은 작업 목록**이다. 다만 한 줄씩 늘어놓으면 다른 경고가 전부 묻히므로 파일당 한 줄로 묶는다.
+  */
+  const dangling = [];
+  for (const m of src.matchAll(/\[\[([^\]|#\\]+)(?:\\?[#|][^\]]*)?\]\]/g)) {
     const target = m[1].trim();
-    if (!noteNames.has(target)) {
-      warn.push(`${name} :: 링크 대상 없음 — [[${target}]]`);
-    }
+    const certs = noteCerts.get(target);
+    const resolved = certs && (certs.includes(cert) || certs.includes(null));
+    if (!resolved && !dangling.includes(target)) dangling.push(target);
+  }
+  if (dangling.length) {
+    const head = dangling.slice(0, 6).map((t) => `[[${t}]]`).join(' ');
+    warn.push(
+      `${name} :: 아직 없는 노트 ${dangling.length}건 — ${head}${dangling.length > 6 ? ' …' : ''}`,
+    );
   }
 
   // 3. 문제 블록
@@ -146,29 +180,66 @@ for (const f of files) {
     });
   }
 
-  // 4. 강의 모듈 필수 구조
+  /*
+     4. 20-course 노트 필수 구조
+
+     20-course 밑에는 성격이 다른 두 종류가 산다. 그래서 frontmatter 의 `kind:` 로 갈라 본다.
+
+       kind: lecture — 강의에서 뽑아낸 모듈 노트 (CLF-C02). 강의 · 지식 점검 · 모듈 평가가 있다
+       kind: domain  — 공식 시험가이드의 과제 명세 노트 (SAA-C03). 강의도 평가도 없다
+
+     **여섯 칸의 뼈대는 자격증이 달라도 같다.** 자리마다 하는 일이 정해져 있어서다.
+
+       1 왜 필요한가        인용구가 학습 경로 화면의 한 줄 설명이 된다 (build-modules.mjs)
+       2 새로 나오는 서비스  위키링크가 서비스-모듈 배정이 된다 (build-service-map.mjs)
+       3 본체              강의 내용 / 이 과제가 묻는 것
+       4 확인              모듈 평가 / 시험에서 갈리는 지점
+       5 여기까지의 지도     누적 보드 — 지금까지 무엇을 쌓았는지
+       6 셀프 체크          넘어가도 되는지 판단
+
+     1 · 2 · 5 · 6 은 두 종류가 글자까지 같고, 3 · 4 만 장르에 따라 이름이 갈린다.
+     `kind:` 를 안 적으면 어느 쪽 규칙을 걸어야 할지 알 수 없으므로 오류로 세운다.
+  */
   if (isCourse) {
+    const kind = src.match(/^kind:\s*(\S+)/m)?.[1] ?? null;
+
     if (!/^##\s*1\.\s*왜 필요한가\s*$/m.test(src))
       problems.push(`${name} :: "## 1. 왜 필요한가" 없음`);
     if (!/##\s*1\.\s*왜 필요한가\s*\n+>\s*.+/.test(src))
       problems.push(`${name} :: 왜 필요한가 아래 인용구 없음 (빌드 스크립트가 파싱함)`);
-    if (!/^###\s*L1\./m.test(src)) problems.push(`${name} :: "### L1." 강의 헤딩 없음`);
-    if (!/^```exam/m.test(src)) problems.push(name + ' :: 모듈 평가(exam 블록) 없음');
-    // 헤더 줄의 숫자와 실제 개수가 맞는가
-    const head = src.match(/^>\s*강의\s*(\d+)개\s*·\s*지식 점검\s*(\d+)문항\s*·\s*모듈 평가\s*(\d+)문항/m);
-    const lessons = (src.match(/^###\s*L\d+\./gm) || []).length;
-    let checks = 0, exam = 0;
-    for (const fence of parseFences(src)) {
-      const n = parseQuestions(fence.body).length;
-      if (fence.lang === 'quiz') checks += n; else exam += n;
+    for (const h of ['## 2. 이번에 새로 나오는 서비스', '## 5. 여기까지의 지도', '## 6. 셀프 체크']) {
+      if (!src.includes(h)) problems.push(`${name} :: "${h}" 섹션 없음`);
     }
-    if (!head) {
-      warn.push(`${name} :: 상단 요약 줄 형식 불일치`);
-    } else {
-      const [, a, b, c] = head.map(Number);
-      if (a !== lessons) problems.push(`${name} :: 헤더 "강의 ${a}개" ≠ 실제 ${lessons}개`);
-      if (b !== checks) problems.push(`${name} :: 헤더 "지식 점검 ${b}문항" ≠ 실제 ${checks}문항`);
-      if (c !== exam) problems.push(`${name} :: 헤더 "모듈 평가 ${c}문항" ≠ 실제 ${exam}문항`);
+
+    if (kind === 'lecture') {
+      for (const h of ['## 3. 강의 내용', '## 4. 모듈 평가']) {
+        if (!src.includes(h)) problems.push(`${name} :: "${h}" 섹션 없음`);
+      }
+      if (!/^###\s*L1\./m.test(src)) problems.push(`${name} :: "### L1." 강의 헤딩 없음`);
+      if (!/^```exam/m.test(src)) problems.push(name + ' :: 모듈 평가(exam 블록) 없음');
+      // 헤더 줄의 숫자와 실제 개수가 맞는가
+      const head = src.match(/^>\s*강의\s*(\d+)개\s*·\s*지식 점검\s*(\d+)문항\s*·\s*모듈 평가\s*(\d+)문항/m);
+      const lessons = (src.match(/^###\s*L\d+\./gm) || []).length;
+      let checks = 0, exam = 0;
+      for (const fence of parseFences(src)) {
+        const n = parseQuestions(fence.body).length;
+        if (fence.lang === 'quiz') checks += n; else exam += n;
+      }
+      if (!head) {
+        warn.push(`${name} :: 상단 요약 줄 형식 불일치`);
+      } else {
+        const [, a, b, c] = head.map(Number);
+        if (a !== lessons) problems.push(`${name} :: 헤더 "강의 ${a}개" ≠ 실제 ${lessons}개`);
+        if (b !== checks) problems.push(`${name} :: 헤더 "지식 점검 ${b}문항" ≠ 실제 ${checks}문항`);
+        if (c !== exam) problems.push(`${name} :: 헤더 "모듈 평가 ${c}문항" ≠ 실제 ${exam}문항`);
+      }
+    } else if (kind === 'domain') {
+      // 과제 명세 노트는 "무엇을 묻는가"와 "무엇으로 갈리는가"가 3·4 칸을 채운다.
+      for (const h of ['## 3. 이 과제가 묻는 것', '## 4. 시험에서 갈리는 지점']) {
+        if (!src.includes(h)) problems.push(`${name} :: "${h}" 섹션 없음`);
+      }
+    } else if (!isTemplate) {
+      problems.push(`${name} :: frontmatter 에 kind: lecture | domain 없음`);
     }
   }
 

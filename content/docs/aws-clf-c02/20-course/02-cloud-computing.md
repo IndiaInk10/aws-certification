@@ -1,6 +1,7 @@
 ---
 title: "클라우드 컴퓨팅"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 2
 status: 미학습
 ---

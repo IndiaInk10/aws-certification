@@ -1,6 +1,7 @@
 ---
 title: "요금 및 지원"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 11
 status: 미학습
 ---

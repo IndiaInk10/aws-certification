@@ -1,6 +1,7 @@
 ---
 title: "Well-Architected 솔루션"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 13
 status: 미학습
 ---

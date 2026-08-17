@@ -1,6 +1,7 @@
 ---
 title: "모니터링 · 규정 준수 · 거버넌스"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 10
 status: 미학습
 ---

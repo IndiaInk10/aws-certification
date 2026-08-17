@@ -1,6 +1,7 @@
 ---
 title: "AWS 클라우드로 마이그레이션"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 12
 status: 미학습
 ---

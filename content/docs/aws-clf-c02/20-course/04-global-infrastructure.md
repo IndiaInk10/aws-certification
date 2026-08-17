@@ -1,6 +1,7 @@
 ---
 title: "글로벌 시장 진출"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 4
 status: 미학습
 ---

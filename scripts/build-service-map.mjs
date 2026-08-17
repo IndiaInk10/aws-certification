@@ -92,7 +92,9 @@ for (const certEntry of fs.readdirSync(DOCS, { withFileTypes: true })) {
     for (const f of fs.readdirSync(courseDir).filter((x) => x.endsWith('.md'))) {
       const src = fs.readFileSync(path.join(courseDir, f), 'utf8');
       const section = src.split('## 2. 이번에 새로 나오는 서비스')[1]?.split('## 3.')[0] ?? '';
-      for (const m of section.matchAll(/\[\[([a-z0-9-]+)\]\]/g)) {
+      // 별칭이 붙은 [[amazon-efs|Amazon EFS]] 도 잡는다. 서비스 노트를 아직 안 쓴 자격증은
+      // 표시 이름이 슬러그로 나오면 읽을 수가 없어서 별칭을 달아 두고 나중에 채운다.
+      for (const m of section.matchAll(/\[\[([a-z0-9-]+)(?:\\?\|[^\]]*)?\]\]/g)) {
         if (!moduleOf.has(m[1])) moduleOf.set(m[1], f.replace(/\.md$/, ''));
       }
     }

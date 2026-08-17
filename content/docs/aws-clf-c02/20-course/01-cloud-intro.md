@@ -1,6 +1,7 @@
 ---
 title: "클라우드 소개"
 tags: [clf-c02, 강의, 모듈]
+kind: lecture
 module: 1
 status: 미학습
 ---
