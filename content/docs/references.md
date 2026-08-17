@@ -68,7 +68,7 @@ description: "이 사이트에 담긴 모든 자료의 출처와 라이선스"
 |---|---|---|
 | ① | [progress0407 — 6~7일 벼락치기 합격기](https://progress0407.tistory.com/234) | 문제은행에만 의존하면 중간에 흥미가 죽는다는 **반대 사례** |
 | ② | [Reddit r/AWSCertifications 합격 후기](https://www.reddit.com/r/AWSCertifications/comments/1v6kky2/) | **시험 기술 3가지** · 키워드 목록 · **실제 출제 서비스 목록** · 세트 난이도 편차 |
-| ③ | [velog @gagaeun — AWS SAA TIL 28편](https://velog.io/@gagaeun/series/AWS-SAA-TIL) | 서비스 순서 목차(사실상 Maarek 강의 순). [학습 경로](/docs/aws-saa-c03/00-map/00-learning-path) 의 **대체 목차** |
+| ③ | [velog @gagaeun — AWS SAA TIL 28편](https://velog.io/@gagaeun/series/AWS-SAA-TIL) | **28편 전문을 읽고 서비스 노트에 반영**. 서비스 순서 목차(사실상 Maarek 강의 순)는 [학습 경로](/docs/aws-saa-c03/00-map/00-learning-path) 의 **대체 목차**로, 각 글의 개념·한도·판단 포인트는 [서비스 노트](/docs/aws-saa-c03/10-services) 에 |
 | ④ | [daily1313 — 2주 합격기](https://daily1313.tistory.com/) | 개념 정리 단위가 모듈이 아니라 **키워드**라는 관찰 |
 | ⑤ | [velog @yeonbot — FE 개발자의 독학 합격 가이드](https://velog.io/@yeonbot) | **선지 분석** — 오답 3개가 왜 아닌지 전부 검토 |
 | ⑥ | [pottatt0 — 한줄노트·비교노트 PDF 공유](https://pottatt0.tistory.com/) | **비교노트 3칸 스키마**(선택 신호 / 탈락 신호 / 결정적 차이). 블로그 본문에 공개된 부분 |
