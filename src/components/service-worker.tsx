@@ -30,6 +30,25 @@ export function ServiceWorker() {
           });
         });
       });
+
+      /*
+        새 배포가 떴으면 캐시를 이번 빌드에 맞추라고 알린다.
+
+        예전에는 워커가 activate 안에서 스스로 했는데, 그러면 수백 개를 다 받을 때까지
+        활성화가 안 끝나 화면이 워커를 못 잡았다. 방아쇠를 이쪽으로 옮겼다 — 이 컴포넌트는
+        모든 페이지에서 도니 반드시 한 번은 오고, 오프라인이라 실패해도 다음 페이지에서
+        저절로 다시 시도된다. 이미 맞춰 둔 빌드면 워커가 곧바로 돌아간다.
+      */
+      const nudge = () => navigator.serviceWorker.controller?.postMessage({ type: 'RECONCILE' });
+
+      void navigator.serviceWorker.ready.then(nudge);
+
+      /*
+        탭을 열어 둔 채로 새 배포가 뜨는 경우. 위 SKIP_WAITING 때문에 새 워커가 곧바로
+        주도권을 잡는데, 그때는 페이지가 다시 뜨지 않으니 위 ready 는 이미 지나간 뒤다.
+        주도권이 바뀌는 순간에도 한 번 알려 줘야 그 탭에서 바로 맞춰진다.
+      */
+      navigator.serviceWorker.addEventListener('controllerchange', nudge);
     };
 
     // 첫 화면 렌더와 다투지 않게 로드가 끝난 뒤 등록한다.

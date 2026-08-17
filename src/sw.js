@@ -18,27 +18,57 @@
 */
 
 /*
-  캐시 버전 — **빌드할 때마다 자동으로 바뀐다.**
+  빌드 스탬프 — 빌드마다 자동으로 바뀐다. scripts/build-sw.mjs 가 여기에 박아 넣는다.
 
-  예전에는 여기에 'v5' 같은 숫자를 손으로 적었다. 그런데 배포할 때 이 숫자를 같이 올리는 걸
-  잊으면 옛 캐시가 그대로 살아남아, **지난 배포의 HTML·조각과 이번 배포의 파일이 뒤섞인다.**
-  Next 는 빌드마다 파일 이름(해시)과 빌드 ID가 바뀌므로, 뒤섞이면 브라우저가 이미 사라진 주소를
-  부르게 되고 그 요청이 404 로 떨어진다. 화면 껍데기는 떠도 자바스크립트가 못 붙어서
-  문제가 한 개도 안 나오던 원인이 이것이다.
+  **더 이상 캐시 통 이름에 쓰지 않는다.** 하는 일은 하나다. 이 파일의 바이트가 배포마다
+  달라져야 브라우저가 새 워커를 설치하고, 그래야 아래 reconcile 이 돌 기회가 생긴다.
 
-  그래서 사람 손을 뗐다. scripts/build-sw.mjs 가 빌드마다 다른 값을 여기에 박아 넣는다.
-  파일 내용이 달라지면 브라우저가 새 워커로 알아서 갈아 끼우고, activate 에서 옛 통을 전부 버린다.
+  ── 왜 통 이름에서 버전을 뺐나 ─────────────────────────────
+
+  예전에는 통 이름이 `cv-pages-<스탬프>` 였고 activate 에서 옛 통을 전부 버렸다. 그건 실수가
+  아니라 사고 대응이었다. 그전에는 'v5' 같은 숫자를 손으로 올렸는데, 깜빡하면 **지난 배포의
+  HTML 과 이번 배포의 파일이 뒤섞였다.** Next 는 빌드마다 파일 이름(해시)과 빌드 ID 가 바뀌므로
+  뒤섞이면 브라우저가 이미 사라진 주소를 불러 404 를 맞는다. 화면 껍데기는 떠도 자바스크립트가
+  못 붙어서 문제가 한 개도 안 나오던 원인이 이것이다.
+
+  문제는 그 대책의 값이 너무 컸다. 오타 하나 고쳐 배포해도 327개 페이지 · HTML 46MB ·
+  조각 21MB · 정적 7MB 를 **전부 다시 받는다.** 통 이름에 버전이 있으면 "유지"라는 선택지가
+  아예 없다 — 유지하려면 통에서 통으로 67MB 를 복사해야 하니 절감이 사라진다.
+
+  그래서 버전을 떼고, 대신 **무엇이 안 바뀌었는지 증명할 근거**를 만들었다.
+
+    빌드가 /offline-index.json 에 페이지별 해시를 내보낸다. 그 해시는 이번 빌드가 실제로
+    내보내는 HTML·조각을 BUILD_ID 만 지우고(페이지마다 정확히 1회 등장한다) 계산한 값이다.
+
+  캐시에 있는 페이지를 유지해도 되는 조건은 **그 해시가 지난번에 받아 적어 둔 값과 같을 때**
+  뿐이다. 같으면 두 HTML 이 문자 단위로 같다는 뜻이고, 그러면 그 HTML 이 부르는 /_next/static
+  주소도 같다. 같은 주소는 이번 빌드 서버에 반드시 있다 — 404 가 원리적으로 불가능하다.
+  옛 조각이 섞이려면 HTML 이 달라야 하는데, 다르면 해시가 달라 폐기되기 때문이다.
+
+  지우는 일은 언제나 받는 일보다 **먼저** 한다 (reconcile 4단계). 그 사이 창에는 옛 페이지가
+  남지만, 페이지는 네트워크 우선이라 온라인이면 캐시가 아예 안 쓰이고, 오프라인이면 옛 HTML 과
+  옛 조각(GC 유예로 살아 있다)이 자기들끼리 맞는다.
+
+  인덱스를 못 받으면 옛 방식(/offline-manifest.json 전량)으로 떨어진다. 최악의 실패가
+  "오늘과 같음"이 되도록 남겨 둔 길이다.
 */
 const CACHE_VERSION = '__BUILD_STAMP__';
-const STATIC = `cv-static-${CACHE_VERSION}`; // 해시 붙은 정적 파일
-const PAGES = `cv-pages-${CACHE_VERSION}`; // 페이지 HTML
-const RSC = `cv-rsc-${CACHE_VERSION}`; // 라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리)
-const DATA = `cv-data-${CACHE_VERSION}`; // 검색 색인 등
 
 /*
-  버전을 타지 않는 통. 여기 담긴 건 새 배포에서도 살아남는다.
-  지금은 "이 사람이 전체 저장을 눌렀었다"는 표시 하나만 들어 있다 (아래 wantsAll 참고).
+  통 이름에 버전이 없다. 무엇을 버리고 무엇을 남길지는 reconcile 이 해시로 판단한다.
+
+    STATIC  /_next/static 과 최적화 이미지. 이름이 곧 내용의 지문이라 옛 항목은 독이 아니라
+            쓰레기다 — 지울 이유가 정확성이 아니라 용량이라, 삭제가 아니라 GC 로 다룬다.
+    PAGES   페이지 HTML
+    RSC     라우터 조각 (URL 이 HTML 과 겹쳐서 통을 분리한다)
+    DATA    검색 색인 등. 여기만 내용 주소성이 없어 낡은 것이 독이 될 수 있는데, 용량이 작아
+            reconcile 마다 통째로 비운다 — 불태우는 본능을 공짜인 곳에만 남긴다.
+    META    배포를 넘어 살아남는 기록장 (아래 meta* 참고)
 */
+const STATIC = 'cv-static';
+const PAGES = 'cv-pages';
+const RSC = 'cv-rsc';
+const DATA = 'cv-data';
 const META = 'cv-meta';
 const MINE = [STATIC, PAGES, RSC, DATA, META];
 
@@ -85,14 +115,22 @@ self.addEventListener('install', (event) => {
   );
 });
 
+/*
+  activate 는 **네트워크를 타지 않는다.** 옛 스킴의 통(cv-pages-<스탬프> 처럼 버전이 붙어 있던
+  것들)을 치우고 바로 끝낸다.
+
+  예전에는 여기서 전량 다운로드까지 await 했다. 그러면 워커가 수백 개를 다 받을 때까지
+  'activating' 에 묶여서 navigator.serviceWorker.ready 가 안 풀리고, 설정 화면의 "저장된
+  페이지 N건"이 그때까지 멈춰 있었다. 받아 오는 일은 reconcile 로 옮기고, 그 방아쇠는
+  화면 쪽(src/components/service-worker.tsx)이 당긴다 — 모든 페이지에서 도는 코드라
+  방아쇠가 반드시 오고, 오프라인이면 그냥 다음 페이지에서 다시 시도된다.
+*/
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
       const keys = await caches.keys();
       await Promise.all(keys.filter((k) => !MINE.includes(k)).map((k) => caches.delete(k)));
       await self.clients.claim();
-      // 새 배포라 옛 통을 버렸다. 전에 전체 저장을 눌렀던 사람이면 조용히 다시 받아 둔다.
-      await restoreIfWanted();
     })(),
   );
 });
@@ -299,7 +337,54 @@ async function broadcast(message, source) {
   for (const c of clients) c.postMessage(message);
 }
 
-async function precache(urls, source) {
+/* ── 기록장 (cv-meta) ────────────────────────────────────────
+   배포를 넘어 살아남는 유일한 통이다. 키는 넷뿐이다.
+
+     /__cv/precache-all   "이 사람이 전체 저장을 눌렀었다"
+     /__cv/pages          { url: 해시 } — 지금 캐시에 든 페이지가 어느 판인지
+     /__cv/stale-assets   GC 유예 목록 (한 배포 동안 안 쓰였다고 표시해 둔 자산)
+     /__cv/reconciled     마지막으로 끝까지 맞춰 둔 빌드 ID
+
+   URL 마다 키를 만들지 않고 /__cv/pages 하나에 JSON 으로 담는다. 327개면 30KB 남짓이고,
+   읽기는 한 번이면 된다. */
+
+const WANT_ALL = '/__cv/precache-all';
+const PAGE_RECORD = '/__cv/pages';
+const STALE_ASSETS = '/__cv/stale-assets';
+const RECONCILED = '/__cv/reconciled';
+
+async function metaGet(key, fallback) {
+  try {
+    const hit = await (await caches.open(META)).match(key);
+    if (!hit) return fallback;
+    return await hit.json();
+  } catch {
+    return fallback;
+  }
+}
+
+async function metaSet(key, value) {
+  const meta = await caches.open(META);
+  await meta.put(key, new Response(JSON.stringify(value)));
+}
+
+async function metaHas(key) {
+  return Boolean(await (await caches.open(META)).match(key));
+}
+
+/** 캐시에 든 자산을 GC 목록과 맞춰 보기 위한 키. imageKey 가 만든 ?url=… 도 담아야 한다. */
+const assetKeyOf = (url) => url.pathname + url.search;
+
+/** 그림 원본 주소 → 캐시에 실제로 들어가 있는 키 */
+const imageKeyOf = (src) => `/_next/image?url=${encodeURIComponent(src)}`;
+
+/**
+ * URL 목록을 받아 캐시를 채운다.
+ *
+ * `todo` 는 **이미 걸러진** 목록이다 (안 바뀐 페이지는 부르는 쪽에서 뺀다).
+ * 성공한 URL 은 onSaved 로 알려 기록장에 남기게 한다.
+ */
+async function fetchInto(todo, { source, skipped = 0, onSaved }) {
   const pages = await caches.open(PAGES);
   const rsc = await caches.open(RSC);
   const statics = await caches.open(STATIC);
@@ -310,14 +395,11 @@ async function precache(urls, source) {
   let done = 0;
   let failed = 0;
 
-  // 껍데기 그림(로고·홈 화면 아이콘)도 같이 받아 둔다. 설치할 때 한 번 받지만
-  // 그새 캐시가 비워졌을 수 있으니 여기서 한 번 더 확인한다.
-  const missingShell = [];
-  for (const u of SHELL) if (!(await statics.match(u))) missingShell.push(u);
-  await addEach(statics, missingShell);
-
   const post = () =>
-    void broadcast({ type: 'PRECACHE_PROGRESS', done, failed, total: urls.length }, source);
+    void broadcast(
+      { type: 'PRECACHE_PROGRESS', done, failed, skipped, total: todo.length },
+      source,
+    );
 
   /** 이 페이지가 쓰는 정적 파일·그림 중 아직 안 받은 것만 */
   const saveAssets = async (html) => {
@@ -351,7 +433,7 @@ async function precache(urls, source) {
     ]);
   };
 
-  const queue = urls.slice();
+  const queue = todo.slice();
   const worker = async () => {
     for (let next = queue.shift(); next !== undefined; next = queue.shift()) {
       try {
@@ -377,6 +459,7 @@ async function precache(urls, source) {
         }
 
         done++;
+        if (onSaved) await onSaved(next, done);
       } catch {
         failed++;
       }
@@ -386,39 +469,247 @@ async function precache(urls, source) {
 
   post();
   await Promise.all(Array.from({ length: 6 }, worker));
-  await broadcast({ type: 'PRECACHE_DONE', done, failed, total: urls.length }, source);
+  return { done, failed };
 }
 
-/* ── 새 배포 뒤 자동 복구 ────────────────────────────────────
-   배포가 새로 뜨면 위 activate 가 옛 캐시를 통째로 버린다. 안 버리면 지난 배포의 조각이
-   섞여 404 가 나기 때문에 어쩔 수 없다. 문제는 **전체 저장을 눌러 뒀던 사람**이다. 그대로 두면
-   본인은 여전히 저장돼 있는 줄 알고 지하철에 들어갔다가 텅 빈 화면을 본다.
+/* ── 빠진 자산 메우기 ────────────────────────────────────────
+   페이지를 받을 때 그 HTML 이 참조하는 /_next/static 도 같이 받는데, 그 과정은 실패를
+   조용히 삼킨다 (한 조각 못 받았다고 페이지 저장까지 실패로 칠 이유는 없다). 게다가
+   한 번 시도한 주소는 그 실행 안에서 다시 건드리지 않는다.
 
-   그래서 "전체 저장을 눌렀다"는 사실만 버전 없는 통(META)에 남겨 두고, 새 배포에서 캐시를
-   비운 직후 온라인이면 조용히 다시 받아 둔다. */
+   예전에는 그래도 됐다. 배포마다 전량을 다시 받았으니 다음 배포에서 저절로 나았다.
+   이제는 안 바뀐 페이지를 건너뛰므로, 한 번 놓친 조각은 **영영 빠진 채로 남는다.**
+   그러면 화면은 뜨는데 자바스크립트가 못 붙어 문제가 한 개도 안 나온다 — 예전 사고의 증상이다.
 
-const WANT_ALL = '/__cv/precache-all';
+   그래서 인덱스가 알려 준 "이번 빌드가 참조하는 것 전부"와 실제 캐시를 대조해 빠진 것만
+   메운다. 다 있으면 네트워크를 한 번도 타지 않는다 (캐시 조회뿐이라 값싸다).
+   자산 목록이라는 근거가 생긴 덕에 할 수 있게 된 일이다. */
+async function ensureAssets(index) {
+  const statics = await caches.open(STATIC);
 
-async function rememberWantsAll() {
-  const meta = await caches.open(META);
-  await meta.put(WANT_ALL, new Response('1'));
+  const missing = [];
+  for (const a of index.assets) if (!(await statics.match(a))) missing.push({ key: a, url: a });
+  for (const src of index.images) {
+    const key = imageKeyOf(src);
+    if (!(await statics.match(key))) {
+      // 그림은 저장은 한 장(폭 없는 키)이지만 받을 때는 폭을 붙여야 한다 (imageKey 참고).
+      missing.push({ key, url: `/_next/image?url=${encodeURIComponent(src)}&w=1080&q=75` });
+    }
+  }
+  if (!missing.length) return { missing: 0, healed: 0 };
+
+  let healed = 0;
+  const queue = missing.slice();
+  const worker = async () => {
+    for (let item = queue.shift(); item !== undefined; item = queue.shift()) {
+      try {
+        const res = await fetch(item.url, { credentials: 'same-origin' });
+        if (res.ok) {
+          await statics.put(item.key, res);
+          healed++;
+        }
+      } catch {
+        /* 다음 reconcile 에서 다시 대조된다 */
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: 6 }, worker));
+  return { missing: missing.length, healed };
 }
 
-async function forgetWantsAll() {
-  const meta = await caches.open(META);
-  await meta.delete(WANT_ALL);
+/* ── 안 쓰이는 자산 치우기 ───────────────────────────────────
+   STATIC 의 옛 항목은 **독이 아니라 쓰레기**다. 이름에 해시가 박혀 있어 이름이 같으면 내용도
+   같기 때문에, 남아 있어도 틀린 화면이 나오지 않는다. 지울 이유는 용량뿐이다.
+
+   그래서 곧바로 지우지 않고 **한 배포 유예**를 둔다. 두 배포 연속으로 아무도 안 부른 것만
+   지운다. 이 사이트는 새 워커가 뜨면 곧장 activate 되므로(SKIP_WAITING), 아직 열려 있는 옛
+   탭이 옛 청크를 부를 수 있다. 유예가 그 탭을 다음 배포까지 살려 준다.
+   (예전에는 activate 가 옛 통을 통째로 즉시 지웠으니, 그 탭 입장에서는 지금이 더 낫다.)
+
+   `live` 는 이번 빌드가 참조하는 것 전부의 합집합이다. 유지되는 페이지가 부르는 자산은
+   반드시 그 안에 있다 — 해시가 같다는 건 HTML 이 같다는 뜻이고, 같은 HTML 은 같은 자산을
+   부르기 때문이다. 그래서 페이지별 자산 목록을 따로 쌓아 둘 필요가 없다. */
+async function gcStatics(live) {
+  const statics = await caches.open(STATIC);
+  const prev = new Set(await metaGet(STALE_ASSETS, []));
+  const stale = [];
+  let removed = 0;
+
+  for (const req of await statics.keys()) {
+    const key = assetKeyOf(new URL(req.url));
+    if (live.has(key)) continue;
+    if (prev.has(key)) {
+      await statics.delete(req);
+      removed++;
+    } else {
+      stale.push(key);
+    }
+  }
+
+  await metaSet(STALE_ASSETS, stale);
+  return { removed, pending: stale.length };
 }
 
-async function restoreIfWanted() {
-  const meta = await caches.open(META);
-  if (!(await meta.match(WANT_ALL))) return;
+/* ── 맞추기 (reconcile) ──────────────────────────────────────
+   새 배포가 떴을 때 캐시를 이번 빌드에 맞추는 일. 화면 쪽에서 RECONCILE 메시지로 부른다.
+
+   순서가 중요하다. **지우는 일이 언제나 받는 일보다 먼저**다. 삭제는 네트워크가 필요 없는
+   로컬 연산이라 금방 끝나고, 그 뒤로 PAGES 에는 이번 빌드에 유효한 것만 남는다. */
+
+let running = null;
+
+function reconcile(opts) {
+  // 탭이 여러 개면 메시지도 여러 번 온다. 이미 돌고 있으면 그걸 같이 기다린다.
+  if (running) return running;
+  running = doReconcile(opts).finally(() => {
+    running = null;
+  });
+  return running;
+}
+
+async function doReconcile({ source = null, force = false } = {}) {
+  let index = null;
   try {
-    const { urls } = await fetch('/offline-manifest.json', { credentials: 'same-origin' }).then((r) =>
-      r.json(),
-    );
-    if (Array.isArray(urls) && urls.length) await precache(urls, null);
+    // 캐시를 태우면 지난 배포의 인덱스를 받을 수 있다. 이건 늘 원본에서 받아야 한다.
+    const res = await fetch('/offline-index.json', {
+      credentials: 'same-origin',
+      cache: 'no-store',
+    });
+    if (res.ok) index = await res.json();
   } catch {
-    // 오프라인이라 못 받았다. 표시는 남아 있으니 다음 배포·다음 실행 때 다시 시도한다.
+    // 오프라인이다. 표시는 남아 있으니 다음 페이지 로드에서 다시 시도된다.
+    return;
+  }
+
+  // 인덱스가 없거나 모르는 판이면 옛 방식으로 간다 — 최악의 실패가 "오늘과 같음"이 되게.
+  if (!index || index.v !== 2 || !Array.isArray(index.pages)) {
+    await legacyPrecache(source);
+    return;
+  }
+
+  /*
+    이미 이번 빌드에 맞춰 뒀다. 그래도 자산 대조는 한 번 하고 간다 — 다 있으면 네트워크를
+    타지 않고, 지난번에 조각 하나를 놓쳤다면 여기서 메워진다. 이게 없으면 놓친 조각이
+    영영 안 채워진다 (ensureAssets 설명 참고).
+  */
+  if (!force && (await metaGet(RECONCILED, null)) === index.build) {
+    if (await metaHas(WANT_ALL)) await ensureAssets(index);
+    return;
+  }
+
+  const wanted = new Map(index.pages);
+  const record = await metaGet(PAGE_RECORD, {});
+
+  const pages = await caches.open(PAGES);
+  const rsc = await caches.open(RSC);
+
+  // 기록만 있고 실물이 없는 경우가 있다 (브라우저가 용량 때문에 통을 비웠을 때).
+  // 기록을 믿지 말고 실제로 들어 있는 것과 맞춰 본다.
+  const have = new Set([...(await pages.keys())].map((r) => new URL(r.url).pathname));
+
+  // ── 1. 지우기 ────────────────────────────────────────────
+  const dropped = new Set();
+  for (const url of have) {
+    if (wanted.has(url) && record[url] === wanted.get(url)) continue;
+    await pages.delete(url);
+    delete record[url];
+    dropped.add(url);
+  }
+  // 조각은 한 주소에 여러 변형(f / p / s:…)이 들어 있어 경로로 묶어 지운다.
+  if (dropped.size) {
+    for (const req of await rsc.keys()) {
+      if (dropped.has(new URL(req.url).pathname)) await rsc.delete(req);
+    }
+  }
+  // 검색 색인 같은 것은 내용 주소성이 없다. 작으니 통째로 버린다.
+  await caches.delete(DATA);
+  await metaSet(PAGE_RECORD, record);
+
+  // ── 2. 껍데기 그림 갱신 ──────────────────────────────────
+  // 경로가 고정인데 내용은 바뀔 수 있는 유일한 자산이라(아이콘은 코드가 만든다) 매번 다시 받는다.
+  const statics = await caches.open(STATIC);
+  await Promise.all(
+    SHELL.map(async (u) => {
+      try {
+        const res = await fetch(u, { cache: 'no-store' });
+        if (res.ok) await statics.put(u, res);
+      } catch {
+        /* 무시 */
+      }
+    }),
+  );
+
+  // 이번 빌드가 참조하는 것 전부 — GC 의 근거다.
+  const live = new Set([
+    ...index.assets,
+    ...index.images.map(imageKeyOf),
+    ...SHELL,
+  ]);
+
+  // ── 3. 받기 ──────────────────────────────────────────────
+  // 전체 저장을 누른 적 없는 사람에게 수백 개를 몰래 받게 하면 안 된다. 둘러보며 자연히 찬다.
+  if (await metaHas(WANT_ALL)) {
+    const todo = [...wanted]
+      .filter(([url, hash]) => record[url] !== hash || !have.has(url))
+      .map(([url]) => url);
+
+    let sinceFlush = 0;
+    const { done, failed } = await fetchInto(todo, {
+      source,
+      skipped: wanted.size - todo.length,
+      onSaved: async (url) => {
+        record[url] = wanted.get(url);
+        // 중간에 워커가 죽어도 받아 둔 만큼은 남게 이따금 적어 둔다.
+        if (++sinceFlush >= 25) {
+          sinceFlush = 0;
+          await metaSet(PAGE_RECORD, record);
+        }
+      },
+    });
+    await metaSet(PAGE_RECORD, record);
+
+    // 페이지를 받으며 놓친 조각이 있으면 여기서 메운다.
+    await ensureAssets(index);
+
+    // 못 받은 것이 있으면 GC 를 건너뛴다. 안 받은 자산을 "안 쓰인다"로 오해해 지우면 안 된다.
+    if (!failed) await gcStatics(live);
+
+    await broadcast(
+      {
+        type: 'PRECACHE_DONE',
+        done,
+        failed,
+        skipped: wanted.size - todo.length,
+        total: todo.length,
+      },
+      source,
+    );
+  } else {
+    await gcStatics(live);
+  }
+
+  await metaSet(RECONCILED, index.build);
+}
+
+/**
+ * 인덱스를 못 받았을 때의 길 — 지금까지 하던 그대로 전량을 받는다.
+ *
+ * 배포 산출물에 /offline-index.json 이 안 실렸거나, CDN 이 아직 옛것을 주고 있거나,
+ * 이 워커보다 옛 서버를 보고 있을 때다. 아무것도 안 하는 것보다 낫고, 무엇보다
+ * **이 기능이 통째로 실패해도 사용자 입장에서는 예전과 똑같다.**
+ */
+async function legacyPrecache(source) {
+  if (!(await metaHas(WANT_ALL))) return;
+  try {
+    const { urls } = await fetch('/offline-manifest.json', {
+      credentials: 'same-origin',
+      cache: 'no-store',
+    }).then((r) => r.json());
+    if (!Array.isArray(urls) || !urls.length) return;
+    const { done, failed } = await fetchInto(urls, { source });
+    await broadcast({ type: 'PRECACHE_DONE', done, failed, skipped: 0, total: urls.length }, source);
+  } catch {
+    /* 오프라인이다. 다음에 다시 시도한다. */
   }
 }
 
@@ -426,18 +717,25 @@ self.addEventListener('message', (event) => {
   const data = event.data;
   if (!data || typeof data !== 'object') return;
 
-  if (data.type === 'PRECACHE' && Array.isArray(data.urls)) {
-    event.waitUntil(rememberWantsAll().then(() => precache(data.urls, event.source)));
+  // 화면이 뜰 때마다 온다. 이미 이번 빌드에 맞춰 뒀으면 곧바로 돌아간다.
+  if (data.type === 'RECONCILE') {
+    event.waitUntil(reconcile({ source: null }));
+  }
+
+  // 설정 화면의 "전체 저장". 사용자가 일부러 누른 것이라 이미 맞춰 뒀더라도 다시 훑는다.
+  if (data.type === 'PRECACHE') {
+    event.waitUntil(
+      metaSet(WANT_ALL, 1).then(() => reconcile({ source: event.source, force: true })),
+    );
   }
 
   if (data.type === 'CLEAR') {
     event.waitUntil(
-      caches
-        .keys()
-        .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
-        // 비우기는 사용자가 일부러 누른 것이다. 자동 복구 표시도 같이 지운다.
-        .then(forgetWantsAll)
-        .then(() => event.source?.postMessage({ type: 'CLEARED' })),
+      // 남의 통은 건드리지 않는다. 기록장도 같이 비운다 — 페이지를 다 지웠으니 기록만
+      // 남으면 "받아 뒀다"고 착각하게 된다.
+      Promise.all(MINE.map((k) => caches.delete(k))).then(() =>
+        event.source?.postMessage({ type: 'CLEARED' }),
+      ),
     );
   }
 

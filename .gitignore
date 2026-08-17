@@ -26,8 +26,10 @@ yarn-error.log*
 next-env.d.ts
 # 빌드 산출물 (prepare:content 가 생성)
 /src/generated
-# 원본은 src/sw.js — scripts/build-sw.mjs 가 캐시 버전을 박아 여기에 굽는다
+# 원본은 src/sw.js — scripts/build-sw.mjs 가 빌드 스탬프를 박아 여기에 굽는다
 /public/sw.js
+# 같은 스크립트가 만드는 페이지별 해시 목록 (오프라인 증분 다운로드의 근거)
+/public/offline-index.json
 /dev.log
 
 # 검증용 추출본

@@ -11,9 +11,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import { CloudDownload, Trash2 } from 'lucide-react';
 
-type Phase = { state: 'idle' | 'saving' | 'done'; done: number; failed: number; total: number };
+type Phase = {
+  state: 'idle' | 'saving' | 'done';
+  done: number;
+  failed: number;
+  total: number;
+  /** 이미 갖고 있어서 안 받은 화면 수 (배포 사이에 안 바뀐 것) */
+  skipped: number;
+};
 
-const IDLE: Phase = { state: 'idle', done: 0, failed: 0, total: 0 };
+const IDLE: Phase = { state: 'idle', done: 0, failed: 0, total: 0, skipped: 0 };
 
 export function OfflineClient() {
   const [ready, setReady] = useState<boolean | null>(null); // 서비스 워커가 이 탭을 맡고 있는가
@@ -36,12 +43,31 @@ export function OfflineClient() {
     }
 
     const onMessage = (e: MessageEvent) => {
-      const d = e.data as { type?: string; pages?: number; done?: number; failed?: number; total?: number };
+      const d = e.data as {
+        type?: string;
+        pages?: number;
+        done?: number;
+        failed?: number;
+        total?: number;
+        skipped?: number;
+      };
       if (d?.type === 'STATUS') setSaved(d.pages ?? 0);
       if (d?.type === 'PRECACHE_PROGRESS')
-        setPhase({ state: 'saving', done: d.done ?? 0, failed: d.failed ?? 0, total: d.total ?? 0 });
+        setPhase({
+          state: 'saving',
+          done: d.done ?? 0,
+          failed: d.failed ?? 0,
+          total: d.total ?? 0,
+          skipped: d.skipped ?? 0,
+        });
       if (d?.type === 'PRECACHE_DONE') {
-        setPhase({ state: 'done', done: d.done ?? 0, failed: d.failed ?? 0, total: d.total ?? 0 });
+        setPhase({
+          state: 'done',
+          done: d.done ?? 0,
+          failed: d.failed ?? 0,
+          total: d.total ?? 0,
+          skipped: d.skipped ?? 0,
+        });
         refresh();
       }
       if (d?.type === 'CLEARED') {
@@ -60,10 +86,18 @@ export function OfflineClient() {
   const saveAll = async () => {
     const c = sw();
     if (!c) return;
-    setPhase({ state: 'saving', done: 0, failed: 0, total: 0 });
-    const { urls } = (await fetch('/offline-manifest.json').then((r) => r.json())) as {
-      urls: string[];
-    };
+    setPhase({ ...IDLE, state: 'saving' });
+    /*
+      목록은 워커가 직접 받는다. 여기서 넘기는 urls 는 **옛 워커를 위한 것**이다 —
+      새 배포 직후에는 "새 화면 코드 + 옛 워커" 조합이 잠깐 존재하는데, 그때 프로토콜을
+      바꿔 버리면 이 버튼이 먹통이 된다. 어느 쪽 워커가 받아도 동작하도록 그대로 보낸다.
+
+      no-store 를 붙인다. 이 요청은 워커의 stale-while-revalidate 를 타기 때문에
+      그냥 두면 **지난 배포의 목록**을 받을 수 있다.
+    */
+    const { urls } = (await fetch('/offline-manifest.json', { cache: 'no-store' }).then((r) =>
+      r.json(),
+    )) as { urls: string[] };
     c.postMessage({ type: 'PRECACHE', urls });
   };
 
@@ -78,8 +112,8 @@ export function OfflineClient() {
         원래도 이 기기에 저장되므로 오프라인에서 푼 문제도 그대로 남습니다.
       </p>
       <p className="text-fd-muted-foreground mt-1 text-sm">
-        내용이 새로 배포되면 저장분은 자동으로 다시 받습니다. 지난 배포의 화면 조각이 섞이면
-        문제가 안 뜨기 때문에, 한 번 받아 두면 그 뒤로는 손댈 것이 없습니다.
+        내용이 새로 배포되면 <strong>바뀐 화면만</strong> 자동으로 다시 받습니다.
+        한 번 받아 두면 그 뒤로는 손댈 것이 없습니다.
       </p>
 
       {ready === false && (
@@ -124,7 +158,11 @@ export function OfflineClient() {
       )}
       {phase.state === 'done' && (
         <p className="text-fd-muted-foreground mt-2 text-xs">
-          {phase.done}개 페이지를 저장했습니다
+          {phase.skipped === 0
+            ? `${phase.done}개 페이지를 저장했습니다`
+            : phase.done === 0
+              ? `이미 최신입니다 — ${phase.skipped}개 페이지가 그대로 저장돼 있습니다`
+              : `바뀐 화면 ${phase.done}개만 새로 받았습니다. 나머지 ${phase.skipped}개는 그대로 두었습니다`}
           {phase.failed > 0 && ` (${phase.failed}개 실패 — 연결을 확인하고 다시 눌러 보세요)`}.
         </p>
       )}
