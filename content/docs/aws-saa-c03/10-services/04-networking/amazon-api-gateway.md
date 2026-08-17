@@ -65,7 +65,7 @@ API 를 만들고 앞에서 **인증·제한·캐시**를 걸어 줍니다. 뒤�
 
 ## 관련 노트
 
-- 과제 명세: [[04-decoupling\|2.1 확장·느슨한 결합]] · [[02-secure-workloads\|1.2 안전한 워크로드]]
+- 과제 명세: [[04-scalable-decoupled\|2.1 확장·느슨한 결합]] · [[02-secure-workloads\|1.2 안전한 워크로드]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon API Gateway](/docs/aws-clf-c02/10-services/04-networking/amazon-api-gateway)

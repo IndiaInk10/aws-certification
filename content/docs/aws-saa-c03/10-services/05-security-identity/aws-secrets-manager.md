@@ -44,7 +44,7 @@ DB 비밀번호·API 키 같은 비밀 값을 저장하고 **자동으로 교체
 
 ## 관련 노트
 
-- 과제 명세: [[01-secure-access\|1.1 안전한 액세스]] · [[03-data-security\|1.3 데이터 보안]]
+- 과제 명세: [[01-secure-access\|1.1 안전한 액세스]] · [[03-data-protection\|1.3 데이터 보안]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 AWS Secrets Manager](/docs/aws-clf-c02/10-services/05-security-identity/aws-secrets-manager)

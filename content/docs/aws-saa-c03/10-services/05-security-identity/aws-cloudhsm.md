@@ -45,7 +45,7 @@ status: 미학습
 
 ## 관련 노트
 
-- 과제 명세: [[03-data-security\|1.3 데이터 보안]]
+- 과제 명세: [[03-data-protection\|1.3 데이터 보안]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 AWS CloudHSM](/docs/aws-clf-c02/10-services/05-security-identity/aws-cloudhsm)

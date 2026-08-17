@@ -45,7 +45,7 @@ HTTPS 용 인증서를 발급·갱신·배포합니다. 만료로 서비스가 �
 
 ## 관련 노트
 
-- 과제 명세: [[03-data-security\|1.3 데이터 보안]] · [[02-secure-workloads\|1.2 안전한 워크로드]]
+- 과제 명세: [[03-data-protection\|1.3 데이터 보안]] · [[02-secure-workloads\|1.2 안전한 워크로드]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 AWS Certificate Manager](/docs/aws-clf-c02/10-services/05-security-identity/aws-certificate-manager)
