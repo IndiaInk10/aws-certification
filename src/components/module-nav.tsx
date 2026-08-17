@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Check, ChevronLeft, ChevronRight, Circle, ListTree } from 'lucide-react';
 import modulesData from '@/generated/modules.json';
+import { hasQuiz } from '@/lib/certs';
 import { store } from '@/lib/storage';
 
 type Module = { slug: string; order: number; title: string; url: string };
@@ -93,7 +94,7 @@ export function ModuleNav({ cert, slug }: { cert: string; slug: string }) {
             </span>
             <ChevronRight className="text-fd-muted-foreground size-4 shrink-0" />
           </Link>
-        ) : (
+        ) : hasQuiz(cert) ? (
           <Link
             href={`/${cert}/quiz`}
             className="hover:bg-fd-secondary/50 flex items-center justify-end gap-2 rounded-md border p-3 text-right no-underline"
@@ -104,6 +105,9 @@ export function ModuleNav({ cert, slug }: { cert: string; slug: string }) {
             </span>
             <ChevronRight className="text-fd-muted-foreground size-4 shrink-0" />
           </Link>
+        ) : (
+          // 문제은행이 아직 없는 자격증은 /:cert/quiz 라우트가 없다 (learning-path.tsx 참고)
+          <span />
         )}
       </div>
     </div>

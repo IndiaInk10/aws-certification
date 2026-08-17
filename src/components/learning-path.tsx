@@ -12,6 +12,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import modulesData from '@/generated/modules.json';
+import { hasQuiz } from '@/lib/certs';
 import { store } from '@/lib/storage';
 
 type Module = {
@@ -29,6 +30,10 @@ export function LearningPath({ cert }: { cert: string }) {
   const modules: Module[] =
     (modulesData as { cert: string; modules: Module[] }[]).find((c) => c.cert === cert)
       ?.modules ?? [];
+
+  // 문제은행이 아직 없는 자격증은 /:cert/quiz 라우트 자체가 생성되지 않는다.
+  // (라우트는 generated/quiz/index.json 을 그대로 따른다 — app/[cert]/quiz/page.tsx)
+  const quizExists = hasQuiz(cert);
 
   const [done, setDone] = useState<string[] | null>(null);
 
@@ -94,7 +99,7 @@ export function LearningPath({ cert }: { cert: string }) {
             {count === 0 ? '학습 시작' : '이어서 하기'} — {next.title}
             <ChevronRight className="size-4" />
           </Link>
-        ) : (
+        ) : quizExists ? (
           <p className="mt-4 text-sm">
             전 모듈 완료.{' '}
             <Link href={`/${cert}/quiz`} className="underline">
@@ -102,6 +107,8 @@ export function LearningPath({ cert }: { cert: string }) {
             </Link>
             로 넘어가세요.
           </p>
+        ) : (
+          <p className="mt-4 text-sm">전 과정 완료.</p>
         )}
       </div>
 
@@ -138,17 +145,21 @@ export function LearningPath({ cert }: { cert: string }) {
                 {m.why && (
                   <p className="text-fd-muted-foreground mt-1 text-sm">{m.why}</p>
                 )}
-                <div className="text-fd-muted-foreground mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-xs">
-                  <span className="flex items-center gap-1">
-                    <BookOpen className="size-3" /> 강의 {m.lessons}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <ListChecks className="size-3" /> 지식점검 {m.knowledgeChecks}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <FileText className="size-3" /> 평가 {m.quiz}
-                  </span>
-                </div>
+                {/* 강의에서 뽑아낸 모듈만 이 숫자를 가진다. 과제 명세 노트(SAA)는
+                    강의도 평가도 없어서 0 만 셋 늘어놓게 되므로 아예 감춘다. */}
+                {m.lessons + m.knowledgeChecks + m.quiz > 0 && (
+                  <div className="text-fd-muted-foreground mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                    <span className="flex items-center gap-1">
+                      <BookOpen className="size-3" /> 강의 {m.lessons}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <ListChecks className="size-3" /> 지식점검 {m.knowledgeChecks}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <FileText className="size-3" /> 평가 {m.quiz}
+                    </span>
+                  </div>
+                )}
               </Link>
             </li>
           );
