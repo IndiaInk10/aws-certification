@@ -27,10 +27,33 @@ status: 미학습
 
 ## 4. 여기까지의 지도
 
-```mermaid
-flowchart TB
- classDef new fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#111
- classDef old fill:#f4f6f8,stroke:#8a94a6,color:#5a6472
+```d2
+classes: {
+  new: {
+    style: {
+      fill: "#ff9900"
+      stroke: "#232f3e"
+      stroke-width: 2
+      font-color: "#111111"
+    }
+  }
+}
+
+grid-columns: 1
+grid-gap: 16
+
+# 모듈마다 아래 모양으로 한 덩이씩 쌓는다.
+# 이번에 새로 배운 모듈에만 `*.class: new` 를 붙이고, 지난 모듈은 붙이지 않는다.
+#
+# "N. 모듈 제목": {
+#   grid-rows: 2          한 줄에 최대 4개가 되도록 ceil(서비스 수 / 4)
+#   *.width: 190
+#   *.style.font-size: 12
+#   *.class: new          이번 모듈에만
+#
+#   서비스 이름
+#   서비스 이름
+# }
 ```
 
 ## 5. 셀프 체크

@@ -1,7 +1,7 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import type { MDXComponents } from 'mdx/types';
-import { Mermaid } from '@/components/mermaid';
+import { Diagram } from '@/components/diagram';
 import { LearningPath } from '@/components/learning-path';
 import { ModuleNav } from '@/components/module-nav';
 import { ServiceMindmap } from '@/components/service-mindmap';
@@ -14,7 +14,7 @@ export function getMDXComponents(components?: MDXComponents) {
     ...defaultMdxComponents,
     Accordion,
     Accordions,
-    Mermaid,
+    Diagram,
     LearningPath,
     ModuleNav,
     ServiceMindmap,

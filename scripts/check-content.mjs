@@ -13,6 +13,9 @@ const DOCS = path.resolve('content/docs');
 const problems = [];
 const warn = [];
 
+/** 본문이 실제로 가리킨 이미지의 절대 경로. 아래 "고아 이미지" 검사에 쓴다. */
+const usedImages = new Set();
+
 /** 재귀로 .md 수집 */
 function walk(dir, acc = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -187,10 +190,59 @@ for (const f of files) {
     if (p.startsWith('http')) continue;
     const abs = path.resolve(path.dirname(f), p);
     if (!fs.existsSync(abs)) problems.push(`${name} :: 이미지 없음 — ${p}`);
+    else usedImages.add(abs);
+  }
+
+  /*
+    7. mermaid 잔존 금지
+
+    다이어그램은 D2 하나로 그린다 (```d2 → 빌드 타임 SVG). 렌더러를 둘 두면 클라이언트로
+    나가는 자바스크립트가 다시 늘고, 같은 그림이 두 문법으로 갈라진다.
+    이관하는 동안에는 잠깐 공존시켰지만 지금은 끝났다 — 다시 들어오면 여기서 세운다.
+  */
+  if (/^```mermaid/m.test(src)) {
+    problems.push(`${name} :: mermaid 블록이 남아 있음 — d2 로 옮길 것`);
   }
 }
 
-// ── 7. 문제은행 태그 ────────────────────────────────────────
+// ── 8. 고아 이미지 ──────────────────────────────────────────
+/*
+   위 6번은 "본문이 가리킨 이미지가 실재하는가" 한 방향만 본다. 반대 방향 —
+   **어느 본문도 가리키지 않는 이미지** — 는 아무도 안 본다. 강의 캡처를 통째로 받아 두고
+   실제로는 일부만 쓰기 때문에 조용히 쌓인다.
+
+   지우는 것은 사람이 판단할 일이라(나중에 쓸 그림일 수 있다) 경고로만 알린다.
+*/
+for (const certDir of fs.readdirSync(DOCS, { withFileTypes: true })) {
+  if (!certDir.isDirectory()) continue;
+  const imgDir = path.join(DOCS, certDir.name, 'images');
+  if (!fs.existsSync(imgDir)) continue;
+
+  const all = [];
+  const collect = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) collect(p);
+      else all.push(p);
+    }
+  };
+  collect(imgDir);
+
+  const orphans = all.filter((p) => !usedImages.has(p));
+  if (orphans.length) {
+    const bytes = orphans.reduce((a, p) => a + fs.statSync(p).size, 0);
+    warn.push(
+      `${certDir.name}/images :: 어느 문서도 참조하지 않는 이미지 ${orphans.length}장 ` +
+        `(${(bytes / 1024 / 1024).toFixed(1)}MB / 전체 ${all.length}장)`,
+    );
+    for (const p of orphans.slice(0, 10)) {
+      warn.push(`  · ${path.relative(imgDir, p).split(path.sep).join('/')}`);
+    }
+    if (orphans.length > 10) warn.push(`  · … 그 밖 ${orphans.length - 10}장`);
+  }
+}
+
+// ── 9. 문제은행 태그 ────────────────────────────────────────
 /*
    문항 끝의 <sub>관련: [[서비스]] | 모듈 [[…]]</sub> 줄이 오답노트의 "무엇을 주로 틀리는가"
    와 학습 모드 오픈북 창의 재료다. 이 줄이 없으면 그 문항은 어디에도 집계되지 않고,

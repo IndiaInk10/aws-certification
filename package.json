@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare:content": "node scripts/build-quiz.mjs && node scripts/build-graph.mjs && node scripts/build-modules.mjs && node scripts/build-service-map.mjs && node scripts/build-glossary.mjs && node scripts/build-sw.mjs",
+    "prepare:content": "node scripts/build-diagrams.mjs && node scripts/build-quiz.mjs && node scripts/build-graph.mjs && node scripts/build-modules.mjs && node scripts/build-service-map.mjs && node scripts/build-glossary.mjs && node scripts/build-sw.mjs",
     "build": "npm run prepare:content && next build",
     "dev": "npm run prepare:content && next dev",
     "start": "next start",
@@ -18,7 +18,6 @@
     "fumadocs-ui": "npm:@fumadocs/base-ui@16.14.0",
     "hast-util-to-jsx-runtime": "^2.3.6",
     "lucide-react": "^1.27.0",
-    "mermaid": "^11.12.0",
     "next": "16.2.12",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -30,6 +29,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@d2lang/d2": "^0.1.33",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/hast": "^3.0.5",
     "@types/mdx": "^2.0.14",

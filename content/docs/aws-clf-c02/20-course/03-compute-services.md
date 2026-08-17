@@ -367,32 +367,48 @@ Q. 프리랜서 개발자가 트래픽이 아주 적은 클라이언트용 블�
 
 주황색이 이번 모듈에서 새로 나온 서비스입니다.
 
-```mermaid
-flowchart TB
- classDef new fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#111
- classDef old fill:#f4f6f8,stroke:#8a94a6,color:#5a6472
- subgraph S2["2. 클라우드 컴퓨팅"]
- direction LR
- AmazonEC2["Amazon EC2"]
- AmazonEC2AutoScaling["Amazon EC2 Auto Scaling"]
- ElasticLoadBalancing["Elastic Load Balancing"]
- AmazonSQS["Amazon SQS"]
- AmazonSNS["Amazon SNS"]
- AmazonEventBridge["Amazon EventBridge"]
- end
- class AmazonEC2,AmazonEC2AutoScaling,ElasticLoadBalancing,AmazonSQS,AmazonSNS,AmazonEventBridge old
- subgraph S3["3. 컴퓨팅 서비스 살펴보기"]
- direction LR
- AWSLambda["AWS Lambda"]
- AmazonECS["Amazon ECS"]
- AmazonEKS["Amazon EKS"]
- AWSElasticBeanstalk["AWS Elastic Beanstalk"]
- AWSBatch["AWS Batch"]
- AWSFargate["AWS Fargate"]
- AWSOutposts["AWS Outposts"]
- AmazonLightsail["Amazon Lightsail"]
- end
- class AWSLambda,AmazonECS,AmazonEKS,AWSElasticBeanstalk,AWSBatch,AWSFargate,AWSOutposts,AmazonLightsail new
+```d2
+classes: {
+  new: {
+    style: {
+      fill: "#ff9900"
+      stroke: "#232f3e"
+      stroke-width: 2
+      font-color: "#111111"
+    }
+  }
+}
+
+grid-columns: 1
+grid-gap: 16
+
+"2. 클라우드 컴퓨팅": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+
+  Amazon EC2
+  Amazon EC2 Auto Scaling
+  Elastic Load Balancing
+  Amazon SQS
+  Amazon SNS
+  Amazon EventBridge
+}
+"3. 컴퓨팅 서비스 살펴보기": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+  *.class: new
+
+  AWS Lambda
+  Amazon ECS
+  Amazon EKS
+  AWS Elastic Beanstalk
+  AWS Batch
+  AWS Fargate
+  AWS Outposts
+  Amazon Lightsail
+}
 ```
 
 모듈 1에서 세운 세 가지 축에 이번 모듈을 얹어 보면 이렇게 정리됩니다.

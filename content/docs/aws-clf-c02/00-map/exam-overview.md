@@ -19,13 +19,34 @@ tags: [MOC, clf-c02, 시험]
 
 ## 도메인별 출제 비중
 
-```mermaid
-pie showData
- title CLF-C02 출제 비중
- "3. 클라우드 기술과 서비스" : 34
- "2. 보안과 규정 준수" : 30
- "1. 클라우드 개념" : 24
- "4. 청구·요금·지원" : 12
+```d2 CLF-C02 출제 비중
+grid-columns: 1
+grid-gap: 0
+
+d3: "3. 클라우드 기술과 서비스 · 34%" {
+  style.stroke-width: 0
+  style.fill: transparent
+  label.near: top-left
+  bar: "" { width: 544; height: 22 }
+}
+d2: "2. 보안과 규정 준수 · 30%" {
+  style.stroke-width: 0
+  style.fill: transparent
+  label.near: top-left
+  bar: "" { width: 480; height: 22 }
+}
+d1: "1. 클라우드 개념 · 24%" {
+  style.stroke-width: 0
+  style.fill: transparent
+  label.near: top-left
+  bar: "" { width: 384; height: 22 }
+}
+d4: "4. 청구·요금·지원 · 12%" {
+  style.stroke-width: 0
+  style.fill: transparent
+  label.near: top-left
+  bar: "" { width: 192; height: 22 }
+}
 ```
 
 | 도메인 | 비중 | 해당 단계 |

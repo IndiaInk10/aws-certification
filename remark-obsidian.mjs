@@ -7,13 +7,14 @@
  *  2. [[위키링크]]            → 상대 .md 링크 (createRelativeLink 가 URL 로 변환)
  *  3. > [!type] 콜아웃        → <Callout type>
  *  4. <details>/<summary>     → <Accordions><Accordion>
- *  5. ../images/mN/x.png     → /cert-images/<cert>/mN/x.png
- *  6. ```mermaid             → <Mermaid chart="...">
+ *  5. ../images/mN/x.png     → Fumadocs 기본 remarkImage 가 처리 (여기서 건드리지 않는다)
+ *  6. ```d2                  → <Diagram svg="..."> (빌드 타임에 구운 SVG. 클라이언트 JS 0)
  *  7. ```quiz / ```exam      → <InlineQuiz>  (본문에서 바로 푸는 문제)
  *  8. 용어집 용어             → <Term>  (본문에 나오는 자리마다 호버 설명을 붙인다)
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { keyOf, readCache, render, closeD2 } from './scripts/d2-render.mjs';
 
 const DOCS_ROOT = path.resolve(process.cwd(), 'content/docs');
 const GLOSSARY_PATH = path.resolve(process.cwd(), 'content/glossary.json');
@@ -209,7 +210,7 @@ const NO_TERM = new Set([
   'toml',
 ]);
 
-/** JSX 중 안쪽 본문까지 훑어도 되는 것. 나머지(Layers·InlineQuiz·Mermaid…)는 통째로 건너뛴다. */
+/** JSX 중 안쪽 본문까지 훑어도 되는 것. 나머지(Layers·InlineQuiz·Diagram…)는 통째로 건너뛴다. */
 const TERM_INSIDE_JSX = new Set(['Callout', 'Accordions', 'Accordion']);
 
 /**
@@ -272,6 +273,21 @@ function wrapTerms(tree) {
   visit(tree);
 }
 
+/**
+ * <Diagram> 노드.
+ *
+ * `data._stringify` 는 fumadocs 의 마크다운 직렬화기(mdx-plugins/stringifier)가 보는 자리다.
+ * 이걸 안 달면 `/llms.txt`·`/llms-full.txt`·`content.md` 같은 **글자로 읽는 산출물**에
+ * 25KB 짜리 SVG 원문이 통째로 들어간다. `<path d="M12.5 …">` 수백 줄은 사람에게도
+ * 기계에게도 아무 뜻이 없다. 그 자리에는 원본 d2 소스를 남긴다 — 읽으면 그림이 그려진다.
+ * (mermaid 때는 chart 속성이 곧 소스라 저절로 그렇게 됐다. 여기서는 손으로 챙겨 줘야 한다.)
+ */
+const diagramNode = (svg, attrs, src) => {
+  const node = jsx('Diagram', { svg, ...attrs }, []);
+  node.data = { _stringify: { text: '```d2\n' + src.trim() + '\n```' } };
+  return node;
+};
+
 const jsx = (name, attrs, children) => ({
   type: 'mdxJsxFlowElement',
   name,
@@ -284,7 +300,7 @@ const jsx = (name, attrs, children) => ({
 });
 
 export default function remarkObsidian() {
-  return (tree, file) => {
+  return async (tree, file) => {
     const filePath = file.path ? path.resolve(file.path) : null;
     const fileDir = filePath ? path.dirname(filePath) : null;
     const cert = filePath
@@ -301,11 +317,35 @@ export default function remarkObsidian() {
     // ── 2/5/6. 트리 순회 ─────────────────────────────────────
     // 이미지는 Fumadocs 기본 remarkImage 가 상대 경로를 그대로 처리해
     // Next.js 최적화 이미지(_next/image)로 내보낸다. 여기서 건드리지 않는다.
+    /*
+      캐시에 없던 d2 블록. walk 가 끝난 뒤 한꺼번에 굽는다.
+
+      production 에서는 build-diagrams.mjs 가 앞서 전부 구워 두므로 여기는 늘 비어 있다.
+      비어 있으면 await 자체를 하지 않는다.
+
+      dev 에서는 얘기가 다르다. prepare:content 는 `next dev` 를 띄울 때 딱 한 번 돌지만,
+      fumadocs 는 마크다운을 저장할 때마다 remark 를 다시 돌린다. 그래서 여기서 굽는 길이
+      없으면 그림을 고쳐도 서버를 껐다 켜기 전까지 옛 그림이 남는다.
+    */
+    const pending = [];
+
     const walk = (node, parent) => {
-      // mermaid
-      if (node.type === 'code' && node.lang === 'mermaid' && parent) {
+      // 다이어그램 — ```d2 (빌드 타임에 구운 SVG 를 그대로 심는다)
+      if (node.type === 'code' && node.lang === 'd2' && parent) {
         const i = parent.children.indexOf(node);
-        parent.children[i] = jsx('Mermaid', { chart: node.value }, []);
+        // 템플릿의 빈 자리표시자는 그릴 것이 없다. layers·quiz 와 같은 처리.
+        if (!node.value.trim()) {
+          parent.children.splice(i, 1);
+          return;
+        }
+        const attrs = {};
+        if (node.meta && node.meta.trim()) attrs.caption = node.meta.trim();
+
+        // 빈 문자열은 "도형이 하나도 없다"는 뜻이다 (d2-render.mjs 참고). null 만 미스다.
+        const svg = readCache(keyOf(node.value));
+        if (svg === '') parent.children.splice(i, 1);
+        else if (svg !== null) parent.children[i] = diagramNode(svg, attrs, node.value);
+        else pending.push({ parent, node, attrs });
         return;
       }
 
@@ -403,6 +443,25 @@ export default function remarkObsidian() {
       }
     };
     walk(tree, null);
+
+    // 캐시에 없던 d2 블록을 그 자리에서 굽는다 (위 pending 주석 참고).
+    for (const { parent, node, attrs } of pending) {
+      try {
+        const svg = await render(node.value);
+        const i = parent.children.indexOf(node);
+        if (i < 0) continue;
+        if (svg === '') parent.children.splice(i, 1);
+        else parent.children[i] = diagramNode(svg, attrs, node.value);
+      } catch (err) {
+        // 노드를 그대로 둔다. source.config.ts 의 langAlias 덕에 코드블록으로 보이고
+        // 페이지는 살아남는다 — 어디가 틀렸는지 화면에서 바로 읽힌다.
+        console.error(`[d2] ${filePath ?? '?'} — ${err?.message ?? err}`);
+      }
+    }
+    if (pending.length && process.env.NODE_ENV === 'production') {
+      // 빌드 워커 안에 WASM 웹워커가 살아 있으면 next build 가 안 끝난다.
+      await closeD2();
+    }
 
     // ── 3. Obsidian 콜아웃 ───────────────────────────────────
     for (let i = 0; i < tree.children.length; i++) {

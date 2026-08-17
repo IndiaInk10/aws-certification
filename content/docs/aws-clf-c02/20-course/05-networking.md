@@ -642,47 +642,67 @@ Q. 한 고객이 애플리케이션 가용성, 성능, 보안을 개선하기 �
 
 주황색이 이번 모듈에서 새로 나온 서비스입니다.
 
-```mermaid
-flowchart TB
- classDef new fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#111
- classDef old fill:#f4f6f8,stroke:#8a94a6,color:#5a6472
- subgraph S2["2. 클라우드 컴퓨팅"]
- direction LR
- AmazonEC2["Amazon EC2"]
- AmazonEC2AutoScaling["Amazon EC2 Auto Scaling"]
- ElasticLoadBalancing["Elastic Load Balancing"]
- AmazonSQS["Amazon SQS"]
- AmazonSNS["Amazon SNS"]
- AmazonEventBridge["Amazon EventBridge"]
- end
- class AmazonEC2,AmazonEC2AutoScaling,ElasticLoadBalancing,AmazonSQS,AmazonSNS,AmazonEventBridge old
- subgraph S3["3. 컴퓨팅 서비스 살펴보기"]
- direction LR
- AWSLambda["AWS Lambda"]
- AmazonECS["Amazon ECS"]
- AmazonEKS["Amazon EKS"]
- AWSElasticBeanstalk["AWS Elastic Beanstalk"]
- AWSBatch["AWS Batch"]
- AWSFargate["AWS Fargate"]
- AWSOutposts["AWS Outposts"]
- AmazonLightsail["Amazon Lightsail"]
- end
- class AWSLambda,AmazonECS,AmazonEKS,AWSElasticBeanstalk,AWSBatch,AWSFargate,AWSOutposts,AmazonLightsail old
- subgraph S4["4. 글로벌 시장 진출"]
- direction LR
- AWSCloudFormation["AWS CloudFormation"]
- end
- class AWSCloudFormation old
- subgraph S5["5. 네트워킹"]
- direction LR
- AmazonVPC["Amazon VPC"]
- AWSDirectConnect["AWS Direct Connect"]
- AmazonCloudFront["Amazon CloudFront"]
- AmazonRoute53["Amazon Route 53"]
- AWSGlobalAccelerator["AWS Global Accelerator"]
- AWSTransitGateway["AWS Transit Gateway"]
- end
- class AmazonVPC,AWSDirectConnect,AmazonCloudFront,AmazonRoute53,AWSGlobalAccelerator,AWSTransitGateway new
+```d2
+classes: {
+  new: {
+    style: {
+      fill: "#ff9900"
+      stroke: "#232f3e"
+      stroke-width: 2
+      font-color: "#111111"
+    }
+  }
+}
+
+grid-columns: 1
+grid-gap: 16
+
+"2. 클라우드 컴퓨팅": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+
+  Amazon EC2
+  Amazon EC2 Auto Scaling
+  Elastic Load Balancing
+  Amazon SQS
+  Amazon SNS
+  Amazon EventBridge
+}
+"3. 컴퓨팅 서비스 살펴보기": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+
+  AWS Lambda
+  Amazon ECS
+  Amazon EKS
+  AWS Elastic Beanstalk
+  AWS Batch
+  AWS Fargate
+  AWS Outposts
+  Amazon Lightsail
+}
+"4. 글로벌 시장 진출": {
+  grid-rows: 1
+  *.width: 190
+  *.style.font-size: 12
+
+  AWS CloudFormation
+}
+"5. 네트워킹": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+  *.class: new
+
+  Amazon VPC
+  AWS Direct Connect
+  Amazon CloudFront
+  Amazon Route 53
+  AWS Global Accelerator
+  AWS Transit Gateway
+}
 ```
 
 모듈 1에서 세운 세 가지 축에 이번 모듈을 얹어 보면 이렇게 정리됩니다.

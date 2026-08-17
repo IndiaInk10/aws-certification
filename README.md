@@ -42,7 +42,9 @@ scripts/
   build-graph.mjs              위키링크 → 그래프 + 백링크 (레이아웃까지 빌드 타임 계산)
   build-quiz.mjs               문제은행 마크다운 → 회차별 JSON
 
-remark-obsidian.mjs            [[위키링크]] · > [!콜아웃] · <details> · mermaid 변환
+  build-diagrams.mjs           ```d2 블록 → 빌드 타임 SVG (scripts/d2-render.mjs 가 렌더)
+
+remark-obsidian.mjs            [[위키링크]] · > [!콜아웃] · <details> · ```d2 변환
 ```
 
 ## 성능에 관한 선택
@@ -53,7 +55,7 @@ remark-obsidian.mjs            [[위키링크]] · > [!콜아웃] · <details> �
 | 그래프 렌더링 | **캔버스** (DOM 1개) | SVG는 노드+엣지 2,000개가 DOM이 되어 느림 |
 | 팬/줌 | ref + rAF, React state 미사용 | 드래그 중 리렌더 없음 |
 | 퀴즈 | `useReducer` 직접 구현 | 외부 라이브러리·애니메이션 없음 |
-| mermaid | 동적 import | 다이어그램 있는 페이지에서만 로드 |
+| 다이어그램 | **빌드 타임**에 D2 → 인라인 SVG | 클라이언트 자바스크립트 0 |
 | 이미지 | Fumadocs `remarkImage` → `next/image` | 자동 최적화 |
 
 ## 문제 언어 (로케일)

@@ -666,20 +666,34 @@ Q. 한 소프트웨어 개발 회사의 경우, 버그 추적 시스템에 새�
 
 주황색이 이번 모듈에서 새로 나온 서비스입니다.
 
-```mermaid
-flowchart TB
- classDef new fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:#111
- classDef old fill:#f4f6f8,stroke:#8a94a6,color:#5a6472
- subgraph S2["2. 클라우드 컴퓨팅"]
- direction LR
- AmazonEC2["Amazon EC2"]
- AmazonEC2AutoScaling["Amazon EC2 Auto Scaling"]
- ElasticLoadBalancing["Elastic Load Balancing"]
- AmazonSQS["Amazon SQS"]
- AmazonSNS["Amazon SNS"]
- AmazonEventBridge["Amazon EventBridge"]
- end
- class AmazonEC2,AmazonEC2AutoScaling,ElasticLoadBalancing,AmazonSQS,AmazonSNS,AmazonEventBridge new
+```d2
+classes: {
+  new: {
+    style: {
+      fill: "#ff9900"
+      stroke: "#232f3e"
+      stroke-width: 2
+      font-color: "#111111"
+    }
+  }
+}
+
+grid-columns: 1
+grid-gap: 16
+
+"2. 클라우드 컴퓨팅": {
+  grid-rows: 2
+  *.width: 190
+  *.style.font-size: 12
+  *.class: new
+
+  Amazon EC2
+  Amazon EC2 Auto Scaling
+  Elastic Load Balancing
+  Amazon SQS
+  Amazon SNS
+  Amazon EventBridge
+}
 ```
 
 모듈 1에서 세운 세 가지 축에 이번 모듈의 서비스를 얹어 보면 이렇게 정리됩니다.

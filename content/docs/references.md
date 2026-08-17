@@ -54,7 +54,7 @@ description: "이 사이트에 담긴 모든 자료의 출처와 라이선스"
 | [Fumadocs](https://github.com/fuma-nama/fumadocs) | 문서 프레임워크 (사이드바 · 검색 · MDX) | MIT |
 | [open-spaced-repetition/ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs) | 오답노트 복습 스케줄 계산 | MIT |
 | [d3-force](https://github.com/d3/d3-force) | 노트 그래프 레이아웃 (빌드 타임 계산) | ISC |
-| [mermaid](https://github.com/mermaid-js/mermaid) | 다이어그램 렌더링 | MIT |
+| [D2](https://github.com/terrastruct/d2) | 다이어그램 렌더링 (빌드 타임, `@d2lang/d2`) | MPL-2.0 |
 | [lucide](https://github.com/lucide-icons/lucide) | 아이콘 | ISC |
 
 문제 풀이 UI와 그래프 뷰는 외부 라이브러리 없이 직접 구현했습니다.
