@@ -37,17 +37,17 @@ lang: ko
 
 <sub>관련: [[elastic-load-balancing]] [[amazon-ec2-auto-scaling]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업이 단일 AZ RDS for MySQL에 대규모 광고 데이터를 두고 있습니다. **비즈니스 보고 쿼리가 프로덕션의 쓰기 작업에 영향을 주지 않게** 하려면 어떤 솔루션이 적합합니까?
-> a) RDS 읽기 전용 복제본을 배포해 보고 쿼리를 처리한다
-> b) DB 인스턴스를 로드 밸런서 뒤에 두어 수평 확장한다
-> c) 더 큰 인스턴스 유형으로 확장해 쓰기와 쿼리를 함께 처리한다
-> d) 여러 AZ에 DB 인스턴스를 배포해 보고 쿼리를 처리한다
+> [!question] 한 기업의 애플리케이션이 **기본 설정의 Kinesis Data Streams**로 데이터를 보내고, **이틀에 한 번** 데이터를 소비해 S3에 씁니다. 그런데 S3가 **보낸 데이터를 다 받지 못하는** 것이 관찰됩니다. 무엇을 해야 합니까?
+> a) Kinesis 데이터 보존 기간을 늘리도록 기본 설정을 변경한다
+> b) 처리량에 맞게 Kinesis 샤드 수를 늘린다
+> c) 애플리케이션이 Kinesis Producer Library(KPL)를 쓰도록 변경한다
+> d) S3 버킷에서 버전 관리를 켠다
 >> [!success]- Answer
->> a) RDS 읽기 전용 복제본을 배포해 보고 쿼리를 처리한다
->> **왜 이 답인가** — 읽기와 쓰기를 물리적으로 분리하는 표준 방법입니다. 보고가 아무리 무거워도 원본의 쓰기에 영향을 주지 않습니다.
->> **나머지가 아닌 이유** — 다중 AZ 대기 인스턴스는 **읽기를 받지 않습니다.** 인스턴스를 키워도 같은 인스턴스에서 경쟁합니다. RDS 앞에 로드 밸런서를 두는 구성은 성립하지 않습니다.
+>> a) Kinesis 데이터 보존 기간을 늘리도록 기본 설정을 변경한다
+>> **왜 이 답인가** — Kinesis Data Streams의 **기본 보존 기간은 24시간**입니다. 소비를 **이틀에 한 번** 하므로 읽기 전에 데이터가 만료되어 사라진 것입니다. 보존 기간을 늘리면 해결됩니다.
+>> **나머지가 아닌 이유** — 샤드 수는 처리량 문제이지 보존 만료와 다릅니다. KPL과 S3 버전 관리는 이미 사라진 데이터를 되돌리지 못합니다.
 
-<sub>관련: [[amazon-rds]] | 모듈 [[08-perf-database]]</sub>
+<sub>관련: [[amazon-kinesis]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 규정상 **분기별 스냅샷을 7년간 보관**해야 합니다. 이 스냅샷은 거의 복원되지 않으며 복원에 하루가 걸려도 됩니다. 비용을 최소화하려면 무엇을 해야 합니까?
 > a) 스냅샷을 **EBS 스냅샷 아카이브 계층으로 이동**한다
@@ -85,17 +85,17 @@ lang: ko
 
 <sub>관련: [[amazon-ec2-auto-scaling]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 결제 처리 기업이 고객과의 통화를 녹음해 S3에 저장합니다. **오디오에서 텍스트를 추출**하고 그 텍스트에서 **개인 식별 정보(PII)를 제거**해야 합니다. 무엇을 해야 합니까?
-> a) **PII 편집(redaction)을 켠 Amazon Transcribe 전사 작업**을 구성하고, 오디오가 올라오면 Lambda가 작업을 시작해 결과를 다른 S3 버킷에 저장한다
-> b) Kinesis Video Streams로 오디오를 처리하고 Lambda로 알려진 PII 패턴을 찾는다
-> c) 오디오가 올라오면 Lambda가 Amazon Textract 작업을 시작해 통화 녹음을 분석한다
-> d) Amazon Connect 컨택 플로로 오디오를 수집하고 Lambda로 PII 패턴을 찾는다
+> [!question] 한 기업이 AWS의 게임 애플리케이션용 공유 스토리지를 구현하며 **Lustre 클라이언트로 데이터에 접근**해야 합니다. 솔루션은 완전 관리형이어야 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
+> a) Amazon FSx for Lustre 파일 시스템을 만들어 애플리케이션 서버를 연결한다
+> b) DataSync 작업을 만들어 마운트 가능한 파일 시스템으로 공유한다
+> c) Storage Gateway 파일 게이트웨이를 만들어 필요한 프로토콜의 파일 공유를 만든다
+> d) EFS 파일 시스템을 만들고 Lustre를 지원하도록 구성한다
 >> [!success]- Answer
->> a) **PII 편집(redaction)을 켠 Amazon Transcribe 전사 작업**을 구성하고, 오디오가 올라오면 Lambda가 작업을 시작해 결과를 다른 S3 버킷에 저장한다
->> **왜 이 답인가** — Transcribe는 음성을 텍스트로 바꾸고 **PII 편집 기능을 옵션으로 제공**합니다. 두 요구가 한 서비스에서 해결되어 만들 것이 거의 없습니다.
->> **나머지가 아닌 이유** — Textract는 **문서 이미지**용이라 오디오를 다루지 않습니다. 패턴을 직접 찾는 방식은 정확도와 유지 부담이 큽니다.
+>> a) Amazon FSx for Lustre 파일 시스템을 만들어 애플리케이션 서버를 연결한다
+>> **왜 이 답인가** — `Lustre`가 나오면 FSx for Lustre입니다. 완전 관리형으로 제공되는 유일한 선택입니다.
+>> **나머지가 아닌 이유** — EFS는 NFS이고 Lustre를 지원하도록 바꿀 수 없습니다. DataSync는 전송 서비스, 파일 게이트웨이는 NFS·SMB 게이트웨이입니다.
 
-<sub>관련: [[amazon-s3]] [[aws-lambda]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-fsx]] | 모듈 [[06-perf-storage]]</sub>
 
 > [!question] 팀이 스냅샷을 수동으로 만들다 보니 **오래된 스냅샷이 정리되지 않고 계속 쌓입니다.** 생성과 삭제를 정책으로 관리하려면 무엇을 써야 합니까?
 > a) **Amazon Data Lifecycle Manager**로 태그 기반 스냅샷 생성·보존 정책을 만든다
@@ -133,17 +133,17 @@ lang: ko
 
 <sub>관련: [[amazon-ec2-auto-scaling]] [[amazon-ec2]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업의 다중 AZ RDS for MySQL이 **2,000GB gp3 EBS 볼륨**을 씁니다. 로그를 분석하니 **읽기·쓰기 IOPS가 20,000을 넘을 때마다** 성능이 나빠집니다. 애플리케이션 성능을 개선하려면 무엇을 해야 합니까?
-> a) 볼륨을 **프로비저닝된 IOPS SSD(io2)**로 교체한다
-> b) gp3 볼륨의 IOPS를 늘린다
-> c) 볼륨을 마그네틱 볼륨으로 교체한다
-> d) 2,000GB gp3 하나를 1,000GB gp3 두 개로 나눈다
+> [!question] 한 기업의 애플리케이션이 전 세계 원격 디바이스에서 **UDP로 데이터를 받아 즉시 처리**하고 필요하면 응답을 보냅니다. **데이터는 저장하지 않습니다.** 전송 지연을 최소화하고 **다른 리전으로 빠른 장애 조치**가 필요합니다. 어떤 솔루션이 요구 사항을 충족합니까?
+> a) **AWS Global Accelerator**를 쓰고 두 리전의 **Network Load Balancer**를 엔드포인트로 등록하며, Fargate 시작 유형 ECS 서비스를 NLB 대상으로 두어 처리한다
+> b) Global Accelerator를 쓰고 두 리전의 ALB를 엔드포인트로 등록해 ECS로 처리한다
+> c) Route 53 장애 조치 라우팅을 구성하고 두 리전에 NLB를 만들어 Lambda로 처리한다
+> d) Route 53 장애 조치 라우팅을 구성하고 두 리전에 ALB를 만들어 ECS로 처리한다
 >> [!success]- Answer
->> a) 볼륨을 **프로비저닝된 IOPS SSD(io2)**로 교체한다
->> **왜 이 답인가** — gp3의 최대 IOPS는 **16,000**이라 요구되는 20,000을 넘길 수 없습니다. 그 이상이 필요하면 io1/io2 계열로 가야 합니다.
->> **나머지가 아닌 이유** — gp3의 IOPS를 올려도 상한에 막힙니다. 마그네틱은 훨씬 느리고, RDS 인스턴스의 스토리지를 볼륨 두 개로 쪼개는 구성은 없습니다.
+>> a) **AWS Global Accelerator**를 쓰고 두 리전의 **Network Load Balancer**를 엔드포인트로 등록하며, Fargate 시작 유형 ECS 서비스를 NLB 대상으로 두어 처리한다
+>> **왜 이 답인가** — UDP를 받는 것은 **NLB**이고, 지연 최소화와 **DNS 캐시에 좌우되지 않는 빠른 장애 조치**는 Global Accelerator가 제공합니다.
+>> **나머지가 아닌 이유** — ALB는 UDP를 처리하지 못합니다. Route 53 장애 조치는 DNS TTL 때문에 전환이 느립니다. NLB는 Lambda를 대상으로 삼지 않습니다.
 
-<sub>관련: [[amazon-ebs]] [[amazon-rds]] | 모듈 [[08-perf-database]]</sub>
+<sub>관련: [[aws-global-accelerator]] [[elastic-load-balancing]] [[aws-fargate]] | 모듈 [[09-perf-network]]</sub>
 
 > [!question] EFS에 저장된 파일 중 **최근에 쓰인 것은 일부뿐이고 대부분은 몇 달째 접근되지 않습니다.** 애플리케이션 변경 없이 비용을 줄이려면 무엇을 해야 합니까?
 > a) EFS **수명 주기 관리**를 설정해 일정 기간 미접근 파일을 저빈도 액세스(및 아카이브) 스토리지 클래스로 자동 전환한다
@@ -181,17 +181,17 @@ lang: ko
 
 <sub>관련: [[amazon-ec2-auto-scaling]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 전자상거래 기업이 **매일 한 번** S3의 판매 기록을 집계·필터링하는 작업을 돌립니다. 객체 하나가 최대 10GB이고 작업은 **최대 1시간**까지 걸리며, **CPU·메모리 사용량은 일정하고 미리 알려져 있습니다.** 운영 노력을 최소화하려면 어떤 솔루션이 적합합니까?
-> a) **AWS Fargate 시작 유형의 ECS 클러스터**를 만들고 EventBridge 예약 이벤트로 ECS 작업을 실행한다
-> b) Lambda 함수를 만들고 EventBridge 알림으로 하루 한 번 실행한다
-> c) Lambda 함수와 API Gateway HTTP API를 만들어 EventBridge가 API를 호출하게 한다
-> d) EC2 시작 유형 ECS 클러스터와 Auto Scaling 그룹을 만들어 EventBridge로 작업을 실행한다
+> [!question] 솔루션스 아키텍트가 Windows **IIS 웹 애플리케이션**을 AWS로 옮깁니다. 이 애플리케이션은 온프레미스 NAS의 **파일 공유**에 의존하며, 여러 AZ의 EC2와 로드 밸런서로 구성할 예정입니다. 온프레미스 파일 공유를 대체할 **가장 복원력 있고 내구성 있는** 방법은 무엇입니까?
+> a) 파일 공유를 Amazon FSx for Windows File Server로 옮긴다
+> b) 파일 공유를 Amazon EFS로 옮긴다
+> c) 파일 공유를 AWS Storage Gateway로 옮긴다
+> d) 파일 공유를 Amazon RDS로 옮긴다
 >> [!success]- Answer
->> a) **AWS Fargate 시작 유형의 ECS 클러스터**를 만들고 EventBridge 예약 이벤트로 ECS 작업을 실행한다
->> **왜 이 답인가** — 작업이 **최대 1시간**이라 15분 제한의 Lambda로는 안 됩니다. 자원 요구가 정해져 있으므로 Fargate 작업으로 정의하면 되고, 실행 중일 때만 요금이 발생합니다.
->> **나머지가 아닌 이유** — Lambda 보기 둘은 실행 시간 한도에 걸립니다. EC2 시작 유형은 인스턴스를 상시 관리해야 합니다.
+>> a) 파일 공유를 Amazon FSx for Windows File Server로 옮긴다
+>> **왜 이 답인가** — IIS는 Windows이고 **SMB 파일 공유와 Windows ACL**을 씁니다. 이를 관리형·다중 AZ로 제공하는 것이 FSx for Windows File Server입니다.
+>> **나머지가 아닌 이유** — EFS는 Linux용 NFS입니다. Storage Gateway는 온프레미스 확장용이고, RDS는 파일 공유가 아니라 데이터베이스입니다.
 
-<sub>관련: [[aws-fargate]] [[amazon-ecs]] [[amazon-eventbridge]] | 모듈 [[07-perf-compute]]</sub>
+<sub>관련: [[amazon-fsx]] | 모듈 [[06-perf-storage]]</sub>
 
 > [!question] 개발·테스트 환경의 공유 파일 시스템은 **가용 영역 장애 시 다시 만들어도 무방**합니다. 가장 비용 효율적인 구성은 무엇입니까?
 > a) **EFS One Zone** 스토리지 클래스를 사용한다
@@ -229,17 +229,17 @@ lang: ko
 
 <sub>관련: [[amazon-kinesis]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업이 온프레미스 NAS의 **600TB 데이터를 2주 안에** AWS로 옮겨야 합니다. 데이터는 민감하므로 **전송 중 암호화**되어야 하고 인터넷 업로드 속도는 **100Mbps**입니다. 가장 비용 효율적인 솔루션은 무엇입니까?
-> a) AWS Snow Family 콘솔에서 **Snowball Edge Storage Optimized 디바이스 여러 대**를 주문해 데이터를 옮긴다
-> b) S3 멀티파트 업로드로 HTTPS를 통해 파일을 전송한다
-> c) 가까운 리전으로 VPN을 만들어 전송한다
-> d) 10Gbps Direct Connect를 구축하고 VPN으로 전송한다
+> [!question] 한 기업의 업무 시스템이 매일 수백 건의 보고서를 **네트워크 공유에 CSV로 저장**합니다. 이 데이터를 **거의 실시간으로 AWS에 저장해 분석**해야 합니다. 관리 오버헤드가 가장 적은 솔루션은 무엇입니까?
+> a) **Amazon S3 File Gateway**를 만들고 업무 시스템이 그 게이트웨이의 새 네트워크 공유를 쓰게 한다
+> b) DataSync로 파일을 S3에 전송하고 매일 끝날 때 실행되는 작업을 예약한다
+> c) DataSync로 전송하되 DataSync API를 쓰는 애플리케이션을 만들어 자동화한다
+> d) Transfer for SFTP 엔드포인트를 배포하고 새 파일을 확인해 업로드하는 스크립트를 만든다
 >> [!success]- Answer
->> a) AWS Snow Family 콘솔에서 **Snowball Edge Storage Optimized 디바이스 여러 대**를 주문해 데이터를 옮긴다
->> **왜 이 답인가** — 100Mbps로 600TB를 보내면 **1년 이상** 걸립니다. 2주 기한을 지킬 방법은 디바이스 배송뿐이고, Snow 디바이스는 **전송·저장 데이터를 암호화**합니다.
->> **나머지가 아닌 이유** — 멀티파트 업로드와 VPN은 같은 회선을 씁니다. Direct Connect는 개통에만 수 주가 걸리고 비용도 큽니다.
+>> a) **Amazon S3 File Gateway**를 만들고 업무 시스템이 그 게이트웨이의 새 네트워크 공유를 쓰게 한다
+>> **왜 이 답인가** — 업무 시스템은 **지금처럼 네트워크 공유에 쓰기만 하면** 되고, 게이트웨이가 그 파일을 곧바로 S3 객체로 올려 줍니다. 스크립트나 예약 작업이 없습니다.
+>> **나머지가 아닌 이유** — 하루 한 번 예약은 `거의 실시간`이 아닙니다. API를 쓰는 애플리케이션이나 SFTP 스크립트는 만들어 유지해야 합니다.
 
-<sub>관련: [[aws-snow-family]] [[amazon-s3]] | 모듈 [[06-perf-storage]]</sub>
+<sub>관련: [[aws-storage-gateway]] [[amazon-s3]] | 모듈 [[06-perf-storage]]</sub>
 
 > [!question] Windows 파일 공유를 **개발 환경에서만** 쓰며 중단되어도 업무에 지장이 없습니다. 비용을 최소화하려면 어떤 FSx 구성이 적절합니까?
 > a) **단일 AZ 배포 유형**의 FSx for Windows File Server를 사용한다
@@ -277,17 +277,18 @@ lang: ko
 
 <sub>관련: [[amazon-mq]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업의 애플리케이션이 **기본 설정의 Kinesis Data Streams**로 데이터를 보내고, **이틀에 한 번** 데이터를 소비해 S3에 씁니다. 그런데 S3가 **보낸 데이터를 다 받지 못하는** 것이 관찰됩니다. 무엇을 해야 합니까?
-> a) Kinesis 데이터 보존 기간을 늘리도록 기본 설정을 변경한다
-> b) 처리량에 맞게 Kinesis 샤드 수를 늘린다
-> c) 애플리케이션이 Kinesis Producer Library(KPL)를 쓰도록 변경한다
-> d) S3 버킷에서 버전 관리를 켠다
+> [!question] 한 글로벌 전자상거래 기업의 웹 애플리케이션에 **정적·동적 콘텐츠**가 있고 OLTP 데이터는 RDS에 있습니다. 사용자들이 **페이지 로딩이 느리다**고 합니다. 어떤 조합으로 해결해야 합니까? (2개 선택)
+> a) Amazon CloudFront 배포를 설정한다
+> b) RDS DB 인스턴스의 읽기 전용 복제본을 만든다
+> c) 동적 웹 콘텐츠를 Amazon S3에 호스팅한다
+> d) Amazon Redshift 클러스터를 구성한다
 >> [!success]- Answer
->> a) Kinesis 데이터 보존 기간을 늘리도록 기본 설정을 변경한다
->> **왜 이 답인가** — Kinesis Data Streams의 **기본 보존 기간은 24시간**입니다. 소비를 **이틀에 한 번** 하므로 읽기 전에 데이터가 만료되어 사라진 것입니다. 보존 기간을 늘리면 해결됩니다.
->> **나머지가 아닌 이유** — 샤드 수는 처리량 문제이지 보존 만료와 다릅니다. KPL과 S3 버전 관리는 이미 사라진 데이터를 되돌리지 못합니다.
+>> a) Amazon CloudFront 배포를 설정한다
+>> b) RDS DB 인스턴스의 읽기 전용 복제본을 만든다
+>> **왜 이 답인가** — 느림의 원인이 두 갈래입니다. **콘텐츠 전달 거리**는 CloudFront가, **데이터베이스 읽기 부하**는 읽기 전용 복제본이 해결합니다.
+>> **나머지가 아닌 이유** — 동적 콘텐츠는 S3에 올릴 수 없습니다. Redshift는 분석용 웨어하우스라 OLTP 응답 속도와 무관합니다.
 
-<sub>관련: [[amazon-kinesis]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-cloudfront]] [[amazon-rds]] | 모듈 [[09-perf-network]]</sub>
 
 > [!question] 연구 데이터를 외부 기관에 공개하는데, **다운로드가 늘면서 데이터 전송 요금 부담**이 커졌습니다. 데이터는 계속 공개하되 비용은 이용자가 부담하게 하려면 무엇을 써야 합니까?
 > a) 버킷에 **요청자 지불(Requester Pays)**을 활성화한다
@@ -325,17 +326,17 @@ lang: ko
 
 <sub>관련: [[amazon-eventbridge]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업이 AWS의 게임 애플리케이션용 공유 스토리지를 구현하며 **Lustre 클라이언트로 데이터에 접근**해야 합니다. 솔루션은 완전 관리형이어야 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) Amazon FSx for Lustre 파일 시스템을 만들어 애플리케이션 서버를 연결한다
-> b) DataSync 작업을 만들어 마운트 가능한 파일 시스템으로 공유한다
-> c) Storage Gateway 파일 게이트웨이를 만들어 필요한 프로토콜의 파일 공유를 만든다
-> d) EFS 파일 시스템을 만들고 Lustre를 지원하도록 구성한다
+> [!question] 한 기업이 프로덕션 워크로드에 **RDS for PostgreSQL DB 클러스터**를 쓰려 합니다. 고가용성이어야 하고 대부분의 상황에서 **40초 미만의 자동 장애 조치**를 제공해야 하며, **기본 인스턴스에서 읽기를 덜어 내고** 비용은 낮게 유지하려고 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
+> a) **다중 AZ DB 클러스터** 배포를 쓰고 읽기 워크로드를 **리더 엔드포인트**로 보낸다
+> b) 다중 AZ DB 인스턴스 배포를 쓰고 읽기 복제본을 하나 만들어 읽기를 보낸다
+> c) 다중 AZ DB 인스턴스 배포를 쓰고 읽기를 보조 인스턴스로 보낸다
+> d) 다중 AZ DB 클러스터 배포를 쓰고 읽기 복제본을 두 개 만든다
 >> [!success]- Answer
->> a) Amazon FSx for Lustre 파일 시스템을 만들어 애플리케이션 서버를 연결한다
->> **왜 이 답인가** — `Lustre`가 나오면 FSx for Lustre입니다. 완전 관리형으로 제공되는 유일한 선택입니다.
->> **나머지가 아닌 이유** — EFS는 NFS이고 Lustre를 지원하도록 바꿀 수 없습니다. DataSync는 전송 서비스, 파일 게이트웨이는 NFS·SMB 게이트웨이입니다.
+>> a) **다중 AZ DB 클러스터** 배포를 쓰고 읽기 워크로드를 **리더 엔드포인트**로 보낸다
+>> **왜 이 답인가** — RDS **다중 AZ DB 클러스터**는 대기 인스턴스 두 대가 **읽기를 받을 수 있고**(리더 엔드포인트) 장애 조치가 보통 35초 이내로 빠릅니다. 복제본을 따로 만들 필요가 없어 비용도 낮습니다.
+>> **나머지가 아닌 이유** — 다중 AZ **DB 인스턴스** 배포의 대기 인스턴스는 읽기를 받지 않고 장애 조치도 더 느립니다. 복제본을 추가로 만드는 보기는 비용이 늘어납니다.
 
-<sub>관련: [[amazon-fsx]] | 모듈 [[06-perf-storage]]</sub>
+<sub>관련: [[amazon-rds]] | 모듈 [[08-perf-database]]</sub>
 
 > [!question] 온프레미스 백업을 테이프 라이브러리로 운영 중이며 **테이프 장비 유지 비용**이 큽니다. 기존 백업 소프트웨어를 그대로 쓰면서 비용을 줄이려면 무엇을 써야 합니까?
 > a) **Storage Gateway 테이프 게이트웨이**를 두고 가상 테이프를 S3·Glacier에 저장한다
@@ -373,17 +374,17 @@ lang: ko
 
 <sub>관련: [[amazon-sqs]] [[amazon-dynamodb]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업의 애플리케이션이 전 세계 원격 디바이스에서 **UDP로 데이터를 받아 즉시 처리**하고 필요하면 응답을 보냅니다. **데이터는 저장하지 않습니다.** 전송 지연을 최소화하고 **다른 리전으로 빠른 장애 조치**가 필요합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) **AWS Global Accelerator**를 쓰고 두 리전의 **Network Load Balancer**를 엔드포인트로 등록하며, Fargate 시작 유형 ECS 서비스를 NLB 대상으로 두어 처리한다
-> b) Global Accelerator를 쓰고 두 리전의 ALB를 엔드포인트로 등록해 ECS로 처리한다
-> c) Route 53 장애 조치 라우팅을 구성하고 두 리전에 NLB를 만들어 Lambda로 처리한다
-> d) Route 53 장애 조치 라우팅을 구성하고 두 리전에 ALB를 만들어 ECS로 처리한다
+> [!question] 한 기업이 EC2 Linux 인스턴스 두 대와 탄력적 IP로 **고가용성 SFTP 서비스**를 운영하며, 신뢰하는 IP만 접속을 허용하고 사용자 계정은 Linux 사용자로 관리합니다. 이제 **서버리스**이면서 높은 성능과 **세밀한 보안 구성**을 제공하고 사용자 권한도 계속 통제할 수 있는 방식을 원합니다. 어떤 솔루션이 요구 사항을 충족합니까?
+> a) 기본 암호화를 켠 S3 버킷을 만들고, **신뢰 IP만 허용하는 퍼블릭 엔드포인트의 AWS Transfer Family SFTP 서비스**를 만들어 버킷을 연결하고 사용자에게 접근 권한을 부여한다
+> b) 암호화된 EFS 볼륨을 만들고 탄력적 IP와 VPC 엔드포인트를 가진 Transfer Family SFTP를 만들어 EFS를 연결한다
+> c) 암호화된 EBS 볼륨을 만들고 퍼블릭 엔드포인트의 Transfer Family SFTP에 EBS를 연결한다
+> d) 기본 암호화를 켠 S3 버킷을 만들고 **프라이빗 서브넷 내부 접근만 되는** VPC 엔드포인트의 Transfer Family SFTP에 연결한다
 >> [!success]- Answer
->> a) **AWS Global Accelerator**를 쓰고 두 리전의 **Network Load Balancer**를 엔드포인트로 등록하며, Fargate 시작 유형 ECS 서비스를 NLB 대상으로 두어 처리한다
->> **왜 이 답인가** — UDP를 받는 것은 **NLB**이고, 지연 최소화와 **DNS 캐시에 좌우되지 않는 빠른 장애 조치**는 Global Accelerator가 제공합니다.
->> **나머지가 아닌 이유** — ALB는 UDP를 처리하지 못합니다. Route 53 장애 조치는 DNS TTL 때문에 전환이 느립니다. NLB는 Lambda를 대상으로 삼지 않습니다.
+>> a) 기본 암호화를 켠 S3 버킷을 만들고, **신뢰 IP만 허용하는 퍼블릭 엔드포인트의 AWS Transfer Family SFTP 서비스**를 만들어 버킷을 연결하고 사용자에게 접근 권한을 부여한다
+>> **왜 이 답인가** — Transfer Family는 **서버리스 SFTP**이고 저장소로 S3를 붙입니다. 인터넷의 신뢰 IP에서 접속해야 하므로 퍼블릭 엔드포인트를 쓰고, 사용자 권한은 IAM 역할·정책으로 계속 통제합니다.
+>> **나머지가 아닌 이유** — Transfer Family에 **EBS를 붙일 수는 없습니다.** 프라이빗 전용 엔드포인트로 만들면 인터넷 사용자가 접속하지 못합니다.
 
-<sub>관련: [[aws-global-accelerator]] [[elastic-load-balancing]] [[aws-fargate]] | 모듈 [[09-perf-network]]</sub>
+<sub>관련: [[aws-transfer-family]] [[amazon-s3]] | 모듈 [[06-perf-storage]]</sub>
 
 > [!question] 온프레미스에 **80TB 데이터**가 있고 회선은 **100Mbps**입니다. 한 달 안에 S3로 옮겨야 하며 회선을 업무에 계속 써야 합니다. 어떤 방법이 적절합니까?
 > a) **AWS Snowball Edge** 디바이스로 데이터를 물리적으로 전송한다
@@ -421,17 +422,17 @@ lang: ko
 
 <sub>관련: [[amazon-sns]] [[aws-lambda]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 솔루션스 아키텍트가 Windows **IIS 웹 애플리케이션**을 AWS로 옮깁니다. 이 애플리케이션은 온프레미스 NAS의 **파일 공유**에 의존하며, 여러 AZ의 EC2와 로드 밸런서로 구성할 예정입니다. 온프레미스 파일 공유를 대체할 **가장 복원력 있고 내구성 있는** 방법은 무엇입니까?
-> a) 파일 공유를 Amazon FSx for Windows File Server로 옮긴다
-> b) 파일 공유를 Amazon EFS로 옮긴다
-> c) 파일 공유를 AWS Storage Gateway로 옮긴다
-> d) 파일 공유를 Amazon RDS로 옮긴다
+> [!question] 한 기업이 온프레미스 워크로드를 EC2로 옮기려 합니다. 일일 피크는 **15,000 IOPS를 넘지 않으며**, **용량과 무관하게 디스크 성능을 프로비저닝**하고 싶습니다. 가장 비용 효율적인 EBS 볼륨 유형은 무엇입니까?
+> a) gp3 볼륨
+> b) gp2 볼륨
+> c) io1 볼륨
+> d) io2 볼륨
 >> [!success]- Answer
->> a) 파일 공유를 Amazon FSx for Windows File Server로 옮긴다
->> **왜 이 답인가** — IIS는 Windows이고 **SMB 파일 공유와 Windows ACL**을 씁니다. 이를 관리형·다중 AZ로 제공하는 것이 FSx for Windows File Server입니다.
->> **나머지가 아닌 이유** — EFS는 Linux용 NFS입니다. Storage Gateway는 온프레미스 확장용이고, RDS는 파일 공유가 아니라 데이터베이스입니다.
+>> a) gp3 볼륨
+>> **왜 이 답인가** — gp3는 **용량과 별개로 IOPS·처리량을 지정**할 수 있고 최대 16,000 IOPS까지 지원합니다. 15,000이면 gp3로 충분하고 io 계열보다 훨씬 쌉니다.
+>> **나머지가 아닌 이유** — gp2는 **용량에 비례해 IOPS가 정해져** 성능을 따로 프로비저닝할 수 없습니다. io1·io2는 더 높은 성능을 주지만 이 요구에는 과하고 비쌉니다.
 
-<sub>관련: [[amazon-fsx]] | 모듈 [[06-perf-storage]]</sub>
+<sub>관련: [[amazon-ebs]] | 모듈 [[06-perf-storage]]</sub>
 
 > [!question] CloudWatch Logs 요금이 계속 늘어나는데, 로그는 **최근 2주만 조회하고 나머지는 규정 때문에 3년 보관**만 하면 됩니다. 어떻게 해야 합니까?
 > a) 로그 그룹 **보존 기간을 2주로 설정**하고, 장기 보관이 필요한 로그는 **S3로 내보내 아카이브 계층**에 둔다
@@ -469,17 +470,17 @@ lang: ko
 
 <sub>관련: [[amazon-sqs]] [[amazon-cloudwatch]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업의 업무 시스템이 매일 수백 건의 보고서를 **네트워크 공유에 CSV로 저장**합니다. 이 데이터를 **거의 실시간으로 AWS에 저장해 분석**해야 합니다. 관리 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) **Amazon S3 File Gateway**를 만들고 업무 시스템이 그 게이트웨이의 새 네트워크 공유를 쓰게 한다
-> b) DataSync로 파일을 S3에 전송하고 매일 끝날 때 실행되는 작업을 예약한다
-> c) DataSync로 전송하되 DataSync API를 쓰는 애플리케이션을 만들어 자동화한다
-> d) Transfer for SFTP 엔드포인트를 배포하고 새 파일을 확인해 업로드하는 스크립트를 만든다
+> [!question] 솔루션스 아키텍트가 MySQL을 쓰는 복잡한 Java 애플리케이션을 구현합니다. 애플리케이션은 **Apache Tomcat에 배포**되어야 하고 **고가용성**이어야 합니다. 무엇을 해야 합니까?
+> a) **AWS Elastic Beanstalk**으로 배포하고 로드 밸런싱 환경과 롤링 배포 정책을 구성한다
+> b) AWS Lambda에 배포하고 API Gateway를 연결한다
+> c) 데이터베이스를 ElastiCache로 옮기고 보안 그룹을 구성한다
+> d) EC2에 MySQL을 설치하고 AMI를 만들어 Auto Scaling 그룹으로 띄운다
 >> [!success]- Answer
->> a) **Amazon S3 File Gateway**를 만들고 업무 시스템이 그 게이트웨이의 새 네트워크 공유를 쓰게 한다
->> **왜 이 답인가** — 업무 시스템은 **지금처럼 네트워크 공유에 쓰기만 하면** 되고, 게이트웨이가 그 파일을 곧바로 S3 객체로 올려 줍니다. 스크립트나 예약 작업이 없습니다.
->> **나머지가 아닌 이유** — 하루 한 번 예약은 `거의 실시간`이 아닙니다. API를 쓰는 애플리케이션이나 SFTP 스크립트는 만들어 유지해야 합니다.
+>> a) **AWS Elastic Beanstalk**으로 배포하고 로드 밸런싱 환경과 롤링 배포 정책을 구성한다
+>> **왜 이 답인가** — Beanstalk은 **Tomcat 플랫폼을 그대로 지원**하고 로드 밸런서·Auto Scaling·다중 AZ·배포 정책을 대신 구성해 줍니다. 코드 변경 없이 고가용성을 얻습니다.
+>> **나머지가 아닌 이유** — Lambda는 Tomcat 애플리케이션을 그대로 담지 못합니다. ElastiCache는 데이터베이스 대체가 아니고, EC2에 직접 구성하면 관리 부담이 큽니다.
 
-<sub>관련: [[aws-storage-gateway]] [[amazon-s3]] | 모듈 [[06-perf-storage]]</sub>
+<sub>관련: [[amazon-ec2]] [[elastic-load-balancing]] | 모듈 [[07-perf-compute]]</sub>
 
 > [!question] 업로드 직후 파일을 Standard-IA로 전환하는 규칙을 넣었는데, **일부 파일이 며칠 만에 삭제되면서 예상보다 요금이 늘었습니다.** 원인은 무엇입니까?
 > a) Standard-IA에는 **최소 보관 기간(30일)**이 있어 그전에 삭제하면 **조기 삭제 요금**이 부과된다
@@ -517,18 +518,17 @@ lang: ko
 
 <sub>관련: [[aws-lambda]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 글로벌 전자상거래 기업의 웹 애플리케이션에 **정적·동적 콘텐츠**가 있고 OLTP 데이터는 RDS에 있습니다. 사용자들이 **페이지 로딩이 느리다**고 합니다. 어떤 조합으로 해결해야 합니까? (2개 선택)
-> a) Amazon CloudFront 배포를 설정한다
-> b) RDS DB 인스턴스의 읽기 전용 복제본을 만든다
-> c) 동적 웹 콘텐츠를 Amazon S3에 호스팅한다
-> d) Amazon Redshift 클러스터를 구성한다
+> [!question] 한 기업이 웹 게임을 개발했고 데이터베이스는 RDS for MySQL입니다. **상위 10명 점수판을 거의 실시간으로** 보여 주고, **게임을 멈췄다 재개해도 현재 점수를 보존**해야 합니다. 무엇을 해야 합니까?
+> a) **Amazon ElastiCache for Redis** 클러스터를 두어 점수를 계산·캐시해 표시한다
+> b) ElastiCache for Memcached 클러스터를 두어 점수를 캐시한다
+> c) 웹 애플리케이션 앞에 CloudFront를 두어 점수판을 캐시한다
+> d) RDS for MySQL 읽기 복제본을 만들어 점수판 쿼리를 처리한다
 >> [!success]- Answer
->> a) Amazon CloudFront 배포를 설정한다
->> b) RDS DB 인스턴스의 읽기 전용 복제본을 만든다
->> **왜 이 답인가** — 느림의 원인이 두 갈래입니다. **콘텐츠 전달 거리**는 CloudFront가, **데이터베이스 읽기 부하**는 읽기 전용 복제본이 해결합니다.
->> **나머지가 아닌 이유** — 동적 콘텐츠는 S3에 올릴 수 없습니다. Redshift는 분석용 웨어하우스라 OLTP 응답 속도와 무관합니다.
+>> a) **Amazon ElastiCache for Redis** 클러스터를 두어 점수를 계산·캐시해 표시한다
+>> **왜 이 답인가** — Redis에는 **정렬된 집합(sorted set)**이 있어 순위표 계산에 최적이고, **데이터를 디스크에 유지(지속성)**할 수 있어 재시작 후에도 점수가 남습니다.
+>> **나머지가 아닌 이유** — Memcached는 정렬 자료구조도 지속성도 없습니다. CloudFront 캐시는 거의 실시간 갱신에 맞지 않고, 읽기 복제본은 매번 순위를 다시 계산해 느립니다.
 
-<sub>관련: [[amazon-cloudfront]] [[amazon-rds]] | 모듈 [[09-perf-network]]</sub>
+<sub>관련: [[amazon-elasticache]] [[amazon-rds]] | 모듈 [[08-perf-database]]</sub>
 
 > [!question] 네트워크 팀 계정의 **전송 게이트웨이를 여러 팀 계정의 VPC가 연결**해 써야 합니다. 게이트웨이를 계정마다 만들지 않으려면 무엇을 해야 합니까?
 > a) **AWS RAM으로 전송 게이트웨이를 조직(또는 계정)과 공유**하고 각 계정이 자기 VPC를 연결하게 한다
@@ -554,17 +554,17 @@ lang: ko
 
 <sub>관련: [[aws-lambda]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
-> [!question] 한 기업이 프로덕션 워크로드에 **RDS for PostgreSQL DB 클러스터**를 쓰려 합니다. 고가용성이어야 하고 대부분의 상황에서 **40초 미만의 자동 장애 조치**를 제공해야 하며, **기본 인스턴스에서 읽기를 덜어 내고** 비용은 낮게 유지하려고 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) **다중 AZ DB 클러스터** 배포를 쓰고 읽기 워크로드를 **리더 엔드포인트**로 보낸다
-> b) 다중 AZ DB 인스턴스 배포를 쓰고 읽기 복제본을 하나 만들어 읽기를 보낸다
-> c) 다중 AZ DB 인스턴스 배포를 쓰고 읽기를 보조 인스턴스로 보낸다
-> d) 다중 AZ DB 클러스터 배포를 쓰고 읽기 복제본을 두 개 만든다
+> [!question] 한 전자상거래 기업이 **ML 모델을 만들고 학습**해 고객 데이터의 추세를 찾고, 그 결과를 **BI 대시보드에 바로 활용**하려고 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
+> a) **Amazon SageMaker**로 모델을 만들고 학습하며 **Amazon QuickSight**로 시각화한다
+> b) AWS Glue의 ML 변환으로 모델을 만들고 OpenSearch로 시각화한다
+> c) 마켓플레이스의 ML AMI로 모델을 만들고 OpenSearch로 시각화한다
+> d) QuickSight의 계산 필드로 모델을 만들고 학습한 뒤 QuickSight로 시각화한다
 >> [!success]- Answer
->> a) **다중 AZ DB 클러스터** 배포를 쓰고 읽기 워크로드를 **리더 엔드포인트**로 보낸다
->> **왜 이 답인가** — RDS **다중 AZ DB 클러스터**는 대기 인스턴스 두 대가 **읽기를 받을 수 있고**(리더 엔드포인트) 장애 조치가 보통 35초 이내로 빠릅니다. 복제본을 따로 만들 필요가 없어 비용도 낮습니다.
->> **나머지가 아닌 이유** — 다중 AZ **DB 인스턴스** 배포의 대기 인스턴스는 읽기를 받지 않고 장애 조치도 더 느립니다. 복제본을 추가로 만드는 보기는 비용이 늘어납니다.
+>> a) **Amazon SageMaker**로 모델을 만들고 학습하며 **Amazon QuickSight**로 시각화한다
+>> **왜 이 답인가** — 모델 구축·학습의 관리형 서비스는 SageMaker이고, BI 대시보드는 QuickSight입니다. 두 서비스가 통합되어 있어 오버헤드가 적습니다.
+>> **나머지가 아닌 이유** — Glue의 ML 변환은 중복 레코드 식별 등 한정된 용도입니다. AMI를 직접 운영하면 관리 부담이 큽니다. QuickSight 계산 필드는 모델 학습 기능이 아닙니다.
 
-<sub>관련: [[amazon-rds]] | 모듈 [[08-perf-database]]</sub>
+<sub>관련: [[amazon-quicksight]] [[aws-glue]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 애플리케이션 계정의 서비스가 **보안 계정에 저장된 Secrets Manager 보안 암호**를 읽어야 합니다. 어떤 조합이 필요합니까?
 > a) 보안 암호에 **리소스 정책으로 애플리케이션 계정 역할을 허용**하고, 암호화에 쓰인 **KMS 고객 관리형 키도 그 역할에 사용 허용**한다
