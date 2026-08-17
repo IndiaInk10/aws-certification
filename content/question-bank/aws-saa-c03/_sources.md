@@ -22,6 +22,7 @@ lang: ko
 | 1 | velog `@gagaeun` — Examtopics 헷갈리는 문제 정리 | 글 제목은 `1-544` 지만 실제 정리된 것은 **257개** | 257 | 257 | **완료** — 판단 포인트 전부 소화 |
 | 2 | 대화로 받은 ExamTopics 문항 (#1~40) | 40 | 40 | 40 | **완료** — 27개는 소재 1과 중복, 13개만 새로 반영 |
 | 3 | `Downloads/quiz.md` (#41~140) | 제목의 140은 마지막 번호, 실제 **100개** | 100 | 100 | **완료** — 대부분 중복, 새 판단 포인트만 반영 |
+| 4 | `Downloads/quiz.md` 교체본 (#141~260) | 실제 **120개** | 120 | 120 | **완료** — 소재 3보다 중복이 더 많음. 복원력·비용 신규만 반영 |
 
 > [!warning] 개수는 제목이 아니라 실물을 세세요
 > 소재 1은 제목이 `1-544` 라 544개로 보이지만 257개였고, 소재 3은 마지막 번호가 140이라
@@ -37,6 +38,22 @@ lang: ko
 EC2 IAM 역할 · Gateway Load Balancer · SQS FIFO 순서 · CloudFront 정적+동적 · Network Firewall vs
 Firewall Manager · Session Manager · ALB HTTP→HTTPS 리디렉트 · Lambda 동시성→SQS · Shield Advanced ·
 CloudWatch 대시보드 공유 · Direct Connect + VPN 백업
+
+## 커버리지 점검으로 찾은 갭 (2026-08-17)
+
+소재 3의 서비스·기능 용어 63개를 문제은행 전체와 대조했더니 **55개는 이미 다루고** 있었고,
+실제로 비어 있던 것은 셋이었습니다. 셋 다 채웠습니다.
+
+| 갭 | 왜 비어 있었나 |
+|---|---|
+| S3 Glacier Instant Retrieval | 계층 문항이 Standard-IA 와 Deep Archive 만 다뤄 **분기 1회 즉시 조회** 구간이 없었음 |
+| MFA 삭제 | 버전 관리·객체 잠금은 있는데 이것만 빠져 있었음 |
+| 요청자 지불(Requester Pays) | 데이터 전송 비용 문항에 없었음 |
+
+Run Command · Data Pipeline · NAT 인스턴스 · ACM 은 **오답 보기로만** 등장해서 문항으로 만들지 않았습니다.
+
+> 이 점검은 다시 돌릴 수 있습니다 — 소재의 용어를 뽑아 `practice-exam-*.md` 와 `_inbox*.md` 전체에
+> `grep -i` 로 대조하면 됩니다. 한글 표기로 쓴 개념은 영문 용어로 안 잡히니 대조표를 같이 두세요.
 
 ## 다음에 캘 때
 
