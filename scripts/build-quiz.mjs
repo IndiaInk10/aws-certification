@@ -6,8 +6,13 @@
  *   > b) 보기
  *   >> [!success]- Answer
  *   >> b) 보기
+ *   >> 해설 — 정답 줄(`>> x)`) 이 아닌 `>>` 줄은 전부 해설로 모은다.
+ *   >> 여러 줄 써도 되고, 없으면 없는 대로 둔다.
  *
  *   <sub>🔗 [[서비스]] | 모듈 [[..]] | [참고](url)</sub>
+ *
+ * 해설을 정답 콜아웃 **안**에 두는 이유는, 그 자리가 이미 접혀 있어서(`[!success]-`)
+ * 원문을 Obsidian 으로 읽을 때 답과 함께 가려지기 때문이다. 형식을 새로 만들지 않아도 된다.
  *
  * 다국어
  *   원문:   content/question-bank/<cert>/practice-exam-NN.md
@@ -59,7 +64,15 @@ function parseQuestions(src) {
     const qm = line.match(/^>\s*\[!question\]\s*(.*)$/);
     if (qm) {
       flush();
-      cur = { q: qm[1].trim(), choices: [], answers: [], services: [], modules: [], ref: null };
+      cur = {
+        q: qm[1].trim(),
+        choices: [],
+        answers: [],
+        explain: '',
+        services: [],
+        modules: [],
+        ref: null,
+      };
       continue;
     }
     if (!cur) continue;
@@ -72,6 +85,14 @@ function parseQuestions(src) {
     const am = line.match(/^>>\s*([a-z])\)\s*(.*)$/);
     if (am && inAnswer) {
       cur.answers.push(am[1]);
+      continue;
+    }
+
+    // 정답 줄이 아닌 `>>` 줄 = 해설
+    const em = line.match(/^>>\s?(.*)$/);
+    if (em && inAnswer) {
+      const t = em[1].trim();
+      if (t) cur.explain += (cur.explain ? '\n' : '') + t;
       continue;
     }
 
@@ -136,6 +157,8 @@ for (const cert of fs.readdirSync(BANK_ROOT, { withFileTypes: true })) {
       ...q,
       q: { [base]: q.q },
       choices: q.choices.map((c) => ({ k: c.k, t: { [base]: c.t } })),
+      // 해설 없는 문항이 많아(원문 그대로 받아 온 회차) 있을 때만 넣는다
+      ...(q.explain ? { explain: { [base]: q.explain } } : {}),
     }));
 
     const langs = [base];
@@ -157,6 +180,7 @@ for (const cert of fs.readdirSync(BANK_ROOT, { withFileTypes: true })) {
         const t = tq[i];
         if (!t) return;
         q.q[loc] = t.q;
+        if (t.explain) q.explain = { ...(q.explain ?? {}), [loc]: t.explain };
         // 보기는 순서가 아니라 글머리(a/b/c)로 맞춘다. 원문 정답 키를 그대로 쓰기 때문.
         for (const c of q.choices) {
           const tc = t.choices.find((x) => x.k === c.k);

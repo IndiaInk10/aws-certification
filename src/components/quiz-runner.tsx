@@ -23,10 +23,13 @@ export type Question = {
   services: string[];
   modules: string[];
   ref: string | null;
+  /** 선지 분석 — 오답이 왜 오답인지까지. 문항을 직접 쓴 회차에만 있다. */
+  explain?: Localized;
 };
 
 const EXAM_TITLE: Record<string, string> = {
   'aws-clf-c02': 'AWS Certified Cloud Practitioner',
+  'aws-saa-c03': 'AWS Certified Solutions Architect – Associate',
 };
 
 /** 실제 시험은 65문항 / 90분. 회차 문항 수에 비례해 제한 시간을 잡는다. */
@@ -336,6 +339,8 @@ export function QuizRunner({
           services: qq.services,
           modules: qq.modules,
           at,
+          // 선지 분석은 오답노트에서 다시 볼 때가 제일 필요하다
+          ...(qq.explain ? { explain: localize(qq.explain, locale, base) } : {}),
           ...(s.flagged[i] ? { flagged: true } : {}),
         } satisfies WrongItem;
       }),
@@ -725,6 +730,12 @@ export function QuizRunner({
                     >
                       AWS 공식 문서 →
                     </a>
+                  )}
+                  {/* 선지 분석 — 맞혔어도 보여 준다. "왜 나머지가 아닌가"는 맞힌 사람에게도 남는다. */}
+                  {q.explain && (
+                    <p className="text-fd-muted-foreground mt-2 border-t pt-2 text-sm whitespace-pre-line">
+                      {localize(q.explain, locale, base)}
+                    </p>
                   )}
                 </div>
               )}

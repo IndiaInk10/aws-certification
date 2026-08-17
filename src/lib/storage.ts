@@ -28,6 +28,8 @@ export interface WrongItem {
   services: string[];
   modules: string[];
   at: string;
+  /** 선지 분석 — 오답이 왜 오답인지. 문항을 직접 쓴 회차에만 있다. */
+  explain?: string;
   /** 시험 중 검토 표시한 문항. 맞혔더라도 오답노트에 담는다. */
   flagged?: boolean;
 }
