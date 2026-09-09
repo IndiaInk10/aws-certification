@@ -49,7 +49,7 @@ status: 미학습
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[08-perf-database\|3.3 고성능 데이터베이스]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[08-perf-database\|3.3 고성능 데이터베이스]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon Redshift](/docs/aws-clf-c02/10-services/03-database/amazon-redshift)

@@ -88,12 +88,12 @@ lang: ko
 <sub>관련: [[amazon-rds]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 모든 애플리케이션의 EC2 Auto Scaling 이벤트 상태를 S3에 서버리스로 모아 거의 실시간 대시보드를 만들려 합니다. **인스턴스 시작 속도에 영향을 주면 안 됩니다.** 어떻게 합니까?
-> a) CloudWatch 지표 스트림으로 Kinesis Data Firehose에 보내 S3에 적재한다
+> a) CloudWatch 지표 스트림으로 Amazon Data Firehose에 보내 S3에 적재한다
 > b) 일정에 따라 Lambda를 돌려 상태를 조회해 S3에 쓴다
 > c) 인스턴스 부팅 스크립트에서 상태를 S3에 쓰게 한다
 > d) EC2마다 에이전트를 설치해 수집한다
 >> [!success]- Answer
->> a) CloudWatch 지표 스트림으로 Kinesis Data Firehose에 보내 S3에 적재한다
+>> a) CloudWatch 지표 스트림으로 Amazon Data Firehose에 보내 S3에 적재한다
 >> **왜 이 답인가** — 지표 스트림은 지표를 **생기는 대로 밀어내는** 관리형 경로입니다. 인스턴스 쪽에서 하는 일이 없으니 시작 속도에 영향이 없습니다.
 >> **나머지가 아닌 이유** — 일정 기반 Lambda는 거의 실시간이 아닙니다. 부팅 스크립트와 에이전트는 **인스턴스 시작 과정에 일을 더하는** 것이라 명시된 조건을 정면으로 어깁니다.
 
@@ -283,12 +283,12 @@ lang: ko
 <sub>관련: [[amazon-dynamodb]] [[amazon-sns]] [[aws-lambda]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 백만 명이 쓰는 모바일 앱 데이터를 거의 실시간으로 분석하고, 암호화한 뒤 **Parquet 형식**으로 중앙에 저장해야 합니다. 운영 오버헤드가 가장 적은 구성은 무엇입니까?
-> a) Kinesis Data Firehose로 받아 Parquet으로 변환하고 암호화해 S3에 적재한다
+> a) Amazon Data Firehose로 받아 Parquet으로 변환하고 암호화해 S3에 적재한다
 > b) Kinesis Data Streams로 받아 EC2 소비자가 변환해 S3에 쓴다
 > c) 앱이 직접 S3에 JSON으로 올리고 매일 EMR로 변환한다
 > d) RDS에 적재한 뒤 내보낸다
 >> [!success]- Answer
->> a) Kinesis Data Firehose로 받아 Parquet으로 변환하고 암호화해 S3에 적재한다
+>> a) Amazon Data Firehose로 받아 Parquet으로 변환하고 암호화해 S3에 적재한다
 >> **왜 이 답인가** — Firehose는 **적재하면서 형식 변환(Parquet)과 암호화를 함께** 해 줍니다. 코드를 쓰지 않고 세 요구가 한 서비스에서 끝납니다.
 >> **나머지가 아닌 이유** — Data Streams는 소비자를 내가 만들어야 합니다. 매일 EMR 변환은 `거의 실시간`이 아니고 클러스터가 붙습니다. RDS 경유는 형식과 규모 모두 맞지 않습니다.
 
@@ -478,12 +478,12 @@ lang: ko
 <sub>관련: [[amazon-sns]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 여러 소스에서 오는 실시간 스트림을 S3에 쓰기 전에 변환해야 하고, 변환된 데이터를 SQL로 조회할 수 있어야 합니다. 어떤 조합입니까? (2개 선택)
-> a) Kinesis Data Firehose로 수집하면서 Lambda로 변환해 S3에 적재한다
+> a) Amazon Data Firehose로 수집하면서 Lambda로 변환해 S3에 적재한다
 > b) Glue 데이터 카탈로그로 스키마를 만들고 Athena로 조회한다
 > c) EMR 클러스터를 상시 띄워 스트림을 처리한다
 > d) 데이터를 RDS에 적재하고 조회한다
 >> [!success]- Answer
->> a) Kinesis Data Firehose로 수집하면서 Lambda로 변환해 S3에 적재한다
+>> a) Amazon Data Firehose로 수집하면서 Lambda로 변환해 S3에 적재한다
 >> b) Glue 데이터 카탈로그로 스키마를 만들고 Athena로 조회한다
 >> **왜 이 답인가** — Firehose는 적재 도중 Lambda를 불러 **흐르는 중에 변환**할 수 있습니다. 그 뒤 카탈로그와 Athena를 붙이면 S3 파일에 그대로 SQL을 던질 수 있습니다.
 >> **나머지가 아닌 이유** — EMR 상시 운영은 요구를 만족하지만 운영 부담이 훨씬 큽니다. RDS는 스트리밍 적재와 대용량 조회 모두에 맞지 않습니다.

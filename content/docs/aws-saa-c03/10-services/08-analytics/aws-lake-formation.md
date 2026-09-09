@@ -15,7 +15,7 @@ status: 미학습
 
 - **핵심은 세밀한 권한입니다** — S3 버킷 정책은 **객체 단위**까지입니다. `분석가는 이 열만 볼 수 있게` · `지사별로 자기 지역 행만` 은 버킷 정책으로 풀 수 없고 Lake Formation 이 답입니다
 - **[[aws-glue\|Glue]] 위에 올라갑니다** — 데이터 카탈로그를 그대로 쓰고, 그 위에 권한 계층을 얹습니다
-- **한 곳에서 권한을 정하면** [[amazon-athena\|Athena]]·[[amazon-redshift\|Redshift]] Spectrum·[[amazon-emr\|EMR]]·QuickSight 가 모두 그 권한을 따릅니다. 서비스마다 따로 IAM 을 짜는 보기와 대비됩니다
+- **한 곳에서 권한을 정하면** [[amazon-athena\|Athena]]·[[amazon-redshift\|Redshift]] Spectrum·[[amazon-emr\|EMR]]·Quick Sight 가 모두 그 권한을 따릅니다. 서비스마다 따로 IAM 을 짜는 보기와 대비됩니다
 - **블루프린트**로 RDS·S3·온프레미스 DB 에서 데이터를 끌어오는 수집 파이프라인을 자동 생성합니다
 - **계정 간 공유**를 태그 기반으로 관리합니다
 - **저장은 여전히 S3** 입니다. Lake Formation 이 데이터를 따로 보관하지 않습니다
@@ -31,7 +31,7 @@ status: 미학습
 |---|---|
 | [[aws-glue\|Glue]] | ETL·카탈로그. 권한 계층이 없습니다 |
 | S3 버킷 정책 | **객체 단위**까지. 열·행은 불가 |
-| [[amazon-quicksight\|QuickSight]] 행 수준 보안 | **대시보드 안에서만**. Lake Formation 은 조회 엔진 전체에 적용 |
+| [[amazon-quick-sight\|Quick Sight]] 행 수준 보안 | **대시보드 안에서만**. Lake Formation 은 조회 엔진 전체에 적용 |
 
 ## 시험 포인트
 
@@ -42,7 +42,7 @@ status: 미학습
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[03-data-protection\|1.3 데이터 보안]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[03-data-protection\|1.3 데이터 보안]]
 - 비교: [[service-comparisons]]
 
 > CLF-C02 범위 밖의 서비스입니다. 바탕이 되는 [CLF-C02 의 AWS Glue](/docs/aws-clf-c02/10-services/08-analytics/aws-glue) 를 먼저 보세요.

@@ -191,7 +191,7 @@ lang: ko
 >> b) **AWS Glue 크롤러**를 설정해 S3 데이터로 테이블을 만든다
 >> c) **Amazon Athena**를 설정해 S3 데이터를 조회하고 분석가에게 접근을 제공한다
 >> **왜 이 답인가** — 장비는 **SMB로 쓰던 대로** 두고(File Gateway가 S3로 올림), Glue 크롤러가 스키마를 만들고, **Athena가 서버 없이 조회**합니다. 조회할 때만 요금이 발생해 가장 쌉니다.
->> **나머지가 아닌 이유** — Redshift·EMR은 클러스터를 상시 운영해야 해 주기적인 조회에는 비쌉니다. FSx File Gateway는 S3가 아니라 FSx를 캐시합니다.
+>> **나머지가 아닌 이유** — Redshift는 클러스터를 상시 운영해야 해 주기적인 조회에는 비쌉니다.
 
 <sub>관련: [[aws-storage-gateway]] [[aws-glue]] [[amazon-athena]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -403,11 +403,11 @@ lang: ko
 > a) **Amazon Athena 쿼리로 CloudTrail 로그를 검색**해 오류를 식별한다
 > b) AWS Glue와 사용자 지정 스크립트로 CloudTrail 로그를 조회한다
 > c) AWS Batch와 사용자 지정 스크립트로 조회한다
-> d) Amazon QuickSight로 CloudTrail 로그를 검색해 대시보드를 만든다
+> d) Amazon Quick Sight로 CloudTrail 로그를 검색해 대시보드를 만든다
 >> [!success]- Answer
 >> a) **Amazon Athena 쿼리로 CloudTrail 로그를 검색**해 오류를 식별한다
 >> **왜 이 답인가** — CloudTrail 로그는 S3에 있고, **Athena는 그 위에서 바로 SQL로 조회**합니다. CloudTrail 콘솔에서 Athena 테이블 생성을 지원해 준비도 간단합니다.
->> **나머지가 아닌 이유** — Glue·Batch는 스크립트를 직접 작성해야 합니다. QuickSight는 시각화 도구라 먼저 쿼리 계층이 필요합니다.
+>> **나머지가 아닌 이유** — Glue·Batch는 스크립트를 직접 작성해야 합니다. Quick Sight는 시각화 도구라 먼저 쿼리 계층이 필요합니다.
 
 <sub>관련: [[amazon-athena]] [[aws-cloudtrail]] | 모듈 [[02-secure-workloads]]</sub>
 
@@ -480,7 +480,7 @@ lang: ko
 >> a) **Amazon EFS 파일 시스템**을 만든다
 >> b) 온프레미스에 **AWS DataSync 에이전트**를 설치하고 DataSync 작업으로 전송한다
 >> **왜 이 답인가** — 여러 AWS 리소스가 **NFS로 접근**해야 하므로 대상은 EFS이고, 온프레미스 → EFS 전송을 **중단 없이 자동화**하는 도구가 DataSync입니다.
->> **나머지가 아닌 이유** — S3는 NFS 프로토콜을 제공하지 않습니다. FSx for Lustre는 HPC용이라 이 요구에 과하고, 수동 복사는 검증·재시도를 직접 해야 합니다.
+>> **나머지가 아닌 이유** — S3는 NFS 프로토콜을 제공하지 않습니다. 수동 복사는 검증·재시도를 직접 해야 합니다.
 
 <sub>관련: [[amazon-efs]] [[aws-datasync]] | 모듈 [[06-perf-storage]]</sub>
 

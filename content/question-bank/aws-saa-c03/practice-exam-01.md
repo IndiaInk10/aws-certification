@@ -218,15 +218,15 @@ lang: ko
 
 <sub>관련: [[amazon-cloudwatch]] | 모듈 [[01-secure-access]]</sub>
 
-> [!question] 매일 들어오는 파일을 수집 버킷에서 분석 버킷으로 자동으로 옮기고, 복사된 데이터에 Lambda 함수와 SageMaker 파이프라인을 **둘 다** 실행해야 합니다. 어떻게 합니까?
-> a) 두 버킷 사이에 S3 복제를 걸고, 분석 버킷의 객체 생성 이벤트를 EventBridge로 보내 규칙의 대상으로 Lambda와 SageMaker를 등록한다
-> b) 분석 버킷의 S3 이벤트 알림에 Lambda와 SageMaker를 대상으로 등록한다
+> [!question] 매일 들어오는 파일을 수집 버킷에서 분석 버킷으로 자동으로 옮기고, 복사된 데이터에 Lambda 함수와 SageMaker AI 파이프라인을 **둘 다** 실행해야 합니다. 어떻게 합니까?
+> a) 두 버킷 사이에 S3 복제를 걸고, 분석 버킷의 객체 생성 이벤트를 EventBridge로 보내 규칙의 대상으로 Lambda와 SageMaker AI를 등록한다
+> b) 분석 버킷의 S3 이벤트 알림에 Lambda와 SageMaker AI를 대상으로 등록한다
 > c) 사람이 매일 같은 시간에 복사한다
 > d) Lambda가 5분마다 두 버킷을 비교해 복사한다
 >> [!success]- Answer
->> a) 두 버킷 사이에 S3 복제를 걸고, 분석 버킷의 객체 생성 이벤트를 EventBridge로 보내 규칙의 대상으로 Lambda와 SageMaker를 등록한다
+>> a) 두 버킷 사이에 S3 복제를 걸고, 분석 버킷의 객체 생성 이벤트를 EventBridge로 보내 규칙의 대상으로 Lambda와 SageMaker AI를 등록한다
 >> **왜 이 답인가** — 한 이벤트로 **여러 종류의 대상**을 부르려면 EventBridge입니다. 규칙 하나에 대상 여러 개를 달 수 있습니다.
->> **나머지가 아닌 이유** — S3 이벤트 알림은 대상 종류가 SNS·SQS·Lambda로 한정되어 **SageMaker 파이프라인을 직접 부를 수 없습니다.** 여기가 두 보기를 가르는 지점입니다. 사람이 복사하거나 폴링하는 방식은 자동화도 실시간도 아닙니다.
+>> **나머지가 아닌 이유** — S3 이벤트 알림은 대상 종류가 SNS·SQS·Lambda로 한정되어 **SageMaker AI 파이프라인을 직접 부를 수 없습니다.** 여기가 두 보기를 가르는 지점입니다. 사람이 복사하거나 폴링하는 방식은 자동화도 실시간도 아닙니다.
 
 <sub>관련: [[amazon-eventbridge]] [[amazon-s3]] | 모듈 [[04-scalable-decoupled]]</sub>
 
@@ -234,7 +234,7 @@ lang: ko
 > a) API Gateway → Kinesis Data Streams → Lambda → S3
 > b) API Gateway → RDS → 배치 작업 → S3
 > c) ALB → EC2 → EBS
-> d) S3 → Athena → QuickSight
+> d) S3 → Athena → Quick Sight
 >> [!success]- Answer
 >> a) API Gateway → Kinesis Data Streams → Lambda → S3
 >> **왜 이 답인가** — 실시간 스트림 수집은 Kinesis, 가벼운 변환은 Lambda, 적재는 S3입니다. 셋 다 관리할 서버가 없습니다.

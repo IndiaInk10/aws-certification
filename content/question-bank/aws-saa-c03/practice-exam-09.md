@@ -380,17 +380,17 @@ lang: ko
 <sub>관련: [[amazon-sqs]] [[amazon-ec2-auto-scaling]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 기업이 여러 데이터베이스에서 오는 **배치 데이터**와 네트워크 센서·API에서 오는 **실시간 스트림**을 함께 다룹니다. 모든 데이터를 한곳에 모아 비즈니스 분석에 쓰려 하며, 들어오는 데이터를 처리해 여러 S3 버킷에 단계별로 적재해야 합니다. 이후 팀들은 **일회성 쿼리**를 돌리고 BI 도구로 KPI를 봅니다. 운영 오버헤드가 가장 적은 조합은 무엇입니까? (2개 선택)
-> a) 일회성 쿼리에는 Amazon Athena를, KPI 대시보드에는 Amazon QuickSight를 사용한다
+> a) 일회성 쿼리에는 Amazon Athena를, KPI 대시보드에는 Amazon Quick Sight를 사용한다
 > b) AWS Lake Formation 블루프린트로 데이터 레이크에 수집할 데이터를 식별하고, AWS Glue로 원본을 크롤링·추출해 Apache Parquet 형식으로 S3에 적재한다
-> c) 일회성 쿼리에는 Kinesis Data Analytics를, KPI에는 QuickSight를 사용한다
+> c) 일회성 쿼리에는 Managed Service for Apache Flink를, KPI에는 Quick Sight를 사용한다
 > d) Lambda 함수를 직접 만들어 데이터베이스의 레코드를 Redshift 클러스터로 옮긴다
 >> [!success]- Answer
->> a) 일회성 쿼리에는 Amazon Athena를, KPI 대시보드에는 Amazon QuickSight를 사용한다
+>> a) 일회성 쿼리에는 Amazon Athena를, KPI 대시보드에는 Amazon Quick Sight를 사용한다
 >> b) AWS Lake Formation 블루프린트로 데이터 레이크에 수집할 데이터를 식별하고, AWS Glue로 원본을 크롤링·추출해 Apache Parquet 형식으로 S3에 적재한다
->> **왜 이 답인가** — 데이터 레이크 구축은 **Lake Formation + Glue**, S3 위의 일회성 SQL은 **Athena**, KPI 대시보드는 **QuickSight**입니다. 넷 다 관리형이라 운영 오버헤드가 가장 적습니다.
->> **나머지가 아닌 이유** — Kinesis Data Analytics는 스트림에 대한 실시간 분석이라 일회성 쿼리 도구가 아닙니다. Lambda로 적재를 직접 만드는 것은 코드와 운영이 늘어납니다.
+>> **왜 이 답인가** — 데이터 레이크 구축은 **Lake Formation + Glue**, S3 위의 일회성 SQL은 **Athena**, KPI 대시보드는 **Quick Sight**입니다. 넷 다 관리형이라 운영 오버헤드가 가장 적습니다.
+>> **나머지가 아닌 이유** — Managed Service for Apache Flink는 스트림에 대한 실시간 분석이라 일회성 쿼리 도구가 아닙니다. Lambda로 적재를 직접 만드는 것은 코드와 운영이 늘어납니다.
 
-<sub>관련: [[aws-lake-formation]] [[aws-glue]] [[amazon-athena]] [[amazon-quicksight]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[aws-lake-formation]] [[aws-glue]] [[amazon-athena]] [[amazon-quick-sight]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 한 기업이 엔지니어 팀에 개별 AWS 계정을 주려 합니다. 계정별로 **한 달 EC2 사용량이 특정 임계값을 넘으면 즉시 알림**을 받고 싶습니다. 가장 비용 효율적인 방법은 무엇입니까?
 > a) 계정마다 AWS Budgets로 비용 예산을 만들고 기간은 월간, 범위는 EC2로 설정한 뒤 임계값 알림을 SNS 주제로 받게 한다
@@ -495,8 +495,8 @@ lang: ko
 > d) 두 환경 모두 EC2 인스턴스 크기를 줄인다
 >> [!success]- Answer
 >> a) 개발 환경 Auto Scaling 그룹의 **최대 인스턴스 수**를 줄인다
->> **왜 이 답인가** — 개발 환경이 필요 이상으로 커지지 않도록 **상한을 낮추는 것**이 가장 직접적이고 안전한 비용 절감입니다. 최소 두 대라는 요구는 그대로 지킵니다.
->> **나머지가 아닌 이유** — 인스턴스를 한 대로 줄이는 것은 "최소 두 대"라는 조건을 어깁니다. 프로덕션 인스턴스까지 줄이면 성능이 나빠지고, 분산 알고리즘은 비용과 무관합니다.
+>> **왜 이 답인가** — 개발 환경이 필요 이상으로 커지지 않도록 **상한을 낮추는 것**이 가장 직접적이고 안전한 비용 절감입니다. 프로덕션 환경은 그대로 둡니다.
+>> **나머지가 아닌 이유** — 대상 그룹의 인스턴스 수는 Auto Scaling 그룹이 정하므로 손으로 한 대만 남겨도 곧 되돌아갑니다. 프로덕션 인스턴스까지 줄이면 성능이 나빠지고, 분산 알고리즘은 비용과 무관합니다.
 
 <sub>관련: [[amazon-ec2-auto-scaling]] [[elastic-load-balancing]] | 모듈 [[12-cost-compute]]</sub>
 

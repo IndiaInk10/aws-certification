@@ -115,7 +115,7 @@ tags: [MOC, saa-c03, 한줄노트]
 | **Amazon Data Firehose** | 스트림을 S3·Redshift 로 **그냥 흘려보낸다.** 코드가 없다 |
 | **Amazon Athena** | S3 에 있는 파일에 SQL 을 그대로 던진다. 서버가 없다 |
 | **AWS Glue** | 서버리스 ETL 과 데이터 카탈로그 |
-| **Amazon QuickSight** | 대시보드·시각화 |
+| **Amazon Quick Sight** (구 QuickSight) | 대시보드·시각화 |
 | **AWS DataSync** | 온프레미스와 AWS 사이 대량 파일 전송을 자동화 |
 | **AWS DMS** | 데이터베이스만 옮긴다. 서버 통째로면 Application Migration Service |
 
@@ -133,7 +133,7 @@ tags: [MOC, saa-c03, 한줄노트]
 
 ## 아직 안 들어온 것
 
-범위 내 서비스는 **129개**입니다. 위 목록은 그중 **시험 출현이 확인되었거나 다른 노트가 실제로 가리키는 것**만 담았습니다.
+범위 내 서비스는 **119개**입니다. 위 목록은 그중 **시험 출현이 확인되었거나 다른 노트가 실제로 가리키는 것**만 담았습니다.
 
 채우는 순서는 정해져 있습니다.
 

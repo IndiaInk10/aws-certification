@@ -329,7 +329,7 @@ lang: ko
 > a) Amazon ElastiCache를 도입해 큰 데이터셋을 캐싱한다
 > b) Amazon SNS로 데이터베이스 호출을 저장한다
 > c) RDS for MySQL 읽기 전용 복제본으로 호출을 캐싱한다
-> d) Kinesis Data Firehose로 호출을 스트리밍한다
+> d) Amazon Data Firehose로 호출을 스트리밍한다
 >> [!success]- Answer
 >> a) Amazon ElastiCache를 도입해 큰 데이터셋을 캐싱한다
 >> **왜 이 답인가** — **같은 결과를 반복해서 조회**하는 상황은 캐시의 정확한 사용처입니다. 두 번째 요청부터는 데이터베이스에 가지 않아 지연과 부하가 함께 줄어듭니다.

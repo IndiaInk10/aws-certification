@@ -46,7 +46,7 @@ Hadoop·Spark 클러스터를 관리형으로 띄웁니다. 대규모 분산 처
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[12-cost-compute\|4.2 비용 최적화 컴퓨팅]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[12-cost-compute\|4.2 비용 최적화 컴퓨팅]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon EMR](/docs/aws-clf-c02/10-services/08-analytics/amazon-emr)

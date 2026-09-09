@@ -106,8 +106,8 @@ lang: ko
 > d) 보안 그룹에서 인바운드를 막으면 요금이 멈춘다
 >> [!success]- Answer
 >> a) 실행 중인 인스턴스에 연결되지 않은 탄력적 IP 에 요금이 붙는다 — 쓰지 않는 것을 해제한다
->> **왜 이 답인가** — 탄력적 IP 는 **붙어서 쓰이고 있을 때는 대체로 무료**이고, **놀고 있을 때 요금이 붙습니다.** 주소가 희소 자원이라 붙잡아만 두는 것을 막는 구조입니다. 조용히 새는 비용의 전형입니다.
->> **나머지가 아닌 이유** — 정액이라 줄일 수 없다는 것은 사실이 아닙니다. **인스턴스를 중지하면 오히려 연결이 끊긴 상태가 되어 요금이 붙습니다** — 직관과 반대라 자주 틀립니다. 보안 그룹은 요금과 무관합니다.
+>> **왜 이 답인가** — 탄력적 IP 는 **붙어 있든 놀고 있든 보유한 개수만큼 시간당 요금이 붙습니다.** 그중 아무 데도 연결되지 않은 주소는 값만 내고 하는 일이 없으므로, 해제하면 그만큼 요금이 사라집니다. 조용히 새는 비용의 전형입니다.
+>> **나머지가 아닌 이유** — 정액이라 줄일 수 없다는 것은 사실이 아닙니다. 보유 개수를 줄이면 요금도 줄어듭니다. **인스턴스를 중지해도 주소는 그대로 붙잡고 있어 요금이 멈추지 않습니다** — 직관과 반대라 자주 틀립니다. 보안 그룹은 요금과 무관합니다.
 
 <sub>관련: [[amazon-vpc]] [[amazon-ec2]] | 모듈 [[14-cost-network]]</sub>
 
@@ -137,13 +137,13 @@ lang: ko
 
 > [!question] 병원 API 가 PDF·JPEG 보고서를 받습니다. 그 안에서 **보호 대상 건강 정보(PHI)를 식별**해야 하고 개발 노력은 최소여야 합니다. 어떤 조합입니까?
 > a) Amazon Textract 로 글자를 뽑고 Amazon Comprehend Medical 로 PHI 를 식별한다
-> b) Amazon Textract 로 글자를 뽑고 SageMaker 로 모델을 만들어 식별한다
+> b) Amazon Textract 로 글자를 뽑고 SageMaker AI 로 모델을 만들어 식별한다
 > c) Amazon Rekognition 으로 글자를 뽑고 Comprehend Medical 로 식별한다
 > d) 파이썬 라이브러리로 직접 글자를 뽑고 직접 규칙을 만들어 식별한다
 >> [!success]- Answer
 >> a) Amazon Textract 로 글자를 뽑고 Amazon Comprehend Medical 로 PHI 를 식별한다
 >> **왜 이 답인가** — 두 단계가 각각 전용 관리형 서비스입니다. **문서에서 글자를 뽑는 것은 Textract**, **의료 텍스트에서 PHI 를 찾는 것은 Comprehend Medical** 입니다. 둘 다 만들 것이 없습니다.
->> **나머지가 아닌 이유** — SageMaker 로 모델을 만드는 것은 개발 노력이 가장 큽니다. **Rekognition 은 이미지·영상 분석**이라 문서 텍스트 추출이 본업이 아닙니다. 직접 구현은 정확도까지 떠안습니다.
+>> **나머지가 아닌 이유** — SageMaker AI 로 모델을 만드는 것은 개발 노력이 가장 큽니다. **Rekognition 은 이미지·영상 분석**이라 문서 텍스트 추출이 본업이 아닙니다. 직접 구현은 정확도까지 떠안습니다.
 
 <sub>관련: [[amazon-textract]] [[amazon-comprehend]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -186,12 +186,12 @@ lang: ko
 > [!question] 사용자가 올린 이미지에 **부적절한 내용이 있는지** 걸러야 합니다. 개발 노력을 최소화하려면 무엇을 써야 합니까?
 > a) Amazon Rekognition 의 콘텐츠 검수 기능을 쓰고 확신이 낮은 건만 사람이 본다
 > b) Amazon Comprehend 로 판별한다
-> c) SageMaker 로 모델을 학습시킨다
+> c) SageMaker AI 로 모델을 학습시킨다
 > d) Fargate 에 직접 만든 머신러닝 모델을 올린다
 >> [!success]- Answer
 >> a) Amazon Rekognition 의 콘텐츠 검수 기능을 쓰고 확신이 낮은 건만 사람이 본다
 >> **왜 이 답인가** — Rekognition 은 **이미지·영상 분석**이 본업이고 부적절한 콘텐츠 검수 기능이 이미 들어 있습니다. 애매한 것만 사람이 보면 정확도와 비용이 함께 맞습니다.
->> **나머지가 아닌 이유** — **Comprehend 는 텍스트 분석**이라 이미지에 쓸 수 없습니다. SageMaker 학습과 자체 모델은 데이터 수집·학습·운영을 전부 떠안는 일입니다.
+>> **나머지가 아닌 이유** — **Comprehend 는 텍스트 분석**이라 이미지에 쓸 수 없습니다. SageMaker AI 학습과 자체 모델은 데이터 수집·학습·운영을 전부 떠안는 일입니다.
 
 <sub>관련: [[amazon-rekognition]] [[amazon-comprehend]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -380,7 +380,7 @@ lang: ko
 > a) 사진은 S3 에 두고 메타데이터만 DynamoDB 에 남기며 처리는 Lambda 로 옮긴다
 > b) 사진과 메타데이터를 모두 DynamoDB 에 그대로 두고 Lambda 로 처리한다
 > c) EC2 를 세 대로 늘리고 프로비저닝 IOPS 볼륨을 붙인다
-> d) Kinesis Data Firehose 로 사진을 처리해 저장한다
+> d) Amazon Data Firehose 로 사진을 처리해 저장한다
 >> [!success]- Answer
 >> a) 사진은 S3 에 두고 메타데이터만 DynamoDB 에 남기며 처리는 Lambda 로 옮긴다
 >> **왜 이 답인가** — **DynamoDB 는 항목 크기 상한이 있어 이미지 같은 큰 덩어리를 담는 곳이 아닙니다.** 큰 것은 S3, 조회 키가 되는 작은 것은 DynamoDB — 이 분업이 정석입니다.

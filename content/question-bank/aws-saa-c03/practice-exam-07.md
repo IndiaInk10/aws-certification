@@ -39,12 +39,12 @@ lang: ko
 <sub>관련: [[elastic-load-balancing]] [[amazon-ec2-auto-scaling]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업의 수천 대 엣지 디바이스가 하루에 총 1TB의 상태 알림을 생성하며 알림 하나는 약 2KB입니다. 이 알림을 수집·저장해 나중에 분석해야 합니다. 고가용성을 원하지만 비용을 최소화해야 하고 **추가 인프라를 관리하고 싶지 않으며**, 최근 14일 데이터는 즉시 분석할 수 있어야 하고 그보다 오래된 데이터는 아카이브해야 합니다. 운영 효율이 가장 높은 솔루션은 무엇입니까?
-> a) Kinesis Data Firehose 전송 스트림으로 알림을 수집해 S3 버킷에 전달하고, S3 수명 주기 구성으로 14일 후 Glacier로 전환한다
+> a) Amazon Data Firehose 전송 스트림으로 알림을 수집해 S3 버킷에 전달하고, S3 수명 주기 구성으로 14일 후 Glacier로 전환한다
 > b) 두 가용 영역에 EC2 인스턴스를 띄우고 로드 밸런서 뒤에서 알림을 받아 스크립트로 S3에 저장한 뒤 14일 후 Glacier로 전환한다
 > c) Firehose로 수집해 Amazon OpenSearch Service 클러스터에 전달하고, 매일 수동 스냅샷을 뜬 뒤 14일이 지난 데이터를 클러스터에서 삭제한다
 > d) SQS 표준 큐로 수집하고 메시지 보존 기간을 14일로 설정한 뒤, 소비자가 메시지 나이를 확인해 14일이 되면 S3로 복사하고 큐에서 삭제한다
 >> [!success]- Answer
->> a) Kinesis Data Firehose 전송 스트림으로 알림을 수집해 S3 버킷에 전달하고, S3 수명 주기 구성으로 14일 후 Glacier로 전환한다
+>> a) Amazon Data Firehose 전송 스트림으로 알림을 수집해 S3 버킷에 전달하고, S3 수명 주기 구성으로 14일 후 Glacier로 전환한다
 >> **왜 이 답인가** — Firehose는 **관리할 인프라가 없는 수집 파이프라인**이고 S3로 자동 적재합니다. 14일 경계는 수명 주기 정책이 알아서 처리합니다.
 >> **나머지가 아닌 이유** — EC2 기반 수집은 관리할 인프라가 늘어납니다. OpenSearch 클러스터는 노드를 운영해야 하고 수동 스냅샷은 운영 부담입니다. SQS는 메시지 큐이지 장기 데이터 저장소가 아니며 소비자가 나이를 계산하게 만드는 설계는 복잡합니다.
 
@@ -233,12 +233,12 @@ lang: ko
 > [!question] 한 기업이 인기 소셜 미디어 웹사이트를 운영하며 사용자가 이미지를 올려 공유할 수 있습니다. 이미지에 **부적절한 콘텐츠가 없는지** 확인해야 하며 개발 노력을 최소화하려고 합니다. 무엇을 해야 합니까?
 > a) Amazon Rekognition으로 부적절한 콘텐츠를 탐지하고 신뢰도가 낮은 예측은 사람이 검토하게 한다
 > b) Amazon Comprehend로 부적절한 콘텐츠를 탐지하고 신뢰도가 낮은 예측은 사람이 검토하게 한다
-> c) Amazon SageMaker로 부적절한 콘텐츠를 탐지하고 Ground Truth로 낮은 신뢰도 예측에 레이블을 단다
+> c) Amazon SageMaker AI로 부적절한 콘텐츠를 탐지하고 Ground Truth로 낮은 신뢰도 예측에 레이블을 단다
 > d) AWS Fargate에 사용자 지정 머신 러닝 모델을 배포해 탐지한다
 >> [!success]- Answer
 >> a) Amazon Rekognition으로 부적절한 콘텐츠를 탐지하고 신뢰도가 낮은 예측은 사람이 검토하게 한다
 >> **왜 이 답인가** — Rekognition에는 **이미지·동영상 콘텐츠 검열 기능이 이미 들어 있습니다.** API를 부르기만 하면 되므로 개발 노력이 가장 적습니다.
->> **나머지가 아닌 이유** — Comprehend는 **텍스트** 분석입니다(이미지가 아닙니다). SageMaker나 직접 배포한 모델은 학습·운영을 떠안는 일이라 요구와 정반대입니다.
+>> **나머지가 아닌 이유** — Comprehend는 **텍스트** 분석입니다(이미지가 아닙니다). SageMaker AI나 직접 배포한 모델은 학습·운영을 떠안는 일이라 요구와 정반대입니다.
 
 <sub>관련: [[amazon-rekognition]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -299,7 +299,7 @@ lang: ko
 >> a) 새 웹사이트와 S3 버킷을 만들고 정적 웹사이트 호스팅으로 배포한다
 >> b) 웹사이트 앞에 Amazon CloudFront를 두어 HTTPS 기능을 제공한다
 >> **왜 이 답인가** — 동적 콘텐츠가 없으므로 서버가 필요 없습니다. **S3 정적 호스팅 + CloudFront**는 패치할 대상이 없어 유지 관리 부담이 사라지고, HTTPS·캐싱·확장을 한 번에 얻습니다.
->> **나머지가 아닌 이유** — Lambda나 EC2로 콘텐츠를 제공하는 것은 정적 사이트에 불필요한 컴퓨팅을 다시 들이는 일입니다. WAF는 공격을 거르는 도구이지 HTTPS를 제공하지 않습니다.
+>> **나머지가 아닌 이유** — Lambda나 EC2로 콘텐츠를 제공하는 것은 정적 사이트에 불필요한 컴퓨팅을 다시 들이는 일이고, 패치와 유지 관리 부담도 그대로 남습니다.
 
 <sub>관련: [[amazon-s3]] [[amazon-cloudfront]] | 모듈 [[12-cost-compute]]</sub>
 
@@ -328,12 +328,12 @@ lang: ko
 <sub>관련: [[amazon-fsx]] [[aws-directory-service]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업이 300개가 넘는 글로벌 웹사이트와 애플리케이션을 호스팅하며 **매일 30TB가 넘는 클릭스트림 데이터**를 분석할 플랫폼이 필요합니다. 이 데이터를 전송하고 처리하려면 무엇을 해야 합니까?
-> a) Kinesis Data Streams로 데이터를 수집하고 Kinesis Data Firehose로 S3 데이터 레이크에 전송한 뒤 Amazon Redshift로 적재해 분석한다
+> a) Kinesis Data Streams로 데이터를 수집하고 Amazon Data Firehose로 S3 데이터 레이크에 전송한 뒤 Amazon Redshift로 적재해 분석한다
 > b) AWS Data Pipeline으로 데이터를 S3에 보관하고 EMR 클러스터를 돌려 분석을 생성한다
 > c) EC2 Auto Scaling 그룹으로 데이터를 처리해 S3 데이터 레이크로 보내고 Redshift가 분석하게 한다
 > d) 데이터를 CloudFront에 캐시하고 S3에 저장한 뒤 객체가 추가되면 Lambda가 처리하게 한다
 >> [!success]- Answer
->> a) Kinesis Data Streams로 데이터를 수집하고 Kinesis Data Firehose로 S3 데이터 레이크에 전송한 뒤 Amazon Redshift로 적재해 분석한다
+>> a) Kinesis Data Streams로 데이터를 수집하고 Amazon Data Firehose로 S3 데이터 레이크에 전송한 뒤 Amazon Redshift로 적재해 분석한다
 >> **왜 이 답인가** — 클릭스트림은 **끊임없이 흘러 들어오는 스트림**입니다. 수집은 Kinesis Data Streams, 적재는 Firehose, 대규모 분석은 Redshift가 맡는 것이 표준 경로입니다.
 >> **나머지가 아닌 이유** — Data Pipeline은 배치 오케스트레이션 도구이고 AWS가 물러나게 한 서비스입니다. EC2로 수집기를 직접 만드는 것은 관리 부담이 큽니다. CloudFront는 캐시이지 수집 파이프라인이 아닙니다.
 
@@ -425,13 +425,13 @@ lang: ko
 
 > [!question] 한 병원이 Amazon API Gateway와 AWS Lambda로 RESTful API를 배포해 PDF와 JPEG 형식의 보고서를 업로드받습니다. 보고서에서 **보호 대상 건강 정보(PHI)**를 식별하도록 Lambda 코드를 수정해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
 > a) Amazon Textract로 보고서에서 텍스트를 추출하고 Amazon Comprehend Medical로 추출된 텍스트에서 PHI를 식별한다
-> b) Amazon Textract로 텍스트를 추출하고 Amazon SageMaker로 PHI를 식별한다
+> b) Amazon Textract로 텍스트를 추출하고 Amazon SageMaker AI로 PHI를 식별한다
 > c) 기존 Python 라이브러리로 텍스트를 추출하고 그 텍스트에서 PHI를 식별한다
 > d) Amazon Rekognition으로 텍스트를 추출하고 Comprehend Medical로 PHI를 식별한다
 >> [!success]- Answer
 >> a) Amazon Textract로 보고서에서 텍스트를 추출하고 Amazon Comprehend Medical로 추출된 텍스트에서 PHI를 식별한다
 >> **왜 이 답인가** — 두 단계가 각각 전용 관리형 서비스에 그대로 대응합니다. **문서에서 텍스트 뽑기**는 Textract, **의료 텍스트에서 PHI 찾기**는 Comprehend Medical입니다.
->> **나머지가 아닌 이유** — SageMaker는 모델을 직접 학습·운영해야 합니다. 라이브러리를 직접 쓰는 방식은 개발과 유지 부담이 큽니다. Rekognition은 이미지 분석용이라 PDF 문서 텍스트 추출의 정석이 아닙니다.
+>> **나머지가 아닌 이유** — SageMaker AI는 모델을 직접 학습·운영해야 합니다. 라이브러리를 직접 쓰는 방식은 개발과 유지 부담이 큽니다. Rekognition은 이미지 분석용이라 PDF 문서 텍스트 추출의 정석이 아닙니다.
 
 <sub>관련: [[aws-lambda]] [[amazon-api-gateway]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -463,12 +463,12 @@ lang: ko
 > [!question] 한 자전거 공유 기업이 피크 시간대 자전거 위치를 추적하는 다계층 아키텍처를 개발합니다. 이 데이터 포인트를 기존 분석 플랫폼에서 쓰려고 하며, **REST API로 접근**할 수 있어야 합니다. 위치 데이터를 저장하고 조회하는 조치는 무엇입니까?
 > a) Amazon API Gateway와 AWS Lambda를 사용한다
 > b) Amazon Athena와 Amazon S3를 사용한다
-> c) Amazon QuickSight와 Amazon Redshift를 사용한다
-> d) Amazon API Gateway와 Amazon Kinesis Data Analytics를 사용한다
+> c) Amazon Quick Sight와 Amazon Redshift를 사용한다
+> d) Amazon API Gateway와 Amazon Managed Service for Apache Flink를 사용한다
 >> [!success]- Answer
 >> a) Amazon API Gateway와 AWS Lambda를 사용한다
 >> **왜 이 답인가** — 요구의 핵심은 `REST API로 데이터를 저장하고 조회한다`입니다. API Gateway가 API 계층을, Lambda가 저장·조회 로직을 맡는 것이 서버 없는 표준 조합입니다.
->> **나머지가 아닌 이유** — Athena는 조회 엔진이지 REST API를 제공하지 않습니다. QuickSight는 시각화 도구입니다. Kinesis Data Analytics는 스트림 분석이라 데이터 저장·조회 계층이 아닙니다.
+>> **나머지가 아닌 이유** — Athena는 조회 엔진이지 REST API를 제공하지 않습니다. Quick Sight는 시각화 도구입니다. Managed Service for Apache Flink는 스트림 분석이라 데이터 저장·조회 계층이 아닙니다.
 
 <sub>관련: [[amazon-api-gateway]] [[aws-lambda]] | 모듈 [[04-scalable-decoupled]]</sub>
 
@@ -522,12 +522,12 @@ lang: ko
 <sub>관련: [[amazon-sns]] [[amazon-sqs]] [[amazon-rds]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 기업이 애플리케이션을 위한 **실시간 데이터 수집 아키텍처**를 구성해야 합니다. API, 스트리밍되는 동안 데이터를 변환하는 처리, 데이터 저장 솔루션이 필요합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) API Gateway가 Kinesis 데이터 스트림으로 데이터를 보내게 하고, 그 스트림을 소스로 하는 Kinesis Data Firehose 전송 스트림을 만들어 Lambda로 변환한 뒤 S3에 보낸다
+> a) API Gateway가 Kinesis 데이터 스트림으로 데이터를 보내게 하고, 그 스트림을 소스로 하는 Amazon Data Firehose 전송 스트림을 만들어 Lambda로 변환한 뒤 S3에 보낸다
 > b) EC2 인스턴스에 API를 올려 Kinesis 데이터 스트림으로 보내고, Firehose로 Lambda 변환 후 S3에 보낸다
 > c) EC2 인스턴스에 API를 올려 AWS Glue로 보내고 Glue가 변환해 S3에 보낸다
 > d) API Gateway가 AWS Glue로 데이터를 보내게 하고 Lambda로 변환한 뒤 Glue가 S3로 보낸다
 >> [!success]- Answer
->> a) API Gateway가 Kinesis 데이터 스트림으로 데이터를 보내게 하고, 그 스트림을 소스로 하는 Kinesis Data Firehose 전송 스트림을 만들어 Lambda로 변환한 뒤 S3에 보낸다
+>> a) API Gateway가 Kinesis 데이터 스트림으로 데이터를 보내게 하고, 그 스트림을 소스로 하는 Amazon Data Firehose 전송 스트림을 만들어 Lambda로 변환한 뒤 S3에 보낸다
 >> **왜 이 답인가** — 세 조각이 모두 관리형입니다 — API는 **API Gateway**, 스트리밍 변환은 **Firehose + Lambda**, 저장은 **S3**. 운영할 서버가 하나도 없습니다.
 >> **나머지가 아닌 이유** — EC2로 API를 올리는 보기들은 관리할 서버가 생깁니다. Glue는 배치 ETL 서비스라 실시간 스트리밍 수집의 자리가 아닙니다.
 

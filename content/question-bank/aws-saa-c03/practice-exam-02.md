@@ -233,17 +233,17 @@ lang: ko
 <sub>관련: [[amazon-vpc]] [[amazon-ec2-auto-scaling]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 다른 데이터베이스에서 오는 일괄 데이터와 센서·API에서 오는 실시간 스트림을 한곳에 모아 처리한 뒤 다른 S3 버킷에 두고, 나중에 일회성 SQL 조회와 BI 도구 연결을 해야 합니다. 운영 오버헤드가 가장 적은 조합은 무엇입니까? (2개 선택)
-> a) 실시간 스트림은 Kinesis Data Firehose로 S3에 적재하고, 일괄 데이터는 AWS Glue로 변환해 같은 S3에 둔다
-> b) 적재된 데이터를 Athena로 조회하고 QuickSight를 연결한다
+> a) 실시간 스트림은 Amazon Data Firehose로 S3에 적재하고, 일괄 데이터는 AWS Glue로 변환해 같은 S3에 둔다
+> b) 적재된 데이터를 Athena로 조회하고 Quick Sight를 연결한다
 > c) EMR 클러스터를 상시 운영해 모든 처리를 맡긴다
 > d) 모든 데이터를 RDS에 적재하고 애플리케이션에서 조회한다
 >> [!success]- Answer
->> a) 실시간 스트림은 Kinesis Data Firehose로 S3에 적재하고, 일괄 데이터는 AWS Glue로 변환해 같은 S3에 둔다
->> b) 적재된 데이터를 Athena로 조회하고 QuickSight를 연결한다
->> **왜 이 답인가** — 서버리스 조각만으로 수집·변환·조회·시각화가 이어집니다. `일회성 조회`는 Athena, BI는 QuickSight가 정확한 자리입니다.
+>> a) 실시간 스트림은 Amazon Data Firehose로 S3에 적재하고, 일괄 데이터는 AWS Glue로 변환해 같은 S3에 둔다
+>> b) 적재된 데이터를 Athena로 조회하고 Quick Sight를 연결한다
+>> **왜 이 답인가** — 서버리스 조각만으로 수집·변환·조회·시각화가 이어집니다. `일회성 조회`는 Athena, BI는 Quick Sight가 정확한 자리입니다.
 >> **나머지가 아닌 이유** — EMR 상시 운영은 클러스터 관리가 붙어 운영 오버헤드가 가장 큽니다. RDS 적재는 대용량 분석에 맞지 않고 인스턴스를 계속 켜 둬야 합니다.
 
-<sub>관련: [[amazon-kinesis]] [[aws-glue]] [[amazon-athena]] [[amazon-quicksight]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-kinesis]] [[aws-glue]] [[amazon-athena]] [[amazon-quick-sight]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 같은 리전의 두 VPC가 있습니다. 앱 VPC의 EC2가 캐시 VPC의 ElastiCache 클러스터에 접근해야 합니다. **가장 비용 효율적인** 방법은 무엇입니까?
 > a) 두 VPC를 피어링한다
@@ -381,13 +381,13 @@ lang: ko
 
 > [!question] 위치 데이터를 REST API로 받아 저장하고 다시 조회할 수 있어야 합니다. 데이터 포인트는 계속 늘고, 운영 부담은 최소여야 합니다. 어떤 조합입니까?
 > a) API Gateway + Lambda + DynamoDB
-> b) API Gateway + Kinesis Data Analytics
+> b) API Gateway + Managed Service for Apache Flink
 > c) ALB + EC2 + 로컬 파일
 > d) CloudFront + S3 정적 호스팅
 >> [!success]- Answer
 >> a) API Gateway + Lambda + DynamoDB
 >> **왜 이 답인가** — REST API를 받고(API Gateway), 처리하고(Lambda), 키로 빠르게 넣고 꺼내는(DynamoDB) 조합입니다. 셋 다 서버가 없고 데이터 증가에도 그대로 확장됩니다.
->> **나머지가 아닌 이유** — Kinesis Data Analytics는 **흐르는 데이터를 실시간 분석**하는 도구지 저장하고 조회하는 도구가 아닙니다. EC2 로컬 파일은 확장도 내구성도 없습니다. S3 정적 호스팅은 API 요청을 처리하지 못합니다.
+>> **나머지가 아닌 이유** — Managed Service for Apache Flink는 **흐르는 데이터를 실시간 분석**하는 도구지 저장하고 조회하는 도구가 아닙니다. EC2 로컬 파일은 확장도 내구성도 없습니다. S3 정적 호스팅은 API 요청을 처리하지 못합니다.
 
 <sub>관련: [[amazon-api-gateway]] [[aws-lambda]] [[amazon-dynamodb]] | 모듈 [[07-perf-compute]]</sub>
 
@@ -477,12 +477,12 @@ lang: ko
 <sub>관련: [[amazon-ec2-auto-scaling]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 사용자 활동 데이터가 페타바이트급으로 계속 커집니다. 기존 데이터와 새 데이터를 **SQL로 필요할 때** 분석해야 하고, 수집은 고가용성이어야 합니다. 운영 오버헤드가 가장 적은 구성은 무엇입니까?
-> a) Kinesis Data Firehose로 S3에 적재하고 Athena로 조회한다
+> a) Amazon Data Firehose로 S3에 적재하고 Athena로 조회한다
 > b) EMR 클러스터를 상시 운영해 적재와 조회를 맡긴다
 > c) RDS에 적재하고 SQL로 조회한다
 > d) EC2에 Hadoop을 직접 설치한다
 >> [!success]- Answer
->> a) Kinesis Data Firehose로 S3에 적재하고 Athena로 조회한다
+>> a) Amazon Data Firehose로 S3에 적재하고 Athena로 조회한다
 >> **왜 이 답인가** — Firehose는 관리형이라 고가용성 수집이 그냥 따라오고, S3는 페타바이트를 감당하며, Athena는 **필요할 때만** SQL을 던집니다. 관리할 서버가 없습니다.
 >> **나머지가 아닌 이유** — EMR 상시 운영과 EC2 Hadoop은 클러스터 관리가 그대로 남습니다. RDS는 페타바이트급 분석용이 아니고 인스턴스를 계속 켜 둬야 합니다.
 

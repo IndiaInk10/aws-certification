@@ -329,13 +329,13 @@ lang: ko
 <sub>관련: [[aws-elastic-disaster-recovery]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업이 EC2 플릿으로 온프레미스 원본에서 JSON 데이터를 수집하며 수집 속도는 최대 1MB/s입니다. **인스턴스를 재부팅하면 전송 중이던 데이터가 사라집니다.** 데이터 과학 팀은 수집된 데이터를 **거의 실시간으로 조회**하려고 합니다. 확장 가능하고 데이터 손실이 최소인 솔루션은 무엇입니까?
-> a) 데이터를 Amazon Kinesis Data Streams에 게시하고 Kinesis Data Analytics로 조회한다
+> a) 데이터를 Amazon Kinesis Data Streams에 게시하고 Managed Service for Apache Flink로 조회한다
 > b) Firehose로 Redshift에 보내고 Redshift에서 조회한다
 > c) 인스턴스 스토어에 저장하고 Firehose로 S3에 보낸 뒤 Athena로 조회한다
 > d) EBS 볼륨에 저장하고 ElastiCache for Redis에 게시해 채널을 구독한다
 >> [!success]- Answer
->> a) 데이터를 Amazon Kinesis Data Streams에 게시하고 Kinesis Data Analytics로 조회한다
->> **왜 이 답인가** — 스트림에 들어간 데이터는 **인스턴스와 무관하게 보관**되므로 재부팅으로 사라지지 않습니다. 그 위에서 Kinesis Data Analytics가 거의 실시간 조회를 제공합니다.
+>> a) 데이터를 Amazon Kinesis Data Streams에 게시하고 Managed Service for Apache Flink로 조회한다
+>> **왜 이 답인가** — 스트림에 들어간 데이터는 **인스턴스와 무관하게 보관**되므로 재부팅으로 사라지지 않습니다. 그 위에서 Managed Service for Apache Flink가 거의 실시간 조회를 제공합니다.
 >> **나머지가 아닌 이유** — 인스턴스 스토어나 EBS에 먼저 담는 보기들은 유실 위험이 그대로입니다. Firehose + Redshift는 배치 적재라 실시간성이 떨어집니다.
 
 <sub>관련: [[amazon-kinesis]] | 모듈 [[10-data-ingestion]]</sub>
