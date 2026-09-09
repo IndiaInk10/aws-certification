@@ -233,7 +233,7 @@ lang: ko
 
 > [!question] 한 미디어 기업이 온프레미스에서 수집·분석하던 사용자 활동 데이터를 AWS로 옮기려 합니다. 데이터는 계속 늘어 **페타바이트 규모**가 될 것이며, 기존·신규 데이터를 **SQL로 필요할 때 분석**할 수 있는 고가용성 수집 솔루션이 필요합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
 > a) 활동 데이터를 Amazon Kinesis 데이터 스트림으로 보내고 그 스트림이 S3 버킷으로 전달하도록 구성한다
-> b) 활동 데이터를 Kinesis Data Firehose로 보내 Amazon Redshift 클러스터에 전달한다
+> b) 활동 데이터를 Amazon Data Firehose로 보내 Amazon Redshift 클러스터에 전달한다
 > c) 활동 데이터를 S3에 두고 도착할 때마다 Lambda 함수를 실행한다
 > d) 여러 AZ의 EC2에 수집 서비스를 만들고 다중 AZ RDS로 전달한다
 >> [!success]- Answer
@@ -280,12 +280,12 @@ lang: ko
 <sub>관련: [[amazon-api-gateway]] [[aws-lambda]] [[amazon-dynamodb]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 기업이 수천 대의 원격 디바이스에서 데이터를 수집합니다. EC2 인스턴스의 RESTful 웹 서비스가 원시 데이터를 받아 변환한 뒤 S3에 저장하는데, **디바이스가 곧 수백만 대로 늘어납니다.** 확장성이 매우 높고 운영 오버헤드가 적은 솔루션이 필요합니다. 어떤 조합이 필요합니까? (2개 선택)
-> a) Amazon API Gateway로 원시 데이터를 Kinesis 데이터 스트림으로 보내고, Kinesis Data Firehose가 그 스트림을 소스로 S3에 전달하게 한다
+> a) Amazon API Gateway로 원시 데이터를 Kinesis 데이터 스트림으로 보내고, Amazon Data Firehose가 그 스트림을 소스로 S3에 전달하게 한다
 > b) S3의 원시 데이터를 AWS Glue로 처리한다
 > c) 늘어나는 데이터에 맞춰 EC2 인스턴스를 더 추가한다
 > d) 원시 데이터를 SQS로 보내고 EC2 인스턴스가 처리하게 한다
 >> [!success]- Answer
->> a) Amazon API Gateway로 원시 데이터를 Kinesis 데이터 스트림으로 보내고, Kinesis Data Firehose가 그 스트림을 소스로 S3에 전달하게 한다
+>> a) Amazon API Gateway로 원시 데이터를 Kinesis 데이터 스트림으로 보내고, Amazon Data Firehose가 그 스트림을 소스로 S3에 전달하게 한다
 >> b) S3의 원시 데이터를 AWS Glue로 처리한다
 >> **왜 이 답인가** — **수집(API Gateway + Kinesis)**과 **변환(Glue)**을 모두 관리형으로 바꾸면 EC2가 사라집니다. 디바이스가 수백만 대가 되어도 사람이 용량을 조절할 일이 없습니다.
 >> **나머지가 아닌 이유** — EC2를 늘리는 방식은 운영 부담이 그대로입니다. SQS + EC2 조합도 여전히 인스턴스를 운영해야 합니다.

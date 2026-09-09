@@ -10,7 +10,7 @@ description: "자격증별 강의 정리 · 서비스 노트 · 문제 풀이"
 | 자격증 | 상태 | 노트 | 문항 | 시작 |
 |---|---|---|---|---|
 | **AWS Certified Cloud Practitioner (CLF-C02)** | 진행 중 | 강의 모듈 13 | 1,142 | [학습 경로](/docs/aws-clf-c02/00-map/00-learning-path) |
-| **AWS Certified Solutions Architect – Associate (SAA-C03)** | 뼈대 세우는 중 | 과제 명세 14 | 226 | [시험 기술](/docs/aws-saa-c03/30-exam/00-exam-strategy) |
+| **AWS Certified Solutions Architect – Associate (SAA-C03)** | 뼈대 세우는 중 | 강의 모듈 14 | 226 | [시험 기술](/docs/aws-saa-c03/30-exam/00-exam-strategy) |
 
 두 자격증은 서로 독립적입니다. SAA 는 CLF 를 안 봤어도 읽을 수 있습니다.
 추가 방법은 [[adding-certifications]]에 있습니다.

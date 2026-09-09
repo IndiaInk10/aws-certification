@@ -284,16 +284,16 @@ lang: ko
 <sub>관련: [[amazon-fsx]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] S3와 RDS for PostgreSQL로 된 데이터 레이크를 **시각화**해야 합니다. 경영진만 전체 대시보드를 보고 나머지는 제한된 범위만 봐야 합니다. 무엇을 해야 합니까?
-> a) QuickSight에서 두 데이터 소스를 연결해 대시보드를 만들고 **QuickSight 사용자·그룹**에 각각 공유한다
-> b) QuickSight에서 대시보드를 만들고 적절한 **IAM 역할**에 공유한다
+> a) Quick Sight에서 두 데이터 소스를 연결해 대시보드를 만들고 **Quick Sight 사용자·그룹**에 각각 공유한다
+> b) Quick Sight에서 대시보드를 만들고 적절한 **IAM 역할**에 공유한다
 > c) Glue로 보고서를 만들어 S3에 올리고 버킷 정책으로 접근을 제한한다
 > d) Athena 페더레이션 쿼리로 보고서를 만들어 S3에 올리고 버킷 정책으로 제한한다
 >> [!success]- Answer
->> a) QuickSight에서 두 데이터 소스를 연결해 대시보드를 만들고 **QuickSight 사용자·그룹**에 각각 공유한다
->> **왜 이 답인가** — 요구가 **시각화**이므로 BI 도구인 QuickSight입니다. 그리고 **QuickSight 대시보드 공유는 QuickSight의 사용자·그룹 단위**로 합니다.
+>> a) Quick Sight에서 두 데이터 소스를 연결해 대시보드를 만들고 **Quick Sight 사용자·그룹**에 각각 공유한다
+>> **왜 이 답인가** — 요구가 **시각화**이므로 BI 도구인 Quick Sight입니다. 그리고 **Quick Sight 대시보드 공유는 Quick Sight의 사용자·그룹 단위**로 합니다.
 >> **나머지가 아닌 이유** — 두 번째 보기는 서비스는 맞지만 **공유 대상을 IAM 역할이라고 해서 틀립니다.** 한 낱말로 갈리는 자리입니다. Glue와 Athena는 데이터를 만들고 조회하는 도구지 **시각화 도구가 아닙니다** — S3에 올린 보고서 파일로는 대시보드가 되지 않습니다.
 
-<sub>관련: [[amazon-quicksight]] [[amazon-athena]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-quick-sight]] [[amazon-athena]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] DynamoDB 테이블을 **일주일에 한 번 4시간 동안만** 테스트에 쓰며, 그동안의 **초당 읽기·쓰기 작업 수를 알고 있습니다.** 비용을 최적화하려면 어떤 솔루션이 적합합니까?
 > a) **프로비저닝된 모드**를 선택하고 읽기·쓰기 용량 단위를 적절히 설정한다
@@ -478,13 +478,13 @@ lang: ko
 <sub>관련: [[aws-fargate]] [[amazon-cloudfront]] [[amazon-elasticache]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 회사에 모바일 앱을 사용하는 사용자가 100만 명 있습니다. 회사는 **거의 실시간으로 데이터 사용량을 분석**해야 합니다. 또한 회사는 거의 실시간으로 데이터를 암호화해야 하며, 추가 처리를 위해 데이터를 **Apache Parquet 형식으로 중앙 위치에 저장**해야 합니다. 어떤 솔루션이 이러한 요구 사항을 **가장 적은 운영 오버헤드**로 충족합니까?
-> a) 데이터를 Amazon S3에 저장하는 Amazon Kinesis Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon Kinesis Data Analytics 애플리케이션을 생성한다
-> b) 데이터를 Amazon S3에 저장하는 Amazon Kinesis Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon EMR 클러스터를 생성한다
-> c) 데이터를 Amazon S3에 저장하는 Amazon Kinesis 데이터 스트림을 생성한다. 데이터를 분석하는 Amazon Kinesis Data Analytics 애플리케이션을 생성한다. 데이터를 Kinesis Data Analytics 애플리케이션으로 보내는 AWS Lambda 함수를 호출한다
+> a) 데이터를 Amazon S3에 저장하는 Amazon Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon Managed Service for Apache Flink 애플리케이션을 생성한다
+> b) 데이터를 Amazon S3에 저장하는 Amazon Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon EMR 클러스터를 생성한다
+> c) 데이터를 Amazon S3에 저장하는 Amazon Kinesis 데이터 스트림을 생성한다. 데이터를 분석하는 Amazon Managed Service for Apache Flink 애플리케이션을 생성한다. 데이터를 Managed Service for Apache Flink 애플리케이션으로 보내는 AWS Lambda 함수를 호출한다
 > d) 데이터를 Amazon S3에 저장하는 Amazon Kinesis 데이터 스트림을 생성한다. 데이터를 분석하는 Amazon EMR 클러스터를 생성한다. 데이터를 EMR 클러스터로 보내는 AWS Lambda 함수를 호출한다
 >> [!success]- Answer
->> a) 데이터를 Amazon S3에 저장하는 Amazon Kinesis Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon Kinesis Data Analytics 애플리케이션을 생성한다
->> **왜 이 답인가** — Firehose는 **S3 전달·암호화·Parquet 형식 변환을 관리형으로** 해 줍니다. 분석도 관리형인 Kinesis Data Analytics로 붙이면 운영할 것이 남지 않습니다.
+>> a) 데이터를 Amazon S3에 저장하는 Amazon Data Firehose 전송 스트림을 생성한다. 데이터를 분석하는 Amazon Managed Service for Apache Flink 애플리케이션을 생성한다
+>> **왜 이 답인가** — Firehose는 **S3 전달·암호화·Parquet 형식 변환을 관리형으로** 해 줍니다. 분석도 관리형인 Managed Service for Apache Flink로 붙이면 운영할 것이 남지 않습니다.
 >> **나머지가 아닌 이유** — **EMR 클러스터는 회사가 운영**해야 해 오버헤드가 큽니다. Kinesis 데이터 스트림은 S3로 직접 전달하지 못해 소비자와 Lambda를 직접 만들어야 합니다.
 
 <sub>관련: [[amazon-kinesis]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>

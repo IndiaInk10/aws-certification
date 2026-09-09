@@ -27,13 +27,13 @@ lang: ko
 
 > [!question] 한 기업의 애플리케이션이 들어오는 메시지를 수집하고, 수십 개의 다른 애플리케이션과 마이크로서비스가 이 메시지를 빠르게 소비합니다. 메시지 양은 크게 변동하며 때때로 초당 100,000건까지 갑자기 늘어납니다. 이 기업은 솔루션을 분리하고 확장성을 높이려고 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
 > a) 메시지를 Amazon SNS 주제에 게시하고 여러 Amazon SQS 큐를 구독시켜, 소비 애플리케이션이 각자의 큐에서 메시지를 처리하게 한다
-> b) 메시지를 Amazon Kinesis Data Analytics에 저장하고 소비 애플리케이션이 읽어 처리하게 한다
+> b) 메시지를 Amazon Managed Service for Apache Flink에 저장하고 소비 애플리케이션이 읽어 처리하게 한다
 > c) 샤드 하나짜리 Kinesis Data Streams에 쓰고 Lambda로 전처리해 DynamoDB에 저장한 뒤 소비 애플리케이션이 DynamoDB에서 읽게 한다
 > d) 수집 애플리케이션을 Auto Scaling 그룹의 EC2 인스턴스에 배포하고 CPU 지표로 인스턴스 수를 조정한다
 >> [!success]- Answer
 >> a) 메시지를 Amazon SNS 주제에 게시하고 여러 Amazon SQS 큐를 구독시켜, 소비 애플리케이션이 각자의 큐에서 메시지를 처리하게 한다
 >> **왜 이 답인가** — **한 메시지를 여러 소비자가 각자 받아야 하는** 구조입니다. SNS가 부채꼴로 뿌리고(팬아웃) 큐가 소비자별로 완충해 주므로, 소비자가 느려도 메시지가 사라지지 않습니다.
->> **나머지가 아닌 이유** — 샤드 하나짜리 Kinesis는 초당 10만 건을 감당하지 못합니다. Kinesis Data Analytics는 저장소가 아니라 스트림 분석 도구입니다. EC2 확장은 결합을 끊어 주지 못합니다.
+>> **나머지가 아닌 이유** — 샤드 하나짜리 Kinesis는 초당 10만 건을 감당하지 못합니다. Managed Service for Apache Flink는 저장소가 아니라 스트림 분석 도구입니다. EC2 확장은 결합을 끊어 주지 못합니다.
 
 <sub>관련: [[amazon-sns]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
@@ -93,7 +93,7 @@ lang: ko
 >> [!success]- Answer
 >> a) Amazon Athena를 Amazon S3에 직접 연결해 필요할 때 쿼리를 실행한다
 >> **왜 이 답인가** — `S3에 이미 있는 파일`과 `가끔 돌리는 단순 쿼리`가 만나면 Athena입니다. 데이터를 옮기지 않고 서버도 없으며 스캔한 만큼만 냅니다.
->> **나머지가 아닌 이유** — Redshift와 EMR은 클러스터를 띄우고 적재해야 해서 `최소한의 변경`을 어깁니다. CloudWatch Logs 콘솔은 SQL 쿼리 엔진이 아닙니다.
+>> **나머지가 아닌 이유** — Redshift와 EMR은 클러스터를 띄우고 적재해야 해서 `최소한의 변경`을 어깁니다. CloudWatch Logs로 로그를 다시 쌓는 방식도 이미 S3에 있는 데이터를 옮기는 일이라 같은 조건을 어깁니다.
 
 <sub>관련: [[amazon-athena]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -198,11 +198,11 @@ lang: ko
 > a) Cost Explorer의 세분화된 필터링 기능으로 인스턴스 유형별 EC2 비용을 심층 분석한다
 > b) AWS Budgets로 예산 보고서를 만들어 인스턴스 유형별 EC2 비용을 비교한다
 > c) AWS 청구 및 비용 관리 대시보드의 그래프로 최근 2개월 비용을 비교한다
-> d) 비용 및 사용 보고서를 S3 버킷으로 보내고 QuickSight로 인스턴스 유형별 대화형 그래프를 만든다
+> d) 비용 및 사용 보고서를 S3 버킷으로 보내고 Quick Sight로 인스턴스 유형별 대화형 그래프를 만든다
 >> [!success]- Answer
 >> a) Cost Explorer의 세분화된 필터링 기능으로 인스턴스 유형별 EC2 비용을 심층 분석한다
 >> **왜 이 답인가** — Cost Explorer는 **과거 비용을 그래프로 보고 태그·인스턴스 유형 등으로 잘라 보는** 도구입니다. 켜면 바로 쓸 수 있어 만들 것이 없습니다.
->> **나머지가 아닌 이유** — Budgets는 한도를 넘었는지 알리는 도구지 분석 도구가 아닙니다. 청구 대시보드는 요약만 보여 줍니다. CUR + QuickSight는 가능하지만 파이프라인을 직접 구성해야 해서 오버헤드가 가장 큽니다.
+>> **나머지가 아닌 이유** — Budgets는 한도를 넘었는지 알리는 도구지 분석 도구가 아닙니다. 청구 대시보드는 요약만 보여 줍니다. CUR + Quick Sight는 가능하지만 파이프라인을 직접 구성해야 해서 오버헤드가 가장 큽니다.
 
 <sub>관련: [[aws-cost-explorer]] [[amazon-ec2]] | 모듈 [[12-cost-compute]]</sub>
 
@@ -328,16 +328,16 @@ lang: ko
 <sub>관련: [[amazon-sqs]] [[amazon-sns]] [[aws-lambda]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 기업이 AWS에 데이터 레이크를 두고 있으며 데이터는 Amazon S3와 Amazon RDS for PostgreSQL에 나뉘어 있습니다. 데이터 레이크의 모든 원본을 포함하는 시각화 보고 솔루션이 필요합니다. 경영진만 모든 시각화에 대한 전체 액세스 권한을 가져야 하고 나머지 직원은 제한된 액세스만 가져야 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) Amazon QuickSight에서 분석을 만들어 모든 데이터 원본을 연결하고 대시보드를 게시한 뒤, 적절한 **사용자와 그룹**에 공유한다
-> b) QuickSight에서 대시보드를 만들어 적절한 **IAM 역할**에 공유한다
+> a) Amazon Quick Sight에서 분석을 만들어 모든 데이터 원본을 연결하고 대시보드를 게시한 뒤, 적절한 **사용자와 그룹**에 공유한다
+> b) Quick Sight에서 대시보드를 만들어 적절한 **IAM 역할**에 공유한다
 > c) S3 데이터에 Glue 테이블과 크롤러를 만들고 ETL 작업으로 보고서를 생성해 S3에 게시한 뒤 버킷 정책으로 액세스를 제한한다
 > d) Glue 테이블과 크롤러를 만들고 Athena 연합 쿼리로 RDS 데이터에 접근해 보고서를 만들어 S3에 게시한 뒤 버킷 정책으로 제한한다
 >> [!success]- Answer
->> a) Amazon QuickSight에서 분석을 만들어 모든 데이터 원본을 연결하고 대시보드를 게시한 뒤, 적절한 **사용자와 그룹**에 공유한다
->> **왜 이 답인가** — QuickSight는 여러 원본을 붙여 대시보드를 만드는 BI 서비스이고, 공유는 **QuickSight 사용자·그룹 단위**로 합니다. 이 문항은 "공유 대상이 무엇인가"를 묻습니다.
->> **나머지가 아닌 이유** — QuickSight 대시보드는 IAM 역할에 공유하는 것이 아닙니다. Glue·Athena로 보고서 파일을 만들어 버킷에 두는 방식은 **시각화**가 아니라 파일 배포입니다.
+>> a) Amazon Quick Sight에서 분석을 만들어 모든 데이터 원본을 연결하고 대시보드를 게시한 뒤, 적절한 **사용자와 그룹**에 공유한다
+>> **왜 이 답인가** — Quick Sight는 여러 원본을 붙여 대시보드를 만드는 BI 서비스이고, 공유는 **Quick Sight 사용자·그룹 단위**로 합니다. 이 문항은 "공유 대상이 무엇인가"를 묻습니다.
+>> **나머지가 아닌 이유** — Quick Sight 대시보드는 IAM 역할에 공유하는 것이 아닙니다. Glue·Athena로 보고서 파일을 만들어 버킷에 두는 방식은 **시각화**가 아니라 파일 배포입니다.
 
-<sub>관련: [[amazon-quicksight]] [[amazon-athena]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-quick-sight]] [[amazon-athena]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 한 기업이 단일 VPC의 EC2 인스턴스에서 고가용성 이미지 처리 애플리케이션을 운영합니다. 인스턴스는 여러 가용 영역의 여러 서브넷에 있으며 서로 통신하지 않지만, **NAT 게이트웨이 하나를 통해** S3에서 이미지를 내려받고 올립니다. 이 기업은 데이터 전송 요금을 걱정합니다. 리전 내 데이터 전송 요금을 피하는 가장 비용 효율적인 방법은 무엇입니까?
 > a) Amazon S3용 게이트웨이 VPC 엔드포인트를 배포한다
@@ -414,7 +414,7 @@ lang: ko
 > [!question] 한 기업이 REST API로 조회하는 주문 배송 통계 애플리케이션을 개발합니다. 배송 통계를 추출해 읽기 쉬운 HTML 형식으로 정리한 뒤 **매일 아침 같은 시각에 여러 이메일 주소로** 보고서를 보내려고 합니다. 어떤 조합이 필요합니까? (2개 선택)
 > a) 애플리케이션 API에서 데이터를 조회하는 AWS Lambda 함수를 Amazon EventBridge 예약 이벤트로 호출한다
 > b) Amazon Simple Email Service(Amazon SES)로 데이터를 형식화해 이메일로 보고서를 보낸다
-> c) 애플리케이션이 데이터를 Kinesis Data Firehose로 보내게 한다
+> c) 애플리케이션이 데이터를 Amazon Data Firehose로 보내게 한다
 > d) 애플리케이션 데이터를 S3에 저장하고 S3 이벤트 대상으로 SNS 주제를 만들어 이메일로 보고서를 보낸다
 >> [!success]- Answer
 >> a) 애플리케이션 API에서 데이터를 조회하는 AWS Lambda 함수를 Amazon EventBridge 예약 이벤트로 호출한다
@@ -475,7 +475,7 @@ lang: ko
 > [!question] 한 기업이 AWS에서 온라인 마켓플레이스 웹 애플리케이션을 운영합니다. 수백만 건의 금융 거래 상세 내역을 여러 내부 애플리케이션과 **거의 실시간으로** 공유할 확장 가능한 솔루션이 필요합니다. 또한 거래는 민감 데이터를 제거한 뒤 짧은 지연 시간으로 조회할 수 있게 문서 데이터베이스에 저장해야 합니다. 무엇을 권장해야 합니까?
 > a) 거래 데이터를 Amazon Kinesis Data Streams로 보내고, Lambda 통합으로 민감 데이터를 제거해 DynamoDB에 저장하며, 다른 애플리케이션은 같은 스트림에서 데이터를 소비한다
 > b) 거래 데이터를 DynamoDB에 저장하고 쓰기 시 민감 데이터를 제거하는 규칙을 설정한 뒤 DynamoDB Streams로 공유한다
-> c) 거래 데이터를 Kinesis Data Firehose로 보내 DynamoDB와 S3에 저장하고, Lambda 통합으로 민감 데이터를 제거해 다른 애플리케이션이 S3에서 소비하게 한다
+> c) 거래 데이터를 Amazon Data Firehose로 보내 DynamoDB와 S3에 저장하고, Lambda 통합으로 민감 데이터를 제거해 다른 애플리케이션이 S3에서 소비하게 한다
 > d) 일괄 데이터를 S3에 파일로 저장하고 Lambda가 파일마다 민감 데이터를 제거해 갱신한 뒤 DynamoDB에 저장한다
 >> [!success]- Answer
 >> a) 거래 데이터를 Amazon Kinesis Data Streams로 보내고, Lambda 통합으로 민감 데이터를 제거해 DynamoDB에 저장하며, 다른 애플리케이션은 같은 스트림에서 데이터를 소비한다

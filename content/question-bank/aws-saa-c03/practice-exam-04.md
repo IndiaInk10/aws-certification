@@ -157,17 +157,17 @@ lang: ko
 
 <sub>관련: [[amazon-rds]] | 모듈 [[13-cost-database]]</sub>
 
-> [!question] Lake Formation이 관리하는 S3 데이터 레이크와 Aurora MySQL의 운영 데이터를 합쳐 QuickSight로 시각화합니다. 마케팅 팀에는 **열 일부만** 보여야 합니다. 운영 오버헤드가 가장 적은 방법은 무엇입니까?
-> a) Lake Formation에서 열 수준 권한을 설정하고 그 권한으로 QuickSight가 조회하게 한다
+> [!question] Lake Formation이 관리하는 S3 데이터 레이크와 Aurora MySQL의 운영 데이터를 합쳐 Quick Sight로 시각화합니다. 마케팅 팀에는 **열 일부만** 보여야 합니다. 운영 오버헤드가 가장 적은 방법은 무엇입니까?
+> a) Lake Formation에서 열 수준 권한을 설정하고 그 권한으로 Quick Sight가 조회하게 한다
 > b) 허용된 열만 담은 사본 테이블을 만들어 준다
-> c) QuickSight 대시보드에서 열을 숨긴다
+> c) Quick Sight 대시보드에서 열을 숨긴다
 > d) 팀마다 데이터베이스를 따로 만든다
 >> [!success]- Answer
->> a) Lake Formation에서 열 수준 권한을 설정하고 그 권한으로 QuickSight가 조회하게 한다
+>> a) Lake Formation에서 열 수준 권한을 설정하고 그 권한으로 Quick Sight가 조회하게 한다
 >> **왜 이 답인가** — Lake Formation은 **테이블·열 단위 권한을 한곳에서** 정의합니다. 데이터를 복제하지 않고 권한만 걸면 되니 관리 지점이 하나입니다.
 >> **나머지가 아닌 이유** — 사본 테이블은 원본이 바뀔 때마다 동기화해야 합니다. 대시보드에서 숨기는 것은 **데이터는 여전히 조회되므로** 실제 통제가 아닙니다. 데이터베이스 분리는 관리 대상만 늘립니다.
 
-<sub>관련: [[aws-glue]] [[amazon-quicksight]] | 모듈 [[03-data-protection]]</sub>
+<sub>관련: [[aws-glue]] [[amazon-quick-sight]] | 모듈 [[03-data-protection]]</sub>
 
 > [!question] 3개 AZ에 걸친 3계층 앱에서 **웹 서버가 사용자 세션 상태를 들고 있고** MySQL이 EC2에서 돕니다. 급증에 대비해 확장성과 고가용성을 갖추려면 어떤 조합입니까?
 > a) 세션을 ElastiCache로 빼고, MySQL을 다중 AZ RDS로 옮기며, 웹 계층을 Auto Scaling 그룹으로 만든다

@@ -185,11 +185,11 @@ lang: ko
 > a) **AWS Glue 크롤러**로 데이터를 크롤링하고 **Amazon Athena**로 조회한다
 > b) Spark 카탈로그에 외부 테이블을 만들고 Glue 작업으로 조회한다
 > c) Hive 메타스토어에 외부 테이블을 만들고 EMR Spark 작업으로 조회한다
-> d) Glue 크롤러로 크롤링하고 Kinesis Data Analytics에서 SQL로 조회한다
+> d) Glue 크롤러로 크롤링하고 Managed Service for Apache Flink에서 SQL로 조회한다
 >> [!success]- Answer
 >> a) **AWS Glue 크롤러**로 데이터를 크롤링하고 **Amazon Athena**로 조회한다
 >> **왜 이 답인가** — 크롤러가 **스키마를 자동으로 만들고** Athena가 **서버 없이 즉시 SQL 조회**를 제공합니다. 클러스터를 띄울 필요가 없습니다.
->> **나머지가 아닌 이유** — EMR·Spark는 클러스터 운영이 필요합니다. Kinesis Data Analytics는 **스트림**을 대상으로 하지 S3의 정적 데이터 조회 도구가 아닙니다.
+>> **나머지가 아닌 이유** — EMR·Spark는 클러스터 운영이 필요합니다. Managed Service for Apache Flink는 **스트림**을 대상으로 하지 S3의 정적 데이터 조회 도구가 아닙니다.
 
 <sub>관련: [[aws-glue]] [[amazon-athena]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -279,12 +279,12 @@ lang: ko
 <sub>관련: [[amazon-ecs]] [[amazon-eks]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] VPC 네트워크 인터페이스의 트래픽 정보를 **거의 실시간으로 수집해 Amazon OpenSearch Service로 보내** 분석하려고 합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) CloudWatch Logs 로그 그룹을 만들어 **VPC 플로 로그**를 보내고, **Kinesis Data Firehose**로 OpenSearch에 스트리밍한다
+> a) CloudWatch Logs 로그 그룹을 만들어 **VPC 플로 로그**를 보내고, **Amazon Data Firehose**로 OpenSearch에 스트리밍한다
 > b) 로그 그룹에 플로 로그를 보내고 Kinesis Data Streams로 OpenSearch에 스트리밍한다
 > c) CloudTrail 추적을 만들어 플로 로그를 보내고 Firehose로 스트리밍한다
 > d) CloudTrail 추적을 만들어 플로 로그를 보내고 Data Streams로 스트리밍한다
 >> [!success]- Answer
->> a) CloudWatch Logs 로그 그룹을 만들어 **VPC 플로 로그**를 보내고, **Kinesis Data Firehose**로 OpenSearch에 스트리밍한다
+>> a) CloudWatch Logs 로그 그룹을 만들어 **VPC 플로 로그**를 보내고, **Amazon Data Firehose**로 OpenSearch에 스트리밍한다
 >> **왜 이 답인가** — 네트워크 인터페이스 트래픽 기록은 **VPC 플로 로그**이고, CloudWatch Logs 구독에서 **Firehose를 통해 OpenSearch로 전달**하는 것이 관리형 경로입니다.
 >> **나머지가 아닌 이유** — **CloudTrail은 플로 로그의 대상이 될 수 없습니다.** 데이터 스트림을 쓰면 소비자를 직접 만들어야 합니다.
 

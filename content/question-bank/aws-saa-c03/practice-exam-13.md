@@ -137,16 +137,16 @@ lang: ko
 <sub>관련: [[amazon-route-53]] [[amazon-api-gateway]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업이 CloudFront 로깅을 켜 로그를 S3 버킷에 저장하고 있습니다. 이 로그로 **고급 분석과 시각화**를 하려면 무엇을 해야 합니까?
-> a) Amazon Athena의 표준 SQL로 S3의 CloudFront 로그를 분석하고 결과를 **Amazon QuickSight**로 시각화한다
+> a) Amazon Athena의 표준 SQL로 S3의 CloudFront 로그를 분석하고 결과를 **Amazon Quick Sight**로 시각화한다
 > b) Athena로 분석하고 결과를 AWS Glue로 시각화한다
 > c) Amazon DynamoDB의 표준 SQL로 로그를 분석하고 AWS Glue로 시각화한다
-> d) DynamoDB로 분석하고 QuickSight로 시각화한다
+> d) DynamoDB로 분석하고 Quick Sight로 시각화한다
 >> [!success]- Answer
->> a) Amazon Athena의 표준 SQL로 S3의 CloudFront 로그를 분석하고 결과를 **Amazon QuickSight**로 시각화한다
->> **왜 이 답인가** — S3에 있는 로그 파일을 SQL로 조회하는 것은 Athena이고, 그 결과를 대시보드로 그리는 것은 QuickSight입니다.
+>> a) Amazon Athena의 표준 SQL로 S3의 CloudFront 로그를 분석하고 결과를 **Amazon Quick Sight**로 시각화한다
+>> **왜 이 답인가** — S3에 있는 로그 파일을 SQL로 조회하는 것은 Athena이고, 그 결과를 대시보드로 그리는 것은 Quick Sight입니다.
 >> **나머지가 아닌 이유** — DynamoDB는 S3 파일을 SQL로 조회하는 도구가 아닙니다. Glue는 ETL 서비스로 시각화 기능이 없습니다.
 
-<sub>관련: [[amazon-athena]] [[amazon-quicksight]] [[amazon-cloudfront]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-athena]] [[amazon-quick-sight]] [[amazon-cloudfront]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 한 기업의 다계층 웹 애플리케이션이 ALB 뒤 여러 AZ Auto Scaling 그룹에서 실행됩니다. **사용자가 정적 웹 콘텐츠를 많이 볼 때 온디맨드 인스턴스가 더 많이 시작되는 것**이 관찰됩니다. 비용을 최적화하려면 어떻게 다시 설계해야 합니까?
 > a) 정적 콘텐츠를 S3 버킷에 두고 **Amazon CloudFront 배포**로 제공한다
@@ -381,12 +381,12 @@ lang: ko
 <sub>관련: [[aws-cloudformation]] [[amazon-ec2-auto-scaling]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업이 여러 원본에서 오는 **실시간 스트리밍 데이터**를 수집하는 데이터 플랫폼을 준비합니다. S3에 쓰기 전에 데이터를 변환해야 하고, 변환된 데이터를 **SQL로 조회**할 수 있어야 합니다. 어떤 솔루션이 요구 사항을 충족합니까? (2개 선택)
-> a) Kinesis Data Streams로 스트리밍하고 Kinesis Data Analytics로 변환한 뒤 Firehose로 S3에 쓰고 Athena로 조회한다
+> a) Kinesis Data Streams로 스트리밍하고 Managed Service for Apache Flink로 변환한 뒤 Firehose로 S3에 쓰고 Athena로 조회한다
 > b) Amazon MSK로 스트리밍하고 AWS Glue로 변환해 S3에 쓴 뒤 Athena로 조회한다
 > c) AWS DMS로 수집하고 EMR로 변환해 S3에 쓴 뒤 Athena로 조회한다
 > d) Kinesis Data Streams로 스트리밍하고 Glue로 변환한 뒤 Firehose로 S3에 쓰고 **RDS 쿼리 편집기**로 조회한다
 >> [!success]- Answer
->> a) Kinesis Data Streams로 스트리밍하고 Kinesis Data Analytics로 변환한 뒤 Firehose로 S3에 쓰고 Athena로 조회한다
+>> a) Kinesis Data Streams로 스트리밍하고 Managed Service for Apache Flink로 변환한 뒤 Firehose로 S3에 쓰고 Athena로 조회한다
 >> b) Amazon MSK로 스트리밍하고 AWS Glue로 변환해 S3에 쓴 뒤 Athena로 조회한다
 >> **왜 이 답인가** — 스트리밍 수집(Kinesis 또는 MSK) → 변환 → S3 → **Athena 조회**라는 흐름이 두 보기 모두에서 성립합니다.
 >> **나머지가 아닌 이유** — RDS 쿼리 편집기로는 S3의 파일을 조회할 수 없습니다. DMS는 데이터베이스 마이그레이션 도구라 실시간 스트림 수집기가 아닙니다.

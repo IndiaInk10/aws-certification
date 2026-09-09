@@ -14,7 +14,7 @@ status: 미학습
 ## 핵심 개념
 
 - `수백만 건의 로그를 키워드로 즉시 검색` · `전문 검색` · `실시간 대시보드` → OpenSearch 입니다
-- **적재 경로** — [[amazon-kinesis\|Kinesis Data Firehose]] 나 CloudWatch Logs 구독 필터로 흘려 넣는 구성이 표준입니다
+- **적재 경로** — [[amazon-kinesis\|Amazon Data Firehose]] 나 CloudWatch Logs 구독 필터로 흘려 넣는 구성이 표준입니다
 - **OpenSearch Dashboards** 로 시각화합니다
 - **UltraWarm · 콜드 스토리지** — 오래된 색인을 S3 기반 저층으로 내려 **비용을 크게 줄입니다.** `로그를 오래 보관하되 저렴하게` 의 답
 - **다중 AZ + 전용 마스터 노드**로 가용성을 확보합니다
@@ -40,13 +40,13 @@ status: 미학습
 ## 시험 포인트
 
 - [ ] `로그를 키워드로 실시간 검색` · `전문 검색` → **OpenSearch**
-- [ ] 적재 → **Kinesis Data Firehose** 또는 CloudWatch Logs 구독
+- [ ] 적재 → **Amazon Data Firehose** 또는 CloudWatch Logs 구독
 - [ ] `오래된 로그를 저렴하게 보관하되 검색은 가능` → **UltraWarm/콜드**
 - [ ] 검색이 필요 없고 보관만이면 → **S3 + Athena**
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[08-perf-database\|3.3 고성능 데이터베이스]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[08-perf-database\|3.3 고성능 데이터베이스]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon OpenSearch Service](/docs/aws-clf-c02/10-services/08-analytics/amazon-opensearch-service)

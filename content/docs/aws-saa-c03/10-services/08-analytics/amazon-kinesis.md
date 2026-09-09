@@ -21,7 +21,7 @@ status: 미학습
 - 처리량은 **샤드 수**로 정합니다 — **샤드당 쓰기 1MB/s, 읽기 2MB/s**. 부족하면 샤드를 늘립니다
 - **용량 모드** — 프로비저닝(샤드 시간 과금, 내가 조절) vs **온디맨드**(GB 과금, 자동 확장). 트래픽을 모르면 온디맨드입니다
 
-**Kinesis Data Firehose**
+**Amazon Data Firehose**
 
 - **완전 관리형 전달**입니다. S3·Redshift·OpenSearch·Splunk 로 **자동으로 실어 나릅니다**
 - **거의 실시간**(버퍼 단위, 보통 60초 안팎)이라 `1초 미만` 요구에는 맞지 않습니다
@@ -29,7 +29,7 @@ status: 미학습
 - **보존이 없습니다** — 재처리가 필요하면 Data Streams 입니다
 - `운영 부담 최소로 S3 에 적재` 는 거의 항상 Firehose 입니다
 
-**Managed Service for Apache Flink** — 스트림 위에서 **SQL/Flink 로 실시간 집계**를 합니다. `실시간 이상 탐지`·`5분 이동 평균` 이 신호입니다.
+**Managed Service for Apache Flink**(구 Kinesis Data Analytics) — 스트림 위에서 **SQL/Flink 로 실시간 집계**를 합니다. `실시간 이상 탐지`·`5분 이동 평균` 이 신호입니다.
 
 **Kinesis Video Streams** — 영상 스트림 전용입니다.
 
@@ -61,7 +61,7 @@ status: 미학습
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[04-scalable-decoupled\|2.1 확장·느슨한 결합]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[04-scalable-decoupled\|2.1 확장·느슨한 결합]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon Kinesis](/docs/aws-clf-c02/10-services/08-analytics/amazon-kinesis)

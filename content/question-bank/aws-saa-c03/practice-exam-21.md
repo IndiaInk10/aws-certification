@@ -518,12 +518,12 @@ lang: ko
 <sub>관련: [[amazon-aurora]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 여러 웹 애플리케이션의 **고객 활동을 수집**해 분석·예측에 쓰려고 합니다. 활동량은 **예측 불가하고 갑자기 늘 수** 있으며, 다른 애플리케이션과 통합되고 **보안을 위한 인가 단계**가 필요합니다. 어떤 솔루션이 요구 사항을 충족합니까?
-> a) **API Gateway 엔드포인트 뒤에 Kinesis Data Firehose**를 두어 S3에 저장하고, **API Gateway Lambda 권한 부여자**로 인가를 처리한다
+> a) **API Gateway 엔드포인트 뒤에 Amazon Data Firehose**를 두어 S3에 저장하고, **API Gateway Lambda 권한 부여자**로 인가를 처리한다
 > b) API Gateway 뒤에 Kinesis 데이터 스트림을 두고 Lambda 함수로 인가를 처리한다
 > c) GWLB 뒤에 ECS 컨테이너를 두고 EFS에 저장하며 GWLB에서 인가를 처리한다
 > d) GWLB 뒤에 ECS를 두고 EFS에 저장하며 Lambda로 인가를 처리한다
 >> [!success]- Answer
->> a) **API Gateway 엔드포인트 뒤에 Kinesis Data Firehose**를 두어 S3에 저장하고, **API Gateway Lambda 권한 부여자**로 인가를 처리한다
+>> a) **API Gateway 엔드포인트 뒤에 Amazon Data Firehose**를 두어 S3에 저장하고, **API Gateway Lambda 권한 부여자**로 인가를 처리한다
 >> **왜 이 답인가** — API 통합과 인가는 **API Gateway + Lambda 권한 부여자**의 표준 조합이고, 급증을 흡수해 S3로 적재하는 것은 **Firehose**가 관리형으로 처리합니다.
 >> **나머지가 아닌 이유** — GWLB는 **네트워크 검사 어플라이언스 삽입용**이라 인가나 API 통합과 무관합니다. 데이터 스트림만 쓰면 S3 적재를 직접 구현해야 합니다.
 

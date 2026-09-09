@@ -25,7 +25,7 @@ status: 미학습
 | | 하는 일 |
 |---|---|
 | **AWS Budgets** | 예산을 정하고 **초과·예상 초과 시 알림**. 사후 분석이 아니라 사전 경고 |
-| **Cost and Usage Report(CUR)** | 가장 상세한 원본 데이터를 S3 로. Athena·QuickSight 로 분석 |
+| **Cost and Usage Report(CUR)** | 가장 상세한 원본 데이터를 S3 로. Athena·Quick Sight 로 분석 |
 | **[[aws-compute-optimizer\|Compute Optimizer]]** | 인스턴스 크기 권장 |
 | **AWS Trusted Advisor** | 유휴 자원 등 비용 점검 항목 |
 

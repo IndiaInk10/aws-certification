@@ -47,7 +47,7 @@ lang: ko
 >> b) **클라이언트 측·서버 측 암호화** 지원
 >> c) **지정된 시간대에, 애플리케이션이 한가할 때 분석 워크로드**를 수행
 >> **왜 이 답인가** — Redshift는 **분석용 데이터 웨어하우스**입니다. Data API로 연결 없이 쿼리할 수 있고, 저장·전송 암호화를 지원하며, 대규모 분석 배치에 적합합니다.
->> **나머지가 아닌 이유** — 캐싱은 ElastiCache의 역할입니다. 초당 수천만 요청 규모의 전역 확장은 DynamoDB 같은 서비스의 영역입니다.
+>> **나머지가 아닌 이유** — 캐싱은 ElastiCache의 역할이지 데이터 웨어하우스의 용도가 아닙니다.
 
 <sub>관련: [[amazon-redshift]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -123,7 +123,7 @@ lang: ko
 
 <sub>관련: [[amazon-ecr]] [[amazon-inspector]] | 모듈 [[02-secure-workloads]]</sub>
 
-> [!question] Kinesis Data Firehose가 S3에 적재한 파일이 **대부분 수십 KB로 잘게 쪼개져** 있어 이후 분석 쿼리가 느리고 요청 요금도 큽니다. 몇 분 정도의 적재 지연은 허용됩니다. 무엇을 해야 합니까?
+> [!question] Amazon Data Firehose가 S3에 적재한 파일이 **대부분 수십 KB로 잘게 쪼개져** 있어 이후 분석 쿼리가 느리고 요청 요금도 큽니다. 몇 분 정도의 적재 지연은 허용됩니다. 무엇을 해야 합니까?
 > a) 전송 스트림의 **버퍼 크기와 버퍼 간격을 늘려** 더 큰 파일로 묶어 저장하게 한다
 > b) S3 수명 주기로 작은 파일을 병합한다
 > c) 전송 스트림을 여러 개로 나눈다
@@ -473,12 +473,12 @@ lang: ko
 <sub>관련: [[amazon-sns]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 여러 위치의 센서가 **대량 스트리밍 데이터**를 보냅니다. 확장 가능하고 **거의 실시간**으로 수집해 **S3에 저장**해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) **Amazon Kinesis Data Firehose**로 스트리밍 데이터를 S3에 전달한다
+> a) **Amazon Data Firehose**로 스트리밍 데이터를 S3에 전달한다
 > b) AWS Glue로 스트리밍 데이터를 S3에 전달한다
 > c) AWS Lambda로 스트리밍 데이터를 받아 S3에 저장한다
 > d) AWS DMS로 스트리밍 데이터를 S3에 전달한다
 >> [!success]- Answer
->> a) **Amazon Kinesis Data Firehose**로 스트리밍 데이터를 S3에 전달한다
+>> a) **Amazon Data Firehose**로 스트리밍 데이터를 S3에 전달한다
 >> **왜 이 답인가** — Firehose는 **스트림을 받아 S3에 적재하는 완전 관리형 서비스**입니다. 샤드 관리도, 코드도 필요 없습니다.
 >> **나머지가 아닌 이유** — Glue는 배치 ETL이고 DMS는 데이터베이스 마이그레이션용입니다. Lambda로 직접 만들면 버퍼링·재시도·파일 병합을 모두 구현해야 합니다.
 

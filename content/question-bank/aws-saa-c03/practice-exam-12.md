@@ -132,7 +132,7 @@ lang: ko
 >> a) 메시지를 **Amazon SQS FIFO 큐**에 쓰고 **메시지 그룹 ID를 결제 ID로** 설정한다
 >> b) 메시지를 **Amazon Kinesis 데이터 스트림**에 쓰고 **파티션 키를 결제 ID로** 설정한다
 >> **왜 이 답인가** — 순서 보장은 **키 단위**로 이뤄집니다. FIFO 큐는 **메시지 그룹 ID 안에서**, Kinesis는 **같은 파티션 키가 같은 샤드로 가면서** 순서를 지킵니다.
->> **나머지가 아닌 이유** — 표준 큐는 순서를 보장하지 않습니다. DynamoDB나 Memcached는 저장소이지 순서 있는 메시지 전달 수단이 아닙니다.
+>> **나머지가 아닌 이유** — 표준 큐는 순서를 보장하지 않습니다. DynamoDB는 저장소이지 순서 있는 메시지 전달 수단이 아닙니다.
 
 <sub>관련: [[amazon-sqs]] [[amazon-kinesis]] | 모듈 [[04-scalable-decoupled]]</sub>
 
@@ -233,12 +233,12 @@ lang: ko
 <sub>관련: [[amazon-rds]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업이 계정 안 모든 애플리케이션의 **EC2 Auto Scaling 이벤트를 보고**하는 솔루션을 만듭니다. 서버리스 방식으로 상태 데이터를 S3에 저장하고 대시보드에 거의 실시간으로 반영해야 하며, **EC2 인스턴스 시작 속도에 영향을 주면 안 됩니다.** 어떻게 데이터를 S3로 옮겨야 합니까?
-> a) **CloudWatch 지표 스트림**으로 Auto Scaling 상태 데이터를 Kinesis Data Firehose에 보내 S3에 저장한다
+> a) **CloudWatch 지표 스트림**으로 Auto Scaling 상태 데이터를 Amazon Data Firehose에 보내 S3에 저장한다
 > b) EMR 클러스터를 띄워 상태 데이터를 수집하고 Firehose로 보내 S3에 저장한다
 > c) EventBridge 규칙으로 Lambda를 예약 실행해 상태 데이터를 직접 S3로 보낸다
 > d) 인스턴스 시작 시 부트스트랩 스크립트로 Kinesis Agent를 설치해 데이터를 수집·전송한다
 >> [!success]- Answer
->> a) **CloudWatch 지표 스트림**으로 Auto Scaling 상태 데이터를 Kinesis Data Firehose에 보내 S3에 저장한다
+>> a) **CloudWatch 지표 스트림**으로 Auto Scaling 상태 데이터를 Amazon Data Firehose에 보내 S3에 저장한다
 >> **왜 이 답인가** — 지표 스트림은 CloudWatch 지표를 **거의 실시간으로 Firehose에 밀어 주는 관리형 기능**입니다. 서버가 없고 인스턴스 시작 과정에는 아무것도 추가하지 않습니다.
 >> **나머지가 아닌 이유** — 부트스트랩 스크립트로 에이전트를 설치하면 **시작 시간이 늘어나** 조건을 어깁니다. EMR은 서버리스가 아니고, 예약 Lambda는 거의 실시간이 아닙니다.
 
@@ -301,7 +301,7 @@ lang: ko
 >> a) **대상 추적 조정 정책**으로 인스턴스 CPU 사용률 기준으로 Auto Scaling 그룹을 조정한다
 >> b) **예약 조정**으로 주말에는 최소·최대·희망 용량을 0으로 바꾸고 주 시작에 되돌린다
 >> **왜 이 답인가** — 근무 시간 중의 변동은 **지표 기반 대상 추적**이, 주말 정지는 **시간 기반 예약 조정**이 담당합니다. 두 가지를 함께 쓰면 성능과 비용을 모두 잡습니다.
->> **나머지가 아닌 이유** — ALB와 인터넷 게이트웨이는 **AWS가 알아서 확장**하므로 조정할 대상이 아닙니다. 데모 환경에 여러 리전은 과합니다.
+>> **나머지가 아닌 이유** — ALB는 **AWS가 알아서 확장**하므로 조정할 대상이 아닙니다. 데모 환경에 여러 리전은 과합니다.
 
 <sub>관련: [[amazon-ec2-auto-scaling]] | 모듈 [[12-cost-compute]]</sub>
 
@@ -477,13 +477,13 @@ lang: ko
 <sub>관련: [[amazon-rds]] [[amazon-ec2-auto-scaling]] | 모듈 [[05-high-availability]]</sub>
 
 > [!question] 한 기업의 모바일 앱 사용자가 100만 명입니다. 데이터 사용을 **거의 실시간으로 분석**하고, 거의 실시간으로 **암호화**하며, **Apache Parquet 형식으로 중앙에 저장**해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) Kinesis Data Firehose 전송 스트림으로 데이터를 S3에 저장하고 Kinesis Data Analytics 애플리케이션으로 분석한다
+> a) Amazon Data Firehose 전송 스트림으로 데이터를 S3에 저장하고 Managed Service for Apache Flink 애플리케이션으로 분석한다
 > b) Firehose로 S3에 저장하고 EMR 클러스터로 분석한다
-> c) Kinesis 데이터 스트림으로 S3에 저장하고 Kinesis Data Analytics로 분석하며 Lambda로 데이터를 보낸다
+> c) Kinesis 데이터 스트림으로 S3에 저장하고 Managed Service for Apache Flink로 분석하며 Lambda로 데이터를 보낸다
 > d) Kinesis 데이터 스트림으로 S3에 저장하고 EMR 클러스터로 분석한다
 >> [!success]- Answer
->> a) Kinesis Data Firehose 전송 스트림으로 데이터를 S3에 저장하고 Kinesis Data Analytics 애플리케이션으로 분석한다
->> **왜 이 답인가** — Firehose는 **S3 전달, 저장 시 암호화, Parquet 형식 변환을 모두 기능으로 제공**합니다. 실시간 분석은 Kinesis Data Analytics가 맡아 관리할 서버가 없습니다.
+>> a) Amazon Data Firehose 전송 스트림으로 데이터를 S3에 저장하고 Managed Service for Apache Flink 애플리케이션으로 분석한다
+>> **왜 이 답인가** — Firehose는 **S3 전달, 저장 시 암호화, Parquet 형식 변환을 모두 기능으로 제공**합니다. 실시간 분석은 Managed Service for Apache Flink가 맡아 관리할 서버가 없습니다.
 >> **나머지가 아닌 이유** — EMR은 클러스터를 운영해야 합니다. 데이터 스트림만으로는 S3 저장과 형식 변환을 직접 구현해야 해서 손이 더 갑니다.
 
 <sub>관련: [[amazon-kinesis]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>

@@ -37,17 +37,17 @@ lang: ko
 
 <sub>관련: [[amazon-ec2]] | 모듈 [[05-high-availability]]</sub>
 
-> [!question] 한 기업이 **AWS Lake Formation**이 관리하는 S3 데이터 레이크를 운영합니다. 데이터 레이크의 데이터와 Aurora MySQL의 운영 데이터를 조인해 Amazon QuickSight로 시각화하려 하며, 마케팅 팀은 **일부 열만 볼 수 있도록 열 수준 권한**을 강제해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) Lake Formation 블루프린트로 데이터베이스 데이터를 S3 데이터 레이크로 수집하고, **Lake Formation으로 열 수준 접근 제어**를 적용한 뒤 QuickSight에서 Athena를 데이터 원본으로 쓴다
-> b) AWS Glue Studio로 데이터를 S3로 수집하고 QuickSight 사용자에게 IAM 정책을 붙여 열 수준 접근을 통제한다
+> [!question] 한 기업이 **AWS Lake Formation**이 관리하는 S3 데이터 레이크를 운영합니다. 데이터 레이크의 데이터와 Aurora MySQL의 운영 데이터를 조인해 Amazon Quick Sight로 시각화하려 하며, 마케팅 팀은 **일부 열만 볼 수 있도록 열 수준 권한**을 강제해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
+> a) Lake Formation 블루프린트로 데이터베이스 데이터를 S3 데이터 레이크로 수집하고, **Lake Formation으로 열 수준 접근 제어**를 적용한 뒤 Quick Sight에서 Athena를 데이터 원본으로 쓴다
+> b) AWS Glue Studio로 데이터를 S3로 수집하고 Quick Sight 사용자에게 IAM 정책을 붙여 열 수준 접근을 통제한다
 > c) Glue Elastic Views로 구체화된 뷰를 만들고 S3 버킷 정책으로 열 수준 접근을 통제한다
-> d) Amazon EMR로 데이터베이스에서 QuickSight SPICE 엔진으로 직접 수집하며 필요한 열만 포함한다
+> d) Amazon EMR로 데이터베이스에서 Quick Sight SPICE 엔진으로 직접 수집하며 필요한 열만 포함한다
 >> [!success]- Answer
->> a) Lake Formation 블루프린트로 데이터베이스 데이터를 S3 데이터 레이크로 수집하고, **Lake Formation으로 열 수준 접근 제어**를 적용한 뒤 QuickSight에서 Athena를 데이터 원본으로 쓴다
+>> a) Lake Formation 블루프린트로 데이터베이스 데이터를 S3 데이터 레이크로 수집하고, **Lake Formation으로 열 수준 접근 제어**를 적용한 뒤 Quick Sight에서 Athena를 데이터 원본으로 쓴다
 >> **왜 이 답인가** — **열 수준 권한은 Lake Formation의 기능**입니다. 이미 Lake Formation을 쓰고 있으므로 수집도 블루프린트로 하고 조회는 Athena를 통해 하면 권한이 자동으로 적용됩니다.
 >> **나머지가 아닌 이유** — IAM 정책이나 S3 버킷 정책은 **객체 단위**라 열 단위 제어를 표현하지 못합니다. EMR로 직접 수집하면 권한 통제가 사라집니다.
 
-<sub>관련: [[aws-lake-formation]] [[amazon-athena]] [[amazon-quicksight]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[aws-lake-formation]] [[amazon-athena]] [[amazon-quick-sight]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 한 기업이 EC2 웹 애플리케이션의 백엔드로 DynamoDB를 씁니다. 트래픽은 **예측 불가**하고 읽기·쓰기 처리량은 **중간에서 높은 수준**으로 예상되며 트래픽에 맞춰 확장되어야 합니다. 가장 비용 효율적인 테이블 구성은 무엇입니까?
 > a) **DynamoDB Standard 테이블 클래스에 프로비저닝된 읽기·쓰기**를 구성하고 **오토 스케일링**의 최대 용량을 정한다
@@ -203,7 +203,7 @@ lang: ko
 >> b) 사용자를 인증할 **Amazon Cognito 사용자 풀**을 만든다
 >> c) **AWS Amplify**로 HTML·CSS·JS 프런트엔드를 제공하고 **CloudFront 통합 구성**을 사용한다
 >> **왜 이 답인가** — 요청이 없을 때 비용이 들지 않는 **서버리스 조합**입니다. 사용자 **인증(로그인)은 사용자 풀**이 담당합니다(자격 증명 풀은 AWS 리소스 권한 부여용).
->> **나머지가 아닌 이유** — ECS·ALB·RDS는 상시 요금이 발생합니다. S3 정적 호스팅은 **PHP 같은 서버 측 코드를 실행하지 못합니다.**
+>> **나머지가 아닌 이유** — ECS·ALB·RDS는 상시 요금이 발생해 요청이 없을 때도 비용이 듭니다.
 
 <sub>관련: [[amazon-cognito]] [[aws-lambda]] [[amazon-api-gateway]] | 모듈 [[12-cost-compute]]</sub>
 
@@ -289,7 +289,7 @@ lang: ko
 >> a) 정적 파일은 Amazon S3에 저장하고 Amazon CloudFront로 엣지에서 캐시한다
 >> b) 서버 측 코드는 **Amazon FSx for Windows File Server**에 저장하고 각 EC2에 마운트해 공유한다
 >> **왜 이 답인가** — 정적 파일은 S3 + CloudFront가 정석이고, **Windows 인스턴스가 공유하는 파일 시스템은 SMB 기반 FSx**입니다.
->> **나머지가 아닌 이유** — EFS는 NFS라 Windows 워크로드에 맞지 않습니다. EBS는 여러 인스턴스가 공유하는 구조가 아닙니다. ElastiCache는 엣지 캐시가 아닙니다.
+>> **나머지가 아닌 이유** — EFS는 NFS라 Windows 워크로드에 맞지 않습니다. EBS는 여러 인스턴스가 공유하는 구조가 아닙니다.
 
 <sub>관련: [[amazon-fsx]] [[amazon-s3]] [[amazon-cloudfront]] | 모듈 [[06-perf-storage]]</sub>
 

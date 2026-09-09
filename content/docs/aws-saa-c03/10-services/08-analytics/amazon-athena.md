@@ -16,7 +16,7 @@ S3 에 있는 데이터를 표준 SQL 로 바로 조회합니다. 인프라가 �
 - `데이터를 옮기지 않고` · `가끔 한 번 조회` · `최소한의 운영 부담` → Athena 입니다. 웨어하우스를 세우는 보기와 대비됩니다
 - **[[aws-glue\|Glue 데이터 카탈로그]]** 가 스키마를 제공합니다. Glue 크롤러로 스키마를 자동 발견합니다
 - **조회하는 대상** — CloudTrail 로그, VPC 흐름 로그, ALB 액세스 로그, S3 로 내보낸 DynamoDB 데이터. 시험에서 `로그를 분석하려면` 이 자주 이 조합입니다
-- **QuickSight** 를 붙여 시각화합니다
+- **Quick Sight** 를 붙여 시각화합니다
 
 **비용을 줄이는 세 가지 — 그대로 문제가 됩니다**
 
@@ -54,7 +54,7 @@ S3 에 있는 데이터를 표준 SQL 로 바로 조회합니다. 인프라가 �
 
 ## 관련 노트
 
-- 과제 명세: [[10-data-ingestion\|2.4 데이터 수집·변환]] · [[11-cost-storage\|4.1 비용 최적화 스토리지]]
+- 과제 명세: [[10-data-ingestion\|3.5 데이터 수집·변환]] · [[11-cost-storage\|4.1 비용 최적화 스토리지]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 Amazon Athena](/docs/aws-clf-c02/10-services/08-analytics/amazon-athena)

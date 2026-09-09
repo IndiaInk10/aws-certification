@@ -28,7 +28,7 @@ lang: ko
 > [!question] 한 기업이 사용자가 사진을 올리고 사진 프레임을 추가하는 이미지 분석 애플리케이션을 만들었습니다. 지금은 **EC2 인스턴스 한 대**와 메타데이터 저장용 DynamoDB를 씁니다. 사용자가 늘고 시간대·요일에 따라 동시 사용자 수가 크게 달라질 것으로 예상되어 확장 가능한 구성이 필요합니다. 어떤 솔루션이 요구 사항을 충족합니까?
 > a) 사진 처리는 AWS Lambda가 맡고, 사진은 Amazon S3에 저장하며 메타데이터는 DynamoDB에 그대로 둔다
 > b) 사진 처리를 Lambda가 맡고 사진과 메타데이터를 모두 DynamoDB에 저장한다
-> c) Kinesis Data Firehose로 사진을 처리하고 사진과 메타데이터를 저장한다
+> c) Amazon Data Firehose로 사진을 처리하고 사진과 메타데이터를 저장한다
 > d) EC2 인스턴스를 세 대로 늘리고 프로비저닝된 IOPS SSD(io2) EBS 볼륨에 사진과 메타데이터를 저장한다
 >> [!success]- Answer
 >> a) 사진 처리는 AWS Lambda가 맡고, 사진은 Amazon S3에 저장하며 메타데이터는 DynamoDB에 그대로 둔다
@@ -179,7 +179,7 @@ lang: ko
 > d) Amazon RDS for Oracle으로 옮기고 다른 가용 영역에 대기 데이터베이스를 만든다
 >> [!success]- Answer
 >> a) Amazon RDS Custom for Oracle으로 마이그레이션하고 다른 리전에 읽기 전용 복제본을 만든다
->> **왜 이 답인가** — `운영 체제 접근 유지`가 결정적입니다. 일반 RDS는 OS에 접근할 수 없고, **RDS Custom은 관리형이면서도 OS·데이터베이스 접근을 허용**합니다. DR은 다른 리전 복제본으로 해결합니다.
+>> **왜 이 답인가** — `운영 체제 접근 유지`가 결정적입니다. 일반 RDS는 OS에 접근할 수 없고, **RDS Custom은 관리형이면서도 OS·데이터베이스 접근을 허용**합니다. 다만 실제 RDS Custom for Oracle은 **교차 리전 복제본을 만들지 못합니다.** 이 문항은 OS 접근 조건으로 답이 갈리는 유형이고, 나머지 세 보기는 그 조건에서 먼저 탈락합니다.
 >> **나머지가 아닌 이유** — 일반 RDS 보기 두 개는 OS 접근 조건에서 탈락합니다. EC2에 직접 올리면 OS는 얻지만 패치·백업·DR을 전부 직접 해야 해서 운영 오버헤드가 가장 큽니다.
 
 <sub>관련: [[amazon-rds]] | 모듈 [[05-high-availability]]</sub>
@@ -269,7 +269,7 @@ lang: ko
 
 <sub>관련: [[aws-kms]] [[amazon-s3]] | 모듈 [[03-data-protection]]</sub>
 
-> [!question] 한 보고 팀이 매일 S3 버킷으로 파일을 받고, 같은 시각에 **수동으로 확인해 분석용 S3 버킷에 복사**한 뒤 Amazon QuickSight에서 씁니다. 다른 팀들도 더 크고 많은 파일을 보내기 시작했습니다. 팀은 파일이 최초 버킷에 들어오는 즉시 자동으로 분석 버킷으로 옮기고, **Lambda로 패턴 매칭 코드**를 돌리며, 데이터 파일을 **SageMaker Pipelines의 파이프라인**에도 보내려고 합니다. 운영 오버헤드가 가장 적은 방법은 무엇입니까?
+> [!question] 한 보고 팀이 매일 S3 버킷으로 파일을 받고, 같은 시각에 **수동으로 확인해 분석용 S3 버킷에 복사**한 뒤 Amazon Quick Sight에서 씁니다. 다른 팀들도 더 크고 많은 파일을 보내기 시작했습니다. 팀은 파일이 최초 버킷에 들어오는 즉시 자동으로 분석 버킷으로 옮기고, **Lambda로 패턴 매칭 코드**를 돌리며, 데이터 파일을 **SageMaker Pipelines의 파이프라인**에도 보내려고 합니다. 운영 오버헤드가 가장 적은 방법은 무엇입니까?
 > a) 두 버킷 사이에 S3 복제를 구성하고, 분석 버킷이 EventBridge로 이벤트를 보내게 한 뒤 `ObjectCreated` 규칙의 대상으로 Lambda와 SageMaker Pipelines를 지정한다
 > b) 두 버킷 사이에 S3 복제를 구성하고, 분석 버킷에 S3 이벤트 알림을 만들어 Lambda와 SageMaker Pipelines를 대상으로 지정한다
 > c) 파일을 복사하는 Lambda를 만들고 분석 버킷에 S3 이벤트 알림을 만들어 Lambda와 SageMaker Pipelines를 대상으로 지정한다
@@ -429,7 +429,7 @@ lang: ko
 > [!question] 한 기업이 애플리케이션 로그를 CloudWatch Logs 로그 그룹에 저장합니다. 새 정책에 따라 모든 로그를 **거의 실시간으로 Amazon OpenSearch Service에 저장**해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
 > a) CloudWatch Logs 구독을 구성해 로그를 Amazon OpenSearch Service로 스트리밍한다
 > b) Lambda 함수를 만들고 로그 그룹이 이를 호출해 OpenSearch에 쓰게 한다
-> c) Kinesis Data Firehose 전송 스트림을 만들고 로그 그룹을 소스로, OpenSearch를 대상으로 구성한다
+> c) Amazon Data Firehose 전송 스트림을 만들고 로그 그룹을 소스로, OpenSearch를 대상으로 구성한다
 > d) 애플리케이션 서버마다 Kinesis Agent를 설치해 Kinesis Data Streams로 보내고 OpenSearch로 전달한다
 >> [!success]- Answer
 >> a) CloudWatch Logs 구독을 구성해 로그를 Amazon OpenSearch Service로 스트리밍한다

@@ -335,7 +335,7 @@ lang: ko
 >> a) AWS Lambda
 >> b) Amazon RDS
 >> **왜 이 답인가** — 요구 자원이 **Lambda의 한도 안**에 들어가므로 컴퓨팅은 Lambda가 가장 손이 덜 갑니다. 데이터가 **관계형**이라고 못 박았으니 저장소는 RDS입니다.
->> **나머지가 아닌 이유** — DynamoDB는 관계형이 아닙니다. EC2·EKS는 직접 운영해야 해서 관리 노력이 큽니다.
+>> **나머지가 아닌 이유** — DynamoDB는 관계형이 아닙니다. EC2는 직접 운영해야 해서 관리 노력이 큽니다.
 
 <sub>관련: [[aws-lambda]] [[amazon-rds]] [[amazon-api-gateway]] | 모듈 [[07-perf-compute]]</sub>
 

@@ -248,7 +248,7 @@ lang: ko
 > d) EC2에 파일 서버를 직접 구축한다
 >> [!success]- Answer
 >> a) **단일 AZ 배포 유형**의 FSx for Windows File Server를 사용한다
->> **왜 이 답인가** — 단일 AZ 배포는 **대기 파일 서버와 리전 간 복제를 두지 않아** 다중 AZ보다 저렴합니다. 개발 환경 요건에 맞습니다.
+>> **왜 이 답인가** — 단일 AZ 배포는 **다른 가용 영역의 대기 파일 서버와 AZ 간 복제를 두지 않아** 다중 AZ보다 저렴합니다. 개발 환경 요건에 맞습니다.
 >> **나머지가 아닌 이유** — 다중 AZ는 필요 없는 고가용성 비용입니다. Lustre는 고성능 컴퓨팅용이고, 직접 구축은 운영 부담이 큽니다.
 
 <sub>관련: [[amazon-fsx]] | 모듈 [[11-cost-storage]]</sub>
@@ -555,16 +555,16 @@ lang: ko
 <sub>관련: [[aws-lambda]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 전자상거래 기업이 **ML 모델을 만들고 학습**해 고객 데이터의 추세를 찾고, 그 결과를 **BI 대시보드에 바로 활용**하려고 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) **Amazon SageMaker**로 모델을 만들고 학습하며 **Amazon QuickSight**로 시각화한다
+> a) **Amazon SageMaker AI**로 모델을 만들고 학습하며 **Amazon Quick Sight**로 시각화한다
 > b) AWS Glue의 ML 변환으로 모델을 만들고 OpenSearch로 시각화한다
 > c) 마켓플레이스의 ML AMI로 모델을 만들고 OpenSearch로 시각화한다
-> d) QuickSight의 계산 필드로 모델을 만들고 학습한 뒤 QuickSight로 시각화한다
+> d) Quick Sight의 계산 필드로 모델을 만들고 학습한 뒤 Quick Sight로 시각화한다
 >> [!success]- Answer
->> a) **Amazon SageMaker**로 모델을 만들고 학습하며 **Amazon QuickSight**로 시각화한다
->> **왜 이 답인가** — 모델 구축·학습의 관리형 서비스는 SageMaker이고, BI 대시보드는 QuickSight입니다. 두 서비스가 통합되어 있어 오버헤드가 적습니다.
->> **나머지가 아닌 이유** — Glue의 ML 변환은 중복 레코드 식별 등 한정된 용도입니다. AMI를 직접 운영하면 관리 부담이 큽니다. QuickSight 계산 필드는 모델 학습 기능이 아닙니다.
+>> a) **Amazon SageMaker AI**로 모델을 만들고 학습하며 **Amazon Quick Sight**로 시각화한다
+>> **왜 이 답인가** — 모델 구축·학습의 관리형 서비스는 SageMaker AI이고, BI 대시보드는 Quick Sight입니다. 두 서비스가 통합되어 있어 오버헤드가 적습니다.
+>> **나머지가 아닌 이유** — Glue의 ML 변환은 중복 레코드 식별 등 한정된 용도입니다. AMI를 직접 운영하면 관리 부담이 큽니다. Quick Sight 계산 필드는 모델 학습 기능이 아닙니다.
 
-<sub>관련: [[amazon-quicksight]] [[aws-glue]] | 모듈 [[10-data-ingestion]]</sub>
+<sub>관련: [[amazon-quick-sight]] [[aws-glue]] | 모듈 [[10-data-ingestion]]</sub>
 
 > [!question] 애플리케이션 계정의 서비스가 **보안 계정에 저장된 Secrets Manager 보안 암호**를 읽어야 합니다. 어떤 조합이 필요합니까?
 > a) 보안 암호에 **리소스 정책으로 애플리케이션 계정 역할을 허용**하고, 암호화에 쓰인 **KMS 고객 관리형 키도 그 역할에 사용 허용**한다

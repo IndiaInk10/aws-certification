@@ -287,7 +287,7 @@ lang: ko
 >> b) **Amazon Translate**로 어떤 언어의 텍스트든 영어로 번역한다
 >> c) **Amazon Comprehend**로 감정 분석 보고서를 만든다
 >> **왜 이 답인가** — 세 단계가 각각 전용 관리형 서비스에 대응합니다 — **음성→텍스트(Transcribe)**, **번역(Translate)**, **감정 분석(Comprehend)**. 모델을 직접 학습할 필요가 없습니다.
->> **나머지가 아닌 이유** — **Polly는 텍스트를 음성으로** 바꾸는 서비스라 방향이 반대입니다. Lex는 챗봇 서비스입니다.
+>> **나머지가 아닌 이유** — **Polly는 텍스트를 음성으로** 바꾸는 서비스라 방향이 반대입니다.
 
 <sub>관련: [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
 
@@ -365,12 +365,12 @@ lang: ko
 <sub>관련: [[amazon-vpc]] [[amazon-ec2]] | 모듈 [[02-secure-workloads]]</sub>
 
 > [!question] SNS 주제로 오가는 **모든 알림을 감사용으로 S3에 보관**해야 합니다. 지금은 주제를 구독한 Lambda가 S3에 파일을 쓰는데, 작은 파일이 수백만 개 생기고 함수도 관리해야 합니다. 운영 오버헤드가 가장 적은 솔루션은 무엇입니까?
-> a) 주제에 **Kinesis Data Firehose 전송 스트림을 구독**시켜 버퍼링 후 S3에 저장하게 한다
+> a) 주제에 **Amazon Data Firehose 전송 스트림을 구독**시켜 버퍼링 후 S3에 저장하게 한다
 > b) 주제에 SQS 큐를 구독시키고 EC2가 주기적으로 S3에 올리게 한다
 > c) Lambda의 배치 크기를 늘려 파일을 크게 만든다
 > d) S3 수명 주기로 작은 파일을 정리한다
 >> [!success]- Answer
->> a) 주제에 **Kinesis Data Firehose 전송 스트림을 구독**시켜 버퍼링 후 S3에 저장하게 한다
+>> a) 주제에 **Amazon Data Firehose 전송 스트림을 구독**시켜 버퍼링 후 S3에 저장하게 한다
 >> **왜 이 답인가** — SNS는 **Firehose를 구독 대상으로 직접 지원**합니다. Firehose가 버퍼링·압축·S3 적재를 대신 하므로 함수가 사라지고 작은 파일 문제도 해결됩니다.
 >> **나머지가 아닌 이유** — SQS + EC2 조합은 운영 대상이 늘어납니다. SNS 구독 Lambda는 배치로 묶이지 않고, 수명 주기는 이미 만들어진 파일 수를 줄이지 못합니다.
 
@@ -426,14 +426,14 @@ lang: ko
 <sub>관련: [[amazon-eventbridge]] [[amazon-sqs]] | 모듈 [[04-scalable-decoupled]]</sub>
 
 > [!question] 한 기업이 **평균 1분마다 들어오는 결제 데이터**를 실시간으로 분석한 뒤 S3 데이터 레이크에 수집하려고 합니다. 운영 효율이 가장 높은 솔루션은 무엇입니까?
-> a) **Kinesis Data Firehose**로 데이터를 수집하고 **Kinesis Data Analytics**로 실시간 분석한다
+> a) **Kinesis Data Streams**로 수집해 **Managed Service for Apache Flink**로 실시간 분석하고 **Amazon Data Firehose**로 S3에 적재한다
 > b) Kinesis Data Streams로 수집하고 Lambda로 실시간 분석한다
-> c) AWS Glue로 수집하고 Kinesis Data Analytics로 분석한다
+> c) AWS Glue로 수집하고 Managed Service for Apache Flink로 분석한다
 > d) API Gateway로 수집하고 Lambda로 분석한다
 >> [!success]- Answer
->> a) **Kinesis Data Firehose**로 데이터를 수집하고 **Kinesis Data Analytics**로 실시간 분석한다
->> **왜 이 답인가** — Firehose는 **S3 적재를 완전 관리형으로** 처리하고(샤드 관리가 없습니다), 그 위에서 Kinesis Data Analytics가 SQL로 실시간 분석합니다. 두 조각 모두 서버가 없습니다.
->> **나머지가 아닌 이유** — 데이터 스트림은 샤드 용량을 직접 관리해야 하고 S3 적재도 따로 만들어야 합니다. Glue는 배치 ETL이라 실시간 수집기가 아닙니다.
+>> a) **Kinesis Data Streams**로 수집해 **Managed Service for Apache Flink**로 실시간 분석하고 **Amazon Data Firehose**로 S3에 적재한다
+>> **왜 이 답인가** — **Managed Service for Apache Flink 는 데이터 스트림을 소스로** 받습니다. 스트림 위에서 실시간 집계를 하고, S3 적재는 **Firehose 가 관리형으로** 대신하므로 적재 코드를 만들 필요가 없습니다.
+>> **나머지가 아닌 이유** — Lambda 로 실시간 분석을 하려면 윈도 집계와 상태 관리를 직접 만들어야 합니다. Glue는 배치 ETL이라 실시간 분석기가 아니고, API Gateway는 수집 창구일 뿐 분석을 하지 않습니다.
 
 <sub>관련: [[amazon-kinesis]] [[amazon-s3]] | 모듈 [[10-data-ingestion]]</sub>
 

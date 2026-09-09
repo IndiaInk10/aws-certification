@@ -24,7 +24,7 @@ status: 미학습
 | **Express** | 5분 이내 · 초당 대량 · 이력이 CloudWatch 로. 스트리밍·고빈도 처리 |
 
 - **작업 토큰(콜백)** — 외부 시스템이나 **사람의 승인**을 기다렸다가 진행합니다
-- **직접 통합** — Lambda·ECS·SNS·SQS·DynamoDB·Batch·Glue·SageMaker 를 코드 없이 호출합니다
+- **직접 통합** — Lambda·ECS·SNS·SQS·DynamoDB·Batch·Glue·SageMaker AI 를 코드 없이 호출합니다
 - **시각적 실행 이력**으로 어느 단계에서 실패했는지 바로 보입니다
 - **[[amazon-eventbridge\|EventBridge]] 로 시작**시키는 조합이 흔합니다
 
@@ -53,7 +53,7 @@ status: 미학습
 
 ## 관련 노트
 
-- 과제 명세: [[04-scalable-decoupled\|2.1 확장·느슨한 결합]] · [[10-data-ingestion\|2.4 데이터 수집·변환]]
+- 과제 명세: [[04-scalable-decoupled\|2.1 확장·느슨한 결합]] · [[10-data-ingestion\|3.5 데이터 수집·변환]]
 - 비교: [[service-comparisons]]
 
 > 더 기초부터: [CLF-C02 의 AWS Step Functions](/docs/aws-clf-c02/10-services/07-app-integration/aws-step-functions)
